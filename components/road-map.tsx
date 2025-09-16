@@ -2,19 +2,16 @@ import React from "react";
 
 const roadMapData = [
   {
-    title: "Jan",
+    title: "Q1'25",
     milestones: ["Finalize audit", "Conduct QA internal testing"],
   },
   {
-    title: "Feb",
-    milestones: ["Beta Testing", "Launch closed beta testing"],
+    title: "Q2'25",
+    milestones: ["Service Integrations", "SDK and Unified Backend Integration"],
   },
   {
-    title: "March",
-    milestones: [
-      "Launch app",
-      "Open app for public download and free data plan access",
-    ],
+    title: "Q3'25",
+    milestones: ["Beta Testing", "Launch closed beta testing"],
   },
 ];
 
@@ -24,7 +21,7 @@ const RoadMap = () => {
       <div className="flex w-full max-w-4xl items-center justify-center gap-6 md:gap-14">
         <div className="flex-1 border-t border-gray-300 md:max-w-[63px]" />
         <h2 className="text-center text-4xl font-bold uppercase md:text-5xl">
-          Road Ahead
+          Milestones
         </h2>
         <div className="flex-1 border-t border-gray-300 md:max-w-[63px]" />
       </div>

@@ -13,7 +13,7 @@ const featuresData = [
     icon: Relax,
     title: "Simple",
     description:
-      "Set up your mobile plan quickly and easily with our new technology. Speed up the process even more by provisioning your new secure eSIM device wallet.",
+      "Set up your mobile plan quickly and easily with our new technology. Speed up the process even more by provisioning your new secure eSIM smart wallet.",
   },
   {
     icon: Meditate,
@@ -21,23 +21,23 @@ const featuresData = [
     description:
       "We never ask for personal information, so there’s no way for us to collect or store it. Enjoy complete peace of mind on your vacations.",
   },
-  {
+  /*{
     icon: Wallet,
     title: "eSIM Wallet",
     description:
       "When you purchase your first Kokio travel data bundle, a secure eSIM crypto wallet is created. Not ready for crypto? No worries—the eSIM wallet is optional and can be activated whenever you choose.",
-  },
+  },*/
   {
     icon: Shield,
     title: "Secure",
     description:
-      "Our app ensures top-notch security and privacy, utilizing biometrics and Zero Knowledge Proof technology.",
+      "Our app ensures top-notch security and privacy, utilizing biometrics and secure enclave technology.",
   },
   {
     icon: ThumbsUp,
     title: "Quick Pay",
     description:
-      "Enjoy flexible payment options including credit cards, Apple Pay, Google Pay, and PayPal. You can fund your eSIM wallet and check out even faster!",
+      "Enjoy flexible payment options including credit and debit cards, Apple Pay, Google Pay, PayPal and other digital wallets.",
   },
 ];
 

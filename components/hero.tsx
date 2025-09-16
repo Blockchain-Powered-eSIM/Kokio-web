@@ -14,9 +14,9 @@ const Hero = () => {
         </h1>
         <p className="text-xl font-light lg:leading-7">
           Travel with confidence with Kokio’s travel data plans. Unlike
-          traditional eSIM providers, Kokio leverages cutting-edge blockchain
-          technology for enhanced security, privacy, and ease of use. Enjoy
-          seamless connectivity across over 200 destinations worldwide.
+          traditional eSIM providers, Kokio leverages cutting-edge distributed
+          ledger technology for enhanced security, privacy, and ease of use.
+          Enjoy seamless connectivity across over 200 destinations worldwide.
         </p>
       </div>
       <SignUpButton />

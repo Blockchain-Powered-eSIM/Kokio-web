@@ -4,16 +4,17 @@ import Image from "next/image";
 import Logo from "@/assets/logo.svg";
 import LogoMark from "@/assets/logomark.svg";
 
-import Discord from "@/assets/icons/discord.svg";
+//import Discord from "@/assets/icons/discord.svg";
+import Twitter from "@/assets/icons/twitter.svg";
 import GitHub from "@/assets/icons/github.svg";
 import Docs from "@/assets/icons/docs.svg";
 import SignUpButton from "@/components/sign-up-button";
 
 export const socialLinks = [
   {
-    icon: Discord,
-    title: "Discord",
-    href: "https://discord.gg/KfQDsPNn5S",
+    icon: Twitter,
+    title: "Twitter",
+    href: "https://x.com/kokiodotapp",
   },
   {
     icon: GitHub,
@@ -54,7 +55,7 @@ const Footer = () => {
       <div className="flex items-center justify-center gap-2 text-sm">
         <small>Copyright ©</small>
         <Image src={LogoMark} alt="Logo Mark for Kokio" />
-        <small>Kokio 2024</small>
+        <small>Kokio 2025</small>
       </div>
     </footer>
   );

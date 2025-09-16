@@ -2,7 +2,7 @@ import AirTable, { type Record } from "airtable";
 import { NextResponse } from "next/server";
 
 const base = new AirTable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
-  "appvRYA4uxvcdmBxo"
+  "appfkjYpNQxFZs0Qe"
 );
 
 export async function POST(request: Request, response: Response) {
@@ -16,11 +16,11 @@ export async function POST(request: Request, response: Response) {
   try {
     const { email, phoneModel, previousCustomer, newToCrypto } = req;
 
-    const record = base("Table 1").create({
-      "Your email": email,
-      "Your phone model": phoneModel,
-      "Have you use eSIM before?": previousCustomer,
-      "Have you used crypto before?": newToCrypto,
+    const record = base("Kokio Beta Signups").create({
+      Email: email,
+      "Phone Brand and Model": phoneModel,
+      "Used eSIM Before": previousCustomer,
+      "New to Crypto": newToCrypto,
     });
 
     const data = await record;

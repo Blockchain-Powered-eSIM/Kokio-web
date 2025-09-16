@@ -5,7 +5,7 @@ const faqsData = [
     question:
       "What is Kokio and how does it differ from traditional eSIM providers?",
     answer:
-      "Kokio utilizes blockchain technology to offer decentralized mobile connectivity, enhancing privacy, security, and ease of use compared to traditional eSIM providers.",
+      "Kokio utilizes distributed ledger technology to offer decentralized mobile connectivity, enhancing privacy, security, and ease of use compared to traditional eSIM providers.",
   },
   {
     question: "How do I sign up for Kokio’s beta program?",
@@ -20,17 +20,17 @@ const faqsData = [
   {
     question: "What payment options does Kokio accept?",
     answer:
-      "Kokio supports a variety of payment methods including credit cards, Apple Pay, Google Play, PayPal, and cryptocurrencies.",
+      "Kokio supports a variety of payment methods including credit and debit cards, Apple Pay, Google Pay, PayPal and other digital wallets.",
   },
-  {
+  /*{
     question: "How does the eSIM wallet feature work?",
     answer:
       "When you activate your Kokio eSIM, an optional secure digital wallet is also created. This wallet can function as both a crypto wallet and a digital ID.",
-  },
+  },*/
   {
     question: "What security measures does Kokio employ for its services?",
     answer:
-      "Kokio’s app ensures top-notch security and privacy using biometrics, secure enclave technology, and the inherent security features of blockchain technology.",
+      "Kokio’s app ensures top-notch security and privacy using biometrics, secure enclave technology, and the inherent security features of distributed ledger technology.",
   },
   {
     question: "Is personal information required to use Kokio’s services?",
@@ -40,7 +40,7 @@ const faqsData = [
   {
     question: "What is the roadmap for Kokio’s service launch?",
     answer:
-      "Key milestones includes the smart contract audit in February, app integration and conducting internal QA testing in March, launching closed beta testing in April to address bugs, and publicly launching the app with free data plan access in May.",
+      "Key milestones includes the smart contract audit in February, app integration and conducting internal QA testing in June, launching closed beta testing in July to address bugs, and publicly launching the app with data plan access in October.",
   },
 ];
 

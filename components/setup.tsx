@@ -7,18 +7,23 @@ const setupData = [
   {
     title: "Download Our App and Choose a Plan",
     description:
-      "Easily download our app and select from over 200 destinations worldwide.",
+      "Easily download our app and select from a curated catalogue of local and special regional eSIM plans from over 200 destinations worldwide.",
   },
   {
     title: "Pay and Activate the eSIM",
     description:
-      "We support various payment methods including credit cards and cryptocurrencies. Just pay and activate your eSIM to start enjoying mobile connectivity instantly.",
+      "We support various payment methods including credit cards and digital wallets. Just pay and activate your eSIM to start enjoying mobile connectivity instantly.",
   },
   {
+    title: "Turn Your Phone Into a Digital Wallet",
+    description:
+      "Activate your eSIM and optionally enable the smart wallet to purchase eSIMs and data top-ups with stablecoins and use it like any other crypto wallet.",
+  },
+  /*{
     title: "Turn Your Phone Into a Crypto Wallet",
     description:
       "Activate your eSIM and optionally enable the eSIM crypto wallet that also functions as a digital ID.",
-  },
+  },*/
 ];
 
 const Setup = () => {
