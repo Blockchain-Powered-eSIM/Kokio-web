@@ -8,38 +8,37 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="min-h-screen background">
+    <main className="background min-h-screen">
       {/* Content wrapper under global header */}
       <section className="mx-auto max-w-4xl px-6 py-16">
         {/* Title + Description */}
         <header className="mb-10 text-center">
-          <h1 className="text-4xl font-bold text-gray-900">
-            Privacy Policy
-          </h1>
+          <h1 className="text-4xl font-bold text-gray-900">Privacy Policy</h1>
 
-          <p className="mt-4 text-gray-600 leading-relaxed">
-            Below you can find our full privacy policy for Koki'o Mobile Application. This document explains
-            how we collect, use, and protect your personal information during alpha testing of the application.
+          <p className="mt-4 leading-relaxed text-gray-600">
+            Below you can find our full privacy policy for Koki'o Mobile
+            Application. This document explains how we collect, use, and protect
+            your personal information during alpha testing of the application.
             <br />
-            If the embedded PDF doesn’t load properly, use the link below to open it in a
-            new tab.
+            If the embedded PDF doesn’t load properly, use the link below to
+            open it in a new tab.
           </p>
 
           <a
             href="https://drive.google.com/file/d/1XROiv_rS2Qe8nJWUPIcNFUFDiXZm2GS6/view?usp=sharing"
             target="_blank"
             rel="noreferrer"
-            className="mt-3 inline-block text-sm text-sky-700 underline hover:text-sky-900 transition"
+            className="mt-3 inline-block text-sm text-sky-700 underline transition hover:text-sky-900"
           >
             Open Privacy Policy in a new tab →
           </a>
         </header>
 
         {/* PDF Viewer Card */}
-        <div className="mt-8 rounded-2xl border border-gray-200 bg-white shadow-xl overflow-hidden">
+        <div className="mt-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl">
           <iframe
             src="https://drive.google.com/file/d/1XROiv_rS2Qe8nJWUPIcNFUFDiXZm2GS6/preview"
-            className="w-full h-[80vh]"
+            className="h-[80vh] w-full"
             style={{ border: "none" }}
             allow="autoplay"
           />
