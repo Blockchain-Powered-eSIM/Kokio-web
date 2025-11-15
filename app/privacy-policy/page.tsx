@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
           <h1 className="text-4xl font-bold text-gray-900">Privacy Policy</h1>
 
           <p className="mt-4 leading-relaxed text-gray-600">
-            Below you can find our full privacy policy for Koki'o Mobile
+            Below you can find our full privacy policy for Koki&apos;o Mobile
             Application. This document explains how we collect, use, and protect
             your personal information during alpha testing of the application.
             <br />
