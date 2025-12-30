@@ -3,15 +3,24 @@ import React from "react";
 const roadMapData = [
   {
     title: "Q4'25",
-    milestones: ["Alpha testing", "Android & iOS alpha app launch in Argentina, India and Thailand & bug fixes from user feeback."],
+    milestones: [
+      "Alpha testing",
+      "Android & iOS alpha app launch in Argentina, India and Thailand & bug fixes from user feeback.",
+    ],
   },
   {
     title: "Q1'26",
-    milestones: ["Beta", "With KOKI'O alpha live in over 200 countries, Work for beta features with continuos improvement from user feedback."],
+    milestones: [
+      "Beta",
+      "With KOKI'O alpha live in over 200 countries, Work for beta features with continuos improvement from user feedback.",
+    ],
   },
   {
     title: "Q2'26",
-    milestones: ["Beta Testing", "Launch public beta testing and preparitions to ship KOKI'O to prod"],
+    milestones: [
+      "Beta Testing",
+      "Launch public beta testing and preparations to ship KOKI'O to prod",
+    ],
   },
 ];
 
