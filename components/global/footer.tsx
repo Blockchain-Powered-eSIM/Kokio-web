@@ -55,7 +55,7 @@ const Footer = () => {
       <div className="flex items-center justify-center gap-2 text-sm">
         <small>Copyright ©</small>
         <Image src={LogoMark} alt="Logo Mark for Kokio" />
-        <small>Kokio 2025</small>
+        <small>Kokio 2026</small>
       </div>
     </footer>
   );

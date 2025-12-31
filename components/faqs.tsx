@@ -40,7 +40,7 @@ const faqsData = [
   {
     question: "What is the roadmap for Kokio’s service launch?",
     answer:
-      "Key milestones includes the smart contract audit in February, app integration and conducting internal QA testing in June, launching closed beta testing in July to address bugs, and publicly launching the app with data plan access in October.",
+      "Get your eSIM, KOKI'O alpha is now live in over 200 countries. Key milestones include the Dev and Ops work for beta features in Q1 2026 followed by a beta launch in Q2 alongside ongoing bug fixes and continuous improvements based on user feedback.",
   },
 ];
 
