@@ -40,7 +40,7 @@ const faqsData = [
   {
     question: "What is the roadmap for Kokio’s service launch?",
     answer:
-      "Get your eSIM, KOK'O alpha live in over 200 countries. Key milestones includes the Dev and Ops work for beta features in Q1 of 2026 and then public beta launch in Q2 with continuos bug fixes and improvements from user feedback.",
+      "Get your eSIM, KOKI'O alpha is now live in over 200 countries. Key milestones include the Dev and Ops work for beta features in Q1 2026 followed by a beta launch in Q2 alongside ongoing bug fixes and continuous improvements based on user feedback.",
   },
 ];
 
