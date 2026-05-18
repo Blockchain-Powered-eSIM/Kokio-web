@@ -4,7 +4,7 @@ export default function MoonpayReturnPage() {
       <div className="max-w-2xl text-center">
         <p className="text-xl font-light leading-relaxed text-foreground md:text-2xl">
           Your payment was successful. You can close this window and return to
-          the KOKI'O app. Kindly wait for your order to process.
+          the KOKI&apos;O app. Kindly wait for your order to process.
         </p>
       </div>
     </main>
