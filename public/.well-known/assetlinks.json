@@ -6,7 +6,7 @@
     ],
     "target": {
       "namespace": "android_app",
-      "package_name": "app.kokio",
+      "package_name": "app.kokio.mobile",
       "sha256_cert_fingerprints": [
         "0E:67:0F:CE:9A:1C:B9:6C:3D:45:30:DD:7A:28:29:85:B6:D1:B7:D1:BB:30:B8:DA:DB:CE:7A:8E:93:0B:3D:CC",
         "96:20:2C:76:18:3F:9A:C7:02:96:0A:31:DD:79:BB:43:08:C0:76:6D:F0:C1:D7:9D:D2:65:02:CB:E7:6A:81:13",
