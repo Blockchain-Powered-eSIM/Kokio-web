@@ -52,6 +52,20 @@ const Footer = () => {
         </ul>
         <SignUpButton />
       </div>
+      <div className="container flex items-center justify-center px-4 py-4 text-center lg:max-w-[1200px]">
+        <p className="text-lg font-light text-esim-black-50">
+          KOKI&apos;O launches June 2026 —{" "}
+          <a
+            href="https://x.com/kokiodotapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-cashmere-500 underline underline-offset-2 hover:text-cashmere-400"
+          >
+            Follow us on X
+          </a>{" "}
+          for updates.
+        </p>
+      </div>
       <div className="flex items-center justify-center gap-2 text-sm">
         <small>Copyright ©</small>
         <Image src={LogoMark} alt="Logo Mark for Kokio" />
