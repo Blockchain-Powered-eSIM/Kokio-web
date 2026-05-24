@@ -15,7 +15,7 @@ export default function Home() {
       <Hero />
       <Setup />
       <div className="relative -mt-1">
-        <div className="h-[472px] w-full">
+        <div className="relative h-[472px] w-full">
           <Image
             src={PyramidTransition}
             alt="Transition lines between the setup sections and features section"

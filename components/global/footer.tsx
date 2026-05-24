@@ -32,7 +32,13 @@ const Footer = () => {
   return (
     <footer className="-mt-1 flex flex-col gap-6 bg-esim-black-950 pb-6 pt-20 text-esim-black-50">
       <div className="container flex flex-col items-center gap-10 lg:max-w-[1200px] lg:flex-row lg:justify-between">
-        <Image src={Logo} alt="Kokio Logo" width={200} height={200} />
+        <Image
+          src={Logo}
+          alt="Kokio Logo"
+          width={200}
+          height={200}
+          style={{ width: "auto", height: "auto" }}
+        />
         <ul className="flex flex-wrap justify-center gap-8">
           {socialLinks.map((footer) => (
             <li key={footer.title} className="flex items-center gap-2">

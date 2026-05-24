@@ -33,13 +33,14 @@ const NavBar = () => {
   return (
     <div className="container flex w-full max-w-[1017px] justify-center px-4 pt-10 md:px-8 lg:px-0 lg:pt-[4.5rem]">
       <nav className="flex w-full items-center justify-between rounded-full bg-ship-cove-50 p-6 md:px-14">
-        <Link href="/" legacyBehavior passHref>
+        <Link href="/">
           <Image
             src={Logo}
             alt="Logo"
             width={100}
             height={24}
             className="h-6 w-auto md:h-8 lg:h-12"
+            style={{ width: "auto" }}
           />
         </Link>
         {/* Mobile Nav */}
@@ -50,7 +51,13 @@ const NavBar = () => {
           <DialogContent className="top-[22%] w-11/12 rounded-4xl bg-ship-cove-50">
             <DialogHeader className="flex">
               <DialogTitle className="-mt-2 flex justify-start">
-                <Image src={Logo} alt="Logo" width={100} height={100} />
+                <Image
+                  src={Logo}
+                  alt="Logo"
+                  width={100}
+                  height={100}
+                  style={{ width: "auto", height: "auto" }}
+                />
               </DialogTitle>
               <DialogDescription />
             </DialogHeader>

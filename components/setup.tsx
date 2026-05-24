@@ -34,7 +34,7 @@ const Setup = () => {
           Simple Setup, Fun Trip Ahead.
         </h2>
         <div className="relative h-48 w-full object-cover md:h-[452px] md:w-[452px]">
-          <Image src={BeachBall} alt="Beach ball and bucket" fill />
+          <Image src={BeachBall} alt="Beach ball and bucket" fill priority />
         </div>
         <dl className="flex flex-col gap-20 px-8 md:px-28 lg:flex-row lg:justify-between lg:px-4">
           {setupData.map((setup) => (
