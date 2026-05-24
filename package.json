@@ -7,7 +7,7 @@
     "build": "next build",
     "build:ci": "next build --debug --no-lint",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.1",
@@ -32,10 +32,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "@eslint/eslintrc": "^3",
-    "eslint-config-next": "16.2.6",
-    "eslint-config-prettier": "^10.0.0",
-    "eslint-plugin-prettier": "^5.2.1",
+    "typescript-eslint": "^8",
     "postcss": "^8",
     "prettier": "3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
