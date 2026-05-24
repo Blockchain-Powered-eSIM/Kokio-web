@@ -23,5 +23,5 @@ export default tseslint.config(
 
   {
     ignores: [".next/", "node_modules/", "eslint.config.mjs"],
-  },
+  }
 );
