@@ -9,24 +9,8 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
-    - uses: oven-sh/setup-bun@v1
-      with:
-        bun-version: latest
-    - run: bun install
-    - run: bun run build:ci
-      env:
-        AIRTABLE_API_KEY: "placeholder"
-        NEXT_PUBLIC_PROJECT_ID: "placeholder"
-
-  # lint:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v4
-  #   - uses: oven-sh/setup-bun@v1
-  #     with:
-  #       bun-version: latest
-  #   - run: bun install
-  #   - run: bun run lint
+    - run: npm ci
+    - run: npm run build
 
   codeql:
       runs-on: ubuntu-latest

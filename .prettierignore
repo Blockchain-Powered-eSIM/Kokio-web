@@ -22,7 +22,6 @@ public/**
 yarn.lock
 package-lock.json
 pnpm-lock.yaml
-bun.lockb
 
 # Ignore coverage output
 coverage
@@ -30,4 +29,3 @@ coverage
 # Ignore logs
 logs
 *.log
-
