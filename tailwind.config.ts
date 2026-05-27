@@ -1,4 +1,5 @@
-const { fontFamily, fontSize } = require("tailwindcss/defaultTheme");
+import { fontFamily } from "tailwindcss/defaultTheme";
+import tailwindcssAnimate from "tailwindcss-animate";
 import type { Config } from "tailwindcss";
 
 const config = {
@@ -220,7 +221,7 @@ const config = {
       backgroundImage: ["responsive"],
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;
 
 export default config;

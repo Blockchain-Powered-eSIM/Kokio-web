@@ -3,10 +3,8 @@ import Image from "next/image";
 
 import Relax from "@/assets/icons/relax.svg";
 import Meditate from "@/assets/icons/meditate.svg";
-import Wallet from "@/assets/icons/wallet.svg";
 import Shield from "@/assets/icons/shield.svg";
 import ThumbsUp from "@/assets/icons/thumbs-up.svg";
-import PyramidTransition from "@/assets/transition2.svg";
 
 const featuresData = [
   {

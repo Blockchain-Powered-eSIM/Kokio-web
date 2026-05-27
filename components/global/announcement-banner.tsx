@@ -7,9 +7,7 @@ const AnnouncementBanner = () => {
     <div className="w-full bg-cashmere-500">
       <div className="container flex items-center justify-center gap-2 px-4 py-3 text-center">
         <p className="text-sm font-light text-outer-space-950 md:text-base">
-          <span className="font-bold">
-            KOKI&apos;O is launching soon!
-          </span>{" "}
+          <span className="font-bold">KOKI&apos;O is launching soon!</span>{" "}
           Follow us on{" "}
           <a
             href="https://x.com/kokiodotapp"

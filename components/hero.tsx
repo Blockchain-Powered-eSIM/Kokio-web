@@ -1,5 +1,5 @@
 import React from "react";
-import Image, { getImageProps } from "next/image";
+import Image from "next/image";
 
 import BeachTransition from "@/assets/transition1.svg";
 
