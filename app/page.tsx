@@ -4,12 +4,15 @@ import { Features } from "@/components/features";
 import { Hero } from "@/components/hero";
 import { RoadMap } from "@/components/road-map";
 import { Setup } from "@/components/setup";
+import { JsonLd } from "@/components/json-ld";
+import { homeGraph } from "@/lib/schema";
 
 import PyramidTransition from "@/assets/transition2.svg";
 
 export default function Home() {
   return (
     <main className="flex flex-col">
+      <JsonLd data={homeGraph} />
       <Hero />
       <Setup />
       <div className="relative -mt-1">

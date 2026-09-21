@@ -14,9 +14,12 @@ export function generateMetadata(): Metadata {
   const manifesto = getManifesto();
 
   return {
-    title: `${manifesto.title} | Kokio`,
+    title: manifesto.title,
     description: manifesto.description,
-    alternates: { canonical: "/manifesto" },
+    alternates: {
+      canonical: "/manifesto",
+      types: { "text/markdown": "/manifesto.md" },
+    },
     openGraph: {
       type: "article",
       url: `${siteConfig.url}/manifesto`,

@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/verify-site.mjs",
+    "verify": "node scripts/verify-site.mjs",
     "build:ci": "next build --debug --no-lint",
     "start": "next start",
     "lint": "eslint ."

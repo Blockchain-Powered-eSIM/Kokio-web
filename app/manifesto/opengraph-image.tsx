@@ -9,7 +9,7 @@ import {
   OG_IMAGE_SIZE,
 } from "@/lib/og-image";
 
-export const alt = "Koki'o Manifesto";
+export const alt = "Kokio Manifesto";
 export const size = OG_IMAGE_SIZE;
 export const contentType = OG_IMAGE_CONTENT_TYPE;
 

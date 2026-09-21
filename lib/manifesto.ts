@@ -9,6 +9,8 @@ export interface Manifesto {
   title: string;
   description: string;
   ogHeadline?: string;
+  /** Last substantive edit, used for sitemap lastmod. */
+  updated: Date;
   tldr: string[];
   content: string;
 }
@@ -17,6 +19,7 @@ const frontmatterSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
   ogHeadline: z.string().min(1).optional(),
+  updated: z.coerce.date(),
   tldr: z.array(z.string().min(1)).min(1),
 });
 
@@ -48,6 +51,7 @@ export function getManifesto(): Manifesto {
     title: result.data.title,
     description: result.data.description,
     ogHeadline: result.data.ogHeadline,
+    updated: result.data.updated,
     tldr: result.data.tldr,
     content,
   };

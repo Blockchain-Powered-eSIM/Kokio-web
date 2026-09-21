@@ -54,9 +54,9 @@ export const Links = () => {
 
 const NavBar = () => {
   // /manifesto renders its own nav row inside the shared translucent panel
-  // (components/manifesto/manifesto-nav.tsx) instead of this global pill — see #25.
+  // (components/manifesto/manifesto-nav.tsx) instead of this global pill.
   const pathname = usePathname();
-  if (pathname?.startsWith("/manifesto")) return null;
+  if (pathname?.startsWith("/manifesto") || pathname?.startsWith("/live")) return null;
 
   return (
     <div className="container flex w-full max-w-[1017px] justify-center px-4 pt-10 md:px-8 lg:px-0 lg:pt-[4.5rem]">

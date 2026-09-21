@@ -16,7 +16,7 @@ export function GET() {
 
   const items = posts
     .map((post) => {
-      const url = `${siteConfig.url}/blog/${post.slug}`;
+      const url = `${siteConfig.url}/blogs/${post.slug}`;
       return `
     <item>
       <title>${escapeXml(post.title)}</title>
@@ -32,8 +32,8 @@ export function GET() {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kokio Blog</title>
-    <link>${siteConfig.url}/blog</link>
-    <atom:link href="${siteConfig.url}/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <link>${siteConfig.url}/blogs</link>
+    <atom:link href="${siteConfig.url}/blogs/rss.xml" rel="self" type="application/rss+xml" />
     <description>${escapeXml(siteConfig.description)}</description>
     <language>en-us</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>${items}

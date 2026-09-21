@@ -3,6 +3,7 @@ import Blog from "@/assets/icons/blog-fill.svg";
 import Twitter from "@/assets/icons/twitter-fill.svg";
 import GitHub from "@/assets/icons/github-fill.svg";
 import Docs from "@/assets/icons/docs-fill.svg";
+import { CANONICAL_DESCRIPTION, PRODUCT_NAME } from "@/lib/site-copy";
 
 export const BLOG_TAGS = [
   "eSIM Basics",
@@ -14,8 +15,8 @@ export const BLOG_TAGS = [
 
 export type BlogTag = (typeof BLOG_TAGS)[number];
 
-// Flip to "live" once the app is out; every CTA reads this, no component edits needed.
-export const CTA_MODE: "prelaunch" | "live" = "prelaunch";
+// The app is out — every CTA that reads this now points at the real product.
+export const CTA_MODE: "prelaunch" | "live" = "live";
 
 // Single source for the Twitter/X link - matches the footer social link.
 export const TWITTER_URL = "https://x.com/kokiodotapp";
@@ -23,15 +24,14 @@ export const TWITTER_URL = "https://x.com/kokiodotapp";
 // Twitter/X handle for the twitter:site card attribution.
 export const TWITTER_HANDLE = "@kokiodotapp";
 
-// Placeholder destination for "live" mode until real App Store / Play Store links exist.
-export const APP_URL = "https://kokio.app";
+// "live" mode's CTA destination: the interactive download + usage guide.
+export const APP_URL = "https://kokio.app/live";
 
 export const siteConfig = {
-  name: "Kokio",
+  name: PRODUCT_NAME,
   url: "https://kokio.app",
   header: "Experience the Future of Global Connectivity",
-  description:
-    "Travel with confidence with Kokio’s travel data plans. Unlike traditional eSIM providers, Kokio leverages cutting-edge blockchain technology for enhanced security, privacy, and ease of use. Enjoy seamless connectivity across over 200 destinations worldwide.",
+  description: CANONICAL_DESCRIPTION,
   socials: [
     {
       icon: Twitter,
@@ -51,7 +51,7 @@ export const siteConfig = {
     {
       icon: Blog,
       title: "Blogs",
-      href: "/blog",
+      href: "/blogs",
     },
   ],
 };

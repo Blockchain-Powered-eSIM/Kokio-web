@@ -1,3 +1,13 @@
+/**
+ * Published policy text. It states what Kokio does and does not collect, so it
+ * has to keep matching the app, the glossary and the marketing copy.
+ *
+ * Anything beyond a typo needs counsel to see it first, and the record of what
+ * they were asked and what they answered is kept outside this repository.
+ * After a reviewed change lands, move `counselReviewedIso` in config/legal.ts
+ * and update that record. The build warns until the date moves.
+ */
+
 import { legalConfig } from "@/config/legal";
 import type { LegalDocument } from "@/lib/legal/types";
 
@@ -14,7 +24,7 @@ export const privacyPolicy: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `This Privacy Policy explains how ${legalConfig.companyLegalName} (UEN ${legalConfig.uen}) ("Koki'o", "we", "us", or "our") handles information in connection with the Koki'o mobile application and related services (the "Service"). We are committed to data minimisation: the Service is designed so that we collect and hold as little information about you as possible.`,
+          content: `This Privacy Policy explains how ${legalConfig.companyLegalName} (UEN ${legalConfig.uen}) ("Kokio", "we", "us", or "our") handles information in connection with the Kokio mobile application and related services (the "Service"). We are committed to data minimisation: the Service is designed so that we collect and hold as little information about you as possible.`,
         },
         {
           type: "paragraph",
@@ -28,7 +38,7 @@ export const privacyPolicy: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `Koki'o is built to let you purchase eSIMs without providing personally identifiable information. We do not ask for your name, email address, phone number, physical address, or government identifiers to create or use an account.`,
+          content: `Kokio is built to let you purchase eSIMs without providing personally identifiable information. We do not ask for your name, email address, phone number, physical address, or government identifiers to create or use an account.`,
         },
         {
           type: "paragraph",
@@ -256,7 +266,7 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `Open the Koki'o app, go to Settings, and select "Delete Account". You will be asked to confirm with your passkey. Deletion is immediate and irreversible.`,
+              content: `Open the Kokio app, go to Settings, and select "Delete Account". You will be asked to confirm with your passkey. Deletion is immediate and irreversible.`,
             },
           ],
         },
@@ -296,7 +306,7 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `Koki'o accounts hold no personal data and are secured solely by a device-bound passkey. We therefore have no way to verify, out of band, that a person contacting us is the account holder — an email-based deletion path would be a security risk. Deletion is performed in the app, authenticated by your passkey, which is the only proof of account ownership that exists.`,
+              content: `Kokio accounts hold no personal data and are secured solely by a device-bound passkey. We therefore have no way to verify, out of band, that a person contacting us is the account holder — an email-based deletion path would be a security risk. Deletion is performed in the app, authenticated by your passkey, which is the only proof of account ownership that exists.`,
             },
           ],
         },
@@ -306,7 +316,7 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `If your passkey is lost or deleted, the account becomes permanently unreachable. No party, including Koki'o, can access, restore, delete on request, or act on it. Account recovery is not supported by design.`,
+              content: `If your passkey is lost or deleted, the account becomes permanently unreachable. No party, including Kokio, can access, restore, delete on request, or act on it. Account recovery is not supported by design.`,
             },
           ],
         },

@@ -1,3 +1,12 @@
+/**
+ * Published contract text. Changing a word here changes what users agreed to.
+ *
+ * Anything beyond a typo needs counsel to see it first, and the record of what
+ * they were asked and what they answered is kept outside this repository.
+ * After a reviewed change lands, move `counselReviewedIso` in config/legal.ts
+ * and update that record. The build warns until the date moves.
+ */
+
 import { legalConfig } from "@/config/legal";
 import type { LegalDocument } from "@/lib/legal/types";
 
@@ -14,7 +23,7 @@ export const termsOfService: LegalDocument = {
           content: [
             {
               type: "text",
-              value: `These Terms of Service ("Terms") form a binding agreement between you and ${legalConfig.companyLegalName} (UEN ${legalConfig.uen}), a company incorporated in Singapore with its registered office at ${legalConfig.registeredAddress} ("Koki'o", "we", "us"). By downloading, accessing, or using the Koki'o mobile application and related services (the "Service"), you agree to these Terms and to our `,
+              value: `These Terms of Service ("Terms") form a binding agreement between you and ${legalConfig.companyLegalName} (UEN ${legalConfig.uen}), a company incorporated in Singapore with its registered office at ${legalConfig.registeredAddress} ("Kokio", "we", "us"). By downloading, accessing, or using the Kokio mobile application and related services (the "Service"), you agree to these Terms and to our `,
             },
             {
               type: "internal",
@@ -48,7 +57,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `Koki'o is a marketplace that lets you purchase and manage eSIM mobile-data plans. The Service includes a device-bound authentication mechanism and a self-custodial blockchain wallet used to record purchases and wallet activity. eSIM connectivity is provided by third-party eSIM service providers and their partner networks, not by Koki'o.`,
+          content: `Kokio is a marketplace that lets you purchase and manage eSIM mobile-data plans. The Service includes a device-bound authentication mechanism and a self-custodial blockchain wallet used to record purchases and wallet activity. eSIM connectivity is provided by third-party eSIM service providers and their partner networks, not by Kokio.`,
         },
       ],
     },
@@ -58,7 +67,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `Your account is created and secured by a device-bound passkey. THERE IS NO ACCOUNT RECOVERY. If you lose, delete, or cannot access your passkey, you will permanently and irreversibly lose access to your account, your wallet, your purchase history, and any funds or assets associated with the wallet. No party, including Koki'o, can restore access.`,
+          content: `Your account is created and secured by a device-bound passkey. THERE IS NO ACCOUNT RECOVERY. If you lose, delete, or cannot access your passkey, you will permanently and irreversibly lose access to your account, your wallet, your purchase history, and any funds or assets associated with the wallet. No party, including Kokio, can restore access.`,
         },
         {
           type: "paragraph",
@@ -80,7 +89,7 @@ export const termsOfService: LegalDocument = {
         },
         {
           type: "paragraph",
-          content: `Koki'o is a non-custodial software interface. We are not a bank, money-services business, exchange, custodian, or financial advisor, and we do not provide financial, investment, tax, or legal advice.`,
+          content: `Kokio is a non-custodial software interface. We are not a bank, money-services business, exchange, custodian, or financial advisor, and we do not provide financial, investment, tax, or legal advice.`,
         },
       ],
     },
@@ -90,7 +99,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `Prices are shown in the app and may change. You may pay by supported methods, including card payments processed by Stripe and crypto purchases processed by MoonPay. These providers are independent third parties; your use of their services is subject to their terms and privacy policies, and they may perform their own identity verification. Koki'o does not receive or store your full payment credentials.`,
+          content: `Prices are shown in the app and may change. You may pay by supported methods, including card payments processed by Stripe and crypto purchases processed by MoonPay. These providers are independent third parties; your use of their services is subject to their terms and privacy policies, and they may perform their own identity verification. Kokio does not receive or store your full payment credentials.`,
         },
         {
           type: "paragraph",
@@ -117,7 +126,7 @@ export const termsOfService: LegalDocument = {
               { type: "strong", value: "Provisioning:" },
               {
                 type: "text",
-                value: ` eSIM profiles are provisioned by third-party providers. Availability, coverage, speeds, and "unlimited" or fair-use conditions are set by those providers and their partner networks and are not guaranteed by Koki'o.`,
+                value: ` eSIM profiles are provisioned by third-party providers. Availability, coverage, speeds, and "unlimited" or fair-use conditions are set by those providers and their partner networks and are not guaranteed by Kokio.`,
               },
             ],
             [
@@ -169,7 +178,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `The Service, including its software, design, and trademarks, is owned by Koki'o or its licensors and is protected by law. We grant you a limited, non-exclusive, non-transferable, revocable licence to use the app for its intended personal purpose. Open-source components remain governed by their respective licences.`,
+          content: `The Service, including its software, design, and trademarks, is owned by Kokio or its licensors and is protected by law. We grant you a limited, non-exclusive, non-transferable, revocable licence to use the app for its intended personal purpose. Open-source components remain governed by their respective licences.`,
         },
       ],
     },
@@ -203,7 +212,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `TO THE MAXIMUM EXTENT PERMITTED BY LAW, KOKI'O AND ITS OFFICERS, EMPLOYEES, AND AGENTS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR FOR LOSS OF PROFITS, DATA, GOODWILL, OR CRYPTO-ASSETS, OR FOR LOSSES ARISING FROM LOSS OF YOUR PASSKEY, IRREVERSIBLE TRANSACTIONS, OR THIRD-PARTY SERVICES. OUR TOTAL AGGREGATE LIABILITY FOR ANY CLAIM WILL NOT EXCEED THE AMOUNT YOU PAID TO US FOR THE TRANSACTION GIVING RISE TO THE CLAIM IN THE ${legalConfig.liabilityCapMonths} MONTHS BEFORE THE EVENT.`,
+          content: `TO THE MAXIMUM EXTENT PERMITTED BY LAW, KOKIO AND ITS OFFICERS, EMPLOYEES, AND AGENTS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR FOR LOSS OF PROFITS, DATA, GOODWILL, OR CRYPTO-ASSETS, OR FOR LOSSES ARISING FROM LOSS OF YOUR PASSKEY, IRREVERSIBLE TRANSACTIONS, OR THIRD-PARTY SERVICES. OUR TOTAL AGGREGATE LIABILITY FOR ANY CLAIM WILL NOT EXCEED THE AMOUNT YOU PAID TO US FOR THE TRANSACTION GIVING RISE TO THE CLAIM IN THE ${legalConfig.liabilityCapMonths} MONTHS BEFORE THE EVENT.`,
         },
       ],
     },
@@ -213,7 +222,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `You agree to indemnify and hold Koki'o harmless from claims, losses, and expenses (including reasonable legal fees) arising from your misuse of the Service, your violation of these Terms, or your violation of any law or third-party right.`,
+          content: `You agree to indemnify and hold Kokio harmless from claims, losses, and expenses (including reasonable legal fees) arising from your misuse of the Service, your violation of these Terms, or your violation of any law or third-party right.`,
         },
       ],
     },
@@ -260,7 +269,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `These Terms are governed by the laws of ${legalConfig.governingLaw}, without regard to conflict-of-laws rules. Subject to any mandatory consumer-protection rights in your country of residence, disputes will be resolved in ${legalConfig.disputeResolution}.`,
+          content: `These Terms are governed by the laws of ${legalConfig.governingLaw}, without regard to conflict-of-laws rules. Subject to any mandatory consumer-protection rights in your country of residence, disputes will be resolved ${legalConfig.disputeResolution}.`,
         },
       ],
     },

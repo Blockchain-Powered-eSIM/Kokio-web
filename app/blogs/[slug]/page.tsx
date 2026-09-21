@@ -17,7 +17,7 @@ import { WaveDivider } from "@/components/blog/wave-divider";
 import { ReadingProgressBar } from "@/components/blog/reading-progress-bar";
 import { BackToTopButton } from "@/components/blog/back-to-top-button";
 import { getMdxComponents } from "@/components/blog/mdx-components";
-import Logo from "@/assets/logo.svg";
+import { ORGANIZATION_ID, WEBSITE_ID } from "@/lib/schema";
 
 type Params = Promise<{ slug: string }>;
 
@@ -34,12 +34,15 @@ export async function generateMetadata({
   const post = getPost(slug);
   if (!post) return {};
 
-  const url = `${siteConfig.url}/blog/${post.slug}`;
+  const url = `${siteConfig.url}/blogs/${post.slug}`;
 
   return {
-    title: `${post.title} | Kokio`,
+    title: post.title,
     description: post.description,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: {
+      canonical: `/blogs/${post.slug}`,
+      types: { "text/markdown": `/blogs/${post.slug}.md` },
+    },
     openGraph: {
       type: "article",
       url,
@@ -47,6 +50,7 @@ export async function generateMetadata({
       title: post.title,
       description: post.description,
       publishedTime: post.date.toISOString(),
+      modifiedTime: post.updated.toISOString(),
       authors: [post.author.name],
     },
     twitter: {
@@ -80,31 +84,28 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   const headings = frontmatter.headings ?? [];
   const showToc = headings.length >= 5;
 
-  const url = `${siteConfig.url}/blog/${post.slug}`;
+  const url = `${siteConfig.url}/blogs/${post.slug}`;
   const heroUrl = `${siteConfig.url}${post.ogImage ?? post.hero}`;
-  const logoUrl = `${siteConfig.url}${Logo.src}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${url}#article`,
     headline: post.title,
     description: post.description,
     image: [heroUrl],
     datePublished: post.date.toISOString(),
-    dateModified: post.date.toISOString(),
+    dateModified: post.updated.toISOString(),
+    inLanguage: "en",
     author: {
       "@type": "Person",
       name: post.author.name,
       ...(post.author.twitter ? { sameAs: [post.author.twitter] } : {}),
     },
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      logo: {
-        "@type": "ImageObject",
-        url: logoUrl,
-      },
-    },
+    // Point at the Organization the layout already emits instead of describing
+    // it again here, so a post and the site cannot disagree about the publisher.
+    publisher: { "@id": ORGANIZATION_ID },
+    isPartOf: { "@id": WEBSITE_ID },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": url,

@@ -12,12 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The site checks that run after the build compare content dates
+          # against the commits that last touched that content, and a shallow
+          # clone has no commits to compare with.
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: npm
       - run: npm ci
       - run: npx tsc --noEmit
+      - run: npm run lint
+      # postbuild runs scripts/verify-site.mjs, so this step also fails on a
+      # page missing from the sitemap or a link that points at nothing.
       - run: npm run build
 
   audit:

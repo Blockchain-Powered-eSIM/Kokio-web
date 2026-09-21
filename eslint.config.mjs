@@ -21,6 +21,15 @@ export default tseslint.config(
     },
   },
 
+  // Build scripts run in node. Listed by hand rather than pulling in the
+  // globals package for the few names these scripts actually use.
+  {
+    files: ["scripts/**/*.mjs"],
+    languageOptions: {
+      globals: { console: "readonly", process: "readonly", URL: "readonly" },
+    },
+  },
+
   {
     ignores: [".next/", "node_modules/", "eslint.config.mjs"],
   }

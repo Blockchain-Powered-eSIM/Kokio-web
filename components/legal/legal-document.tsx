@@ -1,4 +1,5 @@
 import type { LegalDocument } from "@/lib/legal/types";
+import { PRODUCT_NAME } from "@/lib/site-copy";
 import { anchorId } from "@/lib/legal/slug";
 import { LegalSection } from "@/components/legal/legal-section";
 import { LegalToc } from "@/components/legal/legal-toc";
@@ -8,8 +9,9 @@ export function LegalDocumentView({ doc }: { doc: LegalDocument }) {
   return (
     <article className="flex flex-col">
       <header className="flex flex-col gap-3 border-b border-esim-black-100 pb-8">
+        {/* Styled uppercase, so the text stays the canonical spelling. */}
         <p className="font-heading text-sm font-semibold uppercase tracking-wide text-cashmere-700">
-          KOKI&apos;O
+          {PRODUCT_NAME}
         </p>
         <h1 className="font-heading text-4xl font-bold text-foreground md:text-5xl">
           {doc.title}

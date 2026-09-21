@@ -5,7 +5,7 @@ import {
   renderOgImage,
 } from "@/lib/og-image";
 
-export const alt = "Koki'o blog post";
+export const alt = "Kokio blog post";
 export const size = OG_IMAGE_SIZE;
 export const contentType = OG_IMAGE_CONTENT_TYPE;
 
@@ -18,7 +18,7 @@ export default async function Image({
   const post = getPost(slug);
 
   return renderOgImage({
-    eyebrow: post?.tag ?? "Koki'o Blog",
-    title: post?.title ?? "Koki'o Blog",
+    eyebrow: post?.tag ?? "Kokio Blog",
+    title: post?.title ?? "Kokio Blog",
   });
 }

@@ -7,7 +7,7 @@ import { formatPostDate } from "@/lib/utils";
 export function PostCard({ post }: { post: Post }) {
   return (
     <Link
-      href={`/blog/${post.slug}`}
+      href={`/blogs/${post.slug}`}
       className="group flex flex-col overflow-hidden rounded-3xl border border-esim-black-100 bg-background shadow-sm transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cashmere-500 focus-visible:ring-offset-2 sm:flex-row"
     >
       <div className="relative h-48 w-full shrink-0 bg-cashmere-50 sm:h-auto sm:w-64">

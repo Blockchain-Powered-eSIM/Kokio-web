@@ -10,13 +10,15 @@ import Blog from "@/assets/icons/blog.svg";
 import Twitter from "@/assets/icons/twitter.svg";
 import GitHub from "@/assets/icons/github.svg";
 import Docs from "@/assets/icons/docs.svg";
+import { CTA_MODE, TWITTER_URL } from "@/config/site";
+import { LAUNCH_NOTICE, LIVE_NOTICE } from "@/lib/site-copy";
 import SignUpButton from "@/components/sign-up-button";
 
 export const socialLinks = [
   {
     icon: Twitter,
     title: "Twitter",
-    href: "https://x.com/kokiodotapp",
+    href: TWITTER_URL,
   },
   {
     icon: GitHub,
@@ -31,12 +33,13 @@ export const socialLinks = [
   {
     icon: Blog,
     title: "Blogs",
-    href: "/blog",
+    href: "/blogs",
   },
 ];
 
-const legalLinks = [
+const siteLinks = [
   { title: "Manifesto", href: "/manifesto" },
+  { title: "Glossary", href: "/glossary" },
   { title: "Privacy Policy", href: "/privacy-policy" },
   { title: "Terms of Service", href: "/terms-of-service" },
 ];
@@ -74,23 +77,23 @@ const Footer = () => {
       </div>
       <div className="container flex items-center justify-center px-4 py-4 text-center lg:max-w-[1200px]">
         <p className="text-lg font-light text-esim-black-50">
-          KOKI&apos;O launches soon —{" "}
+          {CTA_MODE === "live" ? LIVE_NOTICE : LAUNCH_NOTICE} Follow us on{" "}
           <a
-            href="https://x.com/kokiodotapp"
+            href={TWITTER_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="font-bold text-cashmere-500 underline underline-offset-2 hover:text-cashmere-400"
           >
-            Follow us on X
+            X
           </a>{" "}
           for updates.
         </p>
       </div>
       <nav
-        aria-label="Legal"
+        aria-label="Site"
         className="container flex flex-wrap items-center justify-center gap-x-6 gap-y-2 lg:max-w-[1200px]"
       >
-        {legalLinks.map((link) => (
+        {siteLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}

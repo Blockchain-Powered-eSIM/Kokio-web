@@ -1,24 +1,23 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import Logomark from "@/assets/logomark.svg";
 
-const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=app.kokio.mobile";
-
-/** Download card for the Android app, dropped into blog posts that mention
- * it. Mirrors ManifestoCTA's image + frosted-panel structure, but the image
- * is the same beach-scene art behind the homepage hero (see components/hero.tsx)
- * — clouds ~y0-600, ocean band ~y995-1120, sand + a bucket shape from ~y1120
+/** Download card dropped into blog posts that mention the app. Mirrors
+ * ManifestoCTA's image + frosted-panel structure, but the image is the same
+ * beach-scene art behind the homepage hero (see components/hero.tsx) —
+ * clouds ~y0-600, ocean band ~y995-1120, sand + a bucket shape from ~y1120
  * down to ~y1582 (out of a 2068-tall viewBox). At the frosted panel's usual
  * height, object-top only shows plain sky, so the crop is pulled down to
- * ~58% to land on the ocean-to-sand-and-bucket band instead. */
+ * ~58% to land on the ocean-to-sand-and-bucket band instead.
+ *
+ * Points at /live (the interactive download + usage guide) rather than a
+ * store link directly, now that both iOS and Android are out — see D8. */
 export function AppDownloadCTA() {
   return (
-    <a
-      href={PLAY_STORE_URL}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Link
+      href="/live"
       className="not-prose group relative my-8 block overflow-hidden rounded-3xl border-2 border-ocean"
     >
       <Image
@@ -36,10 +35,10 @@ export function AppDownloadCTA() {
             aria-hidden="true"
             className="h-4 w-4"
           />
-          Koki&apos;o on Android
+          Kokio on iOS &amp; Android
         </span>
         <p className="font-heading text-lg font-bold text-outer-space-950 md:text-xl">
-          Koki&apos;o is live on Android &mdash; iOS lands shortly.
+          Kokio is live.
         </p>
         <p className="max-w-md text-sm leading-relaxed text-outer-space-950/80 md:text-base">
           Pick a plan that fits how you travel in over 200 countries. Pay
@@ -47,13 +46,13 @@ export function AppDownloadCTA() {
           and secure.
         </p>
         <span className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-outer-space-950">
-          Get it on Google Play
+          Try out the App today!
           <ArrowRight
             aria-hidden="true"
             className="h-4 w-4 transition-transform group-hover:translate-x-1"
           />
         </span>
       </div>
-    </a>
+    </Link>
   );
 }

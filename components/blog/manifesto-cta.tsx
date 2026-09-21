@@ -21,14 +21,14 @@ export function ManifestoCTA() {
       />
       <div className="relative flex flex-col gap-3 bg-manifesto-card/85 p-6 backdrop-blur-sm transition-colors group-hover:bg-manifesto-card/75 md:p-8">
         <span className="text-xs font-semibold uppercase tracking-wide text-manifesto-coral">
-          The Koki&apos;o Manifesto
+          The Kokio Manifesto
         </span>
         <p className="font-heading text-lg font-bold text-manifesto-ink md:text-xl">
           Connectivity is a human right. Privacy is its guardian.
         </p>
         <p className="text-sm leading-relaxed text-manifesto-ink/80 md:text-base">
-          Koki&apos;o is also a provider, and we say it upfront: don&apos;t
-          trust Koki&apos;o, verify it. This is our position, written out in
+          Kokio is also a provider, and we say it upfront: don&apos;t
+          trust Kokio, verify it. This is our position, written out in
           full.
         </p>
         <span className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-manifesto-teal">

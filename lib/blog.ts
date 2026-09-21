@@ -29,6 +29,8 @@ export interface Post {
   title: string;
   description: string;
   date: Date;
+  /** Last substantive edit. Falls back to `date` when the post has not been revised. */
+  updated: Date;
   author: Author;
   tag: BlogTag;
   hero: string;
@@ -51,6 +53,7 @@ const frontmatterSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
   date: z.coerce.date(),
+  updated: z.coerce.date().optional(),
   author: z.string().min(1),
   tag: z.enum(BLOG_TAGS),
   hero: z.string().min(1),
@@ -133,6 +136,7 @@ function loadPosts(): Post[] {
       title: frontmatter.title,
       description: frontmatter.description,
       date: frontmatter.date,
+      updated: frontmatter.updated ?? frontmatter.date,
       author,
       tag: frontmatter.tag,
       hero: frontmatter.hero,

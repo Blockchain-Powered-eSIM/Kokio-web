@@ -77,7 +77,7 @@ export function renderOgImage({
             textTransform: "uppercase",
           }}
         >
-          Koki&apos;o
+          Kokio
         </span>
       </div>
 

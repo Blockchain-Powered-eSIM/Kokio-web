@@ -6,7 +6,7 @@ import Meditate from "@/assets/icons/meditate.svg";
 import Shield from "@/assets/icons/shield.svg";
 import ThumbsUp from "@/assets/icons/thumbs-up.svg";
 
-const featuresData = [
+export const featuresData = [
   {
     icon: Relax,
     title: "Simple",
@@ -41,7 +41,12 @@ const featuresData = [
 
 const Features = () => {
   return (
-    <section className="z-10 flex justify-center text-esim-black-50">
+    // No heading of its own, so the anchor needs an accessible name spelled out.
+    <section
+      id="features"
+      aria-label="Features"
+      className="z-10 flex scroll-mt-24 justify-center text-esim-black-50"
+    >
       <div className="container flex max-w-screen-2xl flex-col gap-20 text-center lg:flex-row lg:flex-wrap lg:justify-center">
         {featuresData.map((feature) => (
           <div
