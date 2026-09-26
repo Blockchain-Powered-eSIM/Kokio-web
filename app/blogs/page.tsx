@@ -35,7 +35,7 @@ export default function BlogIndexPage() {
             className="h-20 w-auto md:h-24"
           />
           <p className="font-heading text-sm font-semibold uppercase tracking-wide text-cashmere-700">
-            Kokio Blogs
+            Kokio Blog
           </p>
           <h1 className="font-heading text-4xl font-bold text-outer-space-950 md:text-5xl">
             Guides, updates, and stories from Kokio
@@ -47,10 +47,13 @@ export default function BlogIndexPage() {
         </header>
 
         <div className="flex flex-col gap-6">
-          <ManifestoCard manifesto={manifesto} />
           {posts.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}
+        </div>
+
+        <div className="mt-16 md:mt-20">
+          <ManifestoCard manifesto={manifesto} />
         </div>
       </div>
     </main>

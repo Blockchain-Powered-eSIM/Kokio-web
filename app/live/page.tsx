@@ -4,6 +4,7 @@ import { FlowProvider } from "@/components/live/flow-context";
 import { LiveHero, IOS_URL, ANDROID_URL } from "@/components/live/hero";
 import { StepSection } from "@/components/live/step-section";
 import { STEPS, SETTINGS_ABOUT, SETTINGS_CONTACT, CLOSING_TIPS } from "@/components/live/content";
+import { StepRail } from "@/components/live/step-rail";
 import { RichText } from "@/components/live/rich-text";
 import { ManifestoCTA } from "@/components/blog/manifesto-cta";
 import { StepAuthVisual } from "@/components/live/step-auth";
@@ -52,13 +53,7 @@ export default function LivePage() {
         <div className="controls-outer">
           <div className="controls">
             <ThemeToggle />
-            <nav className="rail">
-              {RAIL_LABELS.map(([id, label]) => (
-                <a key={id} href={`#step-${id}`}>
-                  {label}
-                </a>
-              ))}
-            </nav>
+            <StepRail items={RAIL_LABELS} />
           </div>
         </div>
 

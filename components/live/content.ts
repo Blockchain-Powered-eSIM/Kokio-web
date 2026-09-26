@@ -131,16 +131,19 @@ export const STEPS: StepContent[] = [
     alt: 1,
     title: "A wallet you own",
     summary:
-      "A Device Wallet lives on your Home screen, the passkey never leaves your phone's own hardware.",
+      "A Kokio wallet is optional. Card payments keep working, and the passkey never leaves your phone's own hardware.",
     items: [
-      "Before you deploy one, Home shows a **Device Wallet** card with a simple prompt: tap to create it.",
-      "Once deployed, that same card shows your balance and a shortened wallet address, with quick links to copy it or open it in the block explorer.",
+      "Open the **Wallet** tab. Until you have one, it explains what a Kokio wallet adds, with an **Add a Kokio wallet** card below.",
+      "Tap **Create wallet** for a short page on how it works, then **Create with Face ID** (or Fingerprint on Android).",
+      "Setup can take a few minutes. The tab reads **Setting up your wallet** meanwhile, and purchases are restricted, so feel free to explore plans.",
+      "Once it's ready, the tab shows your total balance, a shortened address with quick links to copy it or open it in the block explorer, and **Send**, **Receive** and **Deposit** buttons.",
+      "**Buy eSIMs with USDC** takes you straight to Shop. Your tokens, transactions and contacts sit below, empty until you use them.",
       "It's live on Base Sepolia testnet today, ahead of mainnet.",
     ],
     callout: {
-      text: "Wallet will be enabled soon for purchases and more.",
+      text: "Wallet payments at checkout will be enabled soon.",
     },
-    tryHint: "Tap the card below to deploy your wallet.",
+    tryHint: "Tap Create wallet below to walk through it.",
   },
   {
     id: "settings",
