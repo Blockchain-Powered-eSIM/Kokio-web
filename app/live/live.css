@@ -50,6 +50,8 @@
   --app-gradient-dark: #404040;
   --app-wallet-balance-fg: #ffffff;
   --app-modal-bg: rgba(60, 60, 60, 0.9);
+  --app-cta-bg: #ffaf01;
+  --app-cta-fg: #000000;
 
   color-scheme: dark;
   margin: 0;
@@ -113,6 +115,8 @@
   --app-gradient-dark: #ffffff;
   --app-wallet-balance-fg: #000000;
   --app-modal-bg: rgba(255, 255, 255, 0.95);
+  --app-cta-bg: #2a8fa0;
+  --app-cta-fg: #ffffff;
 }
 
 .kokio-live a {
@@ -256,6 +260,10 @@
   overflow-x: auto;
   flex: 1;
   min-width: 220px;
+  scrollbar-width: none;
+}
+.kokio-live .rail::-webkit-scrollbar {
+  display: none;
 }
 .kokio-live .rail a {
   flex: 0 0 auto;
@@ -267,13 +275,17 @@
   white-space: nowrap;
   text-decoration: none;
 }
+.kokio-live .rail a[aria-current="step"] {
+  color: var(--chrome-accent-fg);
+  background: var(--chrome-accent);
+}
 .kokio-live .rail a:hover {
   color: var(--chrome-ink);
   background: var(--chrome-code-bg);
 }
 
 .kokio-live .steps {
-  padding: 16px 0 8px;
+  padding-block: 16px 8px;
 }
 .kokio-live .step {
   display: grid;
@@ -281,7 +293,7 @@
   gap: 32px;
   padding: 40px 0;
   border-bottom: 1px solid var(--chrome-border);
-  scroll-margin-top: 64px;
+  scroll-margin-top: calc(var(--controls-h, 64px) + 8px);
 }
 .kokio-live .step:last-child {
   border-bottom: none;
@@ -292,6 +304,9 @@
     align-items: start;
     gap: 48px;
     padding: 52px 0;
+  }
+  .kokio-live .step[data-alt="1"] {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   }
   .kokio-live .step[data-alt="1"] .step-text {
     order: 2;
@@ -407,7 +422,7 @@
 
 /* ---- closing tips, between the step guide and the Manifesto CTA ---- */
 .kokio-live .closing-tips {
-  padding: 40px 0 8px;
+  padding-block: 40px 8px;
   border-top: 1px solid var(--chrome-border);
 }
 .kokio-live .closing-tips h2 {
@@ -829,8 +844,8 @@
 .kokio-live .a-hero-btn {
   all: unset;
   cursor: pointer;
-  background: var(--app-hero-btn-bg);
-  color: var(--app-hero-btn-fg);
+  background: var(--app-cta-bg);
+  color: var(--app-cta-fg);
   font-size: 16px;
   font-weight: 500;
   padding: 5px 24px;
@@ -1104,3 +1119,317 @@
     min-height: 44px;
   }
 }
+
+/* ---------------- Wallet (Home card + Wallet tab) ---------------- */
+.kokio-live .a-cta-btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 50px;
+  border-radius: 999px;
+  background: var(--app-cta-bg);
+  color: var(--app-cta-fg);
+  font-size: 17px;
+  font-weight: 700;
+}
+.kokio-live .a-spinner {
+  display: block;
+  width: 22px;
+  height: 22px;
+  margin: 4px auto 0;
+  border: 2.5px solid var(--app-card-fg);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: a-spin 0.8s linear infinite;
+}
+@keyframes a-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.kokio-live .w-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.kokio-live .w-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-title svg {
+  width: 20px;
+  height: 20px;
+}
+.kokio-live .w-desc {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 6px 0 14px;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-small {
+  font-size: 12.5px;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-panel {
+  padding: 18px;
+}
+.kokio-live .w-panel--outlined {
+  border: 1.5px solid var(--app-cta-bg);
+}
+.kokio-live .w-panel--slim {
+  padding: 12px 18px;
+}
+.kokio-live .w-benefit {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.kokio-live .w-benefit-icon {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 14px;
+  background: var(--app-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kokio-live .w-benefit-icon svg {
+  width: 17px;
+  height: 17px;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-benefit-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-link {
+  display: block;
+  text-decoration: none;
+  margin-top: 4px;
+}
+.kokio-live .w-link-strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: underline;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-hero {
+  border-radius: 21px;
+  padding: 22px;
+  background: linear-gradient(200deg, var(--app-gradient-dark), var(--app-bg));
+  color: var(--app-text);
+}
+.kokio-live .w-hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.kokio-live .w-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--app-item-bg);
+  color: var(--app-foreground2);
+}
+.kokio-live .w-hero-label {
+  font-size: 12.5px;
+  margin: 18px 0 4px 12px;
+}
+.kokio-live .w-hero-balance {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin: 0 0 16px 12px;
+}
+.kokio-live .w-hero-balance span {
+  font-size: 40px;
+  line-height: 1;
+}
+.kokio-live .w-hero-balance small {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.kokio-live .w-hero-address {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  font-size: 12.5px;
+}
+.kokio-live .w-hero-address svg {
+  width: 16px;
+  height: 16px;
+  color: var(--app-foreground2);
+}
+.kokio-live .w-hero-address button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+}
+.kokio-live .w-action {
+  flex: 1;
+  padding: 16px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border-radius: 24px;
+}
+.kokio-live .w-action-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kokio-live .w-action-icon--square {
+  width: 38px;
+  height: 38px;
+  border-radius: 16px;
+}
+.kokio-live .w-action-icon svg {
+  width: 19px;
+  height: 19px;
+  color: #fff;
+}
+.kokio-live .w-action-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 24px;
+}
+.kokio-live .w-row > svg {
+  color: var(--app-card-fg);
+}
+.kokio-live .w-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 64px;
+  margin-top: 14px;
+}
+.kokio-live .w-contact-add {
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  background: var(--app-warning);
+  color: #fff;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kokio-live .w-panel,
+.kokio-live .w-action,
+.kokio-live .w-row {
+  border: 1px solid var(--app-muted);
+}
+.kokio-live .w-panel--outlined {
+  border: 1.5px solid var(--app-cta-bg);
+}
+.kokio-live .w-create {
+  padding: 4px 8px 0;
+  color: var(--app-text);
+}
+.kokio-live .w-create-back {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+}
+.kokio-live .w-create-back svg {
+  width: 24px;
+  height: 24px;
+}
+.kokio-live .w-create-icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 26px;
+  margin-top: 10px;
+  background: var(--app-cta-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kokio-live .w-create-icon svg {
+  width: 42px;
+  height: 42px;
+  color: var(--app-cta-fg);
+}
+.kokio-live .w-create h4 {
+  margin: 20px 0 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+.kokio-live .w-create p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--app-muted-fg);
+}
+.kokio-live .w-create .w-benefit {
+  margin: 18px 0 0;
+}
+.kokio-live .w-create .w-benefit-icon {
+  background: var(--app-surface);
+  width: 40px;
+  height: 40px;
+}
+.kokio-live .w-create .w-benefit-icon svg {
+  color: var(--app-cta-bg);
+}
+.kokio-live .w-create .w-benefit-title {
+  color: var(--app-text);
+}
+.kokio-live .w-create .w-benefit-desc {
+  font-size: 13.5px;
+  margin-top: 2px;
+  color: var(--app-muted-fg);
+}
+.kokio-live .w-create-actions {
+  padding: 22px 8px 14px;
+}
+.kokio-live .w-create-skip {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 12px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--app-muted-fg);
+}
+.kokio-live[data-theme="light"] .w-create p,
+.kokio-live[data-theme="light"] .w-create .w-benefit-desc,
+.kokio-live[data-theme="light"] .w-create-skip {
+  color: var(--app-text);
+}
+
