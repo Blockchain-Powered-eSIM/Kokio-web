@@ -2,6 +2,8 @@ import { IconSprite } from "@/components/live/icon-sprite";
 import { LiveThemeProvider, ThemeToggle } from "@/components/live/theme-context";
 import { FlowProvider } from "@/components/live/flow-context";
 import { LiveHero, IOS_URL, ANDROID_URL } from "@/components/live/hero";
+import { TestnetBanner } from "@/components/live/testnet-banner";
+import { SectionRail } from "@/components/live/section-rail";
 import { StepSection } from "@/components/live/step-section";
 import { STEPS, SETTINGS_ABOUT, SETTINGS_CONTACT, CLOSING_TIPS } from "@/components/live/content";
 import { RichText } from "@/components/live/rich-text";
@@ -32,33 +34,18 @@ const STEP_TRY_HINT_ICONS: Partial<Record<string, string>> = {
   install: "copy",
 };
 
-const RAIL_LABELS = [
-  ["auth", "01 · Start"],
-  ["shop", "02 · Browse"],
-  ["checkout", "03 · Checkout"],
-  ["orders", "04 · Orders"],
-  ["install", "05 · Install"],
-  ["wallet", "06 · Wallet"],
-  ["settings", "07 · Settings"],
-] as const;
-
 export default function LivePage() {
   return (
     <LiveThemeProvider>
       <FlowProvider>
         <IconSprite />
+        <TestnetBanner />
         <LiveHero />
 
         <div className="controls-outer">
           <div className="controls">
             <ThemeToggle />
-            <nav className="rail">
-              {RAIL_LABELS.map(([id, label]) => (
-                <a key={id} href={`#step-${id}`}>
-                  {label}
-                </a>
-              ))}
-            </nav>
+            <SectionRail />
           </div>
         </div>
 
