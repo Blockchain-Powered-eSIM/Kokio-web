@@ -18,6 +18,10 @@ export const HERO = {
   guideLead: "Flip the theme, tap and explore, a simulation of Kokio app.",
 };
 
+// Shown above everything else on /live until mainnet launch — see TestnetBanner.
+export const TESTNET_NOTICE =
+  "Kokio is currently running on a test network with real eSIMs and data bundles. Your wallet and passkey will be reset when we launch on mainnet. **The eSIMs installed will keep on working till the data is exhausted.**";
+
 export type StepContent = {
   id: string;
   index: string;
