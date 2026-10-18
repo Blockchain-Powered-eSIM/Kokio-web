@@ -267,6 +267,19 @@ function OrdersTabView() {
                       Purchase Details
                     </button>
                   </div>
+                  {order.esimWalletId && (
+                    <button
+                      type="button"
+                      className="a-wallet-btn"
+                      aria-label="Open eSIM wallet"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        flow.goTo("wallet");
+                      }}
+                    >
+                      <Icon name="wallet" />
+                    </button>
+                  )}
                 </div>
               )}
             </div>

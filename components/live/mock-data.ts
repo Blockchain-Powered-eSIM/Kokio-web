@@ -20,7 +20,7 @@ export const PLANS: Record<PlanCategory, Plan[]> = {
   ],
   Regions: [
     { country: "Europe", flag: "🇪🇺", days: "10", gb: "8", price: "28.00" },
-    { country: "Southeast Asia", flag: "🌏", days: "15", gb: "12", price: "35.00" },
+    { country: "Asia", flag: "🌏", days: "15", gb: "12", price: "35.00" },
     { country: "North America", flag: "🌎", days: "7", gb: "6", price: "22.00" },
   ],
   Global: [
@@ -29,9 +29,83 @@ export const PLANS: Record<PlanCategory, Plan[]> = {
     { country: "Global 20GB", flag: "🌐", days: "30", gb: "20", price: "58.00" },
   ],
   Special: [
-    { country: "3-Country Bundle", flag: "✨", days: "20", gb: "15", price: "39.00" },
+    { country: "Europe & Asia", flag: "✨", days: "20", gb: "15", price: "39.00" },
   ],
 };
+
+/* ---- Shop (Step 02): country grid, region list, per-country plans ---- */
+
+export type ShopCountry = { code: string; name: string; flag: string };
+
+// Countries tab is a flag grid (screens/shop/tabs/countries/countries.tsx).
+export const SHOP_COUNTRIES: ShopCountry[] = [
+  { code: "JP", name: "Japan", flag: "🇯🇵" },
+  { code: "FR", name: "France", flag: "🇫🇷" },
+  { code: "BR", name: "Brazil", flag: "🇧🇷" },
+];
+
+// Regions tab: region name over its map image (screens/shop/tabs/regions/regions.tsx).
+export const SHOP_REGIONS: { name: string; image: string }[] = [
+  { name: "Europe", image: "/live/region-europe.png" },
+  { name: "Asia", image: "/live/region-asia.png" },
+  { name: "North America", image: "/live/region-north-america.png" },
+];
+
+export type CountryPlan = { plan: Plan; network: string };
+
+// Plans for one country. The first entry of each is the PLANS.Countries entry,
+// so checkout prices stay consistent. `network` drives the network chips.
+export const COUNTRY_PLANS: Record<string, CountryPlan[]> = {
+  JP: [
+    { plan: PLANS.Countries[0], network: "NTT Docomo" },
+    { plan: { country: "Japan", flag: "🇯🇵", days: "15", gb: "10", price: "34.00" }, network: "SoftBank" },
+  ],
+  FR: [
+    { plan: PLANS.Countries[1], network: "Orange" },
+    { plan: { country: "France", flag: "🇫🇷", days: "30", gb: "20", price: "48.00" }, network: "SFR" },
+  ],
+  BR: [
+    { plan: PLANS.Countries[2], network: "Claro" },
+    { plan: { country: "Brazil", flag: "🇧🇷", days: "15", gb: "10", price: "30.00" }, network: "Vivo" },
+  ],
+};
+
+// Extra plans loaded by "Show more plans" (app BACKUP plans).
+export const BACKUP_COUNTRY_PLANS: Record<string, CountryPlan[]> = {
+  JP: [{ plan: { country: "Japan", flag: "🇯🇵", days: "30", gb: "20", price: "52.00" }, network: "NTT Docomo" }],
+  FR: [{ plan: { country: "France", flag: "🇫🇷", days: "7", gb: "5", price: "19.00" }, network: "Orange" }],
+  BR: [{ plan: { country: "Brazil", flag: "🇧🇷", days: "7", gb: "5", price: "21.00" }, network: "Claro" }],
+};
+
+// Plans for one region tapped on the Regions tab.
+export const REGION_PLANS: Record<string, Plan[]> = {
+  Europe: [PLANS.Regions[0]],
+  Asia: [PLANS.Regions[1]],
+  "North America": [PLANS.Regions[2]],
+};
+
+// Filter Plans sheet (utils/shopFilters.ts in the app).
+export const PRICE_FILTERS = [
+  { key: "ANY", label: "Any price" },
+  { key: "UNDER_5", label: "Under $5" },
+  { key: "5_15", label: "$5 – $15" },
+  { key: "15_PLUS", label: "$15+" },
+];
+export const DATA_FILTERS = [
+  { key: "ANY", label: "Any data" },
+  { key: "UNDER_1GB", label: "Up to 1GB" },
+  { key: "1_5GB", label: "1 – 5GB" },
+  { key: "5_10GB", label: "5 – 10GB" },
+  { key: "10GB_PLUS", label: "10GB+" },
+  { key: "UNLIMITED", label: "Unlimited" },
+];
+export const VALIDITY_FILTERS = [
+  { key: "ANY", label: "Any validity" },
+  { key: "UNDER_7D", label: "Up to 7 days" },
+  { key: "7_30D", label: "8 – 30 days" },
+  { key: "30_90D", label: "31 – 90 days" },
+  { key: "90D_PLUS", label: "90+ days" },
+];
 
 export const CHECKOUT_RADIOS: {
   id: string;
@@ -39,8 +113,8 @@ export const CHECKOUT_RADIOS: {
   sub: string;
   disabled?: boolean;
 }[] = [
-  { id: "wallet", label: "Device Wallet", sub: "Coming soon", disabled: true },
-  { id: "card", label: "Credit Card", sub: "Pay with a card" },
+  { id: "wallet", label: "Device Wallet", sub: "Pay with USDC, USDT or DAI" },
+  { id: "card", label: "Credit/Debit Cards", sub: "Pay with a card" },
   { id: "apple", label: "Apple Pay", sub: "Pay with Apple Pay" },
   { id: "crypto", label: "External Wallet (via Moonpay)", sub: "Pay in crypto" },
 ];
@@ -67,6 +141,10 @@ export type Order = {
   expandable: boolean;
   note?: string;
   install?: boolean;
+  // Set once an eSIM is installed and its on-chain wallet is deployed — the app
+  // shows a wallet-icon button on the order card that opens that eSIM's wallet
+  // (app/(tabs)/orders.tsx: isInstalled && esimWalletId -> openEsimWallet()).
+  esimWalletId?: string;
   iccid?: string;
   lpa?: string;
   paymentMethod?: string;
@@ -119,6 +197,7 @@ export const ORDERS: Order[] = [
     pillTone: "success",
     expandable: true,
     install: false,
+    esimWalletId: "japan-1",
     iccid: "8988 2801 0000 5512 044",
     paymentMethod: "Apple Pay",
     supportRef: "KOK-30144",
@@ -152,12 +231,14 @@ export const WALLET_ADDRESS_SHORT = "0x9bf...b1e2ef7";
 export const WALLET_ADDRESS_FULL =
   "0x9bfbf5000f10121edc519bdc198f2fb93e16c4fd9c20846ff837e82a8b1e2ef7";
 
+// Order and membership match app/(tabs)/settings.tsx's menuItems + the separate
+// testnet-notice/theme rows rendered below the list ("Refer & Earn" and the two
+// __DEV__-only rows are left out — see AppLiveTasks.md gap notes for Refer & Earn).
 export const SETTINGS_MENU = [
-  { icon: "call", label: "Contact", disabled: true },
   { icon: "lock", label: "Privacy Policy", href: "https://kokio.app/privacy-policy" },
   { icon: "info", label: "About", view: "about" as const },
   { icon: "headset", label: "Contact Support", view: "contact" as const },
-  { icon: "theme", toggle: true },
   { icon: "logout", label: "Logout", view: "logout" as const },
   { icon: "trash", label: "Delete Account", view: "delete" as const },
+  { icon: "theme", toggle: true },
 ];

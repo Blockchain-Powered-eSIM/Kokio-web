@@ -27,10 +27,12 @@ export function PhoneTabBar({
             key={tab.id}
             type="button"
             className={`a-tabbar-item${active === tab.id ? " active" : ""}`}
+            aria-label={tab.label}
+            title={tab.label}
             onClick={() => onNavigate?.(tab.id)}
           >
+            {/* The app's tab bar is icon-only (tabBarShowLabel: false in app/(tabs)/_layout.tsx). */}
             <Icon name={tab.icon} />
-            <span>{tab.label}</span>
           </button>
         );
       })}

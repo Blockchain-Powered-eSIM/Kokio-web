@@ -672,12 +672,34 @@
 }
 
 .kokio-live .a-detail {
+  position: relative;
   background: var(--app-surface);
   border-radius: 12px;
   margin: 6px 4px 0;
   padding: 14px;
+  padding-right: 70px;
   display: flex;
   flex-direction: column;
+}
+.kokio-live .a-wallet-btn {
+  all: unset;
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: 46px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--app-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.kokio-live .a-wallet-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+  color: #fff;
 }
 .kokio-live .a-summary-row {
   display: flex;
@@ -850,6 +872,25 @@
   font-weight: 500;
   padding: 5px 24px;
   border-radius: 40px;
+}
+
+/* ---------------- mainnet cutover notice (above the hero) ---------------- */
+.kokio-live .testnet-banner {
+  background: var(--chrome-danger-soft);
+  border-bottom: 1px solid var(--chrome-danger-border);
+  padding: 14px 0;
+}
+.kokio-live .testnet-banner p {
+  margin: 0;
+  color: var(--chrome-ink);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.kokio-live .testnet-banner strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 16px;
+  color: var(--chrome-danger);
 }
 
 /* ---------------- /live's own hero (above the ported guide) ---------------- */
@@ -1433,3 +1474,419 @@
   color: var(--app-text);
 }
 
+
+/* Wallet step: token grid (USDC / USDT / DAI / ETH + Add token), mirrors the app's TokenGrid. */
+.kokio-live .w-tokens {
+  display: flex;
+  margin-top: 14px;
+}
+.kokio-live .w-token {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
+.kokio-live .w-token-icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  background: var(--app-surface-elevated, var(--app-muted));
+  color: var(--app-card-fg);
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+}
+.kokio-live .w-token-icon--add {
+  background: transparent;
+  border: 1.5px solid var(--app-card-fg);
+  font-size: 20px;
+  font-weight: 400;
+}
+.kokio-live .w-token-symbol {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-token-amount {
+  font-size: 12px;
+  color: var(--app-card-fg);
+}
+
+/* ---------------- Step 02: Home + Shop (mirrors app Home, Shop tab) ---------------- */
+.kokio-live .sh-screen {
+  position: relative;
+}
+.kokio-live .sh-home-heading {
+  font-size: 16px;
+  color: var(--app-text);
+  padding-left: 14px;
+  margin: 18px 0 8px;
+}
+.kokio-live .sh-empty-esim {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  text-align: center;
+}
+.kokio-live .sh-empty-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+.kokio-live .sh-empty-sub {
+  font-size: 14px;
+}
+.kokio-live .sh-install-btn {
+  all: unset;
+  box-sizing: border-box;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 8px 18px;
+  border-radius: 16px;
+  background: var(--app-primary);
+  color: var(--app-primary-fg);
+  font-size: 14px;
+  font-weight: 800;
+}
+.kokio-live .sh-install-btn svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+}
+.kokio-live .sh-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  min-height: 44px;
+}
+.kokio-live .sh-header--root {
+  justify-content: center;
+}
+.kokio-live .sh-header-title {
+  flex: 1;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--app-text);
+}
+.kokio-live .sh-header--root .sh-header-title {
+  flex: none;
+}
+.kokio-live .sh-back {
+  all: unset;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--app-text);
+}
+.kokio-live .sh-back svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+}
+.kokio-live .sh-search-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.kokio-live .sh-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--app-input-bg);
+  color: var(--app-text);
+}
+.kokio-live .sh-search svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  flex: none;
+}
+.kokio-live .sh-search input {
+  all: unset;
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  color: var(--app-text);
+}
+.kokio-live .sh-search input::placeholder {
+  color: var(--app-text);
+  opacity: 0.7;
+}
+.kokio-live .sh-search-clear {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+}
+.kokio-live .sh-filter-btn {
+  all: unset;
+  position: relative;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--app-text);
+}
+.kokio-live .sh-filter-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--app-highlight);
+}
+.kokio-live .sh-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.kokio-live .sh-country {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--app-text);
+}
+.kokio-live .sh-flag-img {
+  display: block;
+  width: 64px;
+  height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--app-muted);
+}
+.kokio-live .sh-flag-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.kokio-live .sh-regions {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.kokio-live .sh-region {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  color: var(--app-text);
+}
+.kokio-live .sh-region-name {
+  font-size: 17px;
+}
+.kokio-live .sh-region img {
+  width: auto;
+  max-width: 55%;
+  max-height: 110px;
+  object-fit: contain;
+  display: block;
+}
+.kokio-live .sh-plan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 14px;
+}
+.kokio-live .sh-empty {
+  text-align: center;
+  padding-top: 28px;
+  font-size: 14px;
+  color: var(--app-text);
+}
+.kokio-live .sh-link {
+  all: unset;
+  cursor: pointer;
+  color: var(--app-link);
+  font-size: 14px;
+  padding: 8px 16px;
+}
+.kokio-live .sh-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 2px 0;
+}
+.kokio-live .sh-chip {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex: none;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 18px;
+  border: 1px solid var(--app-inactive);
+  background: var(--app-surface);
+  color: var(--app-text);
+  font-size: 14px;
+}
+.kokio-live .sh-chip.sel {
+  background: var(--app-highlight);
+  border-color: var(--app-highlight);
+  color: #000;
+  font-weight: 600;
+}
+.kokio-live .sh-pill-btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--app-primary);
+  color: var(--app-primary);
+  font-size: 15px;
+  font-weight: 600;
+}
+.kokio-live .sh-pill-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+}
+.kokio-live .sh-multi-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--app-surface);
+  color: var(--app-text);
+}
+.kokio-live .sh-multi-row > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.kokio-live .sh-multi-row b {
+  font-size: 14px;
+}
+.kokio-live .sh-multi-row span {
+  font-size: 12px;
+  color: var(--app-muted-fg);
+}
+.kokio-live .sh-multi-row svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+}
+.kokio-live .sh-section-title {
+  margin: 16px 0 8px;
+  font-size: 16px;
+  color: var(--app-text);
+}
+.kokio-live .sh-region-row {
+  all: unset;
+  display: block;
+  cursor: pointer;
+  padding: 8px 4px;
+  font-size: 14px;
+  color: var(--app-text);
+}
+.kokio-live .sh-sheet-backdrop {
+  position: absolute;
+  inset: -8px;
+  z-index: 20;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.kokio-live .sh-sheet {
+  width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+  padding: 10px 16px 16px;
+  border-radius: 24px 24px 0 0;
+  background: var(--app-modal-bg, #2a2a2c);
+  backdrop-filter: blur(12px);
+  color: var(--app-text);
+  overflow-y: auto;
+}
+.kokio-live .sh-sheet-handle {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  margin: 0 auto 10px;
+  background: var(--app-inactive);
+}
+.kokio-live .sh-sheet-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.kokio-live .sh-sheet-section {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 12px 0 8px;
+}
+.kokio-live .sh-sheet-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.kokio-live .sh-sheet-chips .sh-chip {
+  min-height: 0;
+  padding: 8px 14px;
+}
+.kokio-live .sh-sheet-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+.kokio-live .sh-apply {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex: 1;
+  margin-left: 16px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: var(--app-highlight);
+  color: #000;
+  font-weight: 700;
+}

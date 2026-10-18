@@ -71,7 +71,7 @@ export const LIVE_NOTICE = `${PRODUCT_NAME} is live on iOS and Android.`;
  * steps), not styling. Same rationale as HOME_UPDATED above — read by the
  * sitemap so it isn't stamped with build time.
  */
-export const LIVE_UPDATED = new Date("2026-09-10");
+export const LIVE_UPDATED = new Date("2026-10-19");
 
 /** Same claims, trimmed to fit a `<meta name="description">` without truncation. */
 export const META_DESCRIPTION =

@@ -5,9 +5,15 @@ import { DeviceFrame } from "@/components/live/device-frame";
 import { Icon } from "@/components/live/icon-sprite";
 import { useLiveTheme } from "@/components/live/theme-context";
 import { SETTINGS_MENU } from "@/components/live/mock-data";
-import { DELETE_ACCOUNT, SETTINGS_ABOUT, SETTINGS_CONTACT } from "@/components/live/content";
+import {
+  DELETE_ACCOUNT,
+  SETTINGS_ABOUT,
+  SETTINGS_CONTACT,
+  SETTINGS_DELETED,
+  SETTINGS_TESTNET_NOTICE,
+} from "@/components/live/content";
 
-type Panel = "list" | "about" | "contact" | "delete";
+type Panel = "list" | "about" | "contact" | "delete" | "deleted";
 
 const ABOUT_TEXT_STYLE = {
   fontSize: 13.5,
@@ -18,7 +24,8 @@ const ABOUT_TEXT_STYLE = {
 } as const;
 
 /**
- * Step 07 — Settings (app/(tabs)/settings.tsx + DeleteAccountModal.tsx).
+ * Step 07 — Settings (app/(tabs)/settings.tsx, DeleteAccountModal.tsx,
+ * PasskeyRemovalModal.tsx, constants/general.constants.ts).
  */
 export function StepSettingsVisual() {
   const { theme, setTheme } = useLiveTheme();
@@ -26,6 +33,11 @@ export function StepSettingsVisual() {
   const [deleteInput, setDeleteInput] = useState("");
   const [deleteStatus, setDeleteStatus] = useState("");
   const isDark = theme === "dark";
+
+  // Items vs. the theme switch: the app renders the switch as its own card
+  // below the list (and below the testnet notice), not as a list row.
+  const menuRows = SETTINGS_MENU.filter((item) => !("toggle" in item && item.toggle));
+  const toggleRow = SETTINGS_MENU.find((item) => "toggle" in item && item.toggle);
 
   function resetDelete() {
     setDeleteInput("");
@@ -36,8 +48,90 @@ export function StepSettingsVisual() {
   function confirmDelete() {
     if (deleteInput.trim() !== "DELETE") return;
     setDeleteStatus("Deleting your account…");
-    setTimeout(() => setDeleteStatus("This is a preview — no account was deleted."), 700);
-    setTimeout(resetDelete, 2200);
+    setTimeout(() => {
+      setDeleteStatus("");
+      setDeleteInput("");
+      setPanel("deleted");
+    }, 900);
+  }
+
+  // Shared row renderer so the theme switch (its own card below the testnet
+  // notice in the app, not a list row) can reuse the same markup out of order.
+  function renderMenuItem(item: (typeof SETTINGS_MENU)[number], i: number) {
+    const isToggle = "toggle" in item && item.toggle;
+    const iconName = isToggle ? (isDark ? "moon" : "sun") : item.icon;
+    const label = isToggle ? (isDark ? "Dark Mode" : "Light Mode") : item.label;
+    const disabled = Boolean((item as { disabled?: boolean }).disabled);
+    return (
+      <button
+        key={i}
+        type="button"
+        disabled={disabled}
+        onClick={() => {
+          if (disabled) return;
+          if (isToggle) {
+            setTheme(isDark ? "light" : "dark");
+          } else if ("href" in item && item.href) {
+            window.open(item.href, "_blank", "noopener");
+          } else if ("view" in item && (item.view === "about" || item.view === "contact" || item.view === "delete")) {
+            setPanel(item.view);
+          } else if ("view" in item && item.view === "logout") {
+            document.getElementById("step-auth")?.scrollIntoView({ behavior: "smooth" });
+          }
+        }}
+        style={{
+          all: "unset",
+          cursor: disabled ? "default" : "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 10,
+          padding: 16,
+          opacity: disabled ? 0.4 : 1,
+        }}
+      >
+        <span style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <Icon
+            name={iconName}
+            style={{
+              width: 22,
+              height: 22,
+              color: isToggle ? "var(--app-text)" : disabled ? "var(--app-inactive)" : "#ffffff",
+            }}
+          />
+          <span style={{ fontSize: 15, fontWeight: 500, color: disabled ? "var(--app-inactive)" : "var(--app-text)" }}>
+            {label}
+          </span>
+        </span>
+        {isToggle ? (
+          <span
+            style={{
+              width: 38,
+              height: 22,
+              borderRadius: 999,
+              background: isDark ? "var(--app-primary)" : "var(--app-muted)",
+              position: "relative",
+              flex: "none",
+            }}
+          >
+            <span
+              style={{
+                position: "absolute",
+                top: 2,
+                left: isDark ? 18 : 2,
+                width: 18,
+                height: 18,
+                borderRadius: "50%",
+                background: "var(--app-text)",
+                transition: "left .15s",
+              }}
+            />
+          </span>
+        ) : (
+          <Icon name="chev-fwd" style={{ width: 15, height: 15, color: disabled ? "var(--app-inactive)" : "#ffffff" }} />
+        )}
+      </button>
+    );
   }
 
   return (
@@ -48,88 +142,16 @@ export function StepSettingsVisual() {
 
       {panel === "list" && (
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {SETTINGS_MENU.map((item, i) => {
-            const isToggle = "toggle" in item && item.toggle;
-            const iconName = isToggle ? (isDark ? "moon" : "sun") : item.icon;
-            const label = isToggle ? (isDark ? "Dark Mode" : "Light Mode") : item.label;
-            const disabled = "disabled" in item && item.disabled;
-            return (
-              <button
-                key={i}
-                type="button"
-                disabled={disabled}
-                onClick={() => {
-                  if (disabled) return;
-                  if (isToggle) {
-                    setTheme(isDark ? "light" : "dark");
-                  } else if ("href" in item && item.href) {
-                    window.open(item.href, "_blank", "noopener");
-                  } else if ("view" in item && (item.view === "about" || item.view === "contact" || item.view === "delete")) {
-                    setPanel(item.view);
-                  } else if ("view" in item && item.view === "logout") {
-                    document.getElementById("step-auth")?.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                style={{
-                  all: "unset",
-                  cursor: disabled ? "default" : "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 10,
-                  padding: 16,
-                  opacity: disabled ? 0.4 : 1,
-                }}
-              >
-                <span style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                  <Icon
-                    name={iconName}
-                    style={{
-                      width: 22,
-                      height: 22,
-                      color: isToggle ? "var(--app-text)" : disabled ? "var(--app-inactive)" : "#ffffff",
-                    }}
-                  />
-                  <span style={{ fontSize: 15, fontWeight: 500, color: disabled ? "var(--app-inactive)" : "var(--app-text)" }}>
-                    {label}
-                  </span>
-                </span>
-                {isToggle ? (
-                  <span
-                    style={{
-                      width: 38,
-                      height: 22,
-                      borderRadius: 999,
-                      background: isDark ? "var(--app-primary)" : "var(--app-muted)",
-                      position: "relative",
-                      flex: "none",
-                    }}
-                  >
-                    <span
-                      style={{
-                        position: "absolute",
-                        top: 2,
-                        left: isDark ? 18 : 2,
-                        width: 18,
-                        height: 18,
-                        borderRadius: "50%",
-                        background: "var(--app-text)",
-                        transition: "left .15s",
-                      }}
-                    />
-                  </span>
-                ) : (
-                  <Icon name="chev-fwd" style={{ width: 15, height: 15, color: disabled ? "var(--app-inactive)" : "#ffffff" }} />
-                )}
-              </button>
-            );
-          })}
+          {menuRows.map((item, i) => renderMenuItem(item, i))}
+          <TestnetNotice />
+          {toggleRow && renderMenuItem(toggleRow, menuRows.length)}
         </div>
       )}
 
       {panel === "about" && (
         <div style={{ background: "var(--app-bg)", padding: 4 }}>
           <PanelHeader title="About" onClose={() => setPanel("list")} />
+          <TestnetNotice bordered />
           {SETTINGS_ABOUT.lines.map((line) => (
             <p key={line} style={ABOUT_TEXT_STYLE}>
               {line}
@@ -245,7 +267,57 @@ export function StepSettingsVisual() {
           </div>
         </div>
       )}
+
+      {panel === "deleted" && (
+        <div style={{ marginTop: 12, background: "var(--app-surface)", borderRadius: 20, padding: 20, fontSize: 13, lineHeight: 1.6, color: "var(--app-text)" }}>
+          <div style={{ fontSize: 20, fontWeight: 300, marginBottom: 10 }}>{SETTINGS_DELETED.title}</div>
+          {SETTINGS_DELETED.body.map((p) => (
+            <p key={p} style={{ margin: "0 0 12px" }}>
+              {p}
+            </p>
+          ))}
+          <ol style={{ margin: "0 0 12px", paddingLeft: 18, color: "var(--app-foreground2)", fontSize: 12, lineHeight: 1.6 }}>
+            {SETTINGS_DELETED.steps.map((s) => (
+              <li key={s} style={{ marginBottom: 4 }}>
+                {s}
+              </li>
+            ))}
+          </ol>
+          <p style={{ margin: "0 0 4px", fontSize: 12, color: "var(--app-foreground2)" }}>{SETTINGS_DELETED.note}</p>
+          <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
+            <button type="button" className="a-btn a-btn-fgborder" style={{ height: 48 }} onClick={resetDelete}>
+              {SETTINGS_DELETED.openSettingsLabel}
+            </button>
+            <button type="button" className="a-btn a-btn-highlight" style={{ height: 48 }} onClick={resetDelete}>
+              {SETTINGS_DELETED.doneLabel}
+            </button>
+          </div>
+        </div>
+      )}
     </DeviceFrame>
+  );
+}
+
+// Same bulb-notice box the app shows on the main Settings list and again at
+// the top of About (constants/general.constants.ts TESTNET_DISCLOSURE_MESSAGE).
+function TestnetNotice({ bordered }: { bordered?: boolean }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "flex-start",
+        gap: 10,
+        padding: 14,
+        marginTop: bordered ? 0 : 8,
+        marginBottom: bordered ? 16 : 0,
+        borderRadius: 16,
+        border: bordered ? "1px solid var(--app-muted)" : "none",
+        background: "var(--app-item-bg)",
+      }}
+    >
+      <Icon name="info" style={{ width: 18, height: 18, flex: "none", marginTop: 1, color: "var(--app-foreground2)" }} />
+      <span style={{ fontSize: 13, lineHeight: 1.5, color: "var(--app-foreground2)" }}>{SETTINGS_TESTNET_NOTICE.text}</span>
+    </div>
   );
 }
 

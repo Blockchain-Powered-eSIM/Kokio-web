@@ -64,8 +64,15 @@ export function StepCheckoutVisual() {
     if (!canPay) return;
     const target = TOPUP_CANDIDATES.find((r) => r.esimId === topupSelected);
     setPayStatus("Preparing your payment…");
+    
+    const confirmLabel =
+      selectedMethod === "wallet"
+        ? "Confirm the payment with Face ID…"
+        : selectedMethod === "crypto"
+          ? "Confirm in the Moonpay tab…"
+          : "Confirming payment…";
     timers.current.push(
-      setTimeout(() => setPayStatus("Confirm with Face ID…"), 700),
+      setTimeout(() => setPayStatus(confirmLabel), 700),
       setTimeout(() => {
         setPayStatus(
           target

@@ -34,6 +34,13 @@ const BENEFITS = [
   },
 ];
 
+const TOKENS = [
+  { symbol: "USDC", icon: "/live/tokens/usdc.png" },
+  { symbol: "USDT", icon: "/live/tokens/usdt.png" },
+  { symbol: "DAI", icon: "/live/tokens/dai.png" },
+  { symbol: "ETH", icon: "/live/tokens/eth.png" },
+];
+
 const CREATE_BENEFITS = [
   {
     icon: "lock",
@@ -51,7 +58,7 @@ const CREATE_BENEFITS = [
 /**
  * Step 06 — Wallet. Mirrors the app's Wallet tab as the main screen: the pre-wallet "What a Kokio wallet adds"
  * pitch, the Create wallet page, then the created wallet's dashboard (hero card, Send / Receive / Deposit, Buy eSIMs with USDC, tokens, transactions, contacts).
- * Balance, tokens, transactions and contacts are empty on purpose, matching a fresh wallet in the app.
+ * Balance and tokens read zero, transactions and contacts are empty, matching a fresh wallet in the app.
  */
 export function StepWalletVisual() {
   const { walletState, createWallet } = useFlow();
@@ -259,8 +266,30 @@ export function StepWalletVisual() {
 
             <div className="a-card w-panel w-panel--slim">
               <div className="w-small">Your Tokens</div>
-              <div className="w-desc" style={{ margin: "14px 0 2px" }}>
-                You don&apos;t hold any tokens yet.
+              <div className="w-tokens">
+                {TOKENS.map((token) => (
+                  <div className="w-token" key={token.symbol}>
+                    <Image
+                      className="w-token-icon"
+                      src={token.icon}
+                      alt=""
+                      width={28}
+                      height={28}
+                      aria-hidden="true"
+                    />
+                    <span className="w-token-symbol">{token.symbol}</span>
+                    <span className="w-token-amount">0</span>
+                  </div>
+                ))}
+                <div className="w-token">
+                  <span
+                    className="w-token-icon w-token-icon--add"
+                    aria-hidden="true"
+                  >
+                    +
+                  </span>
+                  <span className="w-token-amount">Add token</span>
+                </div>
               </div>
             </div>
 

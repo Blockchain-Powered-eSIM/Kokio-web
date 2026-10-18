@@ -2,6 +2,7 @@ import { IconSprite } from "@/components/live/icon-sprite";
 import { LiveThemeProvider, ThemeToggle } from "@/components/live/theme-context";
 import { FlowProvider } from "@/components/live/flow-context";
 import { LiveHero, IOS_URL, ANDROID_URL } from "@/components/live/hero";
+import { MainnetBanner } from "@/components/live/mainnet-banner";
 import { StepSection } from "@/components/live/step-section";
 import { STEPS, SETTINGS_ABOUT, SETTINGS_CONTACT, CLOSING_TIPS } from "@/components/live/content";
 import { StepRail } from "@/components/live/step-rail";
@@ -48,6 +49,7 @@ export default function LivePage() {
     <LiveThemeProvider>
       <FlowProvider>
         <IconSprite />
+        <MainnetBanner />
         <LiveHero />
 
         <div className="controls-outer">
