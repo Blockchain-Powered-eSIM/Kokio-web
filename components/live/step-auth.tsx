@@ -9,7 +9,7 @@ import { useFlow } from "@/components/live/flow-context";
 type Mode = "new" | "returning";
 
 /**
- * Step 01 — Sign in (components/AuthenticationModal.tsx in the mobile app).
+ * Step 01 — Sign in.
  * Confirming a button walks through a fake "Verifying… / Passkey confirmed" sequence, then resets.
  */
 export function StepAuthVisual() {
@@ -34,8 +34,7 @@ export function StepAuthVisual() {
     setSubtext("Verifying your identity…");
     timers.current.push(
       setTimeout(() => setSubtext("Passkey confirmed"), 850),
-      // Land on Home's shop card, same as the artifact — the visitor taps
-      // "Shop" themselves from there to open the browsing screen.
+      // Lands on Home's shop card; the visitor taps "Shop" to open the browsing screen.
       setTimeout(() => {
         flow.setShopScreen("home");
         flow.goTo("shop");

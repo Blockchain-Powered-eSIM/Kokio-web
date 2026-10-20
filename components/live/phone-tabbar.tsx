@@ -31,7 +31,6 @@ export function PhoneTabBar({
             title={tab.label}
             onClick={() => onNavigate?.(tab.id)}
           >
-            {/* The app's tab bar is icon-only (tabBarShowLabel: false in app/(tabs)/_layout.tsx). */}
             <Icon name={tab.icon} />
           </button>
         );

@@ -7,18 +7,11 @@ import { getAllPosts } from "@/lib/blog";
 import { getManifesto } from "@/lib/manifesto";
 import { HOME_UPDATED, LIVE_UPDATED } from "@/lib/site-copy";
 
-/**
- * Every lastModified here comes from the content itself, never from build time.
- *
- * A date that moves on every deploy tells a crawler the whole site changed when
- * nothing did, and once it learns the signal is noise it stops re-fetching on it.
- */
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
   const manifesto = getManifesto();
   const legalUpdated = new Date(legalConfig.lastUpdatedIso);
 
-  // The blog index changes when its newest post does.
   const blogUpdated = posts.length
     ? new Date(Math.max(...posts.map((post) => post.updated.getTime())))
     : HOME_UPDATED;
@@ -37,10 +30,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      // Posts are aimed at roughly every two weeks. The sitemap spec has no
-      // value for that, and weekly is the closer of the two neighbours, so a
-      // crawler checks a little too often rather than missing a post. Revisit
-      // once the real cadence is known: monthly if it slips, daily never.
       url: new URL("/blogs", siteConfig.url).href,
       lastModified: blogUpdated,
       changeFrequency: "weekly",

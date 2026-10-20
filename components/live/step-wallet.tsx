@@ -56,7 +56,7 @@ const CREATE_BENEFITS = [
 ];
 
 /**
- * Step 06 — Wallet. Mirrors the app's Wallet tab as the main screen: the pre-wallet "What a Kokio wallet adds"
+ * Step 06 — Wallet. Main screen: the pre-wallet "What a Kokio wallet adds"
  * pitch, the Create wallet page, then the created wallet's dashboard (hero card, Send / Receive / Deposit, Buy eSIMs with USDC, tokens, transactions, contacts).
  * Balance and tokens read zero, transactions and contacts are empty, matching a fresh wallet in the app.
  */
@@ -198,7 +198,6 @@ export function StepWalletVisual() {
           <>
             <div className="w-hero">
               <div className="w-hero-top">
-                <span className="w-badge">TESTNET</span>
                 <Image
                   src={Logomark}
                   alt=""

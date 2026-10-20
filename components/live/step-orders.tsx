@@ -128,10 +128,7 @@ function PurchaseDetailsSheet({ order, onClose }: { order: Order; onClose: () =>
   );
 }
 
-/** Renders the order card as a real <button> when it's expandable (so
- * keyboard/screen-reader users can toggle it, not just mouse clickers),
- * otherwise a plain non-interactive <div> — matches the artifact's own
- * distinction between expandable and static order cards. */
+/** Renders the order card as a <button> when it is expandable, otherwise as a plain <div>. */
 function CardWrapTag({
   expandable,
   expanded,
@@ -338,11 +335,7 @@ function HomeEsimDetailView() {
 }
 
 /**
- * Step 04 — Orders + the separate Home eSIM-detail screen. The artifact
- * originally conflated these into one view; the mobile source shows
- * they're two different screens (see AppLiveTasks.md accuracy table), so
- * this mockup keeps them as an explicit toggle rather than pretending
- * they're one expand panel.
+ * Step 04 — Orders + the separate Home eSIM-detail screen, switched by an explicit toggle.
  */
 export function StepOrdersVisual() {
   const [screen, setScreen] = useState<"orders" | "detail">("orders");

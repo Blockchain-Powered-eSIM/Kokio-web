@@ -42,10 +42,7 @@ export function FlowProvider({ children }: { children: ReactNode }) {
   }
 
   function completeOrder(plan: Plan) {
-    // Reuse the mock "global" order slot (the one that's already eSIM
-    // Ready / expandable / installable) to represent "the order you just
-    // placed" — display fields below are swapped to match the plan that
-    // was actually bought.
+    // Reuses the mock "global" order slot to represent the order just placed.
     setCompletedPlan(plan);
     setCompletedOrderId("global");
     goTo("orders");

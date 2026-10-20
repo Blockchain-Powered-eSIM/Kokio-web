@@ -9,11 +9,9 @@ import { useFlow } from "@/components/live/flow-context";
 type Tab = "QR" | "Direct" | "Manual";
 
 /**
- * Step 05 — Install (screens/esimInstallation/EsimInstallation.tsx).
- * Tab strip order and default active tab are both **Direct** first, per
- * explicit instruction — overrides the earlier QR-default accuracy note
- * in AppLiveTasks.md's source-accuracy table.
- * Install eSIM is always tappable and just hands off to Orders.
+ * Step 05 — Install.
+ * Tab strip order and default active tab are both **Direct** first.
+ * Install eSIM is always tappable and hands off to Orders.
  */
 export function StepInstallVisual() {
   const flow = useFlow();

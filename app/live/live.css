@@ -73,9 +73,9 @@
   --chrome-panel: #ffffff;
   --chrome-ink: #1c2b30;
   --chrome-muted: #5b6770;
-  --chrome-faint: #626d76; /* darkened from the artifact's #8b969c — 2.67:1 failed WCAG AA badly on --chrome-bg, this is 4.66:1 (ticket #10) */
+  --chrome-faint: #626d76; /* 4.66:1 contrast on --chrome-bg, meets WCAG AA */
   --chrome-border: #d7dee1;
-  --chrome-accent: #1f6b78; /* darkened from the artifact's #2a8fa0 — 3.34:1 failed WCAG AA where used as text (callout strong), this is 5.39:1 (ticket #10) */
+  --chrome-accent: #1f6b78; /* 5.39:1 contrast as text (callout strong), meets WCAG AA */
   --chrome-accent-fg: #ffffff;
   --chrome-code-bg: #e4e9eb;
   --chrome-danger: #c0392b;
@@ -491,6 +491,13 @@
   text-align: center;
   margin-bottom: 10px;
 }
+.kokio-live .demo-caption {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--chrome-muted);
+  text-align: center;
+  margin: 0 0 10px;
+}
 
 .kokio-live footer.page-footer {
   padding: 28px 24px 48px;
@@ -874,23 +881,23 @@
   border-radius: 40px;
 }
 
-/* ---------------- mainnet cutover notice (above the hero) ---------------- */
-.kokio-live .testnet-banner {
-  background: var(--chrome-danger-soft);
-  border-bottom: 1px solid var(--chrome-danger-border);
+/* ---------------- mainnet launch notice (above the hero) ---------------- */
+.kokio-live .launch-banner {
+  background: var(--chrome-panel);
+  border-bottom: 1px solid var(--chrome-border);
   padding: 14px 0;
 }
-.kokio-live .testnet-banner p {
+.kokio-live .launch-banner p {
   margin: 0;
   color: var(--chrome-ink);
   font-size: 14px;
   line-height: 1.55;
 }
-.kokio-live .testnet-banner strong {
+.kokio-live .launch-banner strong {
   display: block;
   margin-bottom: 4px;
   font-size: 16px;
-  color: var(--chrome-danger);
+  color: var(--chrome-accent);
 }
 
 /* ---------------- /live's own hero (above the ported guide) ---------------- */
@@ -1120,12 +1127,11 @@
   flex: 1;
 }
 
-/* ---------------- touch targets (ticket #10 / D10) ----------------
-   The artifact's segmented controls, tab strips, and icon buttons were
-   sized for a mouse-driven desktop demo (~26-30px tall). On an actual
-   touch device that's under the ~44px target Apple/WCAG recommend, so
-   bump hit areas here on coarse-pointer (touch) devices only — desktop
-   mouse users still get the artifact's exact visual sizing untouched. */
+/* ---------------- touch targets ----------------
+   The segmented controls, tab strips, and icon buttons are sized for a
+   mouse-driven desktop demo (~26-30px tall), under the ~44px target
+   Apple/WCAG recommend for touch, so hit areas are bumped here on
+   coarse-pointer (touch) devices only; desktop mouse sizing is untouched. */
 @media (pointer: coarse) {
   .kokio-live .segmented button {
     min-height: 44px;
@@ -1278,15 +1284,6 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 14px;
-}
-.kokio-live .w-badge {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--app-item-bg);
-  color: var(--app-foreground2);
 }
 .kokio-live .w-hero-label {
   font-size: 12.5px;

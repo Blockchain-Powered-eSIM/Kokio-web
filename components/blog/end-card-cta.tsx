@@ -1,12 +1,12 @@
 import Image from "next/image";
 
 import ThumbsUp from "@/assets/seb/Component 11.svg";
-import { CTA_MODE } from "@/config/site";
 import { withBlogUtm } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import { CTA_CONTENT } from "@/components/blog/cta-content";
 
 export function EndCardCTA({ slug }: { slug: string }) {
-  const content = CTA_CONTENT[CTA_MODE];
+  const content = CTA_CONTENT;
   const href = withBlogUtm(content.href, slug);
 
   return (
@@ -23,14 +23,16 @@ export function EndCardCTA({ slug }: { slug: string }) {
           <p className="text-cashmere-50">{content.body}</p>
         </div>
       </div>
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-full shrink-0 rounded-full bg-white px-6 py-3 text-center text-sm font-semibold text-cashmere-700 transition-colors hover:bg-cashmere-50 md:w-auto"
+      <Button
+        asChild
+        variant="ctaOnAccent"
+        size="cta"
+        className="w-full shrink-0 md:w-auto"
       >
-        {content.ctaLabel}
-      </a>
+        <a href={href} target="_blank" rel="noopener noreferrer">
+          {content.ctaLabel}
+        </a>
+      </Button>
     </div>
   );
 }

@@ -18,6 +18,7 @@ import {
   type Plan,
   type PlanCategory,
 } from "@/components/live/mock-data";
+import { SHOP_EXAMPLE_CAPTION } from "@/components/live/content";
 import { useFlow } from "@/components/live/flow-context";
 
 const CATEGORIES: PlanCategory[] = ["Countries", "Regions", "Global", "Special"];
@@ -27,7 +28,6 @@ const NO_FILTERS: Filters = { price: "ANY", data: "ANY", validity: "ANY" };
 
 type Detail = { kind: "country"; code: string } | { kind: "region"; name: string } | null;
 
-/* Same buckets as utils/shopFilters.ts in the app. */
 function matchesFilters(plan: Plan, f: Filters): boolean {
   const price = Number(plan.price);
   const gb = Number(plan.gb);
@@ -57,7 +57,6 @@ function filtersActive(f: Filters) {
 }
 
 function FilterIcon() {
-  // Ionicons "options-outline", as used on the app's filter button.
   return (
     <svg
       viewBox="0 0 24 24"
@@ -79,9 +78,7 @@ function FilterIcon() {
   );
 }
 
-/** Matches the app's own flag source: react-native-country-flag pulls its
- * fallback flags from flagcdn.com/w80/{code}.png at a 1.6:1 box, rather
- * than relying on unicode flag emoji (which don't render on all platforms). */
+/** Flag image from flagcdn.com in a 1.6:1 box; unicode flag emoji don't render on all platforms. */
 function FlagImg({ code }: { code: string }) {
   return (
     <span className="sh-flag-img">
@@ -180,10 +177,7 @@ function PlanList({
   );
 }
 
-/** Step 02 — Explore plans (Home + Shop tab).
- * Mirrors app/(tabs)/index.tsx (Home: hero, eSIMs, Wallet) and
- * app/(tabs)/(shop) (search + filter, Countries/Regions/Global/Special,
- * country and region plan lists). */
+/** Step 02 — Explore plans (Home + Shop tab): search + filter, Countries/Regions/Global/Special, country and region plan lists. */
 export function StepShopVisual() {
   const flow = useFlow();
   const screen = flow.shopScreen;
@@ -570,7 +564,7 @@ export function StepShopVisual() {
   }
 
   return (
-    <DeviceFrame sourceTag="Explore">
+    <DeviceFrame sourceTag="Explore" caption={SHOP_EXAMPLE_CAPTION}>
       <div className="sh-screen">
         {screen === "home" ? renderHome() : renderShop()}
 

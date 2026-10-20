@@ -57,7 +57,11 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `Kokio is a marketplace that lets you purchase and manage eSIM mobile-data plans. The Service includes a device-bound authentication mechanism and a self-custodial blockchain wallet used to record purchases and wallet activity. eSIM connectivity is provided by third-party eSIM service providers and their partner networks, not by Kokio.`,
+          content: `Kokio is a marketplace that lets you purchase and manage eSIM mobile-data plans. The Service includes a device-bound authentication mechanism and a self-custodial blockchain wallet on the Base network, used to hold funds, pay for plans, and record purchases and wallet activity. eSIM connectivity is provided by third-party eSIM service providers and their partner networks, not by Kokio.`,
+        },
+        {
+          type: "paragraph",
+          content: `Plans, regions, prices, and payment methods may change or be withdrawn at any time. Funds in your wallet are real, and the Base network is a public blockchain operated by third parties.`,
         },
       ],
     },
@@ -80,12 +84,23 @@ export const termsOfService: LegalDocument = {
     // The non-custodial / not-a-MSB characterisation is basis of the regulatory position
     // (Google Play declaration, MAS Payment Services Act exposure in Singapore).
     // Counsel must confirm it and add any MAS-required disclosures.
+    //
+    // LEGAL REVIEW (Wallet and Blockchain Transactions, third paragraph, added for mainnet):
+    // The first paragraph says we do not control your assets. The third paragraph discloses the
+    // admin allowance (the service key can spend from an eSIM wallet up to a cap without a fresh
+    // signature), the pause and the upgrade delay. Counsel to decide whether the first paragraph
+    // still stands and whether the allowance amount should be stated. Engineering to confirm the
+    // default amount first: the mainnet checklist says $25 in section 1 and $100 in section 9.
     {
       heading: "Wallet and Blockchain Transactions",
       blocks: [
         {
           type: "paragraph",
           content: `The Service provides a self-custodial wallet. You alone control it through your passkey; we do not hold, custody, or control your keys or assets. Blockchain transactions are irreversible and permanent. You are responsible for verifying transaction details before confirming. We are not liable for losses arising from irreversible on-chain transactions, network fees, blockchain congestion, protocol failures, or errors you make.`,
+        },
+        {
+          type: "paragraph",
+          content: `Two limits apply to that control. To complete eSIM purchases and top-ups, an eSIM wallet created for your account lets Kokio's service key spend from that wallet, without a fresh signature from you, up to a capped allowance. The allowance is set on-chain and the wallet owner can change it. The protocol's smart contracts can also be paused by us in an emergency, which may temporarily stop purchases, and they can be upgraded by their administrators after a public delay.`,
         },
         {
           type: "paragraph",
@@ -99,11 +114,23 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `Prices are shown in the app and may change. You may pay by supported methods, including card payments processed by Stripe and crypto purchases processed by MoonPay. These providers are independent third parties; your use of their services is subject to their terms and privacy policies, and they may perform their own identity verification. Kokio does not receive or store your full payment credentials.`,
+          content: `Prices are shown in the app and may change. You may pay by supported methods, including card payments processed by Stripe, crypto purchases processed by MoonPay, and payments made directly from your Kokio wallet in supported stablecoins such as USDC, USDT, and DAI. Stripe and MoonPay are independent third parties; your use of their services is subject to their terms and privacy policies, and they may perform their own identity verification. Kokio does not receive or store your full payment credentials.`,
         },
         {
           type: "paragraph",
-          content: `You are responsible for any taxes applicable to your purchases except those we are legally required to collect. Blockchain network (gas) fees, where applicable, are your responsibility.`,
+          content: `Stablecoins carry their own risks. Their value can move away from its peg, and their issuers or bridges can fail, freeze, or restrict them. Some stablecoins on Base, including USDT and DAI, are bridged from another network and depend on that bridge. You accept these risks when you hold or pay with them.`,
+        },
+        {
+          type: "paragraph",
+          content: `You are responsible for any taxes applicable to your purchases except those we are legally required to collect. Blockchain network (gas) fees are your responsibility, except for the wallet actions where we choose to sponsor them. Sponsorship is at our discretion and may change or stop at any time.`,
+        },
+        {
+          type: "paragraph",
+          content: `You may apply one coupon or referral code to an order, and may choose to apply store credit on top of it. Codes and credit are valid only on the terms shown in the app, and may expire, have usage limits, or apply to a first purchase only. If a code and credit do not cover the full price, the rest is paid by your chosen method, and a card payment must be either nothing or at least US$1.00, so credit may be reduced to meet that, or the order refused. A code or credit applied to an order that ends unpaid is returned.`,
+        },
+        {
+          type: "paragraph",
+          content: `Referral rewards are paid as store credit, only after the order of the person you referred is completed. Store credit is not money: it can only be applied to purchases in the Service, and it cannot be withdrawn, transferred, or exchanged. We may change, revoke, or withdraw codes, rewards, and credit, and may reverse any obtained through abuse, error, or fraud.`,
         },
       ],
     },
@@ -140,7 +167,14 @@ export const termsOfService: LegalDocument = {
               { type: "strong", value: "Top-ups:" },
               {
                 type: "text",
-                value: ` a top-up applies to an existing eSIM and does not create a new one.`,
+                value: ` a top-up applies to an existing eSIM and does not create a new one. It is available only where the plan is compatible with the one already on that eSIM, which the app checks before purchase.`,
+              },
+            ],
+            [
+              { type: "strong", value: "Usage figures:" },
+              {
+                type: "text",
+                value: ` remaining-data figures shown in the app come from the eSIM providers on a best-effort basis and may lag or be unavailable.`,
               },
             ],
           ],
@@ -160,6 +194,10 @@ export const termsOfService: LegalDocument = {
           type: "paragraph",
           content: `Given the nature of digitally provisioned eSIMs and irreversible on-chain and crypto transactions, sales are final except where required by law or expressly stated. An eSIM that has been installed, activated, or provisioned is generally non-refundable. Where a purchase fails or an eSIM cannot be provisioned, we will work to resolve it, which may include reprovisioning or a refund at our discretion or as required by law.`,
         },
+        {
+          type: "paragraph",
+          content: `You can cancel an order that has not been paid from within the app. Cancelling cannot be undone. If a payment for the order completes after you cancel, it is not matched to that order, no eSIM is assigned, and it is not refunded. Do not cancel an order while a payment is in progress. You are responsible for any funds lost by cancelling an order.`,
+        },
       ],
     },
 
@@ -168,7 +206,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `You agree not to: use the Service for unlawful purposes, money laundering, sanctions evasion, or fraud; circumvent security, authentication, or geographic restrictions; interfere with or attack the Service or its infrastructure; reverse engineer except as permitted by law; or resell or commercially exploit the Service without our written consent.`,
+          content: `You agree not to: use the Service for unlawful purposes, money laundering, sanctions evasion, or fraud; circumvent security, authentication, or geographic restrictions; interfere with or attack the Service or its infrastructure; abuse codes, referrals, or store credit, including by referring yourself or creating multiple accounts to earn rewards; reverse engineer except as permitted by law; or resell or commercially exploit the Service without our written consent.`,
         },
       ],
     },
@@ -188,7 +226,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `The Service relies on and links to third-party services (payment providers, eSIM providers, blockchain networks and infrastructure). We are not responsible for third-party services, their availability, or their acts and omissions, and your use of them is at your own risk and subject to their terms.`,
+          content: `The Service relies on and links to third-party services (payment providers, eSIM providers, blockchain networks, wallet and transaction infrastructure, and any app or website you connect your wallet to). We are not responsible for third-party services, their availability, or their acts and omissions, and your use of them is at your own risk and subject to their terms.`,
         },
       ],
     },
@@ -244,7 +282,7 @@ export const termsOfService: LegalDocument = {
             },
             {
               type: "text",
-              value: ` for the deletion mechanism and its consequences). We may suspend or terminate access if you breach these Terms or where required by law or to protect the Service or other users. Provisions that by their nature should survive termination will survive.`,
+              value: ` for the deletion mechanism and its consequences). Deleting your account cannot be undone, and any store credit left on it can no longer be used. We may suspend or terminate access if you breach these Terms or where required by law or to protect the Service or other users. Provisions that by their nature should survive termination will survive.`,
             },
           ],
         },

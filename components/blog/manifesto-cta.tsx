@@ -2,10 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-/** Teaser card for /manifesto, dropped into blog posts that reference it.
- * Carries the meadow background from the manifesto page itself (behind a
- * frosted sand panel, same trick as ManifestoShell) so the click-through
- * reads as a continuation of that page rather than a footnote link out. */
+/** Teaser card for /manifesto: the manifesto meadow background behind a frosted sand panel. */
 export function ManifestoCTA() {
   return (
     <Link

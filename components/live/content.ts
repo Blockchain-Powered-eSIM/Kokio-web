@@ -1,20 +1,12 @@
 /**
- * Voice: manifesto/blog register (plain, confident, privacy-forward).
- * Every claim here has been checked against released app.
- *
- * `**word**` inside strings is bold-parsed by <RichText> — used to call out
- * exact button labels, the same way the artifact does with <strong>.
+ * `**word**` inside strings is bold-parsed by <RichText>.
  */
 
-// Kokio's Telegram community — same link used in Contact Support panel and the hero's "reach out" line, kept as one source so they can't drift.
 const TELEGRAM_URL = "https://t.me/+Ru38DI2V69IyY2Y9";
 
-// Page-level notice above the hero. Source of truth: the app's TESTNET_DISCLOSURE_MESSAGE
-// (constants/general.constants.ts) and welcome-back.tsx. Mainnet is NOT live; remove or
-// rewrite this once the cutover ships (the app keeps its own disclosure until then too).
 export const MAINNET_BANNER = {
-  heading: "Kokio runs on a test network today, ahead of our mainnet launch.",
-  body: "It is Base Sepolia, with real eSIMs and real data bundles. When we launch on mainnet, your wallet and passkey will be reset, and after launch the app will ask you to delete your old passkey from your device's password manager. The eSIMs you have installed keep working until their data runs out.",
+  heading: "Kokio has launched on mainnet.",
+  body: "Every account starts fresh. If you used Kokio before, delete your old passkey from your device's password manager, then sign in again below. New here? Just continue. Either way, any eSIM you already have installed keeps working.",
 };
 
 export const HERO = {
@@ -37,6 +29,9 @@ export type StepContent = {
   callout?: { tone?: "default" | "danger"; strong?: string; text: string };
   tryHint?: string;
 };
+
+// Shown beside step 2's phone mock.
+export const SHOP_EXAMPLE_CAPTION = "Example pricing, not current. Real prices are in the app.";
 
 export const STEPS: StepContent[] = [
   {
@@ -87,7 +82,7 @@ export const STEPS: StepContent[] = [
       "Tap the plan header (country name and Days/GB) to expand it.",
       "The expanded panel adds Plan Type, Top-Up availability and Coverage. Tap Coverage for the full list of countries and networks.",
       "Check the box confirming your device is eSIM-compatible and network-enabled.",
-      "Pick the payment method you already reach for: your **Device Wallet** (USDC, USDT or DAI), a **Credit/Debit Card**, **Apple Pay**, or an **External Wallet** for crypto, via MoonPay.",
+      "Pick the payment method you already reach for: your **Device Wallet** (USDC, USDT or DAI), **Credit/Debit Cards** via Stripe (the same Stripe sheet also covers Apple Pay, Google Pay, PayPal and Link), **Apple Pay** as its own option on iPhone, or an **External Wallet** for crypto via Moonpay.",
       "Have a coupon? Enter it and tap **Apply Coupon**.",
       "Already have an eSIM in use? Flip the **First eSIM / Top-up** toggle to **Top-up**, then tap the existing eSIM you want the new plan applied to. That selection makes it a top-up instead of a fresh purchase.",
       "Once payment confirms, tap **Install eSIM** to get the installation details (Step 05 covers it).",
@@ -148,7 +143,6 @@ export const STEPS: StepContent[] = [
       "Setup can take a few minutes. Meanwhile the tab reads **Setting up your wallet** and purchases are restricted, so feel free to explore plans.",
       "Once it's ready, the tab shows your total balance, a shortened address with quick links to copy it or open it in the block explorer, and **Send**, **Receive** and **Deposit** buttons.",
       "**Buy eSIMs with USDC** takes you straight to Shop. Below sit your tokens (USDC, USDT, DAI and ETH, plus **Add token**), your latest transactions and your contacts. Once you own an eSIM, each one gets its own wallet, listed there too.",
-      "It's still on a test network, so the wallet shows a **TESTNET** badge. Your wallet and passkey will be reset when we launch on mainnet.",
     ],
     callout: {
       text: "You can pay from this wallet at checkout. Pick **Device Wallet**, then USDC, USDT or DAI. If you haven't set a wallet up yet, checkout offers to do it first.",
@@ -168,7 +162,6 @@ export const STEPS: StepContent[] = [
       "Tap **Privacy Policy** for kokio.app's actual policy page, loaded in place.",
       "Tap **About** for the app version, what Kokio is built on, and a link to follow along.",
       "Tap **Contact Support** to email Kokio or message it on Telegram directly.",
-      "A notice near the bottom reminds you Kokio still runs on a test network; your wallet and passkey get reset once we launch on mainnet.",
       "Tap the theme row to flip Dark/Light. Try it below: it flips this whole guide too.",
       "Tap **Logout** to end the session; you'll land back on the sign-in screen from Step 01.",
       "Tap **Delete Account**, then type **DELETE** to arm the button and confirm.",
@@ -195,8 +188,6 @@ export const SETTINGS_ABOUT = {
   privacyLine:
     "Built with privacy first, friendly and practical design for the digital well-being and connectivity freedom of mobile users worldwide.",
   website: { text: "Our website ", linkLabel: "kokio.app", href: "https://kokio.app" },
-  // Both are real — verified against app/(tabs)/settings.tsx AboutContent, which links
-  // x.com/kokiodotapp and instagram.com/kokiodotapp side by side.
   socials: [
     { label: "Follow us: @kokiodotapp on X", href: "https://x.com/kokiodotapp" },
     { label: "Follow us: @kokiodotapp on Instagram", href: "https://instagram.com/kokiodotapp" },
@@ -206,12 +197,6 @@ export const SETTINGS_ABOUT = {
 export const SETTINGS_CONTACT = {
   email: "contact@kokio.app",
   telegram: TELEGRAM_URL,
-};
-
-// Shown on the main Settings list, and again inside About — same string both places
-// in the app (constants/general.constants.ts TESTNET_DISCLOSURE_MESSAGE).
-export const SETTINGS_TESTNET_NOTICE = {
-  text: "Kokio is currently running on a test network with real eSIMs and data bundles. Your wallet and passkey will be reset when we launch on mainnet. The eSIMs installed will keep on working till the data is exhausted.",
 };
 
 export const DELETE_ACCOUNT = {
@@ -227,11 +212,7 @@ export const DELETE_ACCOUNT = {
   confirmLabel: "Type DELETE to confirm.",
 };
 
-// What actually shows right after you confirm deletion — not a return to the list.
-// Source: components/PasskeyRemovalModal.tsx (fired by the BFF after DELETE /v1/account;
-// the Auth Server is intentionally not told, so the passkey itself still "works" and has
-// to be removed by hand). iOS copy shown here; Android's own copy only swaps which app to
-// open, the shape is identical.
+// Shown right after account deletion is confirmed (iOS copy).
 export const SETTINGS_DELETED = {
   title: "Your account is deleted",
   body: [

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-/** Tracks scroll through a specific element (the article), not the whole page, so the bar hits 100% at the end of the post rather than the footer. */
+/** Tracks scroll progress through a specific element rather than the whole page. */
 export function ReadingProgressBar({ targetId }: { targetId: string }) {
   const barRef = useRef<HTMLDivElement>(null);
 

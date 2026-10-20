@@ -1,7 +1,4 @@
-/**
- * Single source of truth for the general fieldss that appear
- * throughout the Terms of Service and Privacy Policy content modules.
- */
+/** General fields shared by the Terms of Service and Privacy Policy content modules. */
 
 export interface LegalConfig {
   companyLegalName: string;
@@ -11,38 +8,27 @@ export interface LegalConfig {
   dpoEmail: string;
   generalContact: string;
 
-  /** "Last Updated" date shown in each document header. Source: "[DATE]". */
+  /** "Last Updated" date shown in each document header. */
   lastUpdated: string;
-  /**
-   * Same date as lastUpdated, as ISO 8601, for the sitemap. Kept separate
-   * because lastUpdated is written for readers ("15th July 2026") and does not
-   * parse. Change both together.
-   */
+  /** Same date as lastUpdated, as ISO 8601, for the sitemap. */
   lastUpdatedIso: string;
-  /** "Effective" date shown in each document header. Source: "[DATE]". */
+  /** "Effective" date shown in each document header. */
   effective: string;
 
   /**
    * Date counsel last reviewed the Terms and the Privacy Policy, ISO 8601.
-   *
-   * The build warns when either document has been edited more recently than
-   * this. Move it only after counsel has actually seen the change, never to
-   * silence the warning.
+   * The build warns when either document has been edited more recently.
    */
   counselReviewedIso: string;
 
-  /** Liability-cap look-back window in months (ToS §13). Confirmed by counsel. */
+  /** Liability-cap look-back window in months (ToS §13). */
   liabilityCapMonths: string;
-  /**
-   * Data-retention period (Privacy §8). No document reads this yet: counsel
-   * asked for the retention wording to stay general until the Terms review
-   * finishes, and will give a period then. Keep the field.
-   */
+  /** Data-retention period (Privacy §8). Not currently read by any document. */
   retentionYears: string;
 
-  /** Governing law (ToS §17). Fixed to Singapore per the drafts. */
+  /** Governing law (ToS §17). */
   governingLaw: string;
-  /** Dispute-resolution mechanism (ToS §17). Counsel chose SIAC arbitration. */
+  /** Dispute-resolution mechanism (ToS §17). */
   disputeResolution: string;
 }
 

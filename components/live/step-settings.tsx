@@ -10,7 +10,6 @@ import {
   SETTINGS_ABOUT,
   SETTINGS_CONTACT,
   SETTINGS_DELETED,
-  SETTINGS_TESTNET_NOTICE,
 } from "@/components/live/content";
 
 type Panel = "list" | "about" | "contact" | "delete" | "deleted";
@@ -24,8 +23,7 @@ const ABOUT_TEXT_STYLE = {
 } as const;
 
 /**
- * Step 07 — Settings (app/(tabs)/settings.tsx, DeleteAccountModal.tsx,
- * PasskeyRemovalModal.tsx, constants/general.constants.ts).
+ * Step 07 — Settings.
  */
 export function StepSettingsVisual() {
   const { theme, setTheme } = useLiveTheme();
@@ -34,8 +32,7 @@ export function StepSettingsVisual() {
   const [deleteStatus, setDeleteStatus] = useState("");
   const isDark = theme === "dark";
 
-  // Items vs. the theme switch: the app renders the switch as its own card
-  // below the list (and below the testnet notice), not as a list row.
+  // The theme switch is split out from the list rows.
   const menuRows = SETTINGS_MENU.filter((item) => !("toggle" in item && item.toggle));
   const toggleRow = SETTINGS_MENU.find((item) => "toggle" in item && item.toggle);
 
@@ -55,8 +52,7 @@ export function StepSettingsVisual() {
     }, 900);
   }
 
-  // Shared row renderer so the theme switch (its own card below the testnet
-  // notice in the app, not a list row) can reuse the same markup out of order.
+  // Row renderer shared by the list rows and the theme switch.
   function renderMenuItem(item: (typeof SETTINGS_MENU)[number], i: number) {
     const isToggle = "toggle" in item && item.toggle;
     const iconName = isToggle ? (isDark ? "moon" : "sun") : item.icon;
@@ -143,7 +139,6 @@ export function StepSettingsVisual() {
       {panel === "list" && (
         <div style={{ display: "flex", flexDirection: "column" }}>
           {menuRows.map((item, i) => renderMenuItem(item, i))}
-          <TestnetNotice />
           {toggleRow && renderMenuItem(toggleRow, menuRows.length)}
         </div>
       )}
@@ -151,7 +146,6 @@ export function StepSettingsVisual() {
       {panel === "about" && (
         <div style={{ background: "var(--app-bg)", padding: 4 }}>
           <PanelHeader title="About" onClose={() => setPanel("list")} />
-          <TestnetNotice bordered />
           {SETTINGS_ABOUT.lines.map((line) => (
             <p key={line} style={ABOUT_TEXT_STYLE}>
               {line}
@@ -295,29 +289,6 @@ export function StepSettingsVisual() {
         </div>
       )}
     </DeviceFrame>
-  );
-}
-
-// Same bulb-notice box the app shows on the main Settings list and again at
-// the top of About (constants/general.constants.ts TESTNET_DISCLOSURE_MESSAGE).
-function TestnetNotice({ bordered }: { bordered?: boolean }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "flex-start",
-        gap: 10,
-        padding: 14,
-        marginTop: bordered ? 0 : 8,
-        marginBottom: bordered ? 16 : 0,
-        borderRadius: 16,
-        border: bordered ? "1px solid var(--app-muted)" : "none",
-        background: "var(--app-item-bg)",
-      }}
-    >
-      <Icon name="info" style={{ width: 18, height: 18, flex: "none", marginTop: 1, color: "var(--app-foreground2)" }} />
-      <span style={{ fontSize: 13, lineHeight: 1.5, color: "var(--app-foreground2)" }}>{SETTINGS_TESTNET_NOTICE.text}</span>
-    </div>
   );
 }
 

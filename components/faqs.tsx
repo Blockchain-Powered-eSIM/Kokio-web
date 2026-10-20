@@ -16,8 +16,6 @@ const Faqs = () => {
         >
           Frequently Asked Questions
         </h2>
-        {/* Each id is the target of the matching Question @id in the page
-            schema, so a citation can link to the single answer it used. */}
         <dl className="flex flex-col gap-14">
           {faqsData.map((faq) => (
             <div

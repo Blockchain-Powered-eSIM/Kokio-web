@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 
-/** Hidden once `hideBeforeId` (the wave divider marking the start of the CTA/footer zone) scrolls into view, so it never overlaps the CTA or footer. */
+/** Hidden once the element with id `hideBeforeId` scrolls into view. */
 export function BackToTopButton({ hideBeforeId }: { hideBeforeId: string }) {
   const [visible, setVisible] = useState(false);
 

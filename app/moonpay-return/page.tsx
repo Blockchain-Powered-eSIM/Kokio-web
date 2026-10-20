@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 
-// Reached only after a payment. It says nothing useful on its own, and a search
-// result pointing here would look like a transaction that never happened.
 export const metadata: Metadata = {
   title: "Payment complete",
   robots: { index: false, follow: false },

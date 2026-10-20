@@ -1,25 +1,18 @@
 import React from "react";
 
-/**
- * Only what is still ahead. Dates are targets, and a milestone whose date has
- * passed reads as a missed deadline rather than as history, so shipped work
- * comes off this list instead of staying on it.
- */
 export const roadMapData = [
   {
-    title: "Q3'26",
-    focus: "Public launch",
+    title: "Now",
+    focus: "Live on iOS and Android, now on mainnet",
     milestones: [
-      "Public launch across 200+ destinations, on the App Store and Play Store",
       "Regional testing across Southeast Asia and partner communities",
-      "Road to mainnet",
     ],
   },
   {
     title: "Q4'26",
     focus: "Features and distribution",
     milestones: [
-      "Device wallet, so checkout happens inside the app",
+      "Device wallet fully rolled out, so checkout happens inside the app",
       "Referral links, partner discount codes and sponsored eSIM flows for events",
       "Connectivity partnerships",
     ],

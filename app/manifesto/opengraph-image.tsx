@@ -24,8 +24,7 @@ const meadowBgBase64 = fs
 const DEFAULT_HEADLINE =
   "Connectivity is a human right. Privacy is its guardian.";
 
-/** Distinct from the shared blog OG template (lib/og-image.tsx) — watercolor
- * background + the credo line, not the page title, per #29. */
+/** Open Graph image: watercolor background and the credo line. */
 export default function Image() {
   const manifesto = getManifesto();
   const headline = manifesto.ogHeadline ?? DEFAULT_HEADLINE;

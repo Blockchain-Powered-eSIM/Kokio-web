@@ -2,6 +2,12 @@ import Image from "next/image";
 import { Faqs } from "@/components/faqs";
 import { Features } from "@/components/features";
 import { Hero } from "@/components/hero";
+import { Gallery } from "@/components/home/gallery";
+import { Partners } from "@/components/home/partners";
+import { Pricing } from "@/components/home/pricing";
+import { ManifestoShowcase } from "@/components/home/manifesto-showcase";
+import { RecentPosts } from "@/components/home/recent-posts";
+import { HomeSection } from "@/components/home/section";
 import { RoadMap } from "@/components/road-map";
 import { Setup } from "@/components/setup";
 import { JsonLd } from "@/components/json-ld";
@@ -25,12 +31,24 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="-mt-1 flex flex-col items-center gap-[720px] bg-pyramid-mobile bg-cover bg-center bg-no-repeat xs:gap-[680px] xs:bg-pyramid-tablet md:gap-[1060px] md:bg-pyramid-desktop lg:gap-[820px] lg:bg-pyramid-desktop">
+      <div className="relative -mt-1 flex w-full flex-col items-center justify-center gap-40 bg-[#574978] bg-pyramid-mobile bg-cover bg-[position:center_40%] bg-no-repeat py-10 xs:bg-pyramid-tablet xs:bg-[position:center_50%] md:gap-48 md:bg-pyramid-desktop md:bg-[position:center_50%] md:py-14 lg:min-h-[140vw] lg:bg-[position:center_54.3%]">
         <Features />
-        <div className="flex flex-col gap-10">
+        <Pricing />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#301c3d] to-transparent" />
+      </div>
+      <div className="flex flex-col bg-[#301c3d]">
+        <HomeSection>
+          <ManifestoShowcase />
+        </HomeSection>
+        <RecentPosts />
+        <Partners />
+        <Gallery />
+        <HomeSection>
           <Faqs />
+        </HomeSection>
+        <HomeSection className="py-0 md:py-0">
           <RoadMap />
-        </div>
+        </HomeSection>
       </div>
     </main>
   );

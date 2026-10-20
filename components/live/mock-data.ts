@@ -1,5 +1,5 @@
 /**
- * Simulated data for the /live guide , illustrative only, no real backend calls.
+ * Simulated data for the /live guide, illustrative only, no real backend calls.
  */
 
 export type PlanCategory = "Countries" | "Regions" | "Global" | "Special";
@@ -33,18 +33,14 @@ export const PLANS: Record<PlanCategory, Plan[]> = {
   ],
 };
 
-/* ---- Shop (Step 02): country grid, region list, per-country plans ---- */
-
 export type ShopCountry = { code: string; name: string; flag: string };
 
-// Countries tab is a flag grid (screens/shop/tabs/countries/countries.tsx).
 export const SHOP_COUNTRIES: ShopCountry[] = [
   { code: "JP", name: "Japan", flag: "🇯🇵" },
   { code: "FR", name: "France", flag: "🇫🇷" },
   { code: "BR", name: "Brazil", flag: "🇧🇷" },
 ];
 
-// Regions tab: region name over its map image (screens/shop/tabs/regions/regions.tsx).
 export const SHOP_REGIONS: { name: string; image: string }[] = [
   { name: "Europe", image: "/live/region-europe.png" },
   { name: "Asia", image: "/live/region-asia.png" },
@@ -53,8 +49,8 @@ export const SHOP_REGIONS: { name: string; image: string }[] = [
 
 export type CountryPlan = { plan: Plan; network: string };
 
-// Plans for one country. The first entry of each is the PLANS.Countries entry,
-// so checkout prices stay consistent. `network` drives the network chips.
+// Plans per country. The first entry of each is the PLANS.Countries entry.
+// `network` drives the network chips.
 export const COUNTRY_PLANS: Record<string, CountryPlan[]> = {
   JP: [
     { plan: PLANS.Countries[0], network: "NTT Docomo" },
@@ -70,21 +66,20 @@ export const COUNTRY_PLANS: Record<string, CountryPlan[]> = {
   ],
 };
 
-// Extra plans loaded by "Show more plans" (app BACKUP plans).
+// Extra plans loaded by "Show more plans".
 export const BACKUP_COUNTRY_PLANS: Record<string, CountryPlan[]> = {
   JP: [{ plan: { country: "Japan", flag: "🇯🇵", days: "30", gb: "20", price: "52.00" }, network: "NTT Docomo" }],
   FR: [{ plan: { country: "France", flag: "🇫🇷", days: "7", gb: "5", price: "19.00" }, network: "Orange" }],
   BR: [{ plan: { country: "Brazil", flag: "🇧🇷", days: "7", gb: "5", price: "21.00" }, network: "Claro" }],
 };
 
-// Plans for one region tapped on the Regions tab.
+// Plans per region.
 export const REGION_PLANS: Record<string, Plan[]> = {
   Europe: [PLANS.Regions[0]],
   Asia: [PLANS.Regions[1]],
   "North America": [PLANS.Regions[2]],
 };
 
-// Filter Plans sheet (utils/shopFilters.ts in the app).
 export const PRICE_FILTERS = [
   { key: "ANY", label: "Any price" },
   { key: "UNDER_5", label: "Under $5" },
@@ -141,9 +136,7 @@ export type Order = {
   expandable: boolean;
   note?: string;
   install?: boolean;
-  // Set once an eSIM is installed and its on-chain wallet is deployed — the app
-  // shows a wallet-icon button on the order card that opens that eSIM's wallet
-  // (app/(tabs)/orders.tsx: isInstalled && esimWalletId -> openEsimWallet()).
+  // Set once the eSIM is installed and its wallet is deployed; shows a wallet button on the order card.
   esimWalletId?: string;
   iccid?: string;
   lpa?: string;
@@ -191,8 +184,8 @@ export const ORDERS: Order[] = [
     flag: "🇯🇵",
     days: "7",
     gb: "5",
-    mins: "100",
-    sms: "50",
+    mins: "0",
+    sms: "0",
     pill: "Completed",
     pillTone: "success",
     expandable: true,
@@ -206,8 +199,7 @@ export const ORDERS: Order[] = [
   },
 ];
 
-// The active eSIM card on Home (app/esim-detail.tsx) — a separate screen
-// from Orders, per the source-accuracy correction in AppLiveTasks.md.
+// The active eSIM card on Home, separate from Orders.
 export const HOME_ESIM_DETAIL = {
   plan: "Japan",
   flag: "🇯🇵",
@@ -231,9 +223,6 @@ export const WALLET_ADDRESS_SHORT = "0x9bf...b1e2ef7";
 export const WALLET_ADDRESS_FULL =
   "0x9bfbf5000f10121edc519bdc198f2fb93e16c4fd9c20846ff837e82a8b1e2ef7";
 
-// Order and membership match app/(tabs)/settings.tsx's menuItems + the separate
-// testnet-notice/theme rows rendered below the list ("Refer & Earn" and the two
-// __DEV__-only rows are left out — see AppLiveTasks.md gap notes for Refer & Earn).
 export const SETTINGS_MENU = [
   { icon: "lock", label: "Privacy Policy", href: "https://kokio.app/privacy-policy" },
   { icon: "info", label: "About", view: "about" as const },

@@ -11,10 +11,8 @@ type CouponState = "idle" | "validating" | "valid" | "applied";
 const DEFAULT_PLAN = PLANS.Countries[0];
 
 /**
- * Step 03 — Checkout & payment (checkoutHeader/CheckoutHeader.tsx +
- * screens/checkout/Checkout.tsx). Reflects whichever plan was actually
- * picked in Step 02, coupon validation, top-up compatibility check, and
- * the Pay confirmation are all fake timers.
+ * Step 03 — Checkout & payment. Reflects the plan picked in Step 02; coupon
+ * validation, top-up compatibility check, and the Pay confirmation are fake timers.
  */
 export function StepCheckoutVisual() {
   const flow = useFlow();
@@ -80,7 +78,6 @@ export function StepCheckoutVisual() {
             : "Order placed — check the Orders tab."
         );
       }, 1500),
-      // Hand off to Orders with this purchase's row pre-expanded.
       setTimeout(() => flow.completeOrder(plan), 2300),
       setTimeout(() => setPayStatus(""), 4500)
     );
@@ -370,9 +367,6 @@ export function StepCheckoutVisual() {
             marginTop: 14,
             background: "var(--app-pay-btn)",
             color: "var(--app-card-fg)",
-            // Dark theme's --app-pay-btn and --app-card are the same yellow,
-            // so without a border the button has zero contrast against its
-            // own card — this border is the fix, not an artifact detail.
             border: "1px solid var(--app-muted)",
           }}
         >

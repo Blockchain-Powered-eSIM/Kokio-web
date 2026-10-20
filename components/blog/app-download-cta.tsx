@@ -3,17 +3,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import Logomark from "@/assets/logomark.svg";
+import { CTA_LABEL } from "@/lib/site-copy";
 
-/** Download card dropped into blog posts that mention the app. Mirrors
- * ManifestoCTA's image + frosted-panel structure, but the image is the same
- * beach-scene art behind the homepage hero (see components/hero.tsx) —
- * clouds ~y0-600, ocean band ~y995-1120, sand + a bucket shape from ~y1120
- * down to ~y1582 (out of a 2068-tall viewBox). At the frosted panel's usual
- * height, object-top only shows plain sky, so the crop is pulled down to
- * ~58% to land on the ocean-to-sand-and-bucket band instead.
- *
- * Points at /live (the interactive download + usage guide) rather than a
- * store link directly, now that both iOS and Android are out — see D8. */
+/** Download card linking to /live. Uses the homepage hero's beach-scene art
+ * (clouds ~y0-600, ocean band ~y995-1120, sand and bucket ~y1120-1582 of a
+ * 2068-tall viewBox) with the crop positioned at ~58% to show the
+ * ocean-to-sand band instead of plain sky. */
 export function AppDownloadCTA() {
   return (
     <Link
@@ -46,7 +41,7 @@ export function AppDownloadCTA() {
           and secure.
         </p>
         <span className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-outer-space-950">
-          Try out the App today!
+          {CTA_LABEL}
           <ArrowRight
             aria-hidden="true"
             className="h-4 w-4 transition-transform group-hover:translate-x-1"

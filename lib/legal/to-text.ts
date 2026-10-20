@@ -8,9 +8,7 @@ import type {
 /**
  * Renders a legal document as markdown for the plain-text routes.
  *
- * Links keep their text and drop their href. An agent reading this file already
- * has the whole site in front of it, so a URL adds nothing and the anchor text
- * usually carries the meaning on its own.
+ * Links keep their text and drop their href.
  */
 function inlineToText(inline: Inline): string {
   if (typeof inline === "string") return inline;

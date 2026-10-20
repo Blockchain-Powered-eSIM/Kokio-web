@@ -2,18 +2,18 @@
  * schema.org entities for the site.
  *
  * The Organization and WebSite nodes are emitted once from the root layout and
- * referenced everywhere else by `@id`, so the facts about the company live in
- * exactly one place and a crawler reading any page can resolve them.
+ * referenced everywhere else by `@id`.
  */
 
 import Logo from "@/assets/logo.svg";
 
-import { siteConfig, TWITTER_URL } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { legalConfig } from "@/config/legal";
 import { faqsData } from "@/content/faqs";
 import { glossaryData } from "@/content/glossary";
 import {
   CANONICAL_DESCRIPTION,
+  PAYMENT_METHODS,
   PRODUCT_NAME,
   PRODUCT_NAME_VARIANTS,
 } from "@/lib/site-copy";
@@ -21,7 +21,6 @@ import {
 export const ORGANIZATION_ID = `${siteConfig.url}/#organization`;
 export const WEBSITE_ID = `${siteConfig.url}/#website`;
 
-const GITHUB_ORG_URL = "https://github.com/Blockchain-Powered-eSIM";
 const DOCS_URL = "https://docs.kokio.app";
 
 /** Address parsed out of the single string kept in legalConfig for the legal pages. */
@@ -32,8 +31,6 @@ const organization = {
   "@type": "Organization",
   "@id": ORGANIZATION_ID,
   name: PRODUCT_NAME,
-  // Every spelling that has shipped. This is the only machine-readable place
-  // that says they are one entity rather than several.
   alternateName: [...PRODUCT_NAME_VARIANTS],
   legalName: legalConfig.companyLegalName,
   url: siteConfig.url,
@@ -53,7 +50,13 @@ const organization = {
     propertyID: "UEN",
     value: legalConfig.uen,
   },
-  sameAs: [TWITTER_URL, GITHUB_ORG_URL, DOCS_URL],
+  // X, Instagram and GitHub come from the same list the header icons render.
+  sameAs: [
+    ...siteConfig.socials
+      .filter((social) => social.title !== "Docs")
+      .map((social) => social.href),
+    DOCS_URL,
+  ],
 };
 
 const website = {
@@ -87,7 +90,7 @@ const app = {
     "eSIM data plans in over 200 destinations",
     "No KYC and no personal information collected",
     "Passkey authentication using the device secure enclave",
-    "Card, Apple Pay, Google Pay and PayPal payments",
+    PAYMENT_METHODS,
     "Optional self-custodial smart wallet, owned by the user",
   ],
 };
@@ -123,8 +126,6 @@ const glossary = {
   inLanguage: "en",
   hasDefinedTerm: glossaryData.map((entry) => ({
     "@type": "DefinedTerm",
-    // Points at the entry on the page, so a citation lands on the definition
-    // rather than the top of the glossary.
     "@id": `${siteConfig.url}/glossary#${entry.id}`,
     name: entry.term,
     ...(entry.aliases ? { alternateName: entry.aliases } : {}),

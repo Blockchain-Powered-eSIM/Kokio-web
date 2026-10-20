@@ -99,7 +99,37 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `When you purchase or top up an eSIM, we process order records, eSIM provisioning details, and payment status. These records are linked to your device wallet address, not to your identity.`,
+              content: `When you purchase or top up an eSIM, we process order records, eSIM provisioning details (including the identifiers and activation details of the eSIM), the plan, the price and any code or credit applied, usage figures, and payment status. If you give an eSIM a label, we store it with that eSIM; labels are free text, so we suggest keeping personal details out of them. These records are linked to your device wallet address, not to your identity.`,
+            },
+          ],
+        },
+        {
+          type: "subsection",
+          heading: "Referral, Coupon, and Store Credit Data",
+          blocks: [
+            {
+              type: "paragraph",
+              content: `Every account has a referral code. We record the codes you use, the referrals made with your code, and a ledger of store-credit movements (rewards, adjustments, and credit spent on orders). Referral records let us pay rewards and are linked to wallet addresses, not identities; the person who referred you is not told who you are, and you are not told who your referrals are.`,
+            },
+          ],
+        },
+        {
+          type: "subsection",
+          heading: "Wallet Activity",
+          blocks: [
+            {
+              type: "paragraph",
+              content: `Once your device wallet is deployed, we track its on-chain activity on Base (ETH and token transfers sent or received, and changes to the spending cap of your eSIM wallets) through a blockchain notification provider, so the app can show your history. It is built from public blockchain data, begins at deployment, and may have gaps if the service was unavailable.`,
+            },
+          ],
+        },
+        {
+          type: "subsection",
+          heading: "Data Kept on Your Device",
+          blocks: [
+            {
+              type: "paragraph",
+              content: `Some data stays on your device and is not sent to us: contacts you save in the app (an alias and a wallet address), tokens you add, and your session tokens, which sit in your device's secure storage. This data is removed from your device when you delete your account in the app.`,
             },
           ],
         },
@@ -109,17 +139,23 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `We do not collect or store your card numbers, bank details, or crypto funding details. Payments are handled by third-party payment providers (see Section 6). For card payments, a customer reference is created with our payment processor; that reference is created without your name, email, or address.`,
+              content: `We do not collect or store your card numbers, bank details, or crypto funding details. Payments are handled by third-party payment providers (see Section 6). For card payments, a customer reference is created with our payment processor; that reference is created without your name, email, or address. Payments made from your Kokio wallet are on-chain transactions (see On-Chain Data).`,
             },
           ],
         },
+        // LEGAL REVIEW (On-Chain Data, device and eSIM identifiers):
+        // Engineering to confirm what the on-chain eSIM identifier is made from. The BFF spec says it is
+        // derived from the device ID and the ICCID, so it is not a random server ID. The mainnet checklist
+        // expected "never ICCID". ICCIDs are structured, so even a one-way derivation can be confirmed by
+        // guessing. If it can be, the sentence below and the "cannot be linked to you" claims in Our
+        // Privacy-First Design and Your Rights need to change.
         {
           type: "subsection",
           heading: "On-Chain Data",
           blocks: [
             {
               type: "paragraph",
-              content: `Certain actions (wallet creation, purchases) are recorded on a public blockchain (Base). Blockchain records are public, permanent, and immutable. They contain a wallet address and transaction data, and cannot be altered or deleted by us or by anyone.`,
+              content: `Certain actions (wallet creation, purchases, payments and transfers from your wallet) are recorded on a public blockchain (Base). Blockchain records are public, permanent, and immutable. They contain a wallet address, transaction data, and identifiers derived from your device and your eSIMs, and cannot be altered or deleted by us or by anyone. Anyone who can link your wallet address to you, for example through an exchange or another service, can see its full public history.`,
             },
           ],
         },
@@ -133,7 +169,7 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `To operate and secure the Service we process limited technical data such as network requests, error and security logs, and a per-request correlation identifier. These are used for service operation, security, and fraud prevention, and are configured to avoid containing personal identifiers.`,
+              content: `To operate and secure the Service we process limited technical data such as network requests (your IP address is used to apply rate limits and is not kept for that purpose), error and security logs, and a per-request correlation identifier. These are used for service operation, security, and fraud prevention, and the logs are configured to avoid containing personal identifiers.`,
             },
           ],
         },
@@ -182,8 +218,8 @@ export const privacyPolicy: LegalDocument = {
     },
 
     // LEGAL REVIEW (Third Parties and Sharing):
-    // List the actual sub-processors/providers by name (Stripe, MoonPay, the eSIM aggregator,
-    // Alchemy/RPC provider, cloud host) in a sub-processor annex if counsel suggestes,
+    // Alchemy and Pimlico are now named below. The eSIM vendors and the cloud host are still named
+    // by category only. List them by name in a sub-processor annex if counsel suggests,
     // and ensure DPAs are in place with each.
     {
       heading: "Third Parties and Sharing",
@@ -211,10 +247,24 @@ export const privacyPolicy: LegalDocument = {
               },
             ],
             [
-              { type: "strong", value: "Infrastructure providers" },
+              { type: "strong", value: "Blockchain infrastructure providers" },
               {
                 type: "text",
-                value: ` — blockchain RPC and cloud infrastructure used to operate the Service, acting as our processors under appropriate agreements.`,
+                value: ` — Alchemy (blockchain RPC, transaction fee sponsorship, and wallet activity notifications) and Pimlico (transaction bundling) receive wallet addresses and the blockchain transactions your wallet submits, acting as our processors under appropriate agreements.`,
+              },
+            ],
+            [
+              { type: "strong", value: "Cloud infrastructure providers" },
+              {
+                type: "text",
+                value: ` — host and operate the Service, acting as our processors under appropriate agreements.`,
+              },
+            ],
+            [
+              { type: "strong", value: "WalletConnect" },
+              {
+                type: "text",
+                value: ` — if you connect your Kokio wallet to another app or website using WalletConnect, the connection runs over WalletConnect's relay network under WalletConnect's own privacy policy, not ours.`,
               },
             ],
             [
@@ -247,7 +297,7 @@ export const privacyPolicy: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `We keep data only as long as necessary. Account and credential data are retained while your account exists. Order, eSIM, and payment records are retained for the period required to meet financial, accounting, tax, and audit obligations, even after account deletion, in pseudonymised form that contains no personal identifier and cannot be linked back to you.`,
+          content: `We keep data only as long as necessary. Account and credential data are retained while your account exists, and afterwards in closed form as described under Account Deletion. Order, eSIM, payment, referral, and store-credit records are retained for the period required to meet financial, accounting, tax, and audit obligations, even after account deletion, in pseudonymised form that contains no personal identifier and cannot be linked back to you.`,
         },
       ],
     },
@@ -266,17 +316,23 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `Open the Kokio app, go to Settings, and select "Delete Account". You will be asked to confirm with your passkey. Deletion is immediate and irreversible.`,
+              content: `Open the Kokio app, go to Settings, and select "Delete Account". You will be asked to type DELETE and to confirm with your passkey. Deletion is immediate and irreversible.`,
             },
           ],
         },
+        // LEGAL REVIEW (Account Deletion, what is deleted and retained):
+        // The previous text said the account record, credential material and payment-processor
+        // reference were permanently removed. The BFF spec says deletion is a soft delete: the account
+        // is flagged closed and refuses every request, and nothing is erased. The text below follows
+        // the spec. Engineering to confirm it is accurate, and counsel to check it against GDPR
+        // erasure and the PDPA retention exceptions, since closed records may still be personal data.
         {
           type: "subsection",
           heading: "What is deleted",
           blocks: [
             {
               type: "paragraph",
-              content: `Your account record and the credential material derived from your passkey (public-key coordinates, salt, and device identifier), and your payment-processor customer reference, are permanently removed from our systems.`,
+              content: `Your account is closed immediately and cannot be reopened. Every request made from it is refused, you lose access to your order history, eSIM details, store credit, referral code, and wallet in the app (move any funds out of your wallet first, because we cannot recover or move them for you afterwards), and we stop tracking your wallet's on-chain activity. The app also removes the data it holds on your device, including your saved contacts.`,
             },
           ],
         },
@@ -286,7 +342,17 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `Order and transaction records are retained in pseudonymised form for the period required by financial and audit obligations. These records contain no name, email, address, or other personal identifier and cannot be linked back to you once your account is deleted.`,
+              content: `Your closed account record, including the credential material derived from your passkey (public-key coordinates, salt, and device identifier) and your payment-processor customer reference, stays on our systems, along with your order, eSIM, payment, referral, and store-credit records and your wallet activity history (which is no longer updated). The account record is the link those records depend on to meet financial and audit obligations for the required period. None of it contains a name, email, address, or other personal identifier, and without your passkey it cannot be linked back to you.`,
+            },
+          ],
+        },
+        {
+          type: "subsection",
+          heading: "Remove your passkey yourself",
+          blocks: [
+            {
+              type: "paragraph",
+              content: `Deleting your account does not remove your passkey from your device or password manager, and we cannot remove it for you. Signing in with it again will succeed, but every request will be refused. Registering a new passkey creates a new account with a new wallet address. The app shows you how to remove the old passkey.`,
             },
           ],
         },
@@ -296,7 +362,7 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `Transactions published to the public blockchain are permanent and cannot be removed by anyone, including us. They contain a wallet address and no personal information. Any eSIM you have already paid for continues to work on your device until its plan expires; deleting your account does not cancel or refund an active plan.`,
+              content: `Transactions published to the public blockchain are permanent and cannot be removed by anyone, including us. They contain a wallet address and no personal information. Any eSIM you have already paid for continues to work on your device until its plan expires; deleting your account does not cancel or refund an active plan, and any store credit left on the account can no longer be used.`,
             },
           ],
         },
@@ -351,7 +417,7 @@ export const privacyPolicy: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `We implement technical and organisational measures appropriate to the risk, including encryption of sensitive values, access controls, secure credential storage on your device, and security logging. No system is perfectly secure, and you are responsible for safeguarding the device and passkey that control your account.`,
+          content: `We implement technical and organisational measures appropriate to the risk, including encryption of sensitive values, access controls, secure credential storage on your device, access tokens bound to your device, and security logging. No system is perfectly secure, and you are responsible for safeguarding the device and passkey that control your account.`,
         },
       ],
     },
