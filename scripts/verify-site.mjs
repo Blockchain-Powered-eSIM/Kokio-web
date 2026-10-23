@@ -13,10 +13,17 @@
  */
 
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { join, sep } from "node:path";
 
-const APP = ".next/server/app";
+const SERVER = ".next/server";
+const APP = join(SERVER, "app");
+/**
+ * Next 16.4+ built with a deployment adapter (Vercel sets one) writes prerendered output to
+ * server/route-cache/<kind>/<sha256 of the source route>/$/<file> instead of server/app/<file>.
+ */
+const ROUTE_CACHE = join(SERVER, "route-cache");
+const SCOPED_MARKER = `${sep}$${sep}`;
 const MANIFEST = ".next/app-path-routes-manifest.json";
 const ORIGIN = "https://kokio.app";
 
@@ -40,12 +47,39 @@ function warn(check, message) {
   warnings.push(`${check}: ${message}`);
 }
 
+function indexRouteCache() {
+  const index = new Map();
+  if (!existsSync(ROUTE_CACHE)) return index;
+
+  for (const entry of readdirSync(ROUTE_CACHE, { recursive: true, withFileTypes: true })) {
+    if (!entry.isFile()) continue;
+    const full = join(entry.parentPath, entry.name);
+    const at = full.indexOf(SCOPED_MARKER);
+    if (at !== -1) index.set(full.slice(at + SCOPED_MARKER.length).split(sep).join("/"), full);
+  }
+  return index;
+}
+
+const scopedOutput = indexRouteCache();
+
+function locate(file) {
+  const plain = join(APP, file);
+  if (existsSync(plain)) return plain;
+  return scopedOutput.get(file) ?? null;
+}
+
 function read(file) {
-  return readFileSync(join(APP, file), "utf8");
+  const found = locate(file);
+  if (!found) {
+    throw new Error(
+      `${file} was not found in ${APP} or ${ROUTE_CACHE}. Next may have moved its build output again.`
+    );
+  }
+  return readFileSync(found, "utf8");
 }
 
 function exists(file) {
-  return existsSync(join(APP, file));
+  return locate(file) !== null;
 }
 
 /** `/` lives at index.html, everything else at its own path. */
