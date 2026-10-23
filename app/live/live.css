@@ -50,6 +50,8 @@
   --app-gradient-dark: #404040;
   --app-wallet-balance-fg: #ffffff;
   --app-modal-bg: rgba(60, 60, 60, 0.9);
+  --app-cta-bg: #ffaf01;
+  --app-cta-fg: #000000;
 
   color-scheme: dark;
   margin: 0;
@@ -71,9 +73,9 @@
   --chrome-panel: #ffffff;
   --chrome-ink: #1c2b30;
   --chrome-muted: #5b6770;
-  --chrome-faint: #626d76; /* darkened from the artifact's #8b969c — 2.67:1 failed WCAG AA badly on --chrome-bg, this is 4.66:1 (ticket #10) */
+  --chrome-faint: #626d76; /* 4.66:1 contrast on --chrome-bg, meets WCAG AA */
   --chrome-border: #d7dee1;
-  --chrome-accent: #1f6b78; /* darkened from the artifact's #2a8fa0 — 3.34:1 failed WCAG AA where used as text (callout strong), this is 5.39:1 (ticket #10) */
+  --chrome-accent: #1f6b78; /* 5.39:1 contrast as text (callout strong), meets WCAG AA */
   --chrome-accent-fg: #ffffff;
   --chrome-code-bg: #e4e9eb;
   --chrome-danger: #c0392b;
@@ -113,6 +115,8 @@
   --app-gradient-dark: #ffffff;
   --app-wallet-balance-fg: #000000;
   --app-modal-bg: rgba(255, 255, 255, 0.95);
+  --app-cta-bg: #2a8fa0;
+  --app-cta-fg: #ffffff;
 }
 
 .kokio-live a {
@@ -284,6 +288,10 @@
   overflow-x: auto;
   flex: 1;
   min-width: 220px;
+  scrollbar-width: none;
+}
+.kokio-live .rail::-webkit-scrollbar {
+  display: none;
 }
 .kokio-live .rail a {
   flex: 0 0 auto;
@@ -294,6 +302,10 @@
   border-radius: 999px;
   white-space: nowrap;
   text-decoration: none;
+}
+.kokio-live .rail a[aria-current="step"] {
+  color: var(--chrome-accent-fg);
+  background: var(--chrome-accent);
 }
 .kokio-live .rail a:hover {
   color: var(--chrome-ink);
@@ -309,7 +321,7 @@
 }
 
 .kokio-live .steps {
-  padding: 16px 0 8px;
+  padding-block: 16px 8px;
 }
 .kokio-live .step {
   display: grid;
@@ -317,7 +329,7 @@
   gap: 32px;
   padding: 40px 0;
   border-bottom: 1px solid var(--chrome-border);
-  scroll-margin-top: 64px;
+  scroll-margin-top: calc(var(--controls-h, 64px) + 8px);
 }
 .kokio-live .step:last-child {
   border-bottom: none;
@@ -328,6 +340,9 @@
     align-items: start;
     gap: 48px;
     padding: 52px 0;
+  }
+  .kokio-live .step[data-alt="1"] {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   }
   .kokio-live .step[data-alt="1"] .step-text {
     order: 2;
@@ -443,7 +458,7 @@
 
 /* ---- closing tips, between the step guide and the Manifesto CTA ---- */
 .kokio-live .closing-tips {
-  padding: 40px 0 8px;
+  padding-block: 40px 8px;
   border-top: 1px solid var(--chrome-border);
 }
 .kokio-live .closing-tips h2 {
@@ -511,6 +526,13 @@
   color: var(--chrome-faint);
   text-align: center;
   margin-bottom: 10px;
+}
+.kokio-live .demo-caption {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--chrome-muted);
+  text-align: center;
+  margin: 0 0 10px;
 }
 
 .kokio-live footer.page-footer {
@@ -691,14 +713,40 @@
   width: 14px;
   height: 14px;
 }
+/* App: order-card chevron uses colors.text in light mode (muted-fg in dark). */
+.kokio-live[data-theme="light"] .a-chevron {
+  color: var(--app-text);
+}
 
 .kokio-live .a-detail {
+  position: relative;
   background: var(--app-surface);
   border-radius: 12px;
   margin: 6px 4px 0;
   padding: 14px;
+  padding-right: 70px;
   display: flex;
   flex-direction: column;
+}
+.kokio-live .a-wallet-btn {
+  all: unset;
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: 46px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--app-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.kokio-live .a-wallet-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+  color: #fff;
 }
 .kokio-live .a-summary-row {
   display: flex;
@@ -865,12 +913,31 @@
 .kokio-live .a-hero-btn {
   all: unset;
   cursor: pointer;
-  background: var(--app-hero-btn-bg);
-  color: var(--app-hero-btn-fg);
+  background: var(--app-cta-bg);
+  color: var(--app-cta-fg);
   font-size: 16px;
   font-weight: 500;
   padding: 5px 24px;
   border-radius: 40px;
+}
+
+/* ---------------- mainnet launch notice (above the hero) ---------------- */
+.kokio-live .launch-banner {
+  background: var(--chrome-panel);
+  border-bottom: 1px solid var(--chrome-border);
+  padding: 14px 0;
+}
+.kokio-live .launch-banner p {
+  margin: 0;
+  color: var(--chrome-ink);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.kokio-live .launch-banner strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 16px;
+  color: var(--chrome-accent);
 }
 
 /* ---------------- /live's own hero (above the ported guide) ---------------- */
@@ -1100,12 +1167,11 @@
   flex: 1;
 }
 
-/* ---------------- touch targets (ticket #10 / D10) ----------------
-   The artifact's segmented controls, tab strips, and icon buttons were
-   sized for a mouse-driven desktop demo (~26-30px tall). On an actual
-   touch device that's under the ~44px target Apple/WCAG recommend, so
-   bump hit areas here on coarse-pointer (touch) devices only — desktop
-   mouse users still get the artifact's exact visual sizing untouched. */
+/* ---------------- touch targets ----------------
+   The segmented controls, tab strips, and icon buttons are sized for a
+   mouse-driven desktop demo (~26-30px tall), under the ~44px target
+   Apple/WCAG recommend for touch, so hit areas are bumped here on
+   coarse-pointer (touch) devices only; desktop mouse sizing is untouched. */
 @media (pointer: coarse) {
   .kokio-live .segmented button {
     min-height: 44px;
@@ -1139,4 +1205,759 @@
   .kokio-live .store-badge {
     min-height: 44px;
   }
+}
+
+/* ---------------- Wallet (Home card + Wallet tab) ---------------- */
+.kokio-live .a-cta-btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 50px;
+  border-radius: 999px;
+  background: var(--app-cta-bg);
+  color: var(--app-cta-fg);
+  font-size: 17px;
+  font-weight: 700;
+}
+.kokio-live .a-spinner {
+  display: block;
+  width: 22px;
+  height: 22px;
+  margin: 4px auto 0;
+  border: 2.5px solid var(--app-card-fg);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: a-spin 0.8s linear infinite;
+}
+@keyframes a-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.kokio-live .w-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.kokio-live .w-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-title svg {
+  width: 20px;
+  height: 20px;
+}
+.kokio-live .w-desc {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 6px 0 14px;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-small {
+  font-size: 12.5px;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-panel {
+  padding: 18px;
+}
+.kokio-live .w-panel--outlined {
+  border: 1.5px solid var(--app-cta-bg);
+}
+.kokio-live .w-panel--slim {
+  padding: 12px 18px;
+}
+.kokio-live .w-benefit {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.kokio-live .w-benefit-icon {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 14px;
+  background: var(--app-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kokio-live .w-benefit-icon svg {
+  width: 17px;
+  height: 17px;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-benefit-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-link {
+  display: block;
+  text-decoration: none;
+  margin-top: 4px;
+}
+.kokio-live .w-link-strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: underline;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-hero {
+  border-radius: 21px;
+  padding: 22px;
+  background: linear-gradient(200deg, var(--app-gradient-dark), var(--app-bg));
+  color: var(--app-text);
+}
+.kokio-live .w-hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.kokio-live .w-hero-label {
+  font-size: 12.5px;
+  margin: 18px 0 4px 12px;
+}
+.kokio-live .w-hero-balance {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin: 0 0 16px 12px;
+}
+.kokio-live .w-hero-balance span {
+  font-size: 40px;
+  line-height: 1;
+}
+.kokio-live .w-hero-balance small {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.kokio-live .w-hero-address {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  font-size: 12.5px;
+}
+.kokio-live .w-hero-address svg {
+  width: 16px;
+  height: 16px;
+  color: var(--app-foreground2);
+}
+.kokio-live .w-hero-address button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+}
+.kokio-live .w-action {
+  flex: 1;
+  padding: 16px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border-radius: 24px;
+}
+.kokio-live .w-action-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kokio-live .w-action-icon--square {
+  width: 38px;
+  height: 38px;
+  border-radius: 16px;
+}
+.kokio-live .w-action-icon svg {
+  width: 19px;
+  height: 19px;
+  color: #fff;
+}
+.kokio-live .w-action-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 24px;
+}
+.kokio-live .w-row > svg {
+  color: var(--app-card-fg);
+}
+.kokio-live .w-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 64px;
+  margin-top: 14px;
+}
+.kokio-live .w-contact-add {
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  background: var(--app-warning);
+  color: #fff;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kokio-live .w-panel,
+.kokio-live .w-action,
+.kokio-live .w-row {
+  border: 1px solid var(--app-muted);
+}
+.kokio-live .w-panel--outlined {
+  border: 1.5px solid var(--app-cta-bg);
+}
+.kokio-live .w-create {
+  padding: 4px 8px 0;
+  color: var(--app-text);
+}
+.kokio-live .w-create-back {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+}
+.kokio-live .w-create-back svg {
+  width: 24px;
+  height: 24px;
+}
+.kokio-live .w-create-icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 26px;
+  margin-top: 10px;
+  background: var(--app-cta-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kokio-live .w-create-icon svg {
+  width: 42px;
+  height: 42px;
+  color: var(--app-cta-fg);
+}
+.kokio-live .w-create h4 {
+  margin: 20px 0 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+.kokio-live .w-create p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--app-muted-fg);
+}
+.kokio-live .w-create .w-benefit {
+  margin: 18px 0 0;
+}
+.kokio-live .w-create .w-benefit-icon {
+  background: var(--app-surface);
+  width: 40px;
+  height: 40px;
+}
+.kokio-live .w-create .w-benefit-icon svg {
+  color: var(--app-cta-bg);
+}
+.kokio-live .w-create .w-benefit-title {
+  color: var(--app-text);
+}
+.kokio-live .w-create .w-benefit-desc {
+  font-size: 13.5px;
+  margin-top: 2px;
+  color: var(--app-muted-fg);
+}
+.kokio-live .w-create-actions {
+  padding: 22px 8px 14px;
+}
+.kokio-live .w-create-skip {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 12px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--app-muted-fg);
+}
+.kokio-live[data-theme="light"] .w-create p,
+.kokio-live[data-theme="light"] .w-create .w-benefit-desc,
+.kokio-live[data-theme="light"] .w-create-skip {
+  color: var(--app-text);
+}
+
+/* Wallet step: token grid (USDC / USDT / DAI / ETH + Add token), mirrors the app's TokenGrid. */
+.kokio-live .w-tokens {
+  display: flex;
+  margin-top: 14px;
+}
+.kokio-live .w-token {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
+.kokio-live .w-token-icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  background: var(--app-surface-elevated, var(--app-muted));
+  color: var(--app-card-fg);
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+}
+.kokio-live .w-token-icon--add {
+  background: transparent;
+  border: 1.5px solid var(--app-card-fg);
+  font-size: 20px;
+  font-weight: 400;
+}
+.kokio-live .w-token-symbol {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--app-card-fg);
+}
+.kokio-live .w-token-amount {
+  font-size: 12px;
+  color: var(--app-card-fg);
+}
+
+/* ---------------- Step 02: Home + Shop (mirrors app Home, Shop tab) ---------------- */
+.kokio-live .sh-screen {
+  position: relative;
+}
+.kokio-live .sh-home-heading {
+  font-size: 16px;
+  color: var(--app-text);
+  padding-left: 14px;
+  margin: 18px 0 8px;
+}
+.kokio-live .sh-empty-esim {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  text-align: center;
+}
+.kokio-live .sh-empty-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+.kokio-live .sh-empty-sub {
+  font-size: 14px;
+}
+.kokio-live .sh-install-btn {
+  all: unset;
+  box-sizing: border-box;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 8px 18px;
+  border-radius: 16px;
+  background: var(--app-primary);
+  color: var(--app-primary-fg);
+  font-size: 14px;
+  font-weight: 800;
+}
+.kokio-live .sh-install-btn svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+}
+.kokio-live .sh-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  min-height: 44px;
+}
+.kokio-live .sh-header--root {
+  justify-content: center;
+}
+.kokio-live .sh-header-title {
+  flex: 1;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--app-text);
+}
+.kokio-live .sh-header--root .sh-header-title {
+  flex: none;
+}
+.kokio-live .sh-back {
+  all: unset;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--app-text);
+}
+.kokio-live .sh-back svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+}
+.kokio-live .sh-search-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.kokio-live .sh-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--app-input-bg);
+  color: var(--app-text);
+}
+.kokio-live .sh-search svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  flex: none;
+}
+.kokio-live .sh-search input {
+  all: unset;
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  color: var(--app-text);
+}
+.kokio-live .sh-search input::placeholder {
+  color: var(--app-text);
+  opacity: 0.7;
+}
+.kokio-live .sh-search-clear {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+}
+.kokio-live .sh-filter-btn {
+  all: unset;
+  position: relative;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--app-text);
+}
+.kokio-live .sh-filter-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--app-highlight);
+}
+.kokio-live .sh-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.kokio-live .sh-country {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--app-text);
+}
+.kokio-live .sh-flag-img {
+  display: block;
+  width: 64px;
+  height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--app-muted);
+}
+.kokio-live .sh-flag-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.kokio-live .sh-regions {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.kokio-live .sh-region {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  color: var(--app-text);
+}
+.kokio-live .sh-region-name {
+  font-size: 17px;
+}
+.kokio-live .sh-region img {
+  width: auto;
+  max-width: 55%;
+  max-height: 110px;
+  object-fit: contain;
+  display: block;
+}
+.kokio-live .sh-plan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 14px;
+}
+.kokio-live .sh-empty {
+  text-align: center;
+  padding-top: 28px;
+  font-size: 14px;
+  color: var(--app-text);
+}
+.kokio-live .sh-link {
+  all: unset;
+  cursor: pointer;
+  color: var(--app-link);
+  font-size: 14px;
+  padding: 8px 16px;
+}
+.kokio-live .sh-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 2px 0;
+}
+.kokio-live .sh-chip {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex: none;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 18px;
+  border: 1px solid var(--app-inactive);
+  background: var(--app-surface);
+  color: var(--app-text);
+  font-size: 14px;
+}
+.kokio-live .sh-chip.sel {
+  background: var(--app-highlight);
+  border-color: var(--app-highlight);
+  color: #000;
+  font-weight: 600;
+}
+.kokio-live .sh-pill-btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--app-primary);
+  color: var(--app-primary);
+  font-size: 15px;
+  font-weight: 600;
+}
+.kokio-live .sh-pill-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+}
+.kokio-live .sh-multi-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--app-surface);
+  color: var(--app-text);
+}
+.kokio-live .sh-multi-row > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.kokio-live .sh-multi-row b {
+  font-size: 14px;
+}
+.kokio-live .sh-multi-row span {
+  font-size: 12px;
+  color: var(--app-muted-fg);
+}
+.kokio-live .sh-multi-row svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+}
+.kokio-live .sh-section-title {
+  margin: 16px 0 8px;
+  font-size: 16px;
+  color: var(--app-text);
+}
+.kokio-live .sh-region-row {
+  all: unset;
+  display: block;
+  cursor: pointer;
+  padding: 8px 4px;
+  font-size: 14px;
+  color: var(--app-text);
+}
+.kokio-live .sh-sheet-backdrop {
+  position: absolute;
+  inset: -8px;
+  z-index: 20;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.kokio-live .sh-sheet {
+  width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+  padding: 10px 16px 16px;
+  border-radius: 24px 24px 0 0;
+  background: var(--app-modal-bg, #2a2a2c);
+  backdrop-filter: blur(12px);
+  color: var(--app-text);
+  overflow-y: auto;
+}
+.kokio-live .sh-sheet-handle {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  margin: 0 auto 10px;
+  background: var(--app-inactive);
+}
+.kokio-live .sh-sheet-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.kokio-live .sh-sheet-section {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 12px 0 8px;
+}
+.kokio-live .sh-sheet-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.kokio-live .sh-sheet-chips .sh-chip {
+  min-height: 0;
+  padding: 8px 14px;
+}
+.kokio-live .sh-sheet-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+.kokio-live .sh-apply {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex: 1;
+  margin-left: 16px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: var(--app-highlight);
+  color: #000;
+  font-weight: 700;
+}
+.kokio-live .w-network-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--app-item-bg);
+  color: var(--app-foreground2);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.kokio-live .w-hero-refresh {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  margin: 0 0 8px 6px;
+  color: var(--app-text);
+}
+.kokio-live .w-hero-refresh svg {
+  width: 16px;
+  height: 16px;
+}
+.kokio-live .w-row-sub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 14px 0 0;
+}
+.kokio-live .w-row-fast {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.kokio-live .w-row-fast svg {
+  width: 11px;
+  height: 11px;
 }

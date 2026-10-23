@@ -1,11 +1,4 @@
-/**
- * Definitions of the terms the rest of the site uses without explaining.
- *
- * Read by the glossary page, its DefinedTermSet schema and the text versions of
- * the site, so all four say the same thing. Each definition is retrieved on its
- * own, without the page around it, so it names Kokio where Kokio is relevant
- * and never refers to the entry above it.
- */
+/** Glossary definitions. Read by the glossary page, its DefinedTermSet schema and the text versions of the site. */
 
 import { PRODUCT_NAME, PRODUCT_NAME_SPELLINGS } from "@/lib/site-copy";
 

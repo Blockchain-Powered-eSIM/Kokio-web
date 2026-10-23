@@ -11,7 +11,6 @@ import { TocLinks } from "@/components/legal/legal-links";
 export function LegalToc({ sections }: { sections: LegalSection[] }) {
   return (
     <>
-      {/* Mobile: collapsible disclosure (native open/close, no JS). */}
       <details className="group mb-8 rounded-2xl border border-esim-black-200 bg-background/60 p-4 md:hidden">
         <summary className="flex cursor-pointer list-none items-center justify-between font-heading text-base font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background [&::-webkit-details-marker]:hidden">
           On this page
@@ -25,7 +24,6 @@ export function LegalToc({ sections }: { sections: LegalSection[] }) {
         </nav>
       </details>
 
-      {/* Desktop: sticky sidebar with active-section highlighting. */}
       <nav
         aria-label="Table of contents"
         className="hidden md:sticky md:top-12 md:block md:max-h-[calc(100vh-6rem)] md:overflow-y-auto"

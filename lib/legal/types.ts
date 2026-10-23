@@ -1,6 +1,5 @@
 // Domain model for long-form legal documents (Terms of Service, Privacy Policy etc.)
 
-// Inline content
 export type Inline = string | InlineNode[];
 
 // A single span within an {@link Inline} run. `type` is the discriminant.
@@ -11,19 +10,16 @@ export type InlineNode =
   | InlineMailLink
   | InlineInternalLink;
 
-// Plain text span.
 export interface InlineText {
   type: "text";
   value: string;
 }
 
-// Bold span
 export interface InlineStrong {
   type: "strong";
   value: string;
 }
 
-// Link to an external origin.
 export interface InlineExternalLink {
   type: "external";
   text: string;
@@ -42,7 +38,6 @@ export interface InlineInternalLink {
   href: string;
 }
 
-// Blocks
 export type Block = ParagraphBlock | ListBlock | SubsectionBlock;
 export type SubsectionChild = ParagraphBlock | ListBlock;
 
@@ -64,7 +59,6 @@ export interface SubsectionBlock {
   blocks: SubsectionChild[];
 }
 
-// Document + sections
 export interface LegalSection {
   id?: string; // Optional anchor-id override
   heading: string;

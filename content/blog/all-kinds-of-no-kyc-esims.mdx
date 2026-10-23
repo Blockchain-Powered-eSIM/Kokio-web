@@ -2,7 +2,7 @@
 title: "All types of No-KYC eSIMs"
 description: "No-KYC is not one thing. An analysis of the categories of privacy-preserving eSIM providers, the layers they actually protect, and what none of them can claim."
 date: "2026-08-17"
-updated: "2026-08-20"
+updated: "2026-10-20"
 author: "arpit"
 tag: "Privacy & Security"
 hero: "/blog-assets/heroes/no-kyc-esims.svg"
@@ -14,7 +14,7 @@ tldr:
 draft: false
 ---
 
-Someone on Reddit recently [compared the major no-KYC eSIM providers](https://www.reddit.com/r/best_eSIM_providers/comments/1v2dbtd/compared_major_nokyc_esim_providers_sharing/) after testing them properly over a few weeks, and spent as much space on what these services *cannot* do as on what they can. That honesty is the more valuable half of the post, and it is the half this analysis tries to extend.
+Someone on Reddit recently [compared the major no-KYC eSIM providers](https://www.reddit.com/r/best_eSIM_providers/comments/1v2dbtd/compared_major_nokyc_esim_providers_sharing/) after testing them properly over a few weeks, and spent as much space on what these services _cannot_ do as on what they can. That honesty is the more valuable half of the post, and it is the half this analysis tries to extend.
 
 Be mindful as you read, we build one of the products in this category, and we brief on Kokio later in this post.
 
@@ -55,7 +55,7 @@ The carrier still sees the device identifier. The network layer still logs an IP
 
 What a no-KYC eSIM actually removes is your identity from the registration record and, if the provider routes traffic through a foreign exit, your real-country IP from the network's view. Encryption is a separate purchase, a VPN or proxy on top. Any provider implying otherwise is selling you something.
 
-This distinction is worth holding onto, because the alternative is a familiar failure. In its study [*Smartphone as Lifeline*, Tactical Tech observes](https://cdn.ttc.io/s/tacticaltech.org/smartphone-as-lifeline.pdf):
+This distinction is worth holding onto, because the alternative is a familiar failure. In its study [_Smartphone as Lifeline_, Tactical Tech observes](https://cdn.ttc.io/s/tacticaltech.org/smartphone-as-lifeline.pdf):
 
 > Identity is increasingly less a matter of what you say you are and more what a particular service provider says you are.
 
@@ -75,12 +75,12 @@ We are the consumer-facing category, Self-sovereign and our central trade is del
 
 <Highlight>
   What we do differently sits at the **account** layer. There is no signup at
-  all: no name, no email, no KYC. Your account is a smart contract wallet
-  bound to your device's secure enclave via passkeys, so there is no password
-  to phish and no account record to subpoena or breach.
+  all: no name, no email, no KYC. Your account is a smart contract wallet bound
+  to your device's secure enclave via passkeys, so there is no password to phish
+  and no account record to subpoena or breach.
 </Highlight>
 
-The architecture is the guarantee rather than the policy, and it is verifiable. Kokio is built on an [open source eSIM wallet smart contract suite](https://github.com/Blockchain-Powered-eSIM/smart-contract-suite), enabled by an eSIM Wallet grant from [Ethereum Foundation PSE](https://pse.dev/) (Privacy Stewards of Ethereum), audited by PSE and externally by [CD Security](https://cdsecurity.io/), with a final in-house audit in progress before mainnet.
+The architecture is the guarantee rather than the policy, and it is verifiable. Kokio is built on an [open source eSIM wallet smart contract suite](https://github.com/Blockchain-Powered-eSIM/smart-contract-suite), enabled by an eSIM Wallet grant from [Ethereum Foundation PSE](https://pse.dev/) (Privacy Stewards of Ethereum), audited by PSE and externally by [CD Security](https://cdsecurity.io/), with a final in-house audit completed before the mainnet launch.
 
 Beyond the architecture, the product is the point. Kokio is a consumer telecom app built around data security practices for digital well-being:
 
@@ -105,10 +105,10 @@ This category does not need another provider claiming to solve everything. It ne
 
 And if you have tested the others, we would like to know one thing above all: what would a provider have to disclose before you believed them? That answer shapes what we build next more than any roadmap does.
 
-*Now,*
+_Now,_
 
-Kokio is also a provider, and we say it upfront: *"Don't trust, but verify."*
+Kokio is also a provider, and we say it upfront: _"Don't trust, but verify."_
 
 <ManifestoCTA />
 
-*Quoted material in this post comes from* [Smartphone as Lifeline: Designing Technology for a Changing World](https://cdn.ttc.io/s/tacticaltech.org/smartphone-as-lifeline.pdf) *by Stephanie Hankey, Cade Diehm, Rose Regina Lawrence and Marek Tuszynski, published free by Tactical Tech, a must read btw.*
+_Quoted material in this post comes from_ [Smartphone as Lifeline: Designing Technology for a Changing World](https://cdn.ttc.io/s/tacticaltech.org/smartphone-as-lifeline.pdf) _by Stephanie Hankey, Cade Diehm, Rose Regina Lawrence and Marek Tuszynski, published free by Tactical Tech, a must read btw._

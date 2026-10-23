@@ -6,8 +6,7 @@ import type { TocHeading } from "@/lib/mdx-toc";
 import { PILLAR_NUMERALS } from "@/lib/manifesto-mdx";
 import { cn } from "@/lib/utils";
 
-/** Sticky desktop-only (xl+) section index — replaces the accordion's
- * scannability role since sections render expanded by default (D1, D2). */
+/** Sticky desktop-only (xl+) section index. */
 export function SectionIndex({ headings }: { headings: TocHeading[] }) {
   const [activeId, setActiveId] = useState<string | null>(null);
 

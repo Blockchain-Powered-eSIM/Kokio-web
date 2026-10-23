@@ -5,13 +5,14 @@ import Link from "next/link";
 import Logo from "@/assets/logo.svg";
 import LogoMark from "@/assets/logomark.svg";
 
-//import Discord from "@/assets/icons/discord.svg";
 import Blog from "@/assets/icons/blog.svg";
 import Twitter from "@/assets/icons/twitter.svg";
 import GitHub from "@/assets/icons/github.svg";
 import Docs from "@/assets/icons/docs.svg";
-import { CTA_MODE, TWITTER_URL } from "@/config/site";
-import { LAUNCH_NOTICE, LIVE_NOTICE } from "@/lib/site-copy";
+import Instagram from "@/assets/icons/instagram.svg";
+import { INSTAGRAM_URL } from "@/content/gallery";
+import { TWITTER_URL } from "@/config/site";
+import { LIVE_NOTICE } from "@/lib/site-copy";
 import SignUpButton from "@/components/sign-up-button";
 
 export const socialLinks = [
@@ -19,6 +20,11 @@ export const socialLinks = [
     icon: Twitter,
     title: "Twitter",
     href: TWITTER_URL,
+  },
+  {
+    icon: Instagram,
+    title: "Instagram",
+    href: INSTAGRAM_URL,
   },
   {
     icon: GitHub,
@@ -38,6 +44,7 @@ export const socialLinks = [
 ];
 
 const siteLinks = [
+  { title: "Pricing", href: "/#pricing" },
   { title: "Manifesto", href: "/manifesto" },
   { title: "Glossary", href: "/glossary" },
   { title: "Privacy Policy", href: "/privacy-policy" },
@@ -62,11 +69,17 @@ const Footer = () => {
                 <Image src={footer.icon} alt="" fill className="fill-current" />
               </div>
               {footer.href.startsWith("/") ? (
-                <Link href={footer.href} className="text-lg font-light">
+                <Link
+                  href={footer.href}
+                  className="inline-flex min-h-11 items-center text-lg font-light"
+                >
                   {footer.title}
                 </Link>
               ) : (
-                <a href={footer.href} className="text-lg font-light">
+                <a
+                  href={footer.href}
+                  className="inline-flex min-h-11 items-center text-lg font-light"
+                >
                   {footer.title}
                 </a>
               )}
@@ -77,7 +90,7 @@ const Footer = () => {
       </div>
       <div className="container flex items-center justify-center px-4 py-4 text-center lg:max-w-[1200px]">
         <p className="text-lg font-light text-esim-black-50">
-          {CTA_MODE === "live" ? LIVE_NOTICE : LAUNCH_NOTICE} Follow us on{" "}
+          {LIVE_NOTICE} Follow us on{" "}
           <a
             href={TWITTER_URL}
             target="_blank"
@@ -97,7 +110,7 @@ const Footer = () => {
           <Link
             key={link.href}
             href={link.href}
-            className="text-sm font-light text-esim-black-50 underline-offset-2 transition-colors hover:text-cashmere-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cashmere-500 focus-visible:ring-offset-2 focus-visible:ring-offset-esim-black-950"
+            className="inline-flex min-h-11 items-center text-sm font-light text-esim-black-50 underline-offset-2 transition-colors hover:text-cashmere-400 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cashmere-500 focus-visible:ring-offset-2 focus-visible:ring-offset-esim-black-950"
           >
             {link.title}
           </Link>

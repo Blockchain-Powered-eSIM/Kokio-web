@@ -4,9 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 import type { Manifesto } from "@/lib/manifesto";
 
-/** Featured banner for /manifesto on the blog index. Deliberately not a
- * PostCard: it carries the manifesto page's meadow + sand palette so it reads
- * as a standalone document, separate from the dated posts above it. */
+/** Featured banner for /manifesto on the blog index, using the manifesto page's meadow and sand palette. */
 export function ManifestoCard({ manifesto }: { manifesto: Manifesto }) {
   return (
     <Link

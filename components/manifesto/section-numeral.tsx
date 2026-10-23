@@ -6,14 +6,14 @@ import { PILLAR_NUMERALS } from "@/lib/manifesto-mdx";
 type Props = HTMLAttributes<HTMLHeadingElement> & { id?: string };
 
 /** h2 override for /manifesto: adds a Roman-numeral coral badge on the four
- * pillar headings only (D4), looked up by id so it survives reordering. */
+ * pillar headings only, looked up by id. */
 export function ManifestoHeading({ id, children, className, ...props }: Props) {
   const numeral = id ? PILLAR_NUMERALS[id] : undefined;
 
   return (
     <h2
       id={id}
-      className={cn("scroll-mt-24 flex items-center gap-3", className)}
+      className={cn("flex scroll-mt-24 items-center gap-3", className)}
       {...props}
     >
       {numeral ? (

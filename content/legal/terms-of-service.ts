@@ -47,7 +47,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `You must be at least 18 years old and legally capable of entering into a binding contract. You must not be located in, or a resident of, any jurisdiction where use of the Service or its features (including crypto-asset purchases) is prohibited, and you must not be subject to any applicable sanctions.`,
+          content: `You must be at least 18 years old and legally capable of entering into a binding contract. You must not be located in, or a resident of, any jurisdiction where use of the Service or its features (including payments in crypto-assets and the use of self-custodial wallets) is prohibited, and you must not be subject to any applicable sanctions.`,
         },
       ],
     },
@@ -57,7 +57,11 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `Kokio is a marketplace that lets you purchase and manage eSIM mobile-data plans. The Service includes a device-bound authentication mechanism and a self-custodial blockchain wallet used to record purchases and wallet activity. eSIM connectivity is provided by third-party eSIM service providers and their partner networks, not by Kokio.`,
+          content: `Kokio is a marketplace that lets you purchase and manage eSIM mobile-data plans. The Service includes a device-bound authentication mechanism and a self-custodial blockchain wallet on the Base network, used to hold funds, pay for plans, and record purchases and wallet activity. eSIM connectivity is provided by third-party eSIM service providers and their partner networks, not by Kokio.`,
+        },
+        {
+          type: "paragraph",
+          content: `Plans, regions, prices, and payment methods may change or be withdrawn at any time. Funds in your wallet are real, and the Base network is a public blockchain operated by third parties.`,
         },
       ],
     },
@@ -80,12 +84,26 @@ export const termsOfService: LegalDocument = {
     // The non-custodial / not-a-MSB characterisation is basis of the regulatory position
     // (Google Play declaration, MAS Payment Services Act exposure in Singapore).
     // Counsel must confirm it and add any MAS-required disclosures.
+    //
+    // LEGAL REVIEW (Wallet and Blockchain Transactions, second paragraph, added for mainnet):
+    // Engineering, 2026-10-23: the registry gives each new eSIM wallet an admin allowance of
+    // legalConfig.adminAllowanceUsd (kokio-sdk docs/mobile/registry.md).
+    // The owner can change it only by calling the contract, the app has no control for it.
+    // The BFF does not use admin purchases. device-wallet payments are calls the user signs.
     {
       heading: "Wallet and Blockchain Transactions",
       blocks: [
         {
           type: "paragraph",
           content: `The Service provides a self-custodial wallet. You alone control it through your passkey; we do not hold, custody, or control your keys or assets. Blockchain transactions are irreversible and permanent. You are responsible for verifying transaction details before confirming. We are not liable for losses arising from irreversible on-chain transactions, network fees, blockchain congestion, protocol failures, or errors you make.`,
+        },
+        // {
+        //   type: "paragraph",
+        //   content: `Two limits apply to that control. Each eSIM wallet created for your account lets Kokio's service key buy plans for that eSIM, paid from your wallet balance without a fresh signature from you, up to a total of US$${legalConfig.adminAllowanceUsd} per eSIM wallet; each such purchase reduces the remaining amount. This limit is recorded on-chain. The app does not currently use this ability or offer a way to change the limit. The protocol's smart contracts can also be paused by us in an emergency, which may temporarily stop purchases, and they can be upgraded by their administrators after a public delay of at least one day.`,
+        // },
+        {
+          type: "paragraph",
+          content: `Only send assets on the Base network to your wallet address. Assets sent from another network, or sent by you to a wrong address, are generally lost and cannot be recovered by us. Tokens you add yourself are not reviewed or endorsed by Kokio. Balances and US dollar values shown in the app are estimates for information only. Contacts you save are stored only on your device and are not backed up by us.`,
         },
         {
           type: "paragraph",
@@ -99,11 +117,23 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `Prices are shown in the app and may change. You may pay by supported methods, including card payments processed by Stripe and crypto purchases processed by MoonPay. These providers are independent third parties; your use of their services is subject to their terms and privacy policies, and they may perform their own identity verification. Kokio does not receive or store your full payment credentials.`,
+          content: `Prices are shown in the app and may change. You may pay by supported methods, including card and Apple Pay payments processed by Stripe, crypto payments through MoonPay's checkout, and payments made directly from your Kokio wallet in supported stablecoins such as USDC, USDT, and DAI. Stripe and MoonPay are independent third parties, use of corresponding payment methods is subject to their respective terms and privacy policies, and they may perform their own identity verification. Kokio does not receive or store your full payment credentials.`,
         },
         {
           type: "paragraph",
-          content: `You are responsible for any taxes applicable to your purchases except those we are legally required to collect. Blockchain network (gas) fees, where applicable, are your responsibility.`,
+          content: `Stablecoins carry their own risks. Their value can move away from its peg, and their issuers or bridges can fail, freeze, or restrict them. Some stablecoins on Base, including USDT and DAI, are bridged from another network and depend on that bridge. You accept these risks when you hold or pay with them.`,
+        },
+        {
+          type: "paragraph",
+          content: `You are responsible for any taxes applicable to your purchases except those we are legally required to collect. Blockchain network (gas) fees are your responsibility, except for the wallet actions where we choose to sponsor them. Sponsorship is at our discretion and may change or stop at any time.`,
+        },
+        {
+          type: "paragraph",
+          content: `You may apply one coupon or referral code to an order, and may choose to apply store credit on top of it. Codes and credit are valid only on the terms shown in the app, and may expire, have usage limits, or apply to a first purchase only. If a code and credit do not cover the full price, the rest is paid by your chosen method, and a card payment must be either nothing or at least US$1.00, so credit may be reduced to meet that, or the order refused. A code or credit applied to an order that ends unpaid is returned.`,
+        },
+        {
+          type: "paragraph",
+          content: `Referral rewards are paid as store credit, only after the order of the person you referred is completed. Store credit is not money: it can only be applied to purchases in the Service, and it cannot be withdrawn, transferred, or exchanged. We may change, revoke, or withdraw codes, rewards, and credit, and may reverse any obtained through abuse, error, or fraud.`,
         },
       ],
     },
@@ -130,6 +160,20 @@ export const termsOfService: LegalDocument = {
               },
             ],
             [
+              { type: "strong", value: "Activation details:" },
+              {
+                type: "text",
+                value: ` the QR code and activation details of an eSIM allow anyone who holds them to install it. Keep them private, Kokio cannot recover an eSIM if it installed by someone else from the QR code or manual instructions.`,
+              },
+            ],
+            [
+              { type: "strong", value: "Installation:" },
+              {
+                type: "text",
+                value: ` most eSIMs can be installed only once. Removing an installed eSIM from your device may make it permanently unusable, and it will not be replaced or refunded.`,
+              },
+            ],
+            [
               { type: "strong", value: "Activation and validity:" },
               {
                 type: "text",
@@ -140,7 +184,14 @@ export const termsOfService: LegalDocument = {
               { type: "strong", value: "Top-ups:" },
               {
                 type: "text",
-                value: ` a top-up applies to an existing eSIM and does not create a new one.`,
+                value: ` a top-up applies to an existing eSIM and does not create a new one. It is available only where the plan is compatible with the one already on that eSIM, which the app checks before purchase.`,
+              },
+            ],
+            [
+              { type: "strong", value: "Usage figures:" },
+              {
+                type: "text",
+                value: ` remaining-data figures shown in the app come from the eSIM providers on a best-effort basis and may lag or be unavailable.`,
               },
             ],
           ],
@@ -160,6 +211,24 @@ export const termsOfService: LegalDocument = {
           type: "paragraph",
           content: `Given the nature of digitally provisioned eSIMs and irreversible on-chain and crypto transactions, sales are final except where required by law or expressly stated. An eSIM that has been installed, activated, or provisioned is generally non-refundable. Where a purchase fails or an eSIM cannot be provisioned, we will work to resolve it, which may include reprovisioning or a refund at our discretion or as required by law.`,
         },
+        {
+          type: "paragraph",
+          content: `You can cancel an order that has not been paid from within the app. Cancelling cannot be undone. If a payment for the order completes after you cancel, it is not matched to that order, no eSIM is assigned, and it is not refunded. Do not cancel an order while a payment is in progress. You are responsible for any funds lost by cancelling an order.`,
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              value: `To raise a problem with an order, contact us at `,
+            },
+            { type: "mail", email: legalConfig.generalContact },
+            {
+              type: "text",
+              value: ` with the order Reference shown in Purchase details. Whether a remedy is given, and its form (for example a refund to the original payment method, a transfer to the wallet you paid from, or store credit), is decided case by case, subject to applicable law.`,
+            },
+          ],
+        },
       ],
     },
 
@@ -168,7 +237,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `You agree not to: use the Service for unlawful purposes, money laundering, sanctions evasion, or fraud; circumvent security, authentication, or geographic restrictions; interfere with or attack the Service or its infrastructure; reverse engineer except as permitted by law; or resell or commercially exploit the Service without our written consent.`,
+          content: `You agree not to: use the Service for unlawful purposes, money laundering, sanctions evasion, or fraud; circumvent security, authentication, or geographic restrictions; interfere with or attack the Service or its infrastructure; abuse codes, referrals, or store credit, including by referring yourself or creating multiple accounts to earn rewards; reverse engineer except as permitted by law; or resell or commercially exploit the Service without our written consent.`,
         },
       ],
     },
@@ -188,7 +257,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `The Service relies on and links to third-party services (payment providers, eSIM providers, blockchain networks and infrastructure). We are not responsible for third-party services, their availability, or their acts and omissions, and your use of them is at your own risk and subject to their terms.`,
+          content: `The Service relies on and links to third-party services (payment providers, eSIM providers, blockchain networks, wallet and transaction infrastructure, and any app or website you connect your wallet to). We are not responsible for third-party services, their availability, or their acts and omissions, and your use of them is at your own risk and subject to their terms.`,
         },
       ],
     },
@@ -244,7 +313,7 @@ export const termsOfService: LegalDocument = {
             },
             {
               type: "text",
-              value: ` for the deletion mechanism and its consequences). We may suspend or terminate access if you breach these Terms or where required by law or to protect the Service or other users. Provisions that by their nature should survive termination will survive.`,
+              value: ` for the deletion mechanism and its consequences). Deleting your account cannot be undone, and any store credit left on it can no longer be used. We may suspend or terminate access if you breach these Terms or where required by law or to protect the Service or other users. Provisions that by their nature should survive termination will survive.`,
             },
           ],
         },

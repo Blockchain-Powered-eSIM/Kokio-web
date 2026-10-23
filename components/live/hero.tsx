@@ -8,7 +8,8 @@ import { Icon } from "@/components/live/icon-sprite";
 import { HERO } from "@/components/live/content";
 
 export const IOS_URL = "https://apps.apple.com/us/app/kokio/id6799362847";
-export const ANDROID_URL = "https://play.google.com/store/apps/details?id=app.kokio.mobile";
+export const ANDROID_URL =
+  "https://play.google.com/store/apps/details?id=app.kokio.mobile";
 
 function trackDownload(platform: "ios" | "android") {
   const w = window as unknown as { _paq?: unknown[][] };
@@ -101,14 +102,31 @@ export function LiveHero() {
       <header className="live-hero">
         <div className="wrap live-hero-inner">
           <div>
-            <Link href="/" className="hero-title-row" aria-label="Back to the Kokio homepage">
-              <Image src={Logomark} alt="" className="hero-title-mark" aria-hidden="true" />
+            <Link
+              href="/"
+              className="hero-title-row"
+              aria-label="Back to the Kokio homepage"
+            >
+              <Image
+                src={Logomark}
+                alt=""
+                className="hero-title-mark"
+                aria-hidden="true"
+              />
               <h1>{HERO.title}</h1>
             </Link>
             <p className="hero-body">{HERO.body}</p>
             <p>
               Feel free to{" "}
-              <a href={HERO.contactHref} target="_blank" rel="noopener noreferrer" style={{ color: "var(--chrome-accent)", textDecoration: "underline" }}>
+              <a
+                href={HERO.contactHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "var(--chrome-accent)",
+                  textDecoration: "underline",
+                }}
+              >
                 {HERO.contactLinkText}
               </a>{" "}
               for anything.
@@ -121,7 +139,10 @@ export function LiveHero() {
           </div>
         </div>
       </header>
-      <div className={`sticky-download-bar${showSticky ? " visible" : ""}`} aria-hidden={!showSticky}>
+      <div
+        className={`sticky-download-bar${showSticky ? "visible" : ""}`}
+        aria-hidden={!showSticky}
+      >
         <StoreBadgeLinks />
       </div>
     </>

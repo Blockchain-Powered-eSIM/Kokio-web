@@ -5,14 +5,7 @@ import { pageSections } from "@/lib/site-text";
 
 export const dynamic = "force-static";
 
-/**
- * Every page of the site as one file, so an agent gets a complete picture from
- * a single request instead of giving up part way through crawling eight routes.
- *
- * Sections are driven by sitemap.xml rather than listed by hand: a page that
- * reaches the sitemap without text here fails the build instead of quietly
- * going missing.
- */
+/** Every page as one file, one section per sitemap.xml entry; a sitemap page with no text here fails the build. */
 export function GET() {
   const sections = pageSections();
 

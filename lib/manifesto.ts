@@ -29,7 +29,7 @@ function formatZodError(error: z.ZodError): string {
     .join("; ");
 }
 
-/** Loads the single standalone manifesto document (not part of the blog collection, see D7). */
+/** Loads the single standalone manifesto document (not part of the blog collection). */
 export function getManifesto(): Manifesto {
   if (!fs.existsSync(MANIFESTO_PATH)) {
     throw new Error(

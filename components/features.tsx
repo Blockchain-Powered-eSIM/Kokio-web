@@ -1,17 +1,32 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import Relax from "@/assets/icons/relax.svg";
 import Meditate from "@/assets/icons/meditate.svg";
 import Shield from "@/assets/icons/shield.svg";
 import ThumbsUp from "@/assets/icons/thumbs-up.svg";
 
-export const featuresData = [
+export type FeatureLink = {
+  label: string;
+  href: string;
+  /** Opens in a new tab with rel="noopener noreferrer" when true. */
+  external?: boolean;
+};
+
+export type Feature = {
+  icon: typeof Relax;
+  title: string;
+  description: string;
+  link?: FeatureLink;
+};
+
+export const featuresData: Feature[] = [
   {
     icon: Relax,
     title: "Simple",
     description:
-      "Set up your mobile plan quickly and easily with our new technology. Speed up the process even more by provisioning your new secure eSIM smart wallet.",
+      "Set up your mobile plan quickly and easily with our new technology. Speed up the process even more by setting up Kokio wallet.",
   },
   {
     icon: Meditate,
@@ -19,12 +34,6 @@ export const featuresData = [
     description:
       "We never ask for personal information, so there’s no way for us to collect or store it. Enjoy complete peace of mind on your vacations.",
   },
-  /*{
-    icon: Wallet,
-    title: "eSIM Wallet",
-    description:
-      "When you purchase your first Kokio travel data bundle, a secure eSIM crypto wallet is created. Not ready for crypto? No worries—the eSIM wallet is optional and can be activated whenever you choose.",
-  },*/
   {
     icon: Shield,
     title: "Secure",
@@ -39,15 +48,37 @@ export const featuresData = [
   },
 ];
 
+const linkClass =
+  "inline-flex min-h-11 items-center text-base font-medium underline underline-offset-4 hover:opacity-80 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current";
+
+function FeatureLinkItem({ link }: { link: FeatureLink }) {
+  if (link.external) {
+    return (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={linkClass}
+      >
+        {link.label}
+      </a>
+    );
+  }
+  return (
+    <Link href={link.href} className={linkClass}>
+      {link.label}
+    </Link>
+  );
+}
+
 const Features = () => {
   return (
-    // No heading of its own, so the anchor needs an accessible name spelled out.
     <section
       id="features"
       aria-label="Features"
       className="z-10 flex scroll-mt-24 justify-center text-esim-black-50"
     >
-      <div className="container flex max-w-screen-2xl flex-col gap-20 text-center lg:flex-row lg:flex-wrap lg:justify-center">
+      <div className="container flex max-w-screen-2xl flex-col items-center gap-20 text-center lg:flex-row lg:flex-wrap lg:justify-center">
         {featuresData.map((feature) => (
           <div
             key={feature.title}
@@ -66,6 +97,7 @@ const Features = () => {
                 {feature.title}
               </h3>
               <p className="text-lg font-light">{feature.description}</p>
+              {feature.link ? <FeatureLinkItem link={feature.link} /> : null}
             </div>
           </div>
         ))}

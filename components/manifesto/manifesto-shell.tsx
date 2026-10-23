@@ -5,7 +5,7 @@ import { ManifestoNav } from "@/components/manifesto/manifesto-nav";
 
 /**
  * Full-bleed watercolor background with a single translucent panel on top
- * (D5, #25) — nav row and page content share one background layer, inset
+ * — nav row and page content share one background layer, inset
  * ~5% from the viewport on every side, rather than each having their own.
  *
  * The background is a fixed-position layer behind the content, not

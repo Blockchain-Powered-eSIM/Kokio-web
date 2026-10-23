@@ -37,8 +37,6 @@ export default function GlossaryPage() {
           <p className="text-lg text-esim-black-700">{DESCRIPTION}</p>
         </header>
 
-        {/* Each id is the target of the matching DefinedTerm @id, so a citation
-            can link to the one definition it used. */}
         <dl className="mt-10 flex flex-col gap-10">
           {glossaryData.map((entry) => (
             <div

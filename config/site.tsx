@@ -1,9 +1,9 @@
-//import Discord from "@/assets/icons/discord-fill.svg";
-import Blog from "@/assets/icons/blog-fill.svg";
 import Twitter from "@/assets/icons/twitter-fill.svg";
 import GitHub from "@/assets/icons/github-fill.svg";
+import Instagram from "@/assets/icons/instagram-fill.svg";
 import Docs from "@/assets/icons/docs-fill.svg";
 import { CANONICAL_DESCRIPTION, PRODUCT_NAME } from "@/lib/site-copy";
+import { INSTAGRAM_URL } from "@/content/gallery";
 
 export const BLOG_TAGS = [
   "eSIM Basics",
@@ -15,28 +15,28 @@ export const BLOG_TAGS = [
 
 export type BlogTag = (typeof BLOG_TAGS)[number];
 
-// The app is out — every CTA that reads this now points at the real product.
-export const CTA_MODE: "prelaunch" | "live" = "live";
-
-// Single source for the Twitter/X link - matches the footer social link.
 export const TWITTER_URL = "https://x.com/kokiodotapp";
 
-// Twitter/X handle for the twitter:site card attribution.
 export const TWITTER_HANDLE = "@kokiodotapp";
 
-// "live" mode's CTA destination: the interactive download + usage guide.
 export const APP_URL = "https://kokio.app/live";
 
 export const siteConfig = {
   name: PRODUCT_NAME,
   url: "https://kokio.app",
-  header: "Experience the Future of Global Connectivity",
+  header:
+    "Travel eSIMs for over 200 destinations, without the personal details",
   description: CANONICAL_DESCRIPTION,
   socials: [
     {
       icon: Twitter,
       title: "Twitter",
       href: "https://x.com/kokiodotapp",
+    },
+    {
+      icon: Instagram,
+      title: "Instagram",
+      href: INSTAGRAM_URL,
     },
     {
       icon: GitHub,
@@ -48,10 +48,11 @@ export const siteConfig = {
       title: "Docs",
       href: "https://docs.kokio.app/",
     },
-    {
-      icon: Blog,
-      title: "Blogs",
-      href: "/blogs",
-    },
+  ],
+  navLinks: [
+    { title: "Pricing", href: "/#pricing" },
+    { title: "Usage guide", href: "/live" },
+    { title: "Manifesto", href: "/manifesto" },
+    { title: "Blogs", href: "/blogs" },
   ],
 };

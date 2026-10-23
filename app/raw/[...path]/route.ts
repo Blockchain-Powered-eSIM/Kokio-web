@@ -4,7 +4,7 @@ import { pageSections } from "@/lib/site-text";
 export const dynamic = "force-static";
 export const dynamicParams = false;
 
-/** `/index.md` is the home page, since `/.md` is not a URL anyone can request. */
+/** `/index.md` maps to the home page. */
 const HOME_SEGMENT = "index";
 
 function toPathname(segments: string[]): string {
@@ -18,13 +18,7 @@ export function generateStaticParams() {
   }));
 }
 
-/**
- * Serves one page as markdown. Reached through the `/:path*.md` rewrite in
- * next.config.ts, so `/blog/<slug>.md` lands here rather than at a real file.
- *
- * Roughly 4 KB of prose against 90 KB of markup and Tailwind classes for the
- * same page. An agent working to a context budget gets more of the site.
- */
+/** Serves one page as markdown; reached through the `/:path*.md` rewrite in next.config.ts. */
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ path: string[] }> }
