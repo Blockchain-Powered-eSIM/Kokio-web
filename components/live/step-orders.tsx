@@ -61,7 +61,7 @@ function PurchaseDetailsSheet({ order, onClose }: { order: Order; onClose: () =>
           <span style={{ width: 36, height: 4, borderRadius: 2, background: "var(--app-muted)" }} />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, paddingTop: 8 }}>
-          <span style={{ fontSize: 17, fontWeight: 600, color: "var(--app-card-fg)" }}>Purchase Details</span>
+          <span style={{ fontSize: 17, fontWeight: 600, color: "var(--app-card-fg)" }}>Purchase details</span>
           <button type="button" onClick={onClose} style={{ all: "unset", cursor: "pointer", display: "flex" }}>
             <Icon name="close" style={{ width: 24, height: 24, color: "var(--app-muted-fg)" }} />
           </button>

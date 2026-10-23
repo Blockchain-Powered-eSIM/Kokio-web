@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { DeviceFrame } from "@/components/live/device-frame";
 import { Icon } from "@/components/live/icon-sprite";
 import { CHECKOUT_RADIOS, PLANS, TOPUP_CANDIDATES } from "@/components/live/mock-data";
@@ -9,6 +10,20 @@ import { useFlow } from "@/components/live/flow-context";
 type CouponState = "idle" | "validating" | "valid" | "applied";
 
 const DEFAULT_PLAN = PLANS.Countries[0];
+
+// Kokio Wallet payment assets (DEVICE_WALLET_PAYMENT_ASSETS in the app); USDC is the default.
+const WALLET_ASSETS = [
+  { symbol: "USDC", icon: "/live/tokens/usdc.png" },
+  { symbol: "USDT", icon: "/live/tokens/usdt.png" },
+  { symbol: "DAI", icon: "/live/tokens/dai.png" },
+];
+
+// "Other crypto wallet" label icons (OTHER_WALLET_ICONS in the app's radioLabels.tsx).
+const OTHER_WALLET_ICONS = [
+  "/live/wallets/bitcoin.png",
+  "/live/wallets/ethereum.png",
+  "/live/wallets/solana.png",
+];
 
 /**
  * Step 03 — Checkout & payment. Reflects the plan picked in Step 02; coupon
@@ -19,6 +34,8 @@ export function StepCheckoutVisual() {
   const plan = flow.selectedPlan ?? DEFAULT_PLAN;
   const [headerOpen, setHeaderOpen] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
+  const [assetIndex, setAssetIndex] = useState(0);
+  const walletAsset = WALLET_ASSETS[assetIndex];
   const [coupon, setCoupon] = useState("");
   const [couponState, setCouponState] = useState<CouponState>("idle");
   const [priorMode, setPriorMode] = useState<"first" | "existing">("first");
@@ -65,9 +82,9 @@ export function StepCheckoutVisual() {
     
     const confirmLabel =
       selectedMethod === "wallet"
-        ? "Confirm the payment with Face ID…"
+        ? "Confirm the payment…"
         : selectedMethod === "crypto"
-          ? "Confirm in the Moonpay tab…"
+          ? "Checking payment status…"
           : "Confirming payment…";
     timers.current.push(
       setTimeout(() => setPayStatus(confirmLabel), 700),
@@ -203,22 +220,61 @@ export function StepCheckoutVisual() {
                     <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--app-secondary)" }} />
                   )}
                 </span>
-                <span style={{ flex: 1, textAlign: "left" }}>
-                  <span style={{ fontWeight: 700, fontSize: 13, display: "block" }}>{r.label}</span>
-                  <span className="a-muted" style={{ fontSize: 11 }}>
-                    {r.sub}
+                <span style={{ flex: 1, textAlign: "left", fontWeight: 700, fontSize: 13 }}>{r.label}</span>
+                {r.id === "crypto" && (
+                  <span style={{ display: "flex", alignItems: "center", flex: "none" }}>
+                    {OTHER_WALLET_ICONS.map((src, index) => (
+                      <Image
+                        key={src}
+                        src={src}
+                        alt=""
+                        width={22}
+                        height={22}
+                        style={{
+                          boxSizing: "border-box",
+                          width: 22,
+                          height: 22,
+                          borderRadius: "50%",
+                          objectFit: "contain",
+                          background: "var(--app-surface)",
+                          border: "1.5px solid var(--app-surface)",
+                          marginLeft: index > 0 ? -8 : 0,
+                        }}
+                      />
+                    ))}
+                    <span style={{ marginLeft: 5, fontSize: 15, fontWeight: 700, color: "var(--app-muted-fg)" }}>...</span>
                   </span>
-                </span>
+                )}
+                {r.id === "wallet" && (
+                  <span
+                    role="button"
+                    aria-label={`Change payment token, currently ${walletAsset.symbol}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setAssetIndex((i) => (i + 1) % WALLET_ASSETS.length);
+                    }}
+                    style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 600, cursor: "pointer" }}
+                  >
+                    {walletAsset.symbol}
+                    <Image src={walletAsset.icon} alt="" width={18} height={18} />
+                    <Icon name="chev-down" style={{ width: 12, height: 12, color: "var(--app-muted-fg)" }} />
+                  </span>
+                )}
               </button>
             );
           })}
         </div>
+        {selectedMethod === "crypto" && (
+          <div className="a-muted" style={{ marginTop: 8, fontSize: 12 }}>
+            Select a network, pay by any wallet and keep a little extra for network fees, payable in the same token
+          </div>
+        )}
 
-        <div className="a-sublabel">Discount</div>
+        <div className="a-sublabel">Promo code</div>
         <input
           value={coupon}
           maxLength={8}
-          placeholder="Enter coupon code"
+          placeholder="Coupon or referral code"
           onChange={(e) => handleCouponChange(e.target.value)}
           style={{
             width: "100%",
@@ -232,11 +288,7 @@ export function StepCheckoutVisual() {
           }}
         />
         <div style={{ marginTop: 8 }}>
-          {couponState === "validating" && (
-            <span className="a-muted" style={{ fontSize: 12 }}>
-              Validating coupon…
-            </span>
-          )}
+          {couponState === "validating" && <span className="a-spinner" style={{ color: "var(--app-foreground2)" }} />}
           {(couponState === "valid" || couponState === "applied") && (
             <div
               style={{
@@ -251,7 +303,7 @@ export function StepCheckoutVisual() {
               {couponState === "valid" ? (
                 <>
                   <span style={{ color: "var(--app-success)", fontSize: 12.5, fontWeight: 700 }}>
-                    Balance: $10.00 Kokio
+                    $10.00 off
                   </span>
                   <button
                     type="button"
@@ -267,12 +319,12 @@ export function StepCheckoutVisual() {
                       borderRadius: 8,
                     }}
                   >
-                    Apply Coupon
+                    Apply
                   </button>
                 </>
               ) : (
                 <>
-                  <span style={{ color: "var(--app-success)", fontSize: 12.5 }}>Discount applied: -$10.00</span>
+                  <span style={{ color: "var(--app-success)", fontSize: 12.5 }}>-$10.00 off</span>
                   <button
                     type="button"
                     onClick={() => {
@@ -309,10 +361,10 @@ export function StepCheckoutVisual() {
             ) : (
               <div>
                 <div style={{ fontSize: 14, color: "var(--app-text)", fontWeight: 600, marginBottom: 2 }}>
-                  Apply as Top-up
+                  Top Up
                 </div>
                 <div style={{ fontSize: 12.5, color: "var(--app-foreground2)", marginBottom: 10 }}>
-                  Select an eSIM to top up, or leave unselected to buy a new one
+                  Apply this plan as top up, else disable to buy a new one
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   {TOPUP_CANDIDATES.map((r) => {

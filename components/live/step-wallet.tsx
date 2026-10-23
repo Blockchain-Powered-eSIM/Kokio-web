@@ -25,7 +25,7 @@ const BENEFITS = [
   {
     icon: "lock",
     title: "Own it",
-    description: "Funds stay on this phone, not with us",
+    description: "Funds stay on this phone",
   },
   {
     icon: "arrow-up",
@@ -67,7 +67,7 @@ export function StepWalletVisual() {
 
   function copyAddress() {
     try {
-      navigator.clipboard?.writeText(WALLET_ADDRESS_FULL);
+      navigator.clipboard?.writeText(`base:${WALLET_ADDRESS_FULL}`);
     } catch {
       // clipboard access can be blocked — the visual "copied" state still runs
     }
@@ -198,6 +198,7 @@ export function StepWalletVisual() {
           <>
             <div className="w-hero">
               <div className="w-hero-top">
+                <span className="w-network-badge">BASE</span>
                 <Image
                   src={Logomark}
                   alt=""
@@ -210,6 +211,24 @@ export function StepWalletVisual() {
               <div className="w-hero-balance">
                 <span>$0</span>
                 <small>USD</small>
+                <button
+                  type="button"
+                  className="w-hero-refresh"
+                  aria-label="Refresh wallet balance"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.8}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M20 12a8 8 0 1 1-2.6-5.9" />
+                    <path d="M20 4v5h-5" />
+                  </svg>
+                </button>
               </div>
               <div className="w-hero-address">
                 <span>{WALLET_ADDRESS_SHORT}</span>
@@ -257,14 +276,23 @@ export function StepWalletVisual() {
                 <Icon name="flash" />
               </span>
               <div style={{ flex: 1 }}>
-                <div className="w-benefit-title">Buy eSIMs with USDC</div>
-                <div className="w-small">No card, no personal details</div>
+                <div className="w-benefit-title">Buy eSIMs with stable</div>
+                <div className="w-row-sub">
+                  <span className="w-small">No fees</span>
+                  <span className="w-small w-row-fast">
+                    <Icon name="flash" />
+                    Fastest
+                  </span>
+                </div>
               </div>
               <Icon name="chev-fwd" style={{ width: 18, height: 18 }} />
             </div>
 
             <div className="a-card w-panel w-panel--slim">
-              <div className="w-small">Your Tokens</div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span className="w-small">Tokens</span>
+                <span className="w-small">See all</span>
+              </div>
               <div className="w-tokens">
                 {TOKENS.map((token) => (
                   <div className="w-token" key={token.symbol}>

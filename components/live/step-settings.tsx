@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { DeviceFrame } from "@/components/live/device-frame";
 import { Icon } from "@/components/live/icon-sprite";
 import { useLiveTheme } from "@/components/live/theme-context";
-import { SETTINGS_MENU } from "@/components/live/mock-data";
+import { SETTINGS_MENU, SETTINGS_THEME_MODES } from "@/components/live/mock-data";
 import {
   DELETE_ACCOUNT,
   SETTINGS_ABOUT,
   SETTINGS_CONTACT,
   SETTINGS_DELETED,
 } from "@/components/live/content";
+
+type ThemeMode = (typeof SETTINGS_THEME_MODES)[number]["value"];
 
 type Panel = "list" | "about" | "contact" | "delete" | "deleted";
 
@@ -22,6 +24,27 @@ const ABOUT_TEXT_STYLE = {
   margin: "0 0 12px",
 } as const;
 
+// Sprite lacks these two glyphs (Ionicons gift-outline / contrast-outline), so draw them inline.
+function SettingsIcon({ name, style }: { name: string; style?: CSSProperties }) {
+  if (name === "gift") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={style} aria-hidden="true">
+        <rect x="3.5" y="8" width="17" height="4" rx="1" />
+        <path d="M5 12v8h14v-8M12 8v12M12 8c-1-3.5-5-4-5-1.6C7 8 9 8 12 8zM12 8c1-3.5 5-4 5-1.6C17 8 15 8 12 8z" />
+      </svg>
+    );
+  }
+  if (name === "contrast") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={style} aria-hidden="true">
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" />
+      </svg>
+    );
+  }
+  return <Icon name={name} style={style} />;
+}
+
 /**
  * Step 07 — Settings.
  */
@@ -30,11 +53,22 @@ export function StepSettingsVisual() {
   const [panel, setPanel] = useState<Panel>("list");
   const [deleteInput, setDeleteInput] = useState("");
   const [deleteStatus, setDeleteStatus] = useState("");
+  // "System" follows the OS; remember which theme it resolved to so an outside
+  // change (the page-level toggle) drops the selection back to Day/Night.
+  const [systemApplied, setSystemApplied] = useState<{ theme: "light" | "dark" } | null>(null);
+  const selectedMode: ThemeMode = systemApplied && systemApplied.theme === theme ? "system" : theme;
   const isDark = theme === "dark";
 
-  // The theme switch is split out from the list rows.
-  const menuRows = SETTINGS_MENU.filter((item) => !("toggle" in item && item.toggle));
-  const toggleRow = SETTINGS_MENU.find((item) => "toggle" in item && item.toggle);
+  function pickMode(mode: ThemeMode) {
+    if (mode === "system") {
+      const sys = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      setSystemApplied({ theme: sys });
+      setTheme(sys);
+    } else {
+      setSystemApplied(null);
+      setTheme(mode);
+    }
+  }
 
   function resetDelete() {
     setDeleteInput("");
@@ -52,22 +86,15 @@ export function StepSettingsVisual() {
     }, 900);
   }
 
-  // Row renderer shared by the list rows and the theme switch.
   function renderMenuItem(item: (typeof SETTINGS_MENU)[number], i: number) {
-    const isToggle = "toggle" in item && item.toggle;
-    const iconName = isToggle ? (isDark ? "moon" : "sun") : item.icon;
-    const label = isToggle ? (isDark ? "Dark Mode" : "Light Mode") : item.label;
-    const disabled = Boolean((item as { disabled?: boolean }).disabled);
+    const iconName = item.icon;
+    const label = item.label;
     return (
       <button
         key={i}
         type="button"
-        disabled={disabled}
         onClick={() => {
-          if (disabled) return;
-          if (isToggle) {
-            setTheme(isDark ? "light" : "dark");
-          } else if ("href" in item && item.href) {
+          if ("href" in item && item.href) {
             window.open(item.href, "_blank", "noopener");
           } else if ("view" in item && (item.view === "about" || item.view === "contact" || item.view === "delete")) {
             setPanel(item.view);
@@ -77,75 +104,83 @@ export function StepSettingsVisual() {
         }}
         style={{
           all: "unset",
-          cursor: disabled ? "default" : "pointer",
+          cursor: "pointer",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           gap: 10,
           padding: 16,
-          opacity: disabled ? 0.4 : 1,
         }}
       >
         <span style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <Icon
+          <SettingsIcon
             name={iconName}
-            style={{
-              width: 22,
-              height: 22,
-              color: isToggle ? "var(--app-text)" : disabled ? "var(--app-inactive)" : "#ffffff",
-            }}
+            style={{ width: 22, height: 22, color: "#ffffff" }}
           />
-          <span style={{ fontSize: 15, fontWeight: 500, color: disabled ? "var(--app-inactive)" : "var(--app-text)" }}>
+          <span style={{ fontSize: 15, fontWeight: 500, color: "var(--app-text)" }}>
             {label}
           </span>
         </span>
-        {isToggle ? (
-          <span
-            style={{
-              width: 38,
-              height: 22,
-              borderRadius: 999,
-              background: isDark ? "var(--app-primary)" : "var(--app-muted)",
-              position: "relative",
-              flex: "none",
-            }}
-          >
-            <span
-              style={{
-                position: "absolute",
-                top: 2,
-                left: isDark ? 18 : 2,
-                width: 18,
-                height: 18,
-                borderRadius: "50%",
-                background: "var(--app-text)",
-                transition: "left .15s",
-              }}
-            />
-          </span>
-        ) : (
-          <Icon name="chev-fwd" style={{ width: 15, height: 15, color: disabled ? "var(--app-inactive)" : "#ffffff" }} />
-        )}
+        <Icon name="chev-fwd" style={{ width: 15, height: 15, color: "#ffffff" }} />
       </button>
     );
   }
 
   return (
     <DeviceFrame sourceTag="Account, privacy & settings">
-      <div style={{ padding: "0 4px 4px" }}>
-        <b style={{ fontSize: 16, color: "var(--app-text)" }}>Settings</b>
+      <div style={{ padding: "0 4px 4px", display: "flex", alignItems: "center", gap: 8 }}>
+        {(panel === "about" || panel === "contact") && (
+          <button type="button" aria-label="Back" onClick={() => setPanel("list")} style={{ all: "unset", cursor: "pointer", display: "flex" }}>
+            <Icon name="chev-back" style={{ width: 20, height: 20, color: "var(--app-text)" }} />
+          </button>
+        )}
+        <b style={{ fontSize: 16, color: "var(--app-text)" }}>
+          {panel === "about" ? "About" : panel === "contact" ? "Contact Support" : "Settings"}
+        </b>
       </div>
 
       {panel === "list" && (
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {menuRows.map((item, i) => renderMenuItem(item, i))}
-          {toggleRow && renderMenuItem(toggleRow, menuRows.length)}
+          {SETTINGS_MENU.map((item, i) => renderMenuItem(item, i))}
+          <div style={{ padding: "14px 16px", marginTop: 8 }}>
+            <div style={{ fontSize: 15, fontWeight: 500, color: "var(--app-text)", marginBottom: 12 }}>Display</div>
+            <div style={{ display: "flex", gap: 8 }}>
+              {SETTINGS_THEME_MODES.map((opt) => {
+                const selected = selectedMode === opt.value;
+                const tint = selected ? "var(--app-primary)" : isDark ? "var(--app-muted-fg)" : "var(--app-text)";
+                return (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    aria-label={`Use ${opt.label} theme`}
+                    aria-pressed={selected}
+                    onClick={() => pickMode(opt.value)}
+                    style={{
+                      all: "unset",
+                      cursor: "pointer",
+                      flex: 1,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      gap: 6,
+                      padding: "12px 0",
+                      borderRadius: 12,
+                      background: selected ? "var(--app-item-bg)" : "transparent",
+                      color: tint,
+                    }}
+                  >
+                    <SettingsIcon name={opt.icon} style={{ width: 22, height: 22, color: tint }} />
+                    <span style={{ fontSize: 12.5, fontWeight: 500, color: tint }}>{opt.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       )}
 
       {panel === "about" && (
         <div style={{ background: "var(--app-bg)", padding: 4 }}>
-          <PanelHeader title="About" onClose={() => setPanel("list")} />
           {SETTINGS_ABOUT.lines.map((line) => (
             <p key={line} style={ABOUT_TEXT_STYLE}>
               {line}
@@ -194,7 +229,6 @@ export function StepSettingsVisual() {
 
       {panel === "contact" && (
         <div style={{ background: "var(--app-bg)", padding: 4 }}>
-          <PanelHeader title="Contact Support" onClose={() => setPanel("list")} />
           <a href={`mailto:${SETTINGS_CONTACT.email}`} style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 14, padding: "14px 4px" }}>
             <Icon name="mail" style={{ width: 22, height: 22, color: "#ffffff", flex: "none" }} />
             <span style={{ flex: 1, fontSize: 14.5, fontWeight: 500, color: "var(--app-text)" }}>Email Us</span>
@@ -289,25 +323,5 @@ export function StepSettingsVisual() {
         </div>
       )}
     </DeviceFrame>
-  );
-}
-
-function PanelHeader({ title, onClose }: { title: string; onClose: () => void }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        borderBottom: "1px solid var(--app-muted)",
-        paddingBottom: 12,
-        marginBottom: 16,
-      }}
-    >
-      <span style={{ fontSize: 20, fontWeight: 600, color: "var(--app-text)" }}>{title}</span>
-      <button type="button" onClick={onClose} style={{ all: "unset", cursor: "pointer", display: "flex" }}>
-        <Icon name="close" style={{ width: 22, height: 22, color: "var(--app-icon)" }} />
-      </button>
-    </div>
   );
 }

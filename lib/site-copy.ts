@@ -45,4 +45,4 @@ export const META_DESCRIPTION =
 
 /** Payment description shared by the Features card, the payment FAQ and the JSON-LD featureList. */
 export const PAYMENT_METHODS =
-  "Kokio checkout has four ways to pay: Device Wallet (USDC, USDT or DAI), Credit/Debit Cards via Stripe (the same Stripe sheet also covers Apple Pay, Google Pay, PayPal and Link), Apple Pay as its own option on iPhone, and External Wallet for crypto via Moonpay.";
+  "Kokio checkout has four ways to pay: Kokio Wallet (USDC, USDT or DAI) on Base network, Credit/Debit Card via Stripe (the same Stripe sheet also covers Apple Pay, Google Pay, PayPal and Link), Apple Pay as its own option on iPhone, and Any other wallet for crypto on Bitcoin, Ethereum, Solana, Base, Arbitrum, Optimism, Polygon and Binance network via Moonpay, which supports more tokens.";

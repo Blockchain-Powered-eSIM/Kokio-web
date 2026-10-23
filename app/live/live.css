@@ -677,6 +677,10 @@
   width: 14px;
   height: 14px;
 }
+/* App: order-card chevron uses colors.text in light mode (muted-fg in dark). */
+.kokio-live[data-theme="light"] .a-chevron {
+  color: var(--app-text);
+}
 
 .kokio-live .a-detail {
   position: relative;
@@ -1886,4 +1890,39 @@
   background: var(--app-highlight);
   color: #000;
   font-weight: 700;
+}
+.kokio-live .w-network-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--app-item-bg);
+  color: var(--app-foreground2);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.kokio-live .w-hero-refresh {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  margin: 0 0 8px 6px;
+  color: var(--app-text);
+}
+.kokio-live .w-hero-refresh svg {
+  width: 16px;
+  height: 16px;
+}
+.kokio-live .w-row-sub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 14px 0 0;
+}
+.kokio-live .w-row-fast {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.kokio-live .w-row-fast svg {
+  width: 11px;
+  height: 11px;
 }

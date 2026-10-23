@@ -31,12 +31,12 @@ const Hero = () => {
         <p className="text-sm font-light text-outer-space-950/80">
           New to eSIMs or never heard of it? Your phone might have one,{" "}
           <Link
-            href="/blogs/esim-guide-for-travellers-2026"
+            href="/blogs/esim-guide-for-travellers-2026#does-your-phone-support-esim"
             className="underline underline-offset-2 hover:text-outer-space-950 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-outer-space-950"
           >
             check it here
-          </Link>
-          !
+          </Link>{" "}
+          and learn more about it!
         </p>
       </div>
       <div className="flex flex-col items-center gap-4">

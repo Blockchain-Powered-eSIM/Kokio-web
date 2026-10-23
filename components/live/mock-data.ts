@@ -105,13 +105,12 @@ export const VALIDITY_FILTERS = [
 export const CHECKOUT_RADIOS: {
   id: string;
   label: string;
-  sub: string;
   disabled?: boolean;
 }[] = [
-  { id: "wallet", label: "Device Wallet", sub: "Pay with USDC, USDT or DAI" },
-  { id: "card", label: "Credit/Debit Cards", sub: "Pay with a card" },
-  { id: "apple", label: "Apple Pay", sub: "Pay with Apple Pay" },
-  { id: "crypto", label: "External Wallet (via Moonpay)", sub: "Pay in crypto" },
+  { id: "wallet", label: "Kokio Wallet" },
+  { id: "card", label: "Credit/Debit Card" },
+  { id: "apple", label: "Apple Pay" },
+  { id: "crypto", label: "Other crypto wallet" },
 ];
 
 export const BASE_PRICE = 24.99;
@@ -169,12 +168,12 @@ export const ORDERS: Order[] = [
     mins: "0",
     sms: "0",
     pill: "eSIM Ready",
-    pillTone: "warning",
+    pillTone: "success",
     expandable: true,
     install: true,
     iccid: "8988 2801 0000 4471 923",
     lpa: "LPA:1$rsp.example.net$B4C5-D6E7-F8G9-H0I1",
-    paymentMethod: "Credit Card",
+    paymentMethod: "Card",
     supportRef: "KOK-48291",
     invoiceUrl: "#",
   },
@@ -192,7 +191,7 @@ export const ORDERS: Order[] = [
     install: false,
     esimWalletId: "japan-1",
     iccid: "8988 2801 0000 5512 044",
-    paymentMethod: "Apple Pay",
+    paymentMethod: "Kokio Wallet",
     supportRef: "KOK-30144",
     invoiceUrl: "#",
     planHistory: [{ planId: "Japan 5GB / 7 days", validity: 7, purchaseDate: "2026-08-14" }],
@@ -219,15 +218,22 @@ export const QR_PATTERN = [
 
 export const MANUAL_LPA = "LPA:1$rsp.example.net$A1B2-C3D4-E5F6-G7H8";
 
-export const WALLET_ADDRESS_SHORT = "0x9bf...b1e2ef7";
+export const WALLET_ADDRESS_SHORT = "base:0x9bfb...2ef7";
 export const WALLET_ADDRESS_FULL =
   "0x9bfbf5000f10121edc519bdc198f2fb93e16c4fd9c20846ff837e82a8b1e2ef7";
 
 export const SETTINGS_MENU = [
+  { icon: "gift", label: "Refer & Earn", view: "refer" as const },
   { icon: "lock", label: "Privacy Policy", href: "https://kokio.app/privacy-policy" },
   { icon: "info", label: "About", view: "about" as const },
   { icon: "headset", label: "Contact Support", view: "contact" as const },
   { icon: "logout", label: "Logout", view: "logout" as const },
   { icon: "trash", label: "Delete Account", view: "delete" as const },
-  { icon: "theme", toggle: true },
+];
+
+// Display section at the bottom of Settings: System / Day / Night.
+export const SETTINGS_THEME_MODES = [
+  { value: "system" as const, label: "System", icon: "contrast" },
+  { value: "light" as const, label: "Day", icon: "sun" },
+  { value: "dark" as const, label: "Night", icon: "moon" },
 ];

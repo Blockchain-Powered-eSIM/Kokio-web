@@ -12,7 +12,7 @@ export const roadMapData = [
     title: "Q4'26",
     focus: "Features and distribution",
     milestones: [
-      "Device wallet fully rolled out, so checkout happens inside the app",
+      "Kokio Wallet fully rolled out, so checkout happens inside the app",
       "Referral links, partner discount codes and sponsored eSIM flows for events",
       "Connectivity partnerships",
     ],

@@ -15,7 +15,7 @@ export const faqsData: Faq[] = [
     question:
       "What is Kokio and how does it differ from traditional eSIM providers?",
     answer:
-      "Kokio is a travel eSIM app with data plans in over 200 destinations. Pick a plan, pay and install before you fly. Unlike most providers, we don’t ask for your name, email or ID: you sign in with a passkey instead. It’s built on an open source wallet suite, and an optional Device Wallet lets you pay in crypto.",
+      "Kokio is a travel eSIM app with data plans in over 200 destinations. Pick a plan, pay and install before you fly. Unlike most providers, we don’t ask for your name, email or ID: you sign in with a passkey instead. It’s built on an open source wallet suite, and an optional Kokio Wallet lets you pay in crypto.",
   },
   {
     id: "get-kokio",
@@ -51,7 +51,7 @@ export const faqsData: Faq[] = [
     id: "roadmap",
     question: "What is on Kokio’s roadmap?",
     answer:
-      "Kokio is live on the App Store and Google Play, with data plans in over 200 destinations, and is now on mainnet, with regional testing across Southeast Asia and partner communities ongoing. Later in 2026: the device wallet fully rolls out for in-app checkout, plus referral links, partner discount codes, sponsored eSIM flows for events, and connectivity partnerships. Early 2027: distribution through physical hubs and coworking partnerships, privacy rails based on demand, and identity-verified plans built with identity partners, so Kokio itself never holds the identity. These are targets, not promises.",
+      "Kokio is live on the App Store and Google Play, with data plans in over 200 destinations, and is now on mainnet, with regional testing across Southeast Asia and partner communities ongoing. Later in 2026: the Kokio Wallet fully rolls out for in-app checkout, plus referral links, partner discount codes, sponsored eSIM flows for events, and connectivity partnerships. Early 2027: distribution through physical hubs and coworking partnerships, privacy rails based on demand, and identity-verified plans built with identity partners, so Kokio itself never holds the identity. These are targets, not promises.",
   },
   {
     id: "reinstall-esim",
