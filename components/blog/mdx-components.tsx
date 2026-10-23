@@ -64,7 +64,7 @@ export const baseMdxComponents = {
   ),
 };
 
-/** InlineCTA needs the current post's slug for UTM tagging, so it's bound per-render rather than static. */
+/** InlineCTA bound per render with the current post's slug for UTM tagging. */
 export function getMdxComponents(slug: string) {
   return {
     ...baseMdxComponents,

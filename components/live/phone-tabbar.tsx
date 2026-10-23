@@ -22,19 +22,16 @@ export function PhoneTabBar({
   return (
     <div className="a-tabbar">
       {TABS.map((tab) => {
-        const isWallet = tab.id === "wallet";
         return (
           <button
             key={tab.id}
             type="button"
-            className={`a-tabbar-item${active === tab.id ? " active" : ""}${isWallet ? " disabled" : ""}`}
-            disabled={isWallet}
-            aria-disabled={isWallet}
-            title={isWallet ? "Not available yet" : undefined}
-            onClick={() => !isWallet && onNavigate?.(tab.id)}
+            className={`a-tabbar-item${active === tab.id ? "active" : ""}`}
+            aria-label={tab.label}
+            title={tab.label}
+            onClick={() => onNavigate?.(tab.id)}
           >
             <Icon name={tab.icon} />
-            <span>{tab.label}</span>
           </button>
         );
       })}

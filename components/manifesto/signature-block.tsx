@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import Trademark from "@/assets/Kokio - Trademark.svg";
 
-/** Renders after Acknowledgment (see lib/manifesto-mdx.ts insertAfterSection). */
+/** Renders after the Acknowledgment section. */
 export function SignatureBlock() {
   return (
     <div className="mt-12 flex flex-col items-center gap-3 text-center">

@@ -24,103 +24,100 @@ const meadowBgBase64 = fs
 const DEFAULT_HEADLINE =
   "Connectivity is a human right. Privacy is its guardian.";
 
-/** Distinct from the shared blog OG template (lib/og-image.tsx) — watercolor
- * background + the credo line, not the page title, per #29. */
+/** Open Graph image: watercolor background and the credo line. */
 export default function Image() {
   const manifesto = getManifesto();
   const headline = manifesto.ogHeadline ?? DEFAULT_HEADLINE;
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        position: "relative",
+        backgroundColor: "#FAF3DD",
+      }}
+    >
+      <img
+        src={`data:image/png;base64,${meadowBgBase64}`}
+        width={OG_IMAGE_SIZE.width}
+        height={OG_IMAGE_SIZE.height}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          objectFit: "cover",
+          width: "100%",
+          height: "100%",
+        }}
+      />
       <div
         style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "#F9FAF6",
+          opacity: 0.72,
+          display: "flex",
+        }}
+      />
+
+      <div
+        style={{
+          position: "relative",
           width: "100%",
           height: "100%",
           display: "flex",
-          position: "relative",
-          backgroundColor: "#FAF3DD",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: "80px",
         }}
       >
-        <img
-          src={`data:image/png;base64,${meadowBgBase64}`}
-          width={OG_IMAGE_SIZE.width}
-          height={OG_IMAGE_SIZE.height}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            objectFit: "cover",
-            width: "100%",
-            height: "100%",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "#F9FAF6",
-            opacity: 0.72,
-            display: "flex",
-          }}
-        />
+        <svg width="140" height="33" viewBox="0 0 207 48">
+          {LOGO_PATHS.map((p) => (
+            <path
+              key={p.fill}
+              d={p.d}
+              fill={p.fill}
+              fillRule={p.fillRule}
+              clipRule={p.clipRule}
+            />
+          ))}
+        </svg>
 
-        <div
+        <span
           style={{
-            position: "relative",
-            width: "100%",
-            height: "100%",
             display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            padding: "80px",
+            fontFamily: "Anybody",
+            fontSize: 56,
+            fontWeight: 700,
+            lineHeight: 1.2,
+            color: "#193238",
+            maxWidth: 950,
           }}
         >
-          <svg width="140" height="33" viewBox="0 0 207 48">
-            {LOGO_PATHS.map((p) => (
-              <path
-                key={p.fill}
-                d={p.d}
-                fill={p.fill}
-                fillRule={p.fillRule}
-                clipRule={p.clipRule}
-              />
-            ))}
-          </svg>
+          {headline}
+        </span>
 
-          <span
-            style={{
-              display: "flex",
-              fontFamily: "Anybody",
-              fontSize: 56,
-              fontWeight: 700,
-              lineHeight: 1.2,
-              color: "#193238",
-              maxWidth: 950,
-            }}
-          >
-            {headline}
-          </span>
-
-          <span
-            style={{
-              display: "flex",
-              fontFamily: "Anybody",
-              fontSize: 26,
-              fontWeight: 700,
-              color: "#193238",
-              opacity: 0.6,
-            }}
-          >
-            kokio.app/manifesto
-          </span>
-        </div>
+        <span
+          style={{
+            display: "flex",
+            fontFamily: "Anybody",
+            fontSize: 26,
+            fontWeight: 700,
+            color: "#193238",
+            opacity: 0.6,
+          }}
+        >
+          kokio.app/manifesto
+        </span>
       </div>
-    ),
+    </div>,
     {
       ...OG_IMAGE_SIZE,
       fonts: [

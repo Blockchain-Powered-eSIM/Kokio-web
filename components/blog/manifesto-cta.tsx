@@ -2,10 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-/** Teaser card for /manifesto, dropped into blog posts that reference it.
- * Carries the meadow background from the manifesto page itself (behind a
- * frosted sand panel, same trick as ManifestoShell) so the click-through
- * reads as a continuation of that page rather than a footnote link out. */
+/** Teaser card for /manifesto: the manifesto meadow background behind a frosted sand panel. */
 export function ManifestoCTA() {
   return (
     <Link
@@ -27,9 +24,8 @@ export function ManifestoCTA() {
           Connectivity is a human right. Privacy is its guardian.
         </p>
         <p className="text-sm leading-relaxed text-manifesto-ink/80 md:text-base">
-          Kokio is also a provider, and we say it upfront: don&apos;t
-          trust Kokio, verify it. This is our position, written out in
-          full.
+          Kokio is also a provider, and we say it upfront: don&apos;t trust
+          Kokio, verify it. This is our position, written out in full.
         </p>
         <span className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-manifesto-teal">
           Read the Manifesto

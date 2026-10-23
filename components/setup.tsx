@@ -12,18 +12,13 @@ export const setupData = [
   {
     title: "Pay and Activate the eSIM",
     description:
-      "We support various payment methods including credit cards and digital wallets. Just pay and activate your eSIM to start enjoying mobile connectivity instantly.",
+      "Pay with a card, Apple Pay or crypto, then install your eSIM in a few taps. Install it at home on Wi-Fi and switch it on when you land.",
   },
   {
-    title: "Turn Your Phone Into a Digital Wallet",
+    title: "Add a Wallet, If You Want One",
     description:
-      "Activate your eSIM and optionally enable the smart wallet to purchase eSIMs and data top-ups with stablecoins and use it like any other crypto wallet.",
+      "A Kokio wallet is optional. But once it’s set up, you can pay for eSIMs and top-ups with USDC, USDT or DAI, and use it like any other crypto wallet. Card payments work fine without it, but you’ll save on card fees, which vary by country.",
   },
-  /*{
-    title: "Turn Your Phone Into a Crypto Wallet",
-    description:
-      "Activate your eSIM and optionally enable the eSIM crypto wallet that also functions as a digital ID.",
-  },*/
 ];
 
 const Setup = () => {

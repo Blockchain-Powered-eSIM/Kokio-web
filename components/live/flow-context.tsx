@@ -3,7 +3,11 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { Plan } from "@/components/live/mock-data";
 
+export type WalletState = "none" | "deploying" | "ready";
+
 type FlowContextValue = {
+  walletState: WalletState;
+  createWallet: () => void;
   shopScreen: "home" | "shop";
   setShopScreen: (screen: "home" | "shop") => void;
   selectedPlan: Plan | null;
@@ -21,9 +25,17 @@ export function FlowProvider({ children }: { children: ReactNode }) {
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
   const [completedOrderId, setCompletedOrderId] = useState<string | null>(null);
   const [completedPlan, setCompletedPlan] = useState<Plan | null>(null);
+  const [walletState, setWalletState] = useState<WalletState>("none");
+
+  function createWallet() {
+    setWalletState("deploying");
+    setTimeout(() => setWalletState("ready"), 1400);
+  }
 
   function goTo(stepId: string) {
-    document.getElementById(`step-${stepId}`)?.scrollIntoView({ behavior: "smooth" });
+    document
+      .getElementById(`step-${stepId}`)
+      ?.scrollIntoView({ behavior: "smooth" });
   }
 
   function choosePlan(plan: Plan) {
@@ -32,10 +44,7 @@ export function FlowProvider({ children }: { children: ReactNode }) {
   }
 
   function completeOrder(plan: Plan) {
-    // Reuse the mock "global" order slot (the one that's already eSIM
-    // Ready / expandable / installable) to represent "the order you just
-    // placed" — display fields below are swapped to match the plan that
-    // was actually bought.
+    // Reuses the mock "global" order slot to represent the order just placed.
     setCompletedPlan(plan);
     setCompletedOrderId("global");
     goTo("orders");
@@ -44,6 +53,8 @@ export function FlowProvider({ children }: { children: ReactNode }) {
   return (
     <FlowContext.Provider
       value={{
+        walletState,
+        createWallet,
         shopScreen,
         setShopScreen,
         selectedPlan,

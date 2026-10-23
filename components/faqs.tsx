@@ -16,14 +16,12 @@ const Faqs = () => {
         >
           Frequently Asked Questions
         </h2>
-        {/* Each id is the target of the matching Question @id in the page
-            schema, so a citation can link to the single answer it used. */}
         <dl className="flex flex-col gap-14">
           {faqsData.map((faq) => (
             <div
               key={faq.id}
               id={`faq-${faq.id}`}
-              className="flex flex-col gap-2 scroll-mt-24"
+              className="flex scroll-mt-24 flex-col gap-2"
             >
               <dt className="font-heading text-2xl font-bold leading-[25px] text-cashmere-300 md:text-[1.75rem] md:leading-7">
                 {faq.question}

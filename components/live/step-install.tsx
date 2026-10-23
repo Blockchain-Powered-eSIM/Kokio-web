@@ -9,11 +9,9 @@ import { useFlow } from "@/components/live/flow-context";
 type Tab = "QR" | "Direct" | "Manual";
 
 /**
- * Step 05 — Install (screens/esimInstallation/EsimInstallation.tsx).
- * Tab strip order and default active tab are both **Direct** first, per
- * explicit instruction — overrides the earlier QR-default accuracy note
- * in AppLiveTasks.md's source-accuracy table.
- * Install eSIM is always tappable and just hands off to Orders.
+ * Step 05 — Install.
+ * Tab strip order and default active tab are both **Direct** first.
+ * Install eSIM is always tappable and hands off to Orders.
  */
 export function StepInstallVisual() {
   const flow = useFlow();
@@ -40,7 +38,10 @@ export function StepInstallVisual() {
           <div className="esim-card">
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <Icon name="chev-back" style={{ width: 16, height: 16 }} />
-              <div className="a-country" style={{ fontSize: 17, paddingRight: 56 }}>
+              <div
+                className="a-country"
+                style={{ fontSize: 17, paddingRight: 56 }}
+              >
                 Install eSIM
               </div>
             </div>
@@ -58,27 +59,56 @@ export function StepInstallVisual() {
         </div>
 
         <div className="a-card">
-          <div className="segmented" style={{ background: "var(--app-muted)", width: "100%" }}>
+          <div
+            className="segmented"
+            style={{ background: "var(--app-muted)", width: "100%" }}
+          >
             <button
               type="button"
               className={tab === "Direct" ? "active" : ""}
-              style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 1 }}
+              style={{
+                flex: 1,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 1,
+              }}
               onClick={() => setTab("Direct")}
             >
-              <Icon name="flash" style={{ width: 10, height: 10, fill: "#ffc107" }} />
-              <Icon name="flash" style={{ width: 10, height: 10, fill: "#ffc107" }} />
+              <Icon
+                name="flash"
+                style={{ width: 10, height: 10, fill: "#ffc107" }}
+              />
+              <Icon
+                name="flash"
+                style={{ width: 10, height: 10, fill: "#ffc107" }}
+              />
               <span style={{ marginLeft: 3 }}>Direct</span>
             </button>
             <button
               type="button"
               className={tab === "QR" ? "active" : ""}
-              style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 1 }}
+              style={{
+                flex: 1,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 1,
+              }}
               onClick={() => setTab("QR")}
             >
-              <Icon name="flash" style={{ width: 10, height: 10, fill: "#ffc107" }} />
+              <Icon
+                name="flash"
+                style={{ width: 10, height: 10, fill: "#ffc107" }}
+              />
               <span style={{ marginLeft: 3 }}>QR</span>
             </button>
-            <button type="button" className={tab === "Manual" ? "active" : ""} style={{ flex: 1 }} onClick={() => setTab("Manual")}>
+            <button
+              type="button"
+              className={tab === "Manual" ? "active" : ""}
+              style={{ flex: 1 }}
+              onClick={() => setTab("Manual")}
+            >
               Manual
             </button>
           </div>
@@ -100,11 +130,18 @@ export function StepInstallVisual() {
                 }}
               >
                 {QR_PATTERN.map((v, i) => (
-                  <div key={i} style={{ background: v ? "#23262e" : "transparent", borderRadius: 1 }} />
+                  <div
+                    key={i}
+                    style={{
+                      background: v ? "#23262e" : "transparent",
+                      borderRadius: 1,
+                    }}
+                  />
                 ))}
               </div>
               <p className="a-muted" style={{ marginBottom: 14 }}>
-                Add it from Settings &gt; Cellular/Mobile Data &gt; Add eSIM &gt; Use QR Code
+                Add it from Settings &gt; Cellular/Mobile Data &gt; Add eSIM
+                &gt; Use QR Code
               </p>
               <button type="button" className="a-btn a-btn-primary">
                 Share QR code
@@ -115,7 +152,8 @@ export function StepInstallVisual() {
           {tab === "Direct" && (
             <div style={{ marginTop: 16, textAlign: "center" }}>
               <p className="a-muted" style={{ marginBottom: 16 }}>
-                Hands off to Apple&apos;s native &quot;Install eSIM&quot; flow on this iPhone.
+                Hands off to Apple&apos;s native &quot;Install eSIM&quot; flow
+                on this iPhone.
               </p>
               <button
                 type="button"
@@ -132,9 +170,16 @@ export function StepInstallVisual() {
             <div style={{ marginTop: 12 }}>
               <button
                 type="button"
-                className={`a-copy-row${copied ? " copied" : ""}`}
+                className={`a-copy-row${copied ? "copied" : ""}`}
                 onClick={copyLpa}
-                style={{ all: "unset", boxSizing: "border-box", width: "100%", display: "flex", alignItems: "center", cursor: "pointer" }}
+                style={{
+                  all: "unset",
+                  boxSizing: "border-box",
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  cursor: "pointer",
+                }}
               >
                 <div className="body">
                   <div className="copy-label">Activation code (LPA)</div>

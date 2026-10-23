@@ -102,8 +102,6 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       name: post.author.name,
       ...(post.author.twitter ? { sameAs: [post.author.twitter] } : {}),
     },
-    // Point at the Organization the layout already emits instead of describing
-    // it again here, so a post and the site cannot disagree about the publisher.
     publisher: { "@id": ORGANIZATION_ID },
     isPartOf: { "@id": WEBSITE_ID },
     mainEntityOfPage: {

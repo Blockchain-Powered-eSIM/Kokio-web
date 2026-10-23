@@ -21,13 +21,7 @@ function link(label: string, path: string, summary: string): string {
   return `- [${label}](${absolute(path)}): ${summary}`;
 }
 
-/**
- * Plain-text summary of the site for agents, following the llms.txt convention:
- * one H1, one blockquote, then H2 sections of annotated links.
- *
- * Built from the same modules the pages render from, so it cannot fall behind
- * them. Only list URLs that exist; a 404 here costs more than a missing entry.
- */
+/** Plain-text site summary in the llms.txt format: one H1, one blockquote, then H2 sections of annotated links. */
 export function GET() {
   const posts = getAllPosts();
 

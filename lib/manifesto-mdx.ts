@@ -1,7 +1,6 @@
 import type { Root, Element, RootContent } from "hast";
 
-/** Pillar section slugs → Roman numeral, per the section map (D4). Keyed by
- * rehype-slug id so reordering sections in the MDX doesn't break the badges. */
+/** Pillar section slugs → Roman numeral, keyed by rehype-slug id. */
 export const PILLAR_NUMERALS: Record<string, string> = {
   "privacy-is-personal-political-and-programmable": "I",
   "from-consumers-to-citizens": "II",
@@ -61,7 +60,12 @@ function insertAfterSection(
   if (start === -1) return;
 
   const end = sectionEnd(children, start);
-  const marker: Element = { type: "element", tagName, properties: {}, children: [] };
+  const marker: Element = {
+    type: "element",
+    tagName,
+    properties: {},
+    children: [],
+  };
   children.splice(end, 0, marker);
 }
 

@@ -30,7 +30,9 @@ export function StepSection({
         {step.callout && (
           <div
             className={
-              step.callout.tone === "danger" ? "callout callout--danger" : "callout"
+              step.callout.tone === "danger"
+                ? "callout callout--danger"
+                : "callout"
             }
           >
             {step.callout.strong && <strong>{step.callout.strong} </strong>}
