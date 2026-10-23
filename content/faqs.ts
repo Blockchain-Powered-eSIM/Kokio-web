@@ -32,8 +32,7 @@ export const faqsData: Faq[] = [
   {
     id: "payment-methods",
     question: "What payment options does Kokio accept?",
-    answer:
-      PAYMENT_METHODS,
+    answer: PAYMENT_METHODS,
   },
   {
     id: "security",

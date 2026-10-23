@@ -21,7 +21,7 @@ const Faqs = () => {
             <div
               key={faq.id}
               id={`faq-${faq.id}`}
-              className="flex flex-col gap-2 scroll-mt-24"
+              className="flex scroll-mt-24 flex-col gap-2"
             >
               <dt className="font-heading text-2xl font-bold leading-[25px] text-cashmere-300 md:text-[1.75rem] md:leading-7">
                 {faq.question}

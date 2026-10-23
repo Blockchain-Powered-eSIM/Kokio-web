@@ -1475,7 +1475,6 @@
   color: var(--app-text);
 }
 
-
 /* Wallet step: token grid (USDC / USDT / DAI / ETH + Add token), mirrors the app's TokenGrid. */
 .kokio-live .w-tokens {
   display: flex;

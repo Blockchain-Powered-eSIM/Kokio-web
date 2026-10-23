@@ -59,7 +59,11 @@ function manifestoShowcaseText(): string[] {
   return [
     `## ${band.title}`,
     band.credo,
-    band.pillars.map((pillar) => `- **${pillar.heading.replace(/\.$/, "")}.** ${pillar.line}`).join("\n"),
+    band.pillars
+      .map(
+        (pillar) => `- **${pillar.heading.replace(/\.$/, "")}.** ${pillar.line}`
+      )
+      .join("\n"),
     band.signature,
     `[Read the manifesto](https://kokio.app${band.href})`,
   ];
@@ -70,7 +74,9 @@ function pricingText(): string[] {
     `## ${PRICING.title}`,
     PRICING.lead,
     PRICING.shapesIntro,
-    PRICING.shapes.map((shape) => `- **${shape.name}.** ${shape.line}`).join("\n"),
+    PRICING.shapes
+      .map((shape) => `- **${shape.name}.** ${shape.line}`)
+      .join("\n"),
     `[${PRICING.guideLabel}](${PRICING.guideHref}). ${PRICING.guideNote}`,
   ];
 }
@@ -99,7 +105,10 @@ function partnersText(): string[] {
       .map(
         (group) =>
           `### ${group.kind}\n\n${group.items
-            .map((partner) => `- [${partner.name}](${partner.href}): ${partner.blurb}`)
+            .map(
+              (partner) =>
+                `- [${partner.name}](${partner.href}): ${partner.blurb}`
+            )
             .join("\n")}`
       )
       .join("\n\n"),
@@ -125,11 +134,16 @@ function homeSection(): string {
     "New to eSIMs or never heard of it? Your phone might have one, [check it here](https://kokio.app/blogs/esim-guide-for-travellers-2026) and learn more about it!",
     "## How setup works",
     setupData
-      .map((step, index) => `${index + 1}. **${step.title}** ${step.description}`)
+      .map(
+        (step, index) => `${index + 1}. **${step.title}** ${step.description}`
+      )
       .join("\n"),
     "## Features",
     featuresData
-      .map((feature) => `- **${feature.title}.** ${feature.description}${featureAgentLink(feature)}`)
+      .map(
+        (feature) =>
+          `- **${feature.title}.** ${feature.description}${featureAgentLink(feature)}`
+      )
       .join("\n"),
     ...pricingText(),
     ...manifestoShowcaseText(),
@@ -180,7 +194,9 @@ function liveSection(): string {
         `### ${step.index}: ${step.title}`,
         step.summary,
         step.items.map((item) => `- ${item}`).join("\n"),
-        step.callout ? `> ${step.callout.strong ? `**${step.callout.strong}** ` : ""}${step.callout.text}` : "",
+        step.callout
+          ? `> ${step.callout.strong ? `**${step.callout.strong}** ` : ""}${step.callout.text}`
+          : "",
       ]
         .filter(Boolean)
         .join("\n\n")

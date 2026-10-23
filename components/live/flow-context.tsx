@@ -33,7 +33,9 @@ export function FlowProvider({ children }: { children: ReactNode }) {
   }
 
   function goTo(stepId: string) {
-    document.getElementById(`step-${stepId}`)?.scrollIntoView({ behavior: "smooth" });
+    document
+      .getElementById(`step-${stepId}`)
+      ?.scrollIntoView({ behavior: "smooth" });
   }
 
   function choosePlan(plan: Plan) {

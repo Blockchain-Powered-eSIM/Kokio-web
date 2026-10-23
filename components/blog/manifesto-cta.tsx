@@ -24,9 +24,8 @@ export function ManifestoCTA() {
           Connectivity is a human right. Privacy is its guardian.
         </p>
         <p className="text-sm leading-relaxed text-manifesto-ink/80 md:text-base">
-          Kokio is also a provider, and we say it upfront: don&apos;t
-          trust Kokio, verify it. This is our position, written out in
-          full.
+          Kokio is also a provider, and we say it upfront: don&apos;t trust
+          Kokio, verify it. This is our position, written out in full.
         </p>
         <span className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-manifesto-teal">
           Read the Manifesto

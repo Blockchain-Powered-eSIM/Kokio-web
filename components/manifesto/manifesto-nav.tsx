@@ -41,7 +41,10 @@ export function ManifestoNav() {
       </div>
 
       <Dialog>
-        <DialogTrigger className="-m-2.5 p-2.5 md:hidden" aria-label="Open menu">
+        <DialogTrigger
+          className="-m-2.5 p-2.5 md:hidden"
+          aria-label="Open menu"
+        >
           <Menu />
         </DialogTrigger>
         <DialogContent className="top-4 max-h-[calc(100dvh-2rem)] w-11/12 translate-y-0 overflow-y-auto rounded-4xl bg-ship-cove-50">

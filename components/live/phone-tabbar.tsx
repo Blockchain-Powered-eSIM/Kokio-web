@@ -26,7 +26,7 @@ export function PhoneTabBar({
           <button
             key={tab.id}
             type="button"
-            className={`a-tabbar-item${active === tab.id ? " active" : ""}`}
+            className={`a-tabbar-item${active === tab.id ? "active" : ""}`}
             aria-label={tab.label}
             title={tab.label}
             onClick={() => onNavigate?.(tab.id)}

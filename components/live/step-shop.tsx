@@ -21,12 +21,18 @@ import {
 import { SHOP_EXAMPLE_CAPTION } from "@/components/live/content";
 import { useFlow } from "@/components/live/flow-context";
 
-const CATEGORIES: PlanCategory[] = ["Countries", "Regions", "Global", "Special"];
+const CATEGORIES: PlanCategory[] = [
+  "Countries",
+  "Regions",
+  "Global",
+  "Special",
+];
 
 type Filters = { price: string; data: string; validity: string };
 const NO_FILTERS: Filters = { price: "ANY", data: "ANY", validity: "ANY" };
 
-type Detail = { kind: "country"; code: string } | { kind: "region"; name: string } | null;
+type Detail =
+  { kind: "country"; code: string } | { kind: "region"; name: string } | null;
 
 function matchesFilters(plan: Plan, f: Filters): boolean {
   const price = Number(plan.price);
@@ -87,7 +93,13 @@ function FlagImg({ code }: { code: string }) {
   );
 }
 
-function FilterButton({ active, onClick }: { active: boolean; onClick: () => void }) {
+function FilterButton({
+  active,
+  onClick,
+}: {
+  active: boolean;
+  onClick: () => void;
+}) {
   return (
     <button
       type="button"
@@ -127,7 +139,11 @@ function PlanCard({
             <b>{plan.gb}</b>&nbsp;GB
           </span>
         </div>
-        <button type="button" className="a-view-btn" onClick={() => onView(plan)}>
+        <button
+          type="button"
+          className="a-view-btn"
+          onClick={() => onView(plan)}
+        >
           <b>${plan.price}</b>
           <span className="vb-right">
             <Icon name="cart" />
@@ -169,7 +185,11 @@ function PlanList({
         </div>
       ) : (
         plans.map((plan) => (
-          <PlanCard key={`${plan.country}-${plan.days}-${plan.gb}`} plan={plan} onView={onView} />
+          <PlanCard
+            key={`${plan.country}-${plan.days}-${plan.gb}`}
+            plan={plan}
+            onView={onView}
+          />
         ))
       )}
       {footer}
@@ -224,8 +244,16 @@ export function StepShopVisual() {
       <div>
         <div className="a-hero">
           <div className="a-hero-imgwrap">
-            <img className="a-hero-bg" src="/live/home-hero-sunburst.png" alt="" />
-            <img className="a-hero-flagsimg" src="/live/home-hero-flags.png" alt="" />
+            <img
+              className="a-hero-bg"
+              src="/live/home-hero-sunburst.png"
+              alt=""
+            />
+            <img
+              className="a-hero-flagsimg"
+              src="/live/home-hero-flags.png"
+              alt=""
+            />
           </div>
           <div className="a-hero-footer">
             <div>
@@ -246,11 +274,17 @@ export function StepShopVisual() {
         <div className="sh-home-heading">eSIMs</div>
         {bought ? (
           <div className="a-card-wrap">
-            <span className="a-flag" style={{ fontSize: 26, top: -8, right: 20 }}>
+            <span
+              className="a-flag"
+              style={{ fontSize: 26, top: -8, right: 20 }}
+            >
               {bought.flag}
             </span>
             <div className="esim-card">
-              <div className="a-country" style={{ fontSize: 17, paddingRight: 56 }}>
+              <div
+                className="a-country"
+                style={{ fontSize: 17, paddingRight: 56 }}
+              >
                 {bought.country}
               </div>
               <div className="a-statrow">
@@ -263,7 +297,11 @@ export function StepShopVisual() {
                   <b>{bought.gb}</b>&nbsp;GB
                 </span>
               </div>
-              <button type="button" className="sh-install-btn" onClick={() => flow.goTo("install")}>
+              <button
+                type="button"
+                className="sh-install-btn"
+                onClick={() => flow.goTo("install")}
+              >
                 <Icon name="download" />
                 Quick install
               </button>
@@ -293,7 +331,11 @@ export function StepShopVisual() {
               <div className="w-desc">
                 Pays for eSIMs and top-ups, signed with Face ID.
               </div>
-              <button type="button" className="a-cta-btn" onClick={() => flow.goTo("wallet")}>
+              <button
+                type="button"
+                className="a-cta-btn"
+                onClick={() => flow.goTo("wallet")}
+              >
                 Open wallet
               </button>
             </>
@@ -306,10 +348,14 @@ export function StepShopVisual() {
                 </span>
               </div>
               <div className="w-desc">
-                This can take a few minutes. Purchases are restricted at the moment, feel free to
-                explore plans.
+                This can take a few minutes. Purchases are restricted at the
+                moment, feel free to explore plans.
               </div>
-              <span className="a-spinner" role="status" aria-label="Setting up your wallet" />
+              <span
+                className="a-spinner"
+                role="status"
+                aria-label="Setting up your wallet"
+              />
             </>
           ) : (
             <>
@@ -319,8 +365,14 @@ export function StepShopVisual() {
                   Add a Kokio wallet
                 </span>
               </div>
-              <div className="w-desc">Unlock with Face ID. Simple, Fast and Secure.</div>
-              <button type="button" className="a-cta-btn" onClick={() => flow.goTo("wallet")}>
+              <div className="w-desc">
+                Unlock with Face ID. Simple, Fast and Secure.
+              </div>
+              <button
+                type="button"
+                className="a-cta-btn"
+                onClick={() => flow.goTo("wallet")}
+              >
                 Create wallet
               </button>
             </>
@@ -331,8 +383,12 @@ export function StepShopVisual() {
   }
 
   function renderSearchResults() {
-    const countries = SHOP_COUNTRIES.filter((c) => c.name.toLowerCase().includes(query));
-    const regions = SHOP_REGIONS.filter((r) => r.name.toLowerCase().includes(query));
+    const countries = SHOP_COUNTRIES.filter((c) =>
+      c.name.toLowerCase().includes(query)
+    );
+    const regions = SHOP_REGIONS.filter((r) =>
+      r.name.toLowerCase().includes(query)
+    );
     return (
       <div>
         {countries.length > 0 && (
@@ -384,9 +440,16 @@ export function StepShopVisual() {
 
   function renderDetail(d: NonNullable<Detail>) {
     if (d.kind === "region") {
-      const plans = (REGION_PLANS[d.name] ?? []).filter((p) => matchesFilters(p, filters));
+      const plans = (REGION_PLANS[d.name] ?? []).filter((p) =>
+        matchesFilters(p, filters)
+      );
       return (
-        <PlanList plans={plans} active={active} onClear={clearFilters} onView={flow.choosePlan} />
+        <PlanList
+          plans={plans}
+          active={active}
+          onClear={clearFilters}
+          onView={flow.choosePlan}
+        />
       );
     }
     const base: CountryPlan[] = [
@@ -404,7 +467,7 @@ export function StepShopVisual() {
           <div className="sh-chips">
             <button
               type="button"
-              className={`sh-chip${network === null ? " sel" : ""}`}
+              className={`sh-chip${network === null ? "sel" : ""}`}
               onClick={() => setNetwork(null)}
             >
               All
@@ -413,7 +476,7 @@ export function StepShopVisual() {
               <button
                 key={n}
                 type="button"
-                className={`sh-chip${network === n ? " sel" : ""}`}
+                className={`sh-chip${network === n ? "sel" : ""}`}
                 onClick={() => setNetwork(n)}
               >
                 {n}
@@ -428,7 +491,11 @@ export function StepShopVisual() {
           onView={flow.choosePlan}
           footer={
             showBackup ? null : (
-              <button type="button" className="sh-pill-btn" onClick={() => setShowBackup(true)}>
+              <button
+                type="button"
+                className="sh-pill-btn"
+                onClick={() => setShowBackup(true)}
+              >
                 <Icon name="download" />
                 Show more plans
               </button>
@@ -502,7 +569,11 @@ export function StepShopVisual() {
           <>
             <div
               className="segmented"
-              style={{ background: "var(--app-muted)", width: "100%", marginTop: 12 }}
+              style={{
+                background: "var(--app-muted)",
+                width: "100%",
+                marginTop: 12,
+              }}
             >
               {CATEGORIES.map((cat) => (
                 <button
@@ -540,7 +611,9 @@ export function StepShopVisual() {
                       key={r.name}
                       type="button"
                       className="sh-region"
-                      onClick={() => setDetail({ kind: "region", name: r.name })}
+                      onClick={() =>
+                        setDetail({ kind: "region", name: r.name })
+                      }
                     >
                       <span className="sh-region-name">{r.name}</span>
                       <img src={r.image} alt="" />
@@ -550,7 +623,9 @@ export function StepShopVisual() {
               )}
               {(category === "Global" || category === "Special") && (
                 <PlanList
-                  plans={PLANS[category].filter((p) => matchesFilters(p, filters))}
+                  plans={PLANS[category].filter((p) =>
+                    matchesFilters(p, filters)
+                  )}
                   active={active}
                   onClear={clearFilters}
                   onView={flow.choosePlan}
@@ -613,7 +688,7 @@ export function StepShopVisual() {
                       <button
                         key={o.key}
                         type="button"
-                        className={`sh-chip${draft[field] === o.key ? " sel" : ""}`}
+                        className={`sh-chip${draft[field] === o.key ? "sel" : ""}`}
                         onClick={() => setDraft({ ...draft, [field]: o.key })}
                       >
                         {o.label}
@@ -623,7 +698,11 @@ export function StepShopVisual() {
                 </div>
               ))}
               <div className="sh-sheet-footer">
-                <button type="button" className="sh-link" onClick={() => setDraft(NO_FILTERS)}>
+                <button
+                  type="button"
+                  className="sh-link"
+                  onClick={() => setDraft(NO_FILTERS)}
+                >
                   Clear all
                 </button>
                 <button

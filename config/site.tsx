@@ -24,7 +24,8 @@ export const APP_URL = "https://kokio.app/live";
 export const siteConfig = {
   name: PRODUCT_NAME,
   url: "https://kokio.app",
-  header: "Travel eSIMs for over 200 destinations, without the personal details",
+  header:
+    "Travel eSIMs for over 200 destinations, without the personal details",
   description: CANONICAL_DESCRIPTION,
   socials: [
     {

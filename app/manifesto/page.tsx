@@ -41,7 +41,11 @@ export default async function ManifestoPage() {
     options: {
       mdxOptions: {
         remarkPlugins: [[remarkSmartypants, { dashes: "oldschool" }]],
-        rehypePlugins: [rehypeSlug, rehypeCollectH2Toc, rehypeManifestoSections],
+        rehypePlugins: [
+          rehypeSlug,
+          rehypeCollectH2Toc,
+          rehypeManifestoSections,
+        ],
       },
     },
   });
@@ -59,9 +63,7 @@ export default async function ManifestoPage() {
         <h1 className="text-center font-heading text-3xl font-bold text-manifesto-ink md:text-4xl">
           {manifesto.title}
         </h1>
-        <div
-          className="prose mt-8 max-w-none text-[18px] leading-[1.75] text-manifesto-ink prose-headings:font-heading prose-headings:text-manifesto-ink prose-a:text-manifesto-teal prose-blockquote:border-l-manifesto-sand-border prose-blockquote:bg-manifesto-sand prose-blockquote:not-italic"
-        >
+        <div className="prose mt-8 max-w-none text-[18px] leading-[1.75] text-manifesto-ink prose-headings:font-heading prose-headings:text-manifesto-ink prose-a:text-manifesto-teal prose-blockquote:border-l-manifesto-sand-border prose-blockquote:bg-manifesto-sand prose-blockquote:not-italic">
           {content}
         </div>
       </article>

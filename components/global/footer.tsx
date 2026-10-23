@@ -69,11 +69,17 @@ const Footer = () => {
                 <Image src={footer.icon} alt="" fill className="fill-current" />
               </div>
               {footer.href.startsWith("/") ? (
-                <Link href={footer.href} className="inline-flex min-h-11 items-center text-lg font-light">
+                <Link
+                  href={footer.href}
+                  className="inline-flex min-h-11 items-center text-lg font-light"
+                >
                   {footer.title}
                 </Link>
               ) : (
-                <a href={footer.href} className="inline-flex min-h-11 items-center text-lg font-light">
+                <a
+                  href={footer.href}
+                  className="inline-flex min-h-11 items-center text-lg font-light"
+                >
                   {footer.title}
                 </a>
               )}
