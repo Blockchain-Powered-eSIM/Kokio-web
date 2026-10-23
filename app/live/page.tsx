@@ -5,7 +5,8 @@ import {
 } from "@/components/live/theme-context";
 import { FlowProvider } from "@/components/live/flow-context";
 import { LiveHero, IOS_URL, ANDROID_URL } from "@/components/live/hero";
-import { MainnetBanner } from "@/components/live/mainnet-banner";
+import { TestnetBanner } from "@/components/live/testnet-banner";
+import { SectionRail } from "@/components/live/section-rail";
 import { StepSection } from "@/components/live/step-section";
 import {
   STEPS,
@@ -42,28 +43,18 @@ const STEP_TRY_HINT_ICONS: Partial<Record<string, string>> = {
   install: "copy",
 };
 
-const RAIL_LABELS = [
-  ["auth", "01 · Start"],
-  ["shop", "02 · Browse"],
-  ["checkout", "03 · Checkout"],
-  ["orders", "04 · Orders"],
-  ["install", "05 · Install"],
-  ["wallet", "06 · Wallet"],
-  ["settings", "07 · Settings"],
-] as const;
-
 export default function LivePage() {
   return (
     <LiveThemeProvider>
       <FlowProvider>
         <IconSprite />
-        <MainnetBanner />
+        <TestnetBanner />
         <LiveHero />
 
         <div className="controls-outer">
           <div className="controls">
             <ThemeToggle />
-            <StepRail items={RAIL_LABELS} />
+            <SectionRail />
           </div>
         </div>
 
