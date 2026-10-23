@@ -23,8 +23,14 @@ export interface LegalConfig {
 
   /** Liability-cap look-back window in months (ToS §13). */
   liabilityCapMonths: string;
-  /** Data-retention period (Privacy §8). Not currently read by any document. */
+  /** Retention period for financial and audit records, in years (Privacy §8). */
   retentionYears: string;
+  /** How long server logs are kept (Privacy, Technical Data). */
+  logRetention: string;
+  /** How long support emails and messages are kept after the last message (Privacy, Support Communications). */
+  supportRetention: string;
+  /** Default admin allowance per new eSIM wallet, in US dollars, read from the mainnet registry (ToS §5). */
+  adminAllowanceUsd: string;
 
   /** Governing law (ToS §17). */
   governingLaw: string;
@@ -41,14 +47,17 @@ export const legalConfig: LegalConfig = {
   dpoEmail: "legal-office@kokio.app",
   generalContact: "contact@kokio.app",
 
-  lastUpdated: "15th July 2026",
-  lastUpdatedIso: "2026-07-15",
-  effective: "15th July 2026",
+  lastUpdated: "23rd October 2026",
+  lastUpdatedIso: "2026-10-23",
+  effective: "23rd October 2026",
 
   counselReviewedIso: "2026-09-07",
 
   liabilityCapMonths: "3",
-  retentionYears: "[3]",
+  retentionYears: "6",
+  logRetention: "14 days",
+  supportRetention: "one year",
+  adminAllowanceUsd: "25",
 
   governingLaw: "Singapore",
   disputeResolution:
