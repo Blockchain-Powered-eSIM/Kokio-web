@@ -105,10 +105,15 @@ function partnersText(): string[] {
       .map(
         (group) =>
           `### ${group.kind}\n\n${group.items
-            .map(
-              (partner) =>
-                `- [${partner.name}](${partner.href}): ${partner.blurb}`
-            )
+            .map((partner) => {
+              const points = partner.points?.length
+                ? "\n" +
+                  partner.points
+                    .map((p) => `  - **${p.label}:** ${p.detail}`)
+                    .join("\n")
+                : "";
+              return `- [${partner.name}](${partner.href}): ${partner.blurb}${points}`;
+            })
             .join("\n")}`
       )
       .join("\n\n"),

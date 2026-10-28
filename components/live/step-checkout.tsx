@@ -38,6 +38,7 @@ export function StepCheckoutVisual() {
   const plan = flow.selectedPlan ?? DEFAULT_PLAN;
   const [headerOpen, setHeaderOpen] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
+  const [methodExpanded, setMethodExpanded] = useState(false);
   const [assetIndex, setAssetIndex] = useState(0);
   const walletAsset = WALLET_ASSETS[assetIndex];
   const [coupon, setCoupon] = useState("");
@@ -45,6 +46,7 @@ export function StepCheckoutVisual() {
   const [priorMode, setPriorMode] = useState<"first" | "existing">("first");
   const [topupChecking, setTopupChecking] = useState(false);
   const [topupSelected, setTopupSelected] = useState<string | null>(null);
+  const [topupPickerOpen, setTopupPickerOpen] = useState(false);
   const [esimOk, setEsimOk] = useState(false);
   const [payStatus, setPayStatus] = useState("");
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -71,10 +73,18 @@ export function StepCheckoutVisual() {
     setPriorMode(mode);
     if (mode === "first") {
       setTopupSelected(null);
+      setTopupPickerOpen(false);
       return;
     }
     setTopupChecking(true);
-    timers.current.push(setTimeout(() => setTopupChecking(false), 700));
+    timers.current.push(
+      setTimeout(() => {
+        setTopupChecking(false);
+        // Matches the app: the most recently purchased compatible eSIM is
+        // applied as the default top-up target, not "Buy a new eSIM".
+        setTopupSelected(TOPUP_CANDIDATES[0]?.esimId ?? null);
+      }, 700)
+    );
   }
 
   function handlePay() {
@@ -100,6 +110,53 @@ export function StepCheckoutVisual() {
       setTimeout(() => flow.completeOrder(plan), 2300),
       setTimeout(() => setPayStatus(""), 4500)
     );
+  }
+
+  function renderMethodTrailing(id: string) {
+    if (id === "crypto") {
+      return (
+        <span style={{ display: "flex", alignItems: "center", flex: "none" }}>
+          {OTHER_WALLET_ICONS.map((src, index) => (
+            <Image
+              key={src}
+              src={src}
+              alt=""
+              width={22}
+              height={22}
+              style={{
+                boxSizing: "border-box",
+                width: 22,
+                height: 22,
+                borderRadius: "50%",
+                objectFit: "contain",
+                background: "var(--app-surface)",
+                border: "1.5px solid var(--app-surface)",
+                marginLeft: index > 0 ? -8 : 0,
+              }}
+            />
+          ))}
+          <span style={{ marginLeft: 5, fontSize: 15, fontWeight: 700, color: "var(--app-muted-fg)" }}>...</span>
+        </span>
+      );
+    }
+    if (id === "wallet") {
+      return (
+        <span
+          role="button"
+          aria-label={`Change payment token, currently ${walletAsset.symbol}`}
+          onClick={(e) => {
+            e.stopPropagation();
+            setAssetIndex((i) => (i + 1) % WALLET_ASSETS.length);
+          }}
+          style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 600, cursor: "pointer" }}
+        >
+          {walletAsset.symbol}
+          <Image src={walletAsset.icon} alt="" width={18} height={18} />
+          <Icon name="chev-down" style={{ width: 12, height: 12, color: "var(--app-muted-fg)" }} />
+        </span>
+      );
+    }
+    return null;
   }
 
   return (
@@ -219,95 +276,91 @@ export function StepCheckoutVisual() {
         <div className="a-sublabel" style={{ marginTop: 0 }}>
           Payment Method
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          {CHECKOUT_RADIOS.map((r) => {
-            const selected = selectedMethod === r.id;
-            return (
-              <button
-                key={r.id}
-                type="button"
-                disabled={r.disabled}
-                onClick={() => setSelectedMethod(r.id)}
-                style={{
-                  all: "unset",
-                  cursor: r.disabled ? "not-allowed" : "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  background: selected ? "var(--app-input-bg)" : "transparent",
-                  border: "1px solid var(--app-muted)",
-                  borderRadius: 12,
-                  padding: "11px 14px",
-                  opacity: r.disabled ? 0.45 : 1,
-                }}
-              >
-                <span
+        {!selectedMethod || methodExpanded ? (
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {CHECKOUT_RADIOS.map((r) => {
+              const selected = selectedMethod === r.id;
+              return (
+                <button
+                  key={r.id}
+                  type="button"
+                  disabled={r.disabled}
+                  onClick={() => {
+                    setSelectedMethod(r.id);
+                    setMethodExpanded(false);
+                  }}
                   style={{
-                    width: 16,
-                    height: 16,
-                    borderRadius: "50%",
-                    border: "1.5px solid var(--app-muted-fg)",
-                    flex: "none",
+                    all: "unset",
+                    cursor: r.disabled ? "not-allowed" : "pointer",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
+                    gap: 10,
+                    background: selected ? "var(--app-input-bg)" : "transparent",
+                    border: "1px solid var(--app-muted)",
+                    borderRadius: 12,
+                    padding: "11px 14px",
+                    opacity: r.disabled ? 0.45 : 1,
                   }}
                 >
-                  {selected && (
-                    <span
-                      style={{
-                        width: 8,
-                        height: 8,
-                        borderRadius: "50%",
-                        background: "var(--app-secondary)",
-                      }}
-                    />
-                  )}
-                </span>
-                <span style={{ flex: 1, textAlign: "left", fontWeight: 700, fontSize: 13 }}>{r.label}</span>
-                {r.id === "crypto" && (
-                  <span style={{ display: "flex", alignItems: "center", flex: "none" }}>
-                    {OTHER_WALLET_ICONS.map((src, index) => (
-                      <Image
-                        key={src}
-                        src={src}
-                        alt=""
-                        width={22}
-                        height={22}
-                        style={{
-                          boxSizing: "border-box",
-                          width: 22,
-                          height: 22,
-                          borderRadius: "50%",
-                          objectFit: "contain",
-                          background: "var(--app-surface)",
-                          border: "1.5px solid var(--app-surface)",
-                          marginLeft: index > 0 ? -8 : 0,
-                        }}
-                      />
-                    ))}
-                    <span style={{ marginLeft: 5, fontSize: 15, fontWeight: 700, color: "var(--app-muted-fg)" }}>...</span>
-                  </span>
-                )}
-                {r.id === "wallet" && (
                   <span
-                    role="button"
-                    aria-label={`Change payment token, currently ${walletAsset.symbol}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setAssetIndex((i) => (i + 1) % WALLET_ASSETS.length);
+                    style={{
+                      width: 16,
+                      height: 16,
+                      borderRadius: "50%",
+                      border: "1.5px solid var(--app-muted-fg)",
+                      flex: "none",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
-                    style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 600, cursor: "pointer" }}
                   >
-                    {walletAsset.symbol}
-                    <Image src={walletAsset.icon} alt="" width={18} height={18} />
-                    <Icon name="chev-down" style={{ width: 12, height: 12, color: "var(--app-muted-fg)" }} />
+                    {selected && (
+                      <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--app-secondary)" }} />
+                    )}
                   </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
+                  <span style={{ flex: 1, textAlign: "left", fontWeight: 700, fontSize: 13 }}>{r.label}</span>
+                  {renderMethodTrailing(r.id)}
+                </button>
+              );
+            })}
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              border: "2px solid var(--app-secondary)",
+              borderRadius: 12,
+              padding: "11px 14px",
+            }}
+          >
+            <Icon name="check" style={{ width: 20, height: 20, color: "var(--app-secondary)" }} />
+            <span style={{ flex: 1, textAlign: "left", fontWeight: 700, fontSize: 13 }}>
+              {CHECKOUT_RADIOS.find((r) => r.id === selectedMethod)?.label}
+            </span>
+            {renderMethodTrailing(selectedMethod)}
+            <button
+              type="button"
+              aria-label="Change payment method"
+              onClick={() => setMethodExpanded(true)}
+              style={{
+                all: "unset",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 24,
+                height: 24,
+                borderRadius: "50%",
+                background: "var(--app-secondary)",
+                flex: "none",
+              }}
+            >
+              <Icon name="chev-down" style={{ width: 14, height: 14, color: "var(--app-secondary-fg)" }} />
+            </button>
+          </div>
+        )}
         {selectedMethod === "crypto" && (
           <div className="a-muted" style={{ marginTop: 8, fontSize: 12 }}>
             Select a network, pay by any wallet and keep a little extra for network fees, payable in the same token
@@ -422,76 +475,115 @@ export function StepCheckoutVisual() {
                 <div style={{ fontSize: 12.5, color: "var(--app-foreground2)", marginBottom: 10 }}>
                   Apply this plan as top up, else disable to buy a new one
                 </div>
-                <div
-                  style={{ display: "flex", flexDirection: "column", gap: 8 }}
+                <button
+                  type="button"
+                  onClick={() => setTopupPickerOpen((o) => !o)}
+                  style={{
+                    all: "unset",
+                    cursor: "pointer",
+                    boxSizing: "border-box",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: 8,
+                    width: "100%",
+                    padding: "11px 14px",
+                    borderRadius: 12,
+                    background: topupSelected ? "var(--app-secondary)" : "var(--app-input-bg)",
+                    color: topupSelected ? "var(--app-secondary-fg)" : "var(--app-text)",
+                  }}
                 >
-                  {TOPUP_CANDIDATES.map((r) => {
-                    const selected = topupSelected === r.esimId;
-                    return (
-                      <button
-                        key={r.esimId}
-                        type="button"
-                        onClick={() =>
-                          setTopupSelected(selected ? null : r.esimId)
-                        }
-                        style={{
-                          all: "unset",
-                          cursor: "pointer",
-                          boxSizing: "border-box",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          gap: 8,
-                          padding: "11px 14px",
-                          borderRadius: 12,
-                          border: selected
-                            ? "2px solid var(--app-success)"
-                            : "1px solid var(--app-foreground2)",
-                        }}
-                      >
-                        <span
-                          style={{ fontSize: 13, color: "var(--app-text)" }}
+                  <span style={{ fontSize: 13, fontWeight: 600 }}>
+                    {topupSelected
+                      ? TOPUP_CANDIDATES.find((r) => r.esimId === topupSelected)?.label
+                      : "Buy a new eSIM"}
+                  </span>
+                  <Icon
+                    name="chev-down"
+                    style={{ width: 16, height: 16, color: topupSelected ? "var(--app-secondary-fg)" : "var(--app-foreground2)" }}
+                  />
+                </button>
+                {topupPickerOpen && (
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 8 }}>
+                    {TOPUP_CANDIDATES.map((r) => {
+                      const selected = topupSelected === r.esimId;
+                      return (
+                        <button
+                          key={r.esimId}
+                          type="button"
+                          onClick={() => {
+                            setTopupSelected(r.esimId);
+                            setTopupPickerOpen(false);
+                          }}
+                          style={{
+                            all: "unset",
+                            cursor: "pointer",
+                            boxSizing: "border-box",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: 8,
+                            padding: "11px 14px",
+                            borderRadius: 12,
+                            border: selected ? "2px solid var(--app-success)" : "1px solid var(--app-foreground2)",
+                          }}
                         >
-                          {r.label}
-                        </span>
-                        {selected && (
-                          <Icon
-                            name="check"
-                            style={{
-                              width: 18,
-                              height: 18,
-                              color: "var(--app-success)",
-                            }}
-                          />
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
+                          <span style={{ fontSize: 13, color: "var(--app-text)" }}>{r.label}</span>
+                          {selected && <Icon name="check" style={{ width: 18, height: 18, color: "var(--app-success)" }} />}
+                        </button>
+                      );
+                    })}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setTopupSelected(null);
+                        setTopupPickerOpen(false);
+                      }}
+                      style={{
+                        all: "unset",
+                        cursor: "pointer",
+                        boxSizing: "border-box",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: 8,
+                        padding: "11px 14px",
+                        borderRadius: 12,
+                        border: !topupSelected ? "2px solid var(--app-success)" : "1px solid var(--app-foreground2)",
+                      }}
+                    >
+                      <span style={{ fontSize: 13, color: "var(--app-text)" }}>Buy a new eSIM</span>
+                      {!topupSelected && <Icon name="check" style={{ width: 18, height: 18, color: "var(--app-success)" }} />}
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
         )}
 
-        <label
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            gap: 8,
-            marginTop: 18,
-            cursor: "pointer",
-          }}
-        >
-          <input
-            type="checkbox"
-            checked={esimOk}
-            onChange={(e) => setEsimOk(e.target.checked)}
-            style={{ marginTop: 3, accentColor: "var(--app-primary)" }}
-          />
-          <span style={{ fontSize: 12.5, color: "var(--app-text)" }}>
-            I confirm my device is eSIM compatible and network-enabled.
-          </span>
-        </label>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 8, marginTop: 18 }}>
+          <label style={{ display: "flex", alignItems: "flex-start", gap: 8, flex: 1, cursor: "pointer" }}>
+            <input
+              type="checkbox"
+              checked={esimOk}
+              onChange={(e) => setEsimOk(e.target.checked)}
+              style={{ marginTop: 3, accentColor: "var(--app-primary)" }}
+            />
+            <span style={{ fontSize: 12.5, color: "var(--app-text)" }}>
+              I confirm my device is eSIM compatible and network-enabled.
+            </span>
+          </label>
+          <a
+            href="/blogs/esim-guide-for-travellers-2026#does-your-phone-support-esim"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Learn more about eSIM compatibility"
+            style={{ flex: "none", display: "flex", color: "var(--app-primary)" }}
+          >
+            <Icon name="bulb" style={{ width: 19, height: 19 }} />
+          </a>
+        </div>
 
         <button
           type="button"
