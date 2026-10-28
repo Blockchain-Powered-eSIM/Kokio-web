@@ -790,6 +790,9 @@
   gap: 8px;
   margin-top: 8px;
 }
+.kokio-live .a-action-row .a-btn {
+  white-space: nowrap;
+}
 
 /* bottom tab bar */
 .kokio-live .a-tabbar {

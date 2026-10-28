@@ -54,49 +54,100 @@ export function Partners() {
           </h2>
           <p className="text-lg">{PARTNERS_COPY.lead}</p>
         </div>
-        {groups.map((group) => (
-          <div
-            key={group.kind}
-            className={`flex w-full flex-col items-center gap-4 ${group.items.length >= 3 ? "max-w-5xl" : "max-w-3xl"}`}
-          >
-            <h3 className="rounded-full bg-cashmere-100 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-cashmere-700">
-              {group.kind}
-            </h3>
-            <ul
-              className={`grid w-full gap-4 text-left sm:grid-cols-2 ${group.items.length >= 3 ? "lg:grid-cols-3" : ""}`}
+        {groups.map((group) => {
+          const spotlight = group.items.length === 1 && !!group.items[0].points?.length;
+          return (
+            <div
+              key={group.kind}
+              className={`flex w-full flex-col items-center gap-4 ${group.items.length >= 3 ? "max-w-5xl" : spotlight ? "max-w-4xl" : group.items.length === 1 ? "max-w-sm" : "max-w-3xl"}`}
             >
-              {group.items.map((partner) => (
-                <li
-                  key={partner.name}
-                  className="flex flex-col gap-3 rounded-3xl border border-manifesto-sand-border bg-manifesto-card p-5 text-manifesto-ink shadow-sm hover:shadow-md motion-safe:transition-shadow"
-                >
-                  <div className="flex items-center gap-4">
-                    <PartnerMark name={partner.name} />
-                    <h4 className="font-heading text-lg font-bold">
-                      {partner.name}
-                    </h4>
-                  </div>
-                  <p className="text-sm">{partner.blurb}</p>
-                  {partner.linkLabel ? (
-                    <a
-                      href={partner.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${linkClass} mt-auto`}
+              <h3 className="rounded-full bg-cashmere-100 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-cashmere-700">
+                {group.kind}
+              </h3>
+              {spotlight ? (
+                <ul className="w-full">
+                  {group.items.map((partner) => (
+                    <li
+                      key={partner.name}
+                      className="flex flex-col gap-6 rounded-3xl border border-manifesto-sand-border bg-manifesto-card p-6 text-left text-manifesto-ink shadow-sm hover:shadow-md motion-safe:transition-shadow md:flex-row md:p-8"
                     >
-                      {partner.linkLabel}
-                      <ArrowRight
-                        aria-hidden="true"
-                        className="h-4 w-4 motion-safe:transition-transform motion-safe:duration-150 motion-safe:group-hover:translate-x-1"
-                      />
-                      <span className="sr-only"> (opens in a new tab)</span>
-                    </a>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+                      <div className="flex shrink-0 flex-col items-start gap-3 md:w-56">
+                        <PartnerMark name={partner.name} />
+                        <h4 className="font-heading text-xl font-bold">
+                          {partner.name}
+                        </h4>
+                        {partner.linkLabel ? (
+                          <a
+                            href={partner.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={linkClass}
+                          >
+                            {partner.linkLabel}
+                            <ArrowRight
+                              aria-hidden="true"
+                              className="h-4 w-4 motion-safe:transition-transform motion-safe:duration-150 motion-safe:group-hover:translate-x-1"
+                            />
+                            <span className="sr-only"> (opens in a new tab)</span>
+                          </a>
+                        ) : null}
+                      </div>
+                      <div className="flex flex-col gap-4 md:border-l md:border-manifesto-sand-border md:pl-8">
+                        <p className="text-sm">{partner.blurb}</p>
+                        <ul className="grid gap-3 sm:grid-cols-2">
+                          {partner.points?.map((point) => (
+                            <li key={point.label} className="flex flex-col gap-0.5">
+                              <span className="font-heading text-sm font-bold">
+                                {point.label}
+                              </span>
+                              <span className="text-sm text-manifesto-ink/80">
+                                {point.detail}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul
+                  className={`grid w-full gap-4 text-left ${group.items.length >= 3 ? "sm:grid-cols-2 lg:grid-cols-3" : group.items.length === 2 ? "sm:grid-cols-2" : ""}`}
+                >
+                  {group.items.map((partner) => (
+                    <li
+                      key={partner.name}
+                      className="flex flex-col gap-3 rounded-3xl border border-manifesto-sand-border bg-manifesto-card p-5 text-manifesto-ink shadow-sm hover:shadow-md motion-safe:transition-shadow"
+                    >
+                      <div className="flex items-center gap-4">
+                        <PartnerMark name={partner.name} />
+                        <h4 className="font-heading text-lg font-bold">
+                          {partner.name}
+                        </h4>
+                      </div>
+                      <p className="text-sm">{partner.blurb}</p>
+                      {partner.linkLabel ? (
+                        <a
+                          href={partner.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`${linkClass} mt-auto`}
+                        >
+                          {partner.linkLabel}
+                          <ArrowRight
+                            aria-hidden="true"
+                            className="h-4 w-4 motion-safe:transition-transform motion-safe:duration-150 motion-safe:group-hover:translate-x-1"
+                          />
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          );
+        })}
       </section>
     </HomeSection>
   );

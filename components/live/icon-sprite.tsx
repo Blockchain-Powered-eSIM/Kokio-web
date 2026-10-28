@@ -84,6 +84,10 @@ export function IconSprite() {
       <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
         <path d="M6 6l12 12M18 6 6 18" />
       </symbol>
+      <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 18h6M10 21h4" />
+        <path d="M12 3a6.5 6.5 0 0 0-3.5 11.98c.5.33.5.82.5 1.4V17h6v-.62c0-.58 0-1.07.5-1.4A6.5 6.5 0 0 0 12 3z" />
+      </symbol>
       <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 3v12M8 7l4-4 4 4" />
         <path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" />

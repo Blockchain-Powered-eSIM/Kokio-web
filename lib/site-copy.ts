@@ -28,7 +28,7 @@ export const CANONICAL_DESCRIPTION =
   "Kokio is a privacy-first travel eSIM app. Buy eSIM data plans in over 200 destinations with card, Apple Pay, Google Pay or stablecoins. No KYC and no personal information collected. Every Kokio account is a passkey-controlled smart wallet, so the eSIM is owned by the user rather than held in a provider database.";
 
 /** Date the landing page copy last changed. Read by the sitemap. */
-export const HOME_UPDATED = new Date("2026-10-20");
+export const HOME_UPDATED = new Date("2026-10-28");
 
 /** The notice rendered by both the announcement banner and the footer. */
 export const LIVE_NOTICE = `${PRODUCT_NAME} is live on iOS and Android.`;

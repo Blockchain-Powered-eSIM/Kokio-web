@@ -235,7 +235,7 @@ function OrdersTabView() {
                 ) : null}
               </div>
               {expanded && (
-                <div className="a-detail">
+                <div className="a-detail" style={{ paddingRight: order.esimWalletId ? undefined : 14 }}>
                   <div className="a-action-row">
                     {order.install && (
                       <button
@@ -253,7 +253,7 @@ function OrdersTabView() {
                     )}
                     <button
                       type="button"
-                      className="a-btn a-btn-outline"
+                      className={order.install ? "a-btn a-btn-outline" : "a-btn a-btn-primary"}
                       style={{ flex: 1 }}
                       onClick={(e) => {
                         e.stopPropagation();
