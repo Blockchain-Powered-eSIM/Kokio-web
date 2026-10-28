@@ -170,32 +170,6 @@
   padding: 0 clamp(20px, 5vw, 32px);
 }
 
-/* ---- testnet notice banner, above the /live hero ---- */
-.kokio-live .testnet-banner {
-  background: var(--chrome-danger-soft);
-  border-bottom: 1px solid var(--chrome-danger-border);
-}
-.kokio-live .testnet-banner .wrap {
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-.kokio-live .testnet-banner p {
-  max-width: 760px;
-  margin: 0 auto;
-  font-family: var(--live-font-anybody), sans-serif;
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--chrome-ink);
-  text-align: center;
-}
-.kokio-live .testnet-banner strong {
-  display: block;
-  margin-top: 6px;
-  font-size: 1.5em;
-  font-weight: 700;
-  color: var(--chrome-danger);
-}
-
 .kokio-live .masthead {
   padding: 56px 0 32px;
   border-bottom: 1px solid var(--chrome-border);
