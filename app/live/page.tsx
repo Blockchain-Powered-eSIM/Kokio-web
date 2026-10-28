@@ -5,7 +5,7 @@ import {
 } from "@/components/live/theme-context";
 import { FlowProvider } from "@/components/live/flow-context";
 import { LiveHero, IOS_URL, ANDROID_URL } from "@/components/live/hero";
-import { TestnetBanner } from "@/components/live/testnet-banner";
+import { MainnetBanner } from "@/components/live/mainnet-banner";
 import { SectionRail } from "@/components/live/section-rail";
 import { StepSection } from "@/components/live/step-section";
 import {
@@ -47,7 +47,7 @@ export default function LivePage() {
     <LiveThemeProvider>
       <FlowProvider>
         <IconSprite />
-        <TestnetBanner />
+        <MainnetBanner />
         <LiveHero />
 
         <div className="controls-outer">
