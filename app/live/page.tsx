@@ -5,7 +5,7 @@ import {
 } from "@/components/live/theme-context";
 import { FlowProvider } from "@/components/live/flow-context";
 import { LiveHero, IOS_URL, ANDROID_URL } from "@/components/live/hero";
-import { TestnetBanner } from "@/components/live/testnet-banner";
+import { MainnetBanner } from "@/components/live/mainnet-banner";
 import { SectionRail } from "@/components/live/section-rail";
 import { StepSection } from "@/components/live/step-section";
 import {
@@ -14,7 +14,6 @@ import {
   SETTINGS_CONTACT,
   CLOSING_TIPS,
 } from "@/components/live/content";
-import { StepRail } from "@/components/live/step-rail";
 import { RichText } from "@/components/live/rich-text";
 import { ManifestoCTA } from "@/components/blog/manifesto-cta";
 import { StepAuthVisual } from "@/components/live/step-auth";
@@ -48,7 +47,7 @@ export default function LivePage() {
     <LiveThemeProvider>
       <FlowProvider>
         <IconSprite />
-        <TestnetBanner />
+        <MainnetBanner />
         <LiveHero />
 
         <div className="controls-outer">

@@ -161,14 +161,14 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           <TLDRBox items={post.tldr} />
         </div>
 
-        <div className="mt-10 lg:flex lg:items-start lg:justify-center lg:gap-4">
+        <div className="mt-10 lg:grid lg:grid-cols-[minmax(0,1fr)_42rem_minmax(0,1fr)] lg:items-start">
           {showToc ? (
-            <div className="hidden lg:sticky lg:top-24 lg:block lg:w-32 lg:shrink-0 lg:self-start">
+            <div className="hidden lg:sticky lg:top-24 lg:col-start-1 lg:row-start-1 lg:mr-4 lg:block lg:w-32 lg:justify-self-end lg:self-start">
               <TableOfContents headings={headings} />
             </div>
           ) : null}
 
-          <div className="prose mx-auto prose-headings:font-heading lg:mx-0 lg:w-[42rem] lg:shrink-0">
+          <div className="prose mx-auto prose-headings:font-heading lg:col-start-2 lg:row-start-1 lg:mx-0 lg:w-[42rem]">
             {content}
           </div>
         </div>

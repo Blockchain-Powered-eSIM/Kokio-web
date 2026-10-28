@@ -7,7 +7,7 @@ const Faqs = () => {
     <section
       id="faq"
       aria-labelledby="faq-heading"
-      className="container scroll-mt-24 px-4 md:px-8"
+      className="container max-w-screen-xl scroll-mt-24 px-4"
     >
       <div className="rounded-4xl bg-esim-black-950/60 px-8 py-10 md:rounded-[3.5rem] md:px-12 md:py-[5.5rem]">
         <h2
