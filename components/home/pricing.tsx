@@ -74,9 +74,7 @@ export function Pricing() {
                 />
               </div>
               <div className="flex flex-col gap-4">
-                <h3 className="text-4xl font-bold md:text-5xl">
-                  {shape.name}
-                </h3>
+                <h3 className="text-4xl font-bold md:text-5xl">{shape.name}</h3>
                 <p className="text-lg font-light">{shape.line}</p>
               </div>
             </div>

@@ -57,7 +57,8 @@ export const NavLinks = ({ onNavigate }: { onNavigate?: boolean }) => (
 
 const NavBar = () => {
   const pathname = usePathname();
-  if (pathname?.startsWith("/manifesto") || pathname?.startsWith("/live")) return null;
+  if (pathname?.startsWith("/manifesto") || pathname?.startsWith("/live"))
+    return null;
 
   return (
     <div className="container flex w-full max-w-[1017px] justify-center px-4 pt-10 md:px-8 lg:px-0 lg:pt-[4.5rem]">
@@ -81,7 +82,10 @@ const NavBar = () => {
         </div>
 
         <Dialog>
-          <DialogTrigger className="-m-2.5 p-2.5 md:hidden" aria-label="Open menu">
+          <DialogTrigger
+            className="-m-2.5 p-2.5 md:hidden"
+            aria-label="Open menu"
+          >
             <Menu />
           </DialogTrigger>
           <DialogContent className="top-4 max-h-[calc(100dvh-2rem)] w-11/12 translate-y-0 overflow-y-auto rounded-4xl bg-ship-cove-50">

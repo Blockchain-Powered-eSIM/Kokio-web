@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 import { CTA_LABEL, LIVE_NOTICE } from "@/lib/site-copy";
 
 const AnnouncementBanner = () => {
-
   const pathname = usePathname();
   if (pathname?.startsWith("/live")) return null;
 

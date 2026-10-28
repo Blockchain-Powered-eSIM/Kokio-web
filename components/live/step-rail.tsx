@@ -26,7 +26,8 @@ export function StepRail({ items }: { items: readonly RailItem[] }) {
       let current = items[0][0];
       for (const [id] of items) {
         const el = document.getElementById(`step-${id}`);
-        if (el && el.getBoundingClientRect().top <= barHeight + 40) current = id;
+        if (el && el.getBoundingClientRect().top <= barHeight + 40)
+          current = id;
       }
       setActive(current);
     };
@@ -56,7 +57,11 @@ export function StepRail({ items }: { items: readonly RailItem[] }) {
   return (
     <nav className="rail" ref={railRef} aria-label="Guide steps">
       {items.map(([id, label]) => (
-        <a key={id} href={`#step-${id}`} aria-current={active === id ? "step" : undefined}>
+        <a
+          key={id}
+          href={`#step-${id}`}
+          aria-current={active === id ? "step" : undefined}
+        >
           {label}
         </a>
       ))}

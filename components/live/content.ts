@@ -15,8 +15,13 @@ export const HERO = {
   contactLinkText: "reach out",
   contactHref: TELEGRAM_URL,
   guideHeading: "Interactive Usage Guide",
-  guideLead: "Flip the theme, tap around and explore this simulation of the Kokio app.",
+  guideLead:
+    "Flip the theme, tap around and explore this simulation of the Kokio app.",
 };
+
+// Shown above everything else on /live until mainnet launch — see TestnetBanner.
+export const TESTNET_NOTICE =
+  "Kokio is currently running on a test network with real eSIMs and data bundles. Your wallet and passkey will be reset when we launch on mainnet. **The eSIMs installed will keep on working till the data is exhausted.**";
 
 export type StepContent = {
   id: string;
@@ -31,7 +36,8 @@ export type StepContent = {
 };
 
 // Shown beside step 2's phone mock.
-export const SHOP_EXAMPLE_CAPTION = "Example pricing, not current. Real prices are in the app.";
+export const SHOP_EXAMPLE_CAPTION =
+  "Example pricing, not current. Real prices are in the app.";
 
 export const STEPS: StepContent[] = [
   {
@@ -125,7 +131,7 @@ export const STEPS: StepContent[] = [
       "The Orders tab shows the install status too, any time you want to check.",
     ],
     callout: {
-      text: 'Kokio **does not store** any personal info, so it cannot email or message you this QR. Share it to yourself through a channel you can open and scan, like messaging it to another device.',
+      text: "Kokio **does not store** any personal info, so it cannot email or message you this QR. Share it to yourself through a channel you can open and scan, like messaging it to another device.",
     },
     tryHint: "Switch tabs, or tap Copy.",
   },
@@ -188,10 +194,20 @@ export const SETTINGS_ABOUT = {
   },
   privacyLine:
     "Built with privacy first, friendly and practical design for the digital well-being and connectivity freedom of mobile users worldwide.",
-  website: { text: "Our website ", linkLabel: "kokio.app", href: "https://kokio.app" },
+  website: {
+    text: "Our website ",
+    linkLabel: "kokio.app",
+    href: "https://kokio.app",
+  },
   socials: [
-    { label: "Follow us: @kokiodotapp on X", href: "https://x.com/kokiodotapp" },
-    { label: "Follow us: @kokiodotapp on Instagram", href: "https://instagram.com/kokiodotapp" },
+    {
+      label: "Follow us: @kokiodotapp on X",
+      href: "https://x.com/kokiodotapp",
+    },
+    {
+      label: "Follow us: @kokiodotapp on Instagram",
+      href: "https://instagram.com/kokiodotapp",
+    },
   ],
 };
 

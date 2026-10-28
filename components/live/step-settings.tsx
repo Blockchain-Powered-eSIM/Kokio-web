@@ -96,10 +96,17 @@ export function StepSettingsVisual() {
         onClick={() => {
           if ("href" in item && item.href) {
             window.open(item.href, "_blank", "noopener");
-          } else if ("view" in item && (item.view === "about" || item.view === "contact" || item.view === "delete")) {
+          } else if (
+            "view" in item &&
+            (item.view === "about" ||
+              item.view === "contact" ||
+              item.view === "delete")
+          ) {
             setPanel(item.view);
           } else if ("view" in item && item.view === "logout") {
-            document.getElementById("step-auth")?.scrollIntoView({ behavior: "smooth" });
+            document
+              .getElementById("step-auth")
+              ?.scrollIntoView({ behavior: "smooth" });
           }
         }}
         style={{
@@ -188,18 +195,38 @@ export function StepSettingsVisual() {
           ))}
           <p style={ABOUT_TEXT_STYLE}>
             {SETTINGS_ABOUT.basedOn.text}
-            <a href={SETTINGS_ABOUT.basedOn.href} target="_blank" rel="noopener noreferrer" style={{ color: "var(--app-link)", textDecoration: "underline" }}>
+            <a
+              href={SETTINGS_ABOUT.basedOn.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--app-link)", textDecoration: "underline" }}
+            >
               {SETTINGS_ABOUT.basedOn.linkLabel}
             </a>
           </p>
           <p style={ABOUT_TEXT_STYLE}>{SETTINGS_ABOUT.privacyLine}</p>
           <p style={ABOUT_TEXT_STYLE}>
             {SETTINGS_ABOUT.website.text}
-            <a href={SETTINGS_ABOUT.website.href} target="_blank" rel="noopener noreferrer" style={{ color: "var(--app-link)", textDecoration: "underline" }}>
+            <a
+              href={SETTINGS_ABOUT.website.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--app-link)", textDecoration: "underline" }}
+            >
               {SETTINGS_ABOUT.website.linkLabel}
             </a>
           </p>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13.5, color: "var(--app-text)", opacity: 0.9, marginTop: 4 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              fontSize: 13.5,
+              color: "var(--app-text)",
+              opacity: 0.9,
+              marginTop: 4,
+            }}
+          >
             Follow us on socials
             <span style={{ display: "flex", gap: 8 }}>
               {SETTINGS_ABOUT.socials.map((s) => (
@@ -219,7 +246,10 @@ export function StepSettingsVisual() {
                     justifyContent: "center",
                   }}
                 >
-                  <Icon name="close" style={{ width: 14, height: 14, color: "var(--app-link)" }} />
+                  <Icon
+                    name="close"
+                    style={{ width: 14, height: 14, color: "var(--app-link)" }}
+                  />
                 </a>
               ))}
             </span>
@@ -238,27 +268,76 @@ export function StepSettingsVisual() {
             href={SETTINGS_CONTACT.telegram}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 14, padding: "14px 4px" }}
+            style={{
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              gap: 14,
+              padding: "14px 4px",
+            }}
           >
-            <Icon name="send" style={{ width: 22, height: 22, color: "#ffffff", flex: "none" }} />
-            <span style={{ flex: 1, fontSize: 14.5, fontWeight: 500, color: "var(--app-text)" }}>Telegram</span>
-            <Icon name="chev-fwd" style={{ width: 17, height: 17, color: "var(--app-icon)" }} />
+            <Icon
+              name="send"
+              style={{ width: 22, height: 22, color: "#ffffff", flex: "none" }}
+            />
+            <span
+              style={{
+                flex: 1,
+                fontSize: 14.5,
+                fontWeight: 500,
+                color: "var(--app-text)",
+              }}
+            >
+              Telegram
+            </span>
+            <Icon
+              name="chev-fwd"
+              style={{ width: 17, height: 17, color: "var(--app-icon)" }}
+            />
           </a>
         </div>
       )}
 
       {panel === "delete" && (
-        <div style={{ marginTop: 12, background: "var(--app-surface)", borderRadius: 20, padding: 20, fontSize: 13, lineHeight: 1.6, color: "var(--app-text)" }}>
-          <div style={{ fontSize: 20, fontWeight: 300, marginBottom: 10 }}>{DELETE_ACCOUNT.title}</div>
+        <div
+          style={{
+            marginTop: 12,
+            background: "var(--app-surface)",
+            borderRadius: 20,
+            padding: 20,
+            fontSize: 13,
+            lineHeight: 1.6,
+            color: "var(--app-text)",
+          }}
+        >
+          <div style={{ fontSize: 20, fontWeight: 300, marginBottom: 10 }}>
+            {DELETE_ACCOUNT.title}
+          </div>
           <p style={{ margin: "0 0 12px" }}>{DELETE_ACCOUNT.intro}</p>
-          <ul style={{ margin: "0 0 14px", paddingLeft: 16, color: "var(--app-foreground2)", fontSize: 12, lineHeight: 1.5 }}>
+          <ul
+            style={{
+              margin: "0 0 14px",
+              paddingLeft: 16,
+              color: "var(--app-foreground2)",
+              fontSize: 12,
+              lineHeight: 1.5,
+            }}
+          >
             {DELETE_ACCOUNT.bullets.map((b) => (
               <li key={b} style={{ marginBottom: 6 }}>
                 {b}
               </li>
             ))}
           </ul>
-          <div style={{ fontSize: 12, color: "var(--app-foreground2)", marginBottom: 8 }}>{DELETE_ACCOUNT.confirmLabel}</div>
+          <div
+            style={{
+              fontSize: 12,
+              color: "var(--app-foreground2)",
+              marginBottom: 8,
+            }}
+          >
+            {DELETE_ACCOUNT.confirmLabel}
+          </div>
           <input
             value={deleteInput}
             onChange={(e) => setDeleteInput(e.target.value.toUpperCase())}
@@ -277,7 +356,12 @@ export function StepSettingsVisual() {
             }}
           />
           <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
-            <button type="button" className="a-btn a-btn-fgborder" style={{ height: 48 }} onClick={resetDelete}>
+            <button
+              type="button"
+              className="a-btn a-btn-fgborder"
+              style={{ height: 48 }}
+              onClick={resetDelete}
+            >
               Cancel
             </button>
             <button
@@ -285,38 +369,84 @@ export function StepSettingsVisual() {
               className="a-btn"
               disabled={deleteInput.trim() !== "DELETE"}
               onClick={confirmDelete}
-              style={{ height: 48, background: "var(--app-destructive)", color: "#fff", opacity: deleteInput.trim() === "DELETE" ? 1 : 0.45 }}
+              style={{
+                height: 48,
+                background: "var(--app-destructive)",
+                color: "#fff",
+                opacity: deleteInput.trim() === "DELETE" ? 1 : 0.45,
+              }}
             >
               Delete account
             </button>
           </div>
-          <div className="a-muted" style={{ marginTop: 10, fontSize: 12, minHeight: 16 }}>
+          <div
+            className="a-muted"
+            style={{ marginTop: 10, fontSize: 12, minHeight: 16 }}
+          >
             {deleteStatus}
           </div>
         </div>
       )}
 
       {panel === "deleted" && (
-        <div style={{ marginTop: 12, background: "var(--app-surface)", borderRadius: 20, padding: 20, fontSize: 13, lineHeight: 1.6, color: "var(--app-text)" }}>
-          <div style={{ fontSize: 20, fontWeight: 300, marginBottom: 10 }}>{SETTINGS_DELETED.title}</div>
+        <div
+          style={{
+            marginTop: 12,
+            background: "var(--app-surface)",
+            borderRadius: 20,
+            padding: 20,
+            fontSize: 13,
+            lineHeight: 1.6,
+            color: "var(--app-text)",
+          }}
+        >
+          <div style={{ fontSize: 20, fontWeight: 300, marginBottom: 10 }}>
+            {SETTINGS_DELETED.title}
+          </div>
           {SETTINGS_DELETED.body.map((p) => (
             <p key={p} style={{ margin: "0 0 12px" }}>
               {p}
             </p>
           ))}
-          <ol style={{ margin: "0 0 12px", paddingLeft: 18, color: "var(--app-foreground2)", fontSize: 12, lineHeight: 1.6 }}>
+          <ol
+            style={{
+              margin: "0 0 12px",
+              paddingLeft: 18,
+              color: "var(--app-foreground2)",
+              fontSize: 12,
+              lineHeight: 1.6,
+            }}
+          >
             {SETTINGS_DELETED.steps.map((s) => (
               <li key={s} style={{ marginBottom: 4 }}>
                 {s}
               </li>
             ))}
           </ol>
-          <p style={{ margin: "0 0 4px", fontSize: 12, color: "var(--app-foreground2)" }}>{SETTINGS_DELETED.note}</p>
+          <p
+            style={{
+              margin: "0 0 4px",
+              fontSize: 12,
+              color: "var(--app-foreground2)",
+            }}
+          >
+            {SETTINGS_DELETED.note}
+          </p>
           <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
-            <button type="button" className="a-btn a-btn-fgborder" style={{ height: 48 }} onClick={resetDelete}>
+            <button
+              type="button"
+              className="a-btn a-btn-fgborder"
+              style={{ height: 48 }}
+              onClick={resetDelete}
+            >
               {SETTINGS_DELETED.openSettingsLabel}
             </button>
-            <button type="button" className="a-btn a-btn-highlight" style={{ height: 48 }} onClick={resetDelete}>
+            <button
+              type="button"
+              className="a-btn a-btn-highlight"
+              style={{ height: 48 }}
+              onClick={resetDelete}
+            >
               {SETTINGS_DELETED.doneLabel}
             </button>
           </div>

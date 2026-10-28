@@ -24,21 +24,16 @@ export function AppDownloadCTA() {
       />
       <div className="relative flex flex-col gap-3 bg-white/75 p-6 backdrop-blur-sm transition-colors group-hover:bg-white/65 md:p-8">
         <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-outer-space-950/70">
-          <Image
-            src={Logomark}
-            alt=""
-            aria-hidden="true"
-            className="h-4 w-4"
-          />
+          <Image src={Logomark} alt="" aria-hidden="true" className="h-4 w-4" />
           Kokio on iOS &amp; Android
         </span>
         <p className="font-heading text-lg font-bold text-outer-space-950 md:text-xl">
           Kokio is live.
         </p>
         <p className="max-w-md text-sm leading-relaxed text-outer-space-950/80 md:text-base">
-          Pick a plan that fits how you travel in over 200 countries. Pay
-          with crypto or card, no KYC, no data collection. Simple, private
-          and secure.
+          Pick a plan that fits how you travel in over 200 countries. Pay with
+          crypto or card, no KYC, no data collection. Simple, private and
+          secure.
         </p>
         <span className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-outer-space-950">
           {CTA_LABEL}

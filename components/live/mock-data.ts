@@ -21,15 +21,39 @@ export const PLANS: Record<PlanCategory, Plan[]> = {
   Regions: [
     { country: "Europe", flag: "🇪🇺", days: "10", gb: "8", price: "28.00" },
     { country: "Asia", flag: "🌏", days: "15", gb: "12", price: "35.00" },
-    { country: "North America", flag: "🌎", days: "7", gb: "6", price: "22.00" },
+    {
+      country: "North America",
+      flag: "🌎",
+      days: "7",
+      gb: "6",
+      price: "22.00",
+    },
   ],
   Global: [
     { country: "Global 5GB", flag: "🌐", days: "15", gb: "5", price: "26.00" },
-    { country: "Global 10GB", flag: "🌐", days: "30", gb: "10", price: "42.00" },
-    { country: "Global 20GB", flag: "🌐", days: "30", gb: "20", price: "58.00" },
+    {
+      country: "Global 10GB",
+      flag: "🌐",
+      days: "30",
+      gb: "10",
+      price: "42.00",
+    },
+    {
+      country: "Global 20GB",
+      flag: "🌐",
+      days: "30",
+      gb: "20",
+      price: "58.00",
+    },
   ],
   Special: [
-    { country: "Europe & Asia", flag: "✨", days: "20", gb: "15", price: "39.00" },
+    {
+      country: "Europe & Asia",
+      flag: "✨",
+      days: "20",
+      gb: "15",
+      price: "39.00",
+    },
   ],
 };
 
@@ -54,23 +78,83 @@ export type CountryPlan = { plan: Plan; network: string };
 export const COUNTRY_PLANS: Record<string, CountryPlan[]> = {
   JP: [
     { plan: PLANS.Countries[0], network: "NTT Docomo" },
-    { plan: { country: "Japan", flag: "🇯🇵", days: "15", gb: "10", price: "34.00" }, network: "SoftBank" },
+    {
+      plan: {
+        country: "Japan",
+        flag: "🇯🇵",
+        days: "15",
+        gb: "10",
+        price: "34.00",
+      },
+      network: "SoftBank",
+    },
   ],
   FR: [
     { plan: PLANS.Countries[1], network: "Orange" },
-    { plan: { country: "France", flag: "🇫🇷", days: "30", gb: "20", price: "48.00" }, network: "SFR" },
+    {
+      plan: {
+        country: "France",
+        flag: "🇫🇷",
+        days: "30",
+        gb: "20",
+        price: "48.00",
+      },
+      network: "SFR",
+    },
   ],
   BR: [
     { plan: PLANS.Countries[2], network: "Claro" },
-    { plan: { country: "Brazil", flag: "🇧🇷", days: "15", gb: "10", price: "30.00" }, network: "Vivo" },
+    {
+      plan: {
+        country: "Brazil",
+        flag: "🇧🇷",
+        days: "15",
+        gb: "10",
+        price: "30.00",
+      },
+      network: "Vivo",
+    },
   ],
 };
 
 // Extra plans loaded by "Show more plans".
 export const BACKUP_COUNTRY_PLANS: Record<string, CountryPlan[]> = {
-  JP: [{ plan: { country: "Japan", flag: "🇯🇵", days: "30", gb: "20", price: "52.00" }, network: "NTT Docomo" }],
-  FR: [{ plan: { country: "France", flag: "🇫🇷", days: "7", gb: "5", price: "19.00" }, network: "Orange" }],
-  BR: [{ plan: { country: "Brazil", flag: "🇧🇷", days: "7", gb: "5", price: "21.00" }, network: "Claro" }],
+  JP: [
+    {
+      plan: {
+        country: "Japan",
+        flag: "🇯🇵",
+        days: "30",
+        gb: "20",
+        price: "52.00",
+      },
+      network: "NTT Docomo",
+    },
+  ],
+  FR: [
+    {
+      plan: {
+        country: "France",
+        flag: "🇫🇷",
+        days: "7",
+        gb: "5",
+        price: "19.00",
+      },
+      network: "Orange",
+    },
+  ],
+  BR: [
+    {
+      plan: {
+        country: "Brazil",
+        flag: "🇧🇷",
+        days: "7",
+        gb: "5",
+        price: "21.00",
+      },
+      network: "Claro",
+    },
+  ],
 };
 
 // Plans per region.
@@ -120,7 +204,8 @@ export const TOPUP_CANDIDATES = [
   { esimId: "global-1", label: "Global · 30 Days · 10GB" },
 ];
 
-export type OrderStatus = "Processing" | "Provisioning" | "eSIM Ready" | "Completed";
+export type OrderStatus =
+  "Processing" | "Provisioning" | "eSIM Ready" | "Completed";
 
 export type Order = {
   id: string;
@@ -194,7 +279,9 @@ export const ORDERS: Order[] = [
     paymentMethod: "Kokio Wallet",
     supportRef: "KOK-30144",
     invoiceUrl: "#",
-    planHistory: [{ planId: "Japan 5GB / 7 days", validity: 7, purchaseDate: "2026-08-14" }],
+    planHistory: [
+      { planId: "Japan 5GB / 7 days", validity: 7, purchaseDate: "2026-08-14" },
+    ],
   },
 ];
 
@@ -212,8 +299,8 @@ export const HOME_ESIM_DETAIL = {
 };
 
 export const QR_PATTERN = [
-  1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1,
-  0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1,
+  1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0,
+  1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1,
 ];
 
 export const MANUAL_LPA = "LPA:1$rsp.example.net$A1B2-C3D4-E5F6-G7H8";

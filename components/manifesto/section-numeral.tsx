@@ -13,7 +13,7 @@ export function ManifestoHeading({ id, children, className, ...props }: Props) {
   return (
     <h2
       id={id}
-      className={cn("scroll-mt-24 flex items-center gap-3", className)}
+      className={cn("flex scroll-mt-24 items-center gap-3", className)}
       {...props}
     >
       {numeral ? (

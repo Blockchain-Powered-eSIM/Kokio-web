@@ -2,17 +2,33 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { Icon } from "@/components/live/icon-sprite";
-import { ORDERS, HOME_ESIM_DETAIL, type Order } from "@/components/live/mock-data";
+import {
+  ORDERS,
+  HOME_ESIM_DETAIL,
+  type Order,
+} from "@/components/live/mock-data";
 import { useFlow } from "@/components/live/flow-context";
 
 type CopyRow = { label: string; value: string; display?: string };
 
-function PurchaseDetailsSheet({ order, onClose }: { order: Order; onClose: () => void }) {
+function PurchaseDetailsSheet({
+  order,
+  onClose,
+}: {
+  order: Order;
+  onClose: () => void;
+}) {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const rows: CopyRow[] = [];
   if (order.iccid) rows.push({ label: "ICCID", value: order.iccid });
-  if (order.supportRef) rows.push({ label: "Reference", value: order.supportRef });
-  if (order.lpa) rows.push({ label: "LPA String", value: order.lpa, display: "Install using this code in SIM settings" });
+  if (order.supportRef)
+    rows.push({ label: "Reference", value: order.supportRef });
+  if (order.lpa)
+    rows.push({
+      label: "LPA String",
+      value: order.lpa,
+      display: "Install using this code in SIM settings",
+    });
 
   function copy(key: string, value: string) {
     try {
@@ -57,8 +73,22 @@ function PurchaseDetailsSheet({ order, onClose }: { order: Order; onClose: () =>
           flexDirection: "column",
         }}
       >
-        <div style={{ display: "flex", justifyContent: "center", paddingTop: 12, paddingBottom: 4 }}>
-          <span style={{ width: 36, height: 4, borderRadius: 2, background: "var(--app-muted)" }} />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingTop: 12,
+            paddingBottom: 4,
+          }}
+        >
+          <span
+            style={{
+              width: 36,
+              height: 4,
+              borderRadius: 2,
+              background: "var(--app-muted)",
+            }}
+          />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, paddingTop: 8 }}>
           <span style={{ fontSize: 17, fontWeight: 600, color: "var(--app-card-fg)" }}>Purchase details</span>
@@ -84,39 +114,115 @@ function PurchaseDetailsSheet({ order, onClose }: { order: Order; onClose: () =>
               }}
             >
               <div style={{ flex: 1, marginRight: 12 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: ".03em", textTransform: "uppercase", color: "var(--app-inactive)", marginBottom: 3 }}>
+                <div
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: ".03em",
+                    textTransform: "uppercase",
+                    color: "var(--app-inactive)",
+                    marginBottom: 3,
+                  }}
+                >
                   {row.label}
                 </div>
-                <div style={{ fontSize: 13, color: "var(--app-card-fg)" }}>{row.display || row.value}</div>
+                <div style={{ fontSize: 13, color: "var(--app-card-fg)" }}>
+                  {row.display || row.value}
+                </div>
               </div>
               <Icon
                 name={copiedKey === row.label ? "check" : "copy"}
-                style={{ width: 18, height: 18, color: copiedKey === row.label ? "var(--app-success)" : "var(--app-muted-fg)", flex: "none" }}
+                style={{
+                  width: 18,
+                  height: 18,
+                  color:
+                    copiedKey === row.label
+                      ? "var(--app-success)"
+                      : "var(--app-muted-fg)",
+                  flex: "none",
+                }}
               />
             </button>
           ))}
           {order.paymentMethod && (
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 0", borderBottom: "1px solid var(--app-muted)" }}>
-              <span style={{ fontSize: 13, color: "var(--app-inactive)" }}>Payment Method</span>
-              <span style={{ fontSize: 13, fontWeight: 500, color: "var(--app-card-fg)" }}>{order.paymentMethod}</span>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "12px 0",
+                borderBottom: "1px solid var(--app-muted)",
+              }}
+            >
+              <span style={{ fontSize: 13, color: "var(--app-inactive)" }}>
+                Payment Method
+              </span>
+              <span
+                style={{
+                  fontSize: 13,
+                  fontWeight: 500,
+                  color: "var(--app-card-fg)",
+                }}
+              >
+                {order.paymentMethod}
+              </span>
             </div>
           )}
           {order.invoiceUrl && (
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 0", borderBottom: "1px solid var(--app-muted)" }}>
-              <span style={{ fontSize: 13, color: "var(--app-inactive)" }}>Invoice</span>
-              <span style={{ fontSize: 13, fontWeight: 500, color: "var(--app-link)" }}>View invoice →</span>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "12px 0",
+                borderBottom: "1px solid var(--app-muted)",
+              }}
+            >
+              <span style={{ fontSize: 13, color: "var(--app-inactive)" }}>
+                Invoice
+              </span>
+              <span
+                style={{
+                  fontSize: 13,
+                  fontWeight: 500,
+                  color: "var(--app-link)",
+                }}
+              >
+                View invoice →
+              </span>
             </div>
           )}
           {order.planHistory?.length ? (
             <>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: ".04em", textTransform: "uppercase", color: "var(--app-inactive)", marginTop: 16, marginBottom: 4 }}>
+              <div
+                style={{
+                  fontSize: 11,
+                  fontWeight: 700,
+                  letterSpacing: ".04em",
+                  textTransform: "uppercase",
+                  color: "var(--app-inactive)",
+                  marginTop: 16,
+                  marginBottom: 4,
+                }}
+              >
                 Plan History
               </div>
               {order.planHistory.map((entry) => (
-                <div key={entry.planId} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid var(--app-muted)" }}>
-                  <span style={{ fontSize: 13, color: "var(--app-card-fg)" }}>{entry.planId}</span>
+                <div
+                  key={entry.planId}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "8px 0",
+                    borderBottom: "1px solid var(--app-muted)",
+                  }}
+                >
+                  <span style={{ fontSize: 13, color: "var(--app-card-fg)" }}>
+                    {entry.planId}
+                  </span>
                   <span style={{ fontSize: 12, color: "var(--app-inactive)" }}>
-                    {entry.validity}d · {new Date(entry.purchaseDate).toLocaleDateString()}
+                    {entry.validity}d ·{" "}
+                    {new Date(entry.purchaseDate).toLocaleDateString()}
                   </span>
                 </div>
               ))}
@@ -149,7 +255,14 @@ function CardWrapTag({
       className="a-card-wrap"
       aria-expanded={expanded}
       onClick={onToggle}
-      style={{ all: "unset", position: "relative", width: "100%", display: "block", textAlign: "left", cursor: "pointer" }}
+      style={{
+        all: "unset",
+        position: "relative",
+        width: "100%",
+        display: "block",
+        textAlign: "left",
+        cursor: "pointer",
+      }}
     >
       {children}
     </button>
@@ -183,17 +296,26 @@ function OrdersTabView() {
         {orders.map((order) => {
           const expanded = openId === order.id;
           return (
-            <div key={order.id} style={{ cursor: order.expandable ? "pointer" : "default" }}>
+            <div
+              key={order.id}
+              style={{ cursor: order.expandable ? "pointer" : "default" }}
+            >
               <CardWrapTag
                 expandable={order.expandable}
                 expanded={expanded}
                 onToggle={() => setOpenId(expanded ? null : order.id)}
               >
-                <span className="a-flag" style={{ fontSize: 26, top: -6, right: 16 }}>
+                <span
+                  className="a-flag"
+                  style={{ fontSize: 26, top: -6, right: 16 }}
+                >
                   {order.flag}
                 </span>
                 <div className="esim-card">
-                  <div className="a-country" style={{ fontSize: 17, paddingRight: 56 }}>
+                  <div
+                    className="a-country"
+                    style={{ fontSize: 17, paddingRight: 56 }}
+                  >
                     {order.plan}
                   </div>
                   <div className="a-statrow">
@@ -221,15 +343,24 @@ function OrdersTabView() {
                   className="a-pill"
                   style={{
                     background: `color-mix(in srgb, ${order.pillTone === "warning" ? "var(--app-warning)" : "var(--app-success)"} 20%, transparent)`,
-                    color: order.pillTone === "warning" ? "var(--app-warning)" : "var(--app-success)",
+                    color:
+                      order.pillTone === "warning"
+                        ? "var(--app-warning)"
+                        : "var(--app-success)",
                   }}
                 >
                   {order.pill}
                 </span>
                 {order.expandable ? (
-                  <Icon name={expanded ? "chev-up" : "chev-down"} className="a-chevron" />
+                  <Icon
+                    name={expanded ? "chev-up" : "chev-down"}
+                    className="a-chevron"
+                  />
                 ) : order.note ? (
-                  <span className="a-muted" style={{ marginLeft: "auto", fontSize: 11 }}>
+                  <span
+                    className="a-muted"
+                    style={{ marginLeft: "auto", fontSize: 11 }}
+                  >
                     {order.note}
                   </span>
                 ) : null}
@@ -244,7 +375,9 @@ function OrdersTabView() {
                         style={{ flex: 1 }}
                         onClick={(e) => {
                           e.stopPropagation();
-                          document.getElementById("step-install")?.scrollIntoView({ behavior: "smooth" });
+                          document
+                            .getElementById("step-install")
+                            ?.scrollIntoView({ behavior: "smooth" });
                         }}
                       >
                         <Icon name="download" />
@@ -283,14 +416,23 @@ function OrdersTabView() {
           );
         })}
       </div>
-      {pdOrder && <PurchaseDetailsSheet order={pdOrder} onClose={() => setPdOrder(null)} />}
+      {pdOrder && (
+        <PurchaseDetailsSheet
+          order={pdOrder}
+          onClose={() => setPdOrder(null)}
+        />
+      )}
     </div>
   );
 }
 
 function HomeEsimDetailView() {
   const barColor =
-    HOME_ESIM_DETAIL.usedPct > 40 ? "var(--app-success)" : HOME_ESIM_DETAIL.usedPct > 15 ? "var(--app-warning)" : "var(--app-destructive)";
+    HOME_ESIM_DETAIL.usedPct > 40
+      ? "var(--app-success)"
+      : HOME_ESIM_DETAIL.usedPct > 15
+        ? "var(--app-warning)"
+        : "var(--app-destructive)";
   return (
     <div className="a-card-wrap">
       <span className="a-flag" style={{ fontSize: 26, top: -6, right: 16 }}>
@@ -317,7 +459,13 @@ function HomeEsimDetailView() {
           <span className="val">{HOME_ESIM_DETAIL.remaining}</span>
         </div>
         <div className="a-usage-track">
-          <div className="a-usage-fill" style={{ width: `${HOME_ESIM_DETAIL.usedPct}%`, background: barColor }} />
+          <div
+            className="a-usage-fill"
+            style={{
+              width: `${HOME_ESIM_DETAIL.usedPct}%`,
+              background: barColor,
+            }}
+          />
         </div>
         <div className="a-summary-row">
           <span className="lbl">Status</span>
@@ -345,12 +493,26 @@ export function StepOrdersVisual() {
       <div className="src-tag">Track your order</div>
       <div className="stage" style={{ position: "relative" }}>
         <div className="phone">
-          <div className="control-group" style={{ justifyContent: "center", margin: "0 0 14px" }}>
-            <div className="segmented" style={{ background: "var(--app-muted)" }}>
-              <button type="button" className={screen === "orders" ? "active" : ""} onClick={() => setScreen("orders")}>
+          <div
+            className="control-group"
+            style={{ justifyContent: "center", margin: "0 0 14px" }}
+          >
+            <div
+              className="segmented"
+              style={{ background: "var(--app-muted)" }}
+            >
+              <button
+                type="button"
+                className={screen === "orders" ? "active" : ""}
+                onClick={() => setScreen("orders")}
+              >
                 Orders tab
               </button>
-              <button type="button" className={screen === "detail" ? "active" : ""} onClick={() => setScreen("detail")}>
+              <button
+                type="button"
+                className={screen === "detail" ? "active" : ""}
+                onClick={() => setScreen("detail")}
+              >
                 Home · eSIM detail
               </button>
             </div>

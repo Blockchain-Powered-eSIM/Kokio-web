@@ -37,7 +37,7 @@ export const LIVE_NOTICE = `${PRODUCT_NAME} is live on iOS and Android.`;
 export const CTA_LABEL = "Try out the App today!";
 
 /** Date the /live page content last changed. Read by the sitemap. */
-export const LIVE_UPDATED = new Date("2026-10-20");
+export const LIVE_UPDATED = new Date("2026-10-23");
 
 /** Same claims, trimmed to fit a `<meta name="description">` without truncation. */
 export const META_DESCRIPTION =

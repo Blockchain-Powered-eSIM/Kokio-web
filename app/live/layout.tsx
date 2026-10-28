@@ -35,7 +35,9 @@ export const metadata: Metadata = {
 
 export default function LiveLayout({ children }: { children: ReactNode }) {
   return (
-    <div className={`${anybody.variable} ${lexend.variable} ${jetbrainsMono.variable}`}>
+    <div
+      className={`${anybody.variable} ${lexend.variable} ${jetbrainsMono.variable}`}
+    >
       {children}
     </div>
   );

@@ -4,7 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { DeviceFrame } from "@/components/live/device-frame";
 import { Icon } from "@/components/live/icon-sprite";
-import { CHECKOUT_RADIOS, PLANS, TOPUP_CANDIDATES } from "@/components/live/mock-data";
+import {
+  CHECKOUT_RADIOS,
+  PLANS,
+  TOPUP_CANDIDATES,
+} from "@/components/live/mock-data";
 import { useFlow } from "@/components/live/flow-context";
 
 type CouponState = "idle" | "validating" | "valid" | "applied";
@@ -61,9 +65,7 @@ export function StepCheckoutVisual() {
     timers.current.forEach(clearTimeout);
     if (upper.length === 8) {
       setCouponState("validating");
-      timers.current.push(
-        setTimeout(() => setCouponState("valid"), 700)
-      );
+      timers.current.push(setTimeout(() => setCouponState("valid"), 700));
     }
   }
 
@@ -89,7 +91,7 @@ export function StepCheckoutVisual() {
     if (!canPay) return;
     const target = TOPUP_CANDIDATES.find((r) => r.esimId === topupSelected);
     setPayStatus("Preparing your payment…");
-    
+
     const confirmLabel =
       selectedMethod === "wallet"
         ? "Confirm the payment…"
@@ -166,7 +168,10 @@ export function StepCheckoutVisual() {
         <div className="esim-card">
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <Icon name="chev-back" style={{ width: 18, height: 18 }} />
-            <div className="a-country" style={{ fontSize: 17, paddingRight: 56 }}>
+            <div
+              className="a-country"
+              style={{ fontSize: 17, paddingRight: 56 }}
+            >
               {plan.country}
             </div>
           </div>
@@ -184,7 +189,14 @@ export function StepCheckoutVisual() {
         <button
           type="button"
           onClick={() => setHeaderOpen((o) => !o)}
-          style={{ all: "unset", display: "flex", justifyContent: "center", padding: "10px 0", width: "100%", cursor: "pointer" }}
+          style={{
+            all: "unset",
+            display: "flex",
+            justifyContent: "center",
+            padding: "10px 0",
+            width: "100%",
+            cursor: "pointer",
+          }}
         >
           <span
             style={{
@@ -197,7 +209,14 @@ export function StepCheckoutVisual() {
               justifyContent: "center",
             }}
           >
-            <Icon name={headerOpen ? "chev-up" : "chev-down"} style={{ width: 12, height: 12, color: "var(--app-handle-arrow)" }} />
+            <Icon
+              name={headerOpen ? "chev-up" : "chev-down"}
+              style={{
+                width: 12,
+                height: 12,
+                color: "var(--app-handle-arrow)",
+              }}
+            />
           </span>
         </button>
         {headerOpen && (
@@ -212,8 +231,12 @@ export function StepCheckoutVisual() {
             </div>
             <div className="a-summary-row">
               <span className="lbl">Coverage</span>
-              <span className="val" style={{ display: "flex", alignItems: "center", gap: 3 }}>
-                1 country <Icon name="chev-fwd" style={{ width: 12, height: 12 }} />
+              <span
+                className="val"
+                style={{ display: "flex", alignItems: "center", gap: 3 }}
+              >
+                1 country{" "}
+                <Icon name="chev-fwd" style={{ width: 12, height: 12 }} />
               </span>
             </div>
             <div className="a-summary-row">
@@ -224,18 +247,32 @@ export function StepCheckoutVisual() {
         )}
       </div>
 
-      <div className="control-group" style={{ justifyContent: "center", margin: "0 0 14px" }}>
+      <div
+        className="control-group"
+        style={{ justifyContent: "center", margin: "0 0 14px" }}
+      >
         <div className="segmented" style={{ background: "var(--app-muted)" }}>
-          <button type="button" className={priorMode === "first" ? "active" : ""} onClick={() => handlePriorMode("first")}>
+          <button
+            type="button"
+            className={priorMode === "first" ? "active" : ""}
+            onClick={() => handlePriorMode("first")}
+          >
             First eSIM
           </button>
-          <button type="button" className={priorMode === "existing" ? "active" : ""} onClick={() => handlePriorMode("existing")}>
+          <button
+            type="button"
+            className={priorMode === "existing" ? "active" : ""}
+            onClick={() => handlePriorMode("existing")}
+          >
             Top-up
           </button>
         </div>
       </div>
 
-      <div className="a-card" style={{ background: "var(--app-surface)", color: "var(--app-text)" }}>
+      <div
+        className="a-card"
+        style={{ background: "var(--app-surface)", color: "var(--app-text)" }}
+      >
         <div className="a-sublabel" style={{ marginTop: 0 }}>
           Payment Method
         </div>
@@ -403,7 +440,14 @@ export function StepCheckoutVisual() {
                       justifyContent: "center",
                     }}
                   >
-                    <Icon name="close" style={{ width: 11, height: 11, color: "var(--app-destructive)" }} />
+                    <Icon
+                      name="close"
+                      style={{
+                        width: 11,
+                        height: 11,
+                        color: "var(--app-destructive)",
+                      }}
+                    />
                   </button>
                 </>
               )}
@@ -415,8 +459,13 @@ export function StepCheckoutVisual() {
           <div style={{ marginTop: 16 }}>
             {topupChecking ? (
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span className="a-spinner" style={{ color: "var(--app-foreground2)" }} />
-                <span style={{ fontSize: 13, color: "var(--app-foreground2)" }}>Checking top-up compatibility…</span>
+                <span
+                  className="a-spinner"
+                  style={{ color: "var(--app-foreground2)" }}
+                />
+                <span style={{ fontSize: 13, color: "var(--app-foreground2)" }}>
+                  Checking top-up compatibility…
+                </span>
               </div>
             ) : (
               <div>
@@ -550,7 +599,15 @@ export function StepCheckoutVisual() {
         >
           Pay ${total} USD
         </button>
-        <div className="a-muted" style={{ textAlign: "center", marginTop: 8, fontSize: 12, minHeight: 16 }}>
+        <div
+          className="a-muted"
+          style={{
+            textAlign: "center",
+            marginTop: 8,
+            fontSize: 12,
+            minHeight: 16,
+          }}
+        >
           {payStatus}
         </div>
       </div>

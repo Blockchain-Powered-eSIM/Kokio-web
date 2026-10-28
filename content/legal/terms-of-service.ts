@@ -47,7 +47,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `You must be at least 18 years old and legally capable of entering into a binding contract. You must not be located in, or a resident of, any jurisdiction where use of the Service or its features (including crypto-asset purchases) is prohibited, and you must not be subject to any applicable sanctions.`,
+          content: `You must be at least 18 years old and legally capable of entering into a binding contract. You must not be located in, or a resident of, any jurisdiction where use of the Service or its features (including payments in crypto-assets and the use of self-custodial wallets) is prohibited, and you must not be subject to any applicable sanctions.`,
         },
       ],
     },
@@ -85,12 +85,11 @@ export const termsOfService: LegalDocument = {
     // (Google Play declaration, MAS Payment Services Act exposure in Singapore).
     // Counsel must confirm it and add any MAS-required disclosures.
     //
-    // LEGAL REVIEW (Wallet and Blockchain Transactions, third paragraph, added for mainnet):
-    // The first paragraph says we do not control your assets. The third paragraph discloses the
-    // admin allowance (the service key can spend from an eSIM wallet up to a cap without a fresh
-    // signature), the pause and the upgrade delay. Counsel to decide whether the first paragraph
-    // still stands and whether the allowance amount should be stated. Engineering to confirm the
-    // default amount first: the mainnet checklist says $25 in section 1 and $100 in section 9.
+    // LEGAL REVIEW (Wallet and Blockchain Transactions, second paragraph, added for mainnet):
+    // Engineering, 2026-10-23: the registry gives each new eSIM wallet an admin allowance of
+    // legalConfig.adminAllowanceUsd (kokio-sdk docs/mobile/registry.md).
+    // The owner can change it only by calling the contract, the app has no control for it.
+    // The BFF does not use admin purchases. device-wallet payments are calls the user signs.
     {
       heading: "Wallet and Blockchain Transactions",
       blocks: [
@@ -98,9 +97,13 @@ export const termsOfService: LegalDocument = {
           type: "paragraph",
           content: `The Service provides a self-custodial wallet. You alone control it through your passkey; we do not hold, custody, or control your keys or assets. Blockchain transactions are irreversible and permanent. You are responsible for verifying transaction details before confirming. We are not liable for losses arising from irreversible on-chain transactions, network fees, blockchain congestion, protocol failures, or errors you make.`,
         },
+        // {
+        //   type: "paragraph",
+        //   content: `Two limits apply to that control. Each eSIM wallet created for your account lets Kokio's service key buy plans for that eSIM, paid from your wallet balance without a fresh signature from you, up to a total of US$${legalConfig.adminAllowanceUsd} per eSIM wallet; each such purchase reduces the remaining amount. This limit is recorded on-chain. The app does not currently use this ability or offer a way to change the limit. The protocol's smart contracts can also be paused by us in an emergency, which may temporarily stop purchases, and they can be upgraded by their administrators after a public delay of at least one day.`,
+        // },
         {
           type: "paragraph",
-          content: `Two limits apply to that control. To complete eSIM purchases and top-ups, an eSIM wallet created for your account lets Kokio's service key spend from that wallet, without a fresh signature from you, up to a capped allowance. The allowance is set on-chain and the wallet owner can change it. The protocol's smart contracts can also be paused by us in an emergency, which may temporarily stop purchases, and they can be upgraded by their administrators after a public delay.`,
+          content: `Only send assets on the Base network to your wallet address. Assets sent from another network, or sent by you to a wrong address, are generally lost and cannot be recovered by us. Tokens you add yourself are not reviewed or endorsed by Kokio. Balances and US dollar values shown in the app are estimates for information only. Contacts you save are stored only on your device and are not backed up by us.`,
         },
         {
           type: "paragraph",
@@ -114,7 +117,7 @@ export const termsOfService: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `Prices are shown in the app and may change. You may pay by supported methods, including card payments processed by Stripe, crypto purchases processed by MoonPay, and payments made directly from your Kokio wallet in supported stablecoins such as USDC, USDT, and DAI. Stripe and MoonPay are independent third parties; your use of their services is subject to their terms and privacy policies, and they may perform their own identity verification. Kokio does not receive or store your full payment credentials.`,
+          content: `Prices are shown in the app and may change. You may pay by supported methods, including card and Apple Pay payments processed by Stripe, crypto payments through MoonPay's checkout, and payments made directly from your Kokio wallet in supported stablecoins such as USDC, USDT, and DAI. Stripe and MoonPay are independent third parties, use of corresponding payment methods is subject to their respective terms and privacy policies, and they may perform their own identity verification. Kokio does not receive or store your full payment credentials.`,
         },
         {
           type: "paragraph",
@@ -154,6 +157,20 @@ export const termsOfService: LegalDocument = {
               {
                 type: "text",
                 value: ` eSIM profiles are provisioned by third-party providers. Availability, coverage, speeds, and "unlimited" or fair-use conditions are set by those providers and their partner networks and are not guaranteed by Kokio.`,
+              },
+            ],
+            [
+              { type: "strong", value: "Activation details:" },
+              {
+                type: "text",
+                value: ` the QR code and activation details of an eSIM allow anyone who holds them to install it. Keep them private, Kokio cannot recover an eSIM if it installed by someone else from the QR code or manual instructions.`,
+              },
+            ],
+            [
+              { type: "strong", value: "Installation:" },
+              {
+                type: "text",
+                value: ` most eSIMs can be installed only once. Removing an installed eSIM from your device may make it permanently unusable, and it will not be replaced or refunded.`,
               },
             ],
             [
@@ -197,6 +214,20 @@ export const termsOfService: LegalDocument = {
         {
           type: "paragraph",
           content: `You can cancel an order that has not been paid from within the app. Cancelling cannot be undone. If a payment for the order completes after you cancel, it is not matched to that order, no eSIM is assigned, and it is not refunded. Do not cancel an order while a payment is in progress. You are responsible for any funds lost by cancelling an order.`,
+        },
+        {
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              value: `To raise a problem with an order, contact us at `,
+            },
+            { type: "mail", email: legalConfig.generalContact },
+            {
+              type: "text",
+              value: ` with the order Reference shown in Purchase details. Whether a remedy is given, and its form (for example a refund to the original payment method, a transfer to the wallet you paid from, or store credit), is decided case by case, subject to applicable law.`,
+            },
+          ],
         },
       ],
     },

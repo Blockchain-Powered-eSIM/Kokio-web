@@ -60,7 +60,12 @@ function insertAfterSection(
   if (start === -1) return;
 
   const end = sectionEnd(children, start);
-  const marker: Element = { type: "element", tagName, properties: {}, children: [] };
+  const marker: Element = {
+    type: "element",
+    tagName,
+    properties: {},
+    children: [],
+  };
   children.splice(end, 0, marker);
 }
 

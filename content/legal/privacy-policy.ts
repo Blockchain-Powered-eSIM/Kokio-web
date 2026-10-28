@@ -19,6 +19,7 @@ export const privacyPolicy: LegalDocument = {
     // LEGAL REVIEW (Introduction):
     // Confirm the governing privacy regimes for launch countries.
     // If needed (e.g. Brazil LGPD, California CCPA/CPRA), add the corresponding disclosures and rights.
+    // Counsel to also confirm whether an EU/UK representative (GDPR Art. 27) is required.
     {
       heading: "Introduction",
       blocks: [
@@ -42,7 +43,7 @@ export const privacyPolicy: LegalDocument = {
         },
         {
           type: "paragraph",
-          content: `Authentication uses a device-bound passkey (WebAuthn/FIDO2) stored by your device's operating system or password manager. Your account is identified solely by a device wallet address — a blockchain address derived deterministically from your passkey's public-key coordinates and a server-generated value. This identifier is pseudonymous: on its own, and without a live authentication from your device, it cannot be linked to you as an individual, including by us.`,
+          content: `Authentication uses a device-bound passkey (WebAuthn/FIDO2) stored by your device's operating system or password manager. Your account is identified solely by a device wallet address — a blockchain address derived deterministically from your passkey's public-key coordinates and a server-generated value. This identifier is pseudonymous: on its own, and without a live authentication from your device, it cannot be linked to you as an individual, including by us. The exceptions are the card details described under Payment Data and anything you choose to send us when you contact support.`,
         },
         {
           type: "paragraph",
@@ -89,7 +90,7 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `When you register, we store a small record associated with your device wallet address, consisting of: the device wallet address, a device unique identifier, the public-key coordinates derived from your passkey, and a server-generated salt used in address derivation. We never receive or store your passkey's private key — it never leaves your device.`,
+              content: `When you register, we store a small record associated with your device wallet address, consisting of: the device wallet address, a device unique identifier, the public-key coordinates derived from your passkey, and a server-generated salt used in address derivation. Our authentication service also stores your passkey's credential identifier, public key, signature counter, and related technical metadata, and, while you are signed in, a hashed record of your session token bound to a key held on your device; session records expire automatically. We never receive or store your passkey's private key — it never leaves your device.`,
             },
           ],
         },
@@ -133,22 +134,30 @@ export const privacyPolicy: LegalDocument = {
             },
           ],
         },
+        // LEGAL REVIEW (Payment Data):
         {
           type: "subsection",
           heading: "Payment Data",
           blocks: [
             {
               type: "paragraph",
-              content: `We do not collect or store your card numbers, bank details, or crypto funding details. Payments are handled by third-party payment providers (see Section 6). For card payments, a customer reference is created with our payment processor; that reference is created without your name, email, or address. Payments made from your Kokio wallet are on-chain transactions (see On-Chain Data).`,
+              content: `We do not collect or store your card numbers, bank details, or crypto funding details. Payments are handled by third-party payment providers (see Section 6).`,
+            },
+            {
+              type: "paragraph",
+              content: `Every order is invoiced through Stripe. When you create an account, we create a Stripe customer record whose only reference to you is your device wallet address; it contains no name, email, or address. Stripe receives the plan, price, discounts, and payment status of each order, whichever payment method you use.`,
+            },
+            {
+              type: "paragraph",
+              content: `If you pay by card or Apple Pay, Stripe collects your card details, and the card's brand, last four digits, expiry date, and country are visible to us alongside your wallet address. If you use Apple Pay or Stripe Link, Stripe may also receive your name, email address, or phone number under its own terms; we do not request them.`,
+            },
+            {
+              type: "paragraph",
+              content: `If you pay through MoonPay's checkout, MoonPay receives your device wallet address and the order amount, and we receive the transaction hash of your payment, which links the wallet you paid from to your order. Payments made from your Kokio wallet are on-chain transactions (see On-Chain Data).`,
             },
           ],
         },
         // LEGAL REVIEW (On-Chain Data, device and eSIM identifiers):
-        // Engineering to confirm what the on-chain eSIM identifier is made from. The BFF spec says it is
-        // derived from the device ID and the ICCID, so it is not a random server ID. The mainnet checklist
-        // expected "never ICCID". ICCIDs are structured, so even a one-way derivation can be confirmed by
-        // guessing. If it can be, the sentence below and the "cannot be linked to you" claims in Our
-        // Privacy-First Design and Your Rights need to change.
         {
           type: "subsection",
           heading: "On-Chain Data",
@@ -156,6 +165,16 @@ export const privacyPolicy: LegalDocument = {
             {
               type: "paragraph",
               content: `Certain actions (wallet creation, purchases, payments and transfers from your wallet) are recorded on a public blockchain (Base). Blockchain records are public, permanent, and immutable. They contain a wallet address, transaction data, and identifiers derived from your device and your eSIMs, and cannot be altered or deleted by us or by anyone. Anyone who can link your wallet address to you, for example through an exchange or another service, can see its full public history.`,
+            },
+          ],
+        },
+        {
+          type: "subsection",
+          heading: "Support Communications",
+          blocks: [
+            {
+              type: "paragraph",
+              content: `You do not need to give us contact details to use the Service. If you contact support by email or Telegram, we receive your email address or Telegram account details and in addition to the details you send us. We use them only to respond to you and keep them for up to ${legalConfig.supportRetention} after your last message. To help us find an order without identifying yourself, include the order Reference shown in Purchase details.`,
             },
           ],
         },
@@ -169,7 +188,7 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `To operate and secure the Service we process limited technical data such as network requests (your IP address is used to apply rate limits and is not kept for that purpose), error and security logs, and a per-request correlation identifier. These are used for service operation, security, and fraud prevention, and the logs are configured to avoid containing personal identifiers.`,
+              content: `To operate and secure the Service we process limited technical data such as network requests, error and security logs, and a per-request correlation identifier. Your IP address is used to apply rate limits and is recorded in our security logs only when a rate limit is exceeded. Logs refer to your device wallet address but contain no name or contact details, are used for service operation, security, and fraud prevention, and are kept for ${legalConfig.logRetention}.`,
             },
           ],
         },
@@ -198,7 +217,7 @@ export const privacyPolicy: LegalDocument = {
               { type: "strong", value: "Legitimate interests:" },
               {
                 type: "text",
-                value: ` to secure the Service, prevent fraud and abuse, and maintain records; balanced against your rights.`,
+                value: ` to secure the Service, prevent fraud and abuse, respond to support requests, maintain records, and establish or defend legal claims; balanced against your rights.`,
               },
             ],
             [
@@ -218,9 +237,9 @@ export const privacyPolicy: LegalDocument = {
     },
 
     // LEGAL REVIEW (Third Parties and Sharing):
-    // Alchemy and Pimlico are now named below. The eSIM vendors and the cloud host are still named
-    // by category only. List them by name in a sub-processor annex if counsel suggests,
-    // and ensure DPAs are in place with each.
+    // Alchemy, Pimlico and Expo are named below.
+    // The eSIM vendors and the cloud host are still named by category only.
+    // List them by name in a sub-processor annex if counsel suggests, and ensure DPAs are in place with each.
     {
       heading: "Third Parties and Sharing",
       blocks: [
@@ -236,21 +255,28 @@ export const privacyPolicy: LegalDocument = {
               { type: "strong", value: "Payment providers" },
               {
                 type: "text",
-                value: ` — Stripe (FIAT payments) and MoonPay (Crypto purchases) process your payment independently as their own data controllers under their own privacy policies. MoonPay may perform its own identity verification (KYC) on you; that process and any data you provide to MoonPay are governed by MoonPay's policies, not ours.`,
+                value: ` — Stripe (invoicing for every order, and card and Apple Pay payments) and MoonPay (crypto payments through MoonPay's checkout) process payments under their own terms and privacy policies. MoonPay may perform its own identity verification (KYC) on you; that process and any data you provide to MoonPay are governed by MoonPay's policies, not ours.`,
               },
             ],
             [
               { type: "strong", value: "eSIM service providers / aggregators" },
               {
                 type: "text",
-                value: ` — provision eSIM profiles under their telecom licences and partner networks. We share only the technical details necessary to fulfil and manage your eSIM.`,
+                value: ` — provision eSIM profiles under their telecom licences and partner networks. We share only the technical details necessary to fulfil and manage your eSIM. When you use an eSIM, the mobile networks that carry your traffic process connection and location data under their own policies; we do not receive it.`,
               },
             ],
             [
               { type: "strong", value: "Blockchain infrastructure providers" },
               {
                 type: "text",
-                value: ` — Alchemy (blockchain RPC, transaction fee sponsorship, and wallet activity notifications) and Pimlico (transaction bundling) receive wallet addresses and the blockchain transactions your wallet submits, acting as our processors under appropriate agreements.`,
+                value: ` — Alchemy (blockchain RPC, transaction fee sponsorship, and wallet activity notifications) and Pimlico (transaction bundling) receive wallet addresses and the blockchain transactions your wallet submits, acting as our processors under appropriate agreements. The app connects to them directly from your device, so they also receive your IP address.`,
+              },
+            ],
+            [
+              { type: "strong", value: "App infrastructure" },
+              {
+                type: "text",
+                value: ` — Expo, our app update service, receives your IP address, device platform, app version, and a random installation identifier when the app checks for updates. Images such as country flags are loaded from content delivery networks, which receive your IP address.`,
               },
             ],
             [
@@ -290,14 +316,14 @@ export const privacyPolicy: LegalDocument = {
     },
 
     // LEGAL REVIEW (Data Retention):
-    // Set the concrete retention period (e.g. [N] years) required under Singapore accounting/tax law
-    // and any AML obligations, and state it here.
+    // Counsel, 2026-10: the wording without a figure is sufficient; where a period is stated it is
+    // legalConfig.retentionYears, covering Singapore limitation periods for corporate and civil matters.
     {
       heading: "Data Retention",
       blocks: [
         {
           type: "paragraph",
-          content: `We keep data only as long as necessary. Account and credential data are retained while your account exists, and afterwards in closed form as described under Account Deletion. Order, eSIM, payment, referral, and store-credit records are retained for the period required to meet financial, accounting, tax, and audit obligations, even after account deletion, in pseudonymised form that contains no personal identifier and cannot be linked back to you.`,
+          content: `We keep data only as long as necessary. Account and credential data are retained while your account exists, and afterwards in closed form as described under Account Deletion. Order, eSIM, payment, referral, and store-credit records are retained for up to ${legalConfig.retentionYears} years to meet financial, accounting, tax, and audit obligations and to deal with legal claims, even after account deletion, in pseudonymised form that contains no personal identifier and cannot be linked back to you from our own records. Server logs are kept for ${legalConfig.logRetention}, and support communications for up to ${legalConfig.supportRetention} after your last message.`,
         },
       ],
     },
@@ -316,16 +342,16 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `Open the Kokio app, go to Settings, and select "Delete Account". You will be asked to type DELETE and to confirm with your passkey. Deletion is immediate and irreversible.`,
+              content: `Open the Kokio app, go to Settings, and select "Delete Account". You will be asked to type DELETE and, if you have not signed in recently, to confirm with your passkey. Deletion is immediate and irreversible.`,
             },
           ],
         },
         // LEGAL REVIEW (Account Deletion, what is deleted and retained):
-        // The previous text said the account record, credential material and payment-processor
-        // reference were permanently removed. The BFF spec says deletion is a soft delete: the account
-        // is flagged closed and refuses every request, and nothing is erased. The text below follows
-        // the spec. Engineering to confirm it is accurate, and counsel to check it against GDPR
-        // erasure and the PDPA retention exceptions, since closed records may still be personal data.
+        // Engineering, 2026-10-23: confirmed. Deletion flags the account closed, excludes its eSIMs from
+        // status sync and removes the wallet from activity tracking; nothing is erased. The authentication
+        // service is not told about deletions, so its credential records are retained too.
+        // Counsel to check against GDPR erasure and the PDPA retention exceptions, since closed records
+        // may still be personal data.
         {
           type: "subsection",
           heading: "What is deleted",
@@ -342,7 +368,7 @@ export const privacyPolicy: LegalDocument = {
           blocks: [
             {
               type: "paragraph",
-              content: `Your closed account record, including the credential material derived from your passkey (public-key coordinates, salt, and device identifier) and your payment-processor customer reference, stays on our systems, along with your order, eSIM, payment, referral, and store-credit records and your wallet activity history (which is no longer updated). The account record is the link those records depend on to meet financial and audit obligations for the required period. None of it contains a name, email, address, or other personal identifier, and without your passkey it cannot be linked back to you.`,
+              content: `Your closed account record, including the credential material derived from your passkey (public-key coordinates, salt, and device identifier), the passkey credential records held by our authentication service, and your payment-processor customer reference, stays on our systems, along with your order, eSIM, payment, referral, and store-credit records and your wallet activity history (which is no longer updated). The account record is the link those records depend on to meet financial and audit obligations for the required period. None of it contains a name, email, address, or other personal identifier, and without your passkey it cannot be linked back to you from our own records.`,
             },
           ],
         },
@@ -396,7 +422,7 @@ export const privacyPolicy: LegalDocument = {
       blocks: [
         {
           type: "paragraph",
-          content: `Subject to applicable law and the limits imposed by our privacy-first design, you may have rights to access, correct, delete, restrict, or object to the processing of your personal data, to data portability, and to withdraw consent. Because we hold no data that identifies you, and cannot re-identify you from a wallet address without a live authentication from your device, our practical ability to action some requests is limited to what you can perform in-app via your passkey.`,
+          content: `Subject to applicable law and the limits imposed by our privacy-first design, you may have rights to access, correct, delete, restrict, or object to the processing of your personal data, to data portability, and to withdraw consent. Because we hold no data that directly identifies you, and cannot re-identify you from a wallet address without a live authentication from your device, our practical ability to action some requests is limited to what you can perform in-app via your passkey.`,
         },
         {
           type: "paragraph",

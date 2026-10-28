@@ -21,7 +21,9 @@ export function StepAuthVisual() {
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
   function baseSubtext(m: Mode) {
-    return m === "returning" ? "Log in to continue" : "Choose how to get started";
+    return m === "returning"
+      ? "Log in to continue"
+      : "Choose how to get started";
   }
 
   function handleSwitchMode(m: Mode) {
@@ -46,12 +48,23 @@ export function StepAuthVisual() {
   return (
     <DeviceFrame sourceTag="Sign in">
       <div style={{ position: "relative", minHeight: 280 }}>
-        <div className="control-group" style={{ justifyContent: "center", margin: "0 0 18px" }}>
+        <div
+          className="control-group"
+          style={{ justifyContent: "center", margin: "0 0 18px" }}
+        >
           <div className="segmented" style={{ background: "var(--app-muted)" }}>
-            <button type="button" className={mode === "new" ? "active" : ""} onClick={() => handleSwitchMode("new")}>
+            <button
+              type="button"
+              className={mode === "new" ? "active" : ""}
+              onClick={() => handleSwitchMode("new")}
+            >
               Sign up
             </button>
-            <button type="button" className={mode === "returning" ? "active" : ""} onClick={() => handleSwitchMode("returning")}>
+            <button
+              type="button"
+              className={mode === "returning" ? "active" : ""}
+              onClick={() => handleSwitchMode("returning")}
+            >
               Sign in
             </button>
           </div>
@@ -67,21 +80,49 @@ export function StepAuthVisual() {
           <Image
             src={Logomark}
             alt="Kokio"
-            style={{ height: 52, width: "auto", display: "block", margin: "6px auto 14px" }}
+            style={{
+              height: 52,
+              width: "auto",
+              display: "block",
+              margin: "6px auto 14px",
+            }}
           />
-          <div style={{ textAlign: "center", fontSize: 19, fontWeight: 300, marginBottom: 4, color: "var(--app-text)" }}>
+          <div
+            style={{
+              textAlign: "center",
+              fontSize: 19,
+              fontWeight: 300,
+              marginBottom: 4,
+              color: "var(--app-text)",
+            }}
+          >
             Authentication Required
           </div>
-          <div style={{ textAlign: "center", marginBottom: 16, fontSize: 13, color: "var(--app-foreground2)" }}>
+          <div
+            style={{
+              textAlign: "center",
+              marginBottom: 16,
+              fontSize: 13,
+              color: "var(--app-foreground2)",
+            }}
+          >
             {subtext}
           </div>
 
           {mode !== "returning" ? (
             <div style={{ display: "flex", gap: 10, marginBottom: 6 }}>
-              <button type="button" className="a-btn a-btn-highlight" onClick={confirm}>
+              <button
+                type="button"
+                className="a-btn a-btn-highlight"
+                onClick={confirm}
+              >
                 New User
               </button>
-              <button type="button" className="a-btn a-btn-fgborder" onClick={confirm}>
+              <button
+                type="button"
+                className="a-btn a-btn-fgborder"
+                onClick={confirm}
+              >
                 Existing User
               </button>
             </div>
@@ -112,8 +153,18 @@ export function StepAuthVisual() {
             </button>
           </div>
         </div>
-        <div style={{ textAlign: "center", marginTop: 14, fontSize: 11.5, lineHeight: 1.6, color: "var(--app-foreground2)" }}>
-          <strong style={{ color: "var(--app-text)", opacity: 0.8 }}>No account recovery without a synced passkey.</strong>
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: 14,
+            fontSize: 11.5,
+            lineHeight: 1.6,
+            color: "var(--app-foreground2)",
+          }}
+        >
+          <strong style={{ color: "var(--app-text)", opacity: 0.8 }}>
+            No account recovery without a synced passkey.
+          </strong>
           <br />
           Losing the passkey itself means losing access.
         </div>

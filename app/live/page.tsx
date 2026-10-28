@@ -1,11 +1,19 @@
 import { IconSprite } from "@/components/live/icon-sprite";
-import { LiveThemeProvider, ThemeToggle } from "@/components/live/theme-context";
+import {
+  LiveThemeProvider,
+  ThemeToggle,
+} from "@/components/live/theme-context";
 import { FlowProvider } from "@/components/live/flow-context";
 import { LiveHero, IOS_URL, ANDROID_URL } from "@/components/live/hero";
-import { MainnetBanner } from "@/components/live/mainnet-banner";
+import { TestnetBanner } from "@/components/live/testnet-banner";
+import { SectionRail } from "@/components/live/section-rail";
 import { StepSection } from "@/components/live/step-section";
-import { STEPS, SETTINGS_ABOUT, SETTINGS_CONTACT, CLOSING_TIPS } from "@/components/live/content";
-import { StepRail } from "@/components/live/step-rail";
+import {
+  STEPS,
+  SETTINGS_ABOUT,
+  SETTINGS_CONTACT,
+  CLOSING_TIPS,
+} from "@/components/live/content";
 import { RichText } from "@/components/live/rich-text";
 import { ManifestoCTA } from "@/components/blog/manifesto-cta";
 import { StepAuthVisual } from "@/components/live/step-auth";
@@ -34,28 +42,18 @@ const STEP_TRY_HINT_ICONS: Partial<Record<string, string>> = {
   install: "copy",
 };
 
-const RAIL_LABELS = [
-  ["auth", "01 · Start"],
-  ["shop", "02 · Browse"],
-  ["checkout", "03 · Checkout"],
-  ["orders", "04 · Orders"],
-  ["install", "05 · Install"],
-  ["wallet", "06 · Wallet"],
-  ["settings", "07 · Settings"],
-] as const;
-
 export default function LivePage() {
   return (
     <LiveThemeProvider>
       <FlowProvider>
         <IconSprite />
-        <MainnetBanner />
+        <TestnetBanner />
         <LiveHero />
 
         <div className="controls-outer">
           <div className="controls">
             <ThemeToggle />
-            <StepRail items={RAIL_LABELS} />
+            <SectionRail />
           </div>
         </div>
 
@@ -63,7 +61,11 @@ export default function LivePage() {
           {STEPS.map((step) => {
             const Visual = STEP_VISUALS[step.id];
             return (
-              <StepSection key={step.id} step={step} tryHintIcon={STEP_TRY_HINT_ICONS[step.id]}>
+              <StepSection
+                key={step.id}
+                step={step}
+                tryHintIcon={STEP_TRY_HINT_ICONS[step.id]}
+              >
                 <Visual />
               </StepSection>
             );
@@ -90,19 +92,39 @@ export default function LivePage() {
 
         <footer className="page-footer">
           Try it out, let us know your feedback over comments in the{" "}
-          <a href={IOS_URL} target="_blank" rel="noopener noreferrer" className="footer-link">
+          <a
+            href={IOS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-link"
+          >
             App Store
           </a>{" "}
           or{" "}
-          <a href={ANDROID_URL} target="_blank" rel="noopener noreferrer" className="footer-link">
+          <a
+            href={ANDROID_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-link"
+          >
             Play Store
           </a>
           , or tag us on X using{" "}
-          <a href={SETTINGS_ABOUT.socials[0].href} target="_blank" rel="noopener noreferrer" className="footer-link">
+          <a
+            href={SETTINGS_ABOUT.socials[0].href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-link"
+          >
             @kokiodotapp
           </a>
           , or directly in the{" "}
-          <a href={SETTINGS_CONTACT.telegram} target="_blank" rel="noopener noreferrer" className="footer-link">
+          <a
+            href={SETTINGS_CONTACT.telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-link"
+          >
             Telegram group
           </a>
           .
