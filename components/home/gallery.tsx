@@ -37,7 +37,7 @@ function GalleryItem({ tile }: { tile: GalleryTile }) {
           alt=""
           fill
           sizes="(min-width: 640px) 240px, 160px"
-          className="object-cover motion-safe:transition-transform motion-safe:duration-150 motion-safe:group-hover:scale-105"
+          className={`${tile.fit === "contain" ? "object-contain" : "object-cover"} motion-safe:transition-transform motion-safe:duration-150 motion-safe:group-hover:scale-105`}
         />
       </a>
     </li>
