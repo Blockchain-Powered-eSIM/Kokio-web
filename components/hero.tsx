@@ -23,7 +23,7 @@ const Hero = () => {
         </h1>
         <p className="text-xl font-light lg:leading-7">
           Kokio is a travel eSIM app. Buy data in over 200 destinations with a
-          card, Apple Pay, Google Pay or stablecoins. Install it at home before
+          card, Apple Pay, Google Pay or crypto. Install it at home before
           you fly, then activate on arrival. You sign in with a biometric that
           lives securely on your device, and we never ask for your name, email
           or ID, or collect any personal information.

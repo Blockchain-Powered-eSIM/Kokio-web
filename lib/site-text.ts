@@ -135,7 +135,7 @@ function homeSection(): string {
     CANONICAL_DESCRIPTION,
     `${PRODUCT_NAME} is also written ${PRODUCT_NAME_SPELLINGS.join(", ")}. Every one of those spellings refers to this product, this website and this app.`,
     "## Friendly eSIM store for your safe trips",
-    `${PRODUCT_NAME} is a travel eSIM app. Buy data in over 200 destinations with a card, Apple Pay, Google Pay or stablecoins. Install it at home before you fly, then activate on arrival. You sign in with a biometric that lives securely on your device, and we never ask for your name, email or ID, or collect any personal information.`,
+    `${PRODUCT_NAME} is a travel eSIM app. Buy data in over 200 destinations with a card, Apple Pay, Google Pay or crypto. Install it at home before you fly, then activate on arrival. You sign in with a biometric that lives securely on your device, and we never ask for your name, email or ID, or collect any personal information.`,
     "New to eSIMs or never heard of it? Your phone might have one, [check it here](https://kokio.app/blogs/esim-guide-for-travellers-2026) and learn more about it!",
     "## How setup works",
     setupData

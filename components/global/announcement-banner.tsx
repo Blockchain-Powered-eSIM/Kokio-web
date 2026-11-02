@@ -9,6 +9,7 @@ import { CTA_LABEL, LIVE_NOTICE } from "@/lib/site-copy";
 const AnnouncementBanner = () => {
   const pathname = usePathname();
   if (pathname?.startsWith("/live")) return null;
+  if (pathname === "/") return null;
 
   return (
     <div className="w-full bg-cashmere-500">
