@@ -14,7 +14,7 @@ import {
 const BENEFITS = [
   {
     icon: "wallet",
-    title: "Pay in stablecoins (USDC and more)",
+    title: "Pay in crypto (USDC and more)",
     description: "No card fees, no foreign markup, no surprise declines",
   },
   {

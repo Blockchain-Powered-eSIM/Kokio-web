@@ -19,7 +19,7 @@ export const glossaryData: GlossaryTerm[] = [
     id: "kokio",
     term: PRODUCT_NAME,
     aliases: [...PRODUCT_NAME_SPELLINGS],
-    definition: `${PRODUCT_NAME} is a privacy-first travel eSIM app. It sells mobile data plans in over 200 destinations, paid for by card, Apple Pay, Google Pay or stablecoins, and asks for no identity documents and no personal information. The name is also written ${PRODUCT_NAME_SPELLINGS.join(", ")}, and every one of those spellings refers to this same product, website and app.`,
+    definition: `${PRODUCT_NAME} is a privacy-first travel eSIM app. It sells mobile data plans in over 200 destinations, paid for by card, Apple Pay, Google Pay or crypto, and asks for no identity documents and no personal information. The name is also written ${PRODUCT_NAME_SPELLINGS.join(", ")}, and every one of those spellings refers to this same product, website and app.`,
   },
   {
     id: "esim",
