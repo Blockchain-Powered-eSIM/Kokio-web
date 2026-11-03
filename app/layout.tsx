@@ -77,6 +77,8 @@ export default function RootLayout({
         <Script
           src="https://cloud.umami.is/script.js"
           data-website-id="3c17b647-ca55-4e77-8341-074deb1b95bf"
+          // Forks of this repo would otherwise report into our stats.
+          data-domains={new URL(siteConfig.url).hostname}
           strategy="afterInteractive"
         />
       </body>
