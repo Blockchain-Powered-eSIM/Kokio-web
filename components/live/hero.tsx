@@ -12,8 +12,10 @@ export const ANDROID_URL =
   "https://play.google.com/store/apps/details?id=app.kokio.mobile";
 
 function trackDownload(platform: "ios" | "android") {
-  const w = window as unknown as { _paq?: unknown[][] };
-  w._paq?.push(["trackEvent", "Live Page", "Download Click", platform]);
+  const w = window as unknown as {
+    umami?: { track: (event: string, data?: object) => void };
+  };
+  w.umami?.track("Download Click", { page: "Live Page", platform });
 }
 
 function HeroIconRow() {
