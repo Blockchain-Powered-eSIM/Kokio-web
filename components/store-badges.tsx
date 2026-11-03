@@ -5,8 +5,10 @@ import { ANDROID_URL, IOS_URL } from "@/components/live/hero";
 type Platform = "ios" | "android";
 
 function trackDownload(platform: Platform) {
-  const w = window as unknown as { _paq?: unknown[][] };
-  w._paq?.push(["trackEvent", "Home Page", "Download Click", platform]);
+  const w = window as unknown as {
+    umami?: { track: (event: string, data?: object) => void };
+  };
+  w.umami?.track("Download Click", { page: "Home Page", platform });
 }
 
 const badgeClass =
