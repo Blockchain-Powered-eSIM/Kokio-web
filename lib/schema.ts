@@ -85,6 +85,11 @@ const app = {
   applicationCategory: "TravelApplication",
   operatingSystem: "iOS, Android",
   url: siteConfig.url,
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
   publisher: { "@id": ORGANIZATION_ID },
   featureList: [
     "eSIM data plans in over 200 destinations",
