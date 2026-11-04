@@ -52,6 +52,7 @@ import {
   type RegionPage,
 } from "@/lib/esim/pages";
 import type { Faq, RegulatoryNote, SnapshotPlan } from "@/lib/esim/types";
+import { getAllHubs, type Hub } from "@/lib/hubs";
 
 /**
  * Every page of the site as markdown, keyed by the path it renders.
@@ -354,6 +355,15 @@ function countrySection(page: CountryPage): string {
   ].join("\n\n");
 }
 
+function hubSection(hub: Hub): string {
+  return [
+    `## ${hub.title}`,
+    hub.description,
+    mdxToText(hub.content),
+    ...faqText(hub.faqs),
+  ].join("\n\n");
+}
+
 function regionSection(page: RegionPage): string {
   const comparisons = page.content.routes
     .map((route) => compareRoute(route, page.offering))
@@ -397,6 +407,9 @@ export function pageSections(): Record<string, () => string> {
     "/manifesto": manifestoSection,
     "/glossary": glossarySection,
     "/esim": esimIndexSection,
+    ...Object.fromEntries(
+      getAllHubs().map((hub) => [hub.path, () => hubSection(hub)])
+    ),
     ...Object.fromEntries(esimPages),
     "/terms-of-service": () => legalDocumentToText(termsOfService),
     "/privacy-policy": () => legalDocumentToText(privacyPolicy),
