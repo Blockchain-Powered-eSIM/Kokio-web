@@ -92,3 +92,14 @@ export function indexPageGraph(path: string, crumbs: Crumb[]) {
     "@graph": [breadcrumbs(path, crumbs)],
   };
 }
+
+/** Graph for a hand-written topic page such as /no-kyc-esim: where it sits, and its FAQ. */
+export function topicPageGraph(path: string, crumbs: Crumb[], faqs: Faq[]) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbs(path, crumbs),
+      ...(faqs.length ? [faqPage(path, faqs)] : []),
+    ],
+  };
+}
