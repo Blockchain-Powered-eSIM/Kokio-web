@@ -25,6 +25,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# raw catalogue exports; only data/catalogue.snapshot.json is committed
+/data/raw/
+
 # local env files
 .env*.local
 
