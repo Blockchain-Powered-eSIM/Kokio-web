@@ -33,6 +33,12 @@ const NOT_INDEXED = {
     "payment callback, noindex, meaningless without the transaction",
 };
 
+/**
+ * Routes the quality gate can hold back entirely, so having no sitemap entry is
+ * allowed. Each page joins the sitemap on its own once it passes.
+ */
+const GATED_ROUTES = new Set(["/esim/[country]", "/esim/region/[region]"]);
+
 /** Routes with no prerendered output to look at. Not a gap, just not static. */
 const DYNAMIC_ROUTES = new Set(["/blogs/rss.xml"]);
 
@@ -121,7 +127,7 @@ const robots = read("robots.txt.body");
 
 // 1. Every page is either in the sitemap or explicitly excluded.
 for (const route of pageRoutes) {
-  if (route in NOT_INDEXED) continue;
+  if (route in NOT_INDEXED || GATED_ROUTES.has(route)) continue;
 
   const covered = route.includes("[")
     ? sitemapPaths.some((pathname) => routeToPattern(route).test(pathname))
