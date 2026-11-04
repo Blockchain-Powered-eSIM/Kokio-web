@@ -22,7 +22,7 @@ import {
 import { PRODUCT_NAME } from "@/lib/site-copy";
 
 export const PAYMENTS_LINE =
-  "Pay by card, Apple Pay, Google Pay, PayPal, or crypto (USDC, USDT or DAI from a Kokio Wallet on Base, or other coins via MoonPay). Plan prices are the same for every payment method. Payment processor fees are extra, and paying from a Kokio Wallet adds none.";
+  "Pay by card, Apple Pay, Google Pay, PayPal, or crypto (USDC, USDT or DAI from a Kokio Wallet on Base, or other coins via MoonPay). The plan price is the same whichever way you pay, because Kokio covers the payment processing fees.";
 
 export const NO_ID_LINE =
   "Kokio asks for no ID at all: you sign in with a passkey, and we never collect your name or email.";
