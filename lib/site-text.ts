@@ -35,6 +35,7 @@ import {
   memberNames,
   NO_ID_LINE,
   PAYMENTS_LINE,
+  INDEX_PRICE_NOTE,
   PRICES_AS_OF,
   regionAlternative,
   regionAnswer,
@@ -310,7 +311,7 @@ function esimIndexSection(): string {
         return `- ${name} from ${formatUsd(country.fromUsd)}`;
       })
       .join("\n"),
-    PRICES_AS_OF,
+    INDEX_PRICE_NOTE,
   ].join("\n\n");
 }
 

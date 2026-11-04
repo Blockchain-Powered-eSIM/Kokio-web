@@ -32,6 +32,10 @@ export const ROAMING_LINE =
 
 export const PRICES_AS_OF = `Prices as of ${formatDay(SNAPSHOT_DATE)}. The app always shows the current price.`;
 
+/** Shown under the /esim list, which carries one starting price per country. */
+export const INDEX_PRICE_NOTE =
+  "Prices can change. Install the app to see today's price and every plan for your trip.";
+
 export const GUIDE_PATH = "/blogs/esim-guide-for-travellers-2026";
 
 export function networkGenerations(page: CountryPage): string {
