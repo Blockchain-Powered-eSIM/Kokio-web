@@ -1,6 +1,7 @@
 import { siteConfig, TWITTER_URL } from "@/config/site";
 import { legalConfig } from "@/config/legal";
 import { getAllPosts } from "@/lib/blog";
+import { getAllHubs } from "@/lib/hubs";
 import {
   CANONICAL_DESCRIPTION,
   PRODUCT_NAME,
@@ -35,6 +36,10 @@ ${PRODUCT_NAME} is also written ${PRODUCT_NAME_SPELLINGS.join(", ")}. Every one 
 ${link("Home", "/", "what Kokio is, how setup works, features, and the FAQ")}
 ${link("Manifesto", "/manifesto", "why Kokio treats connectivity as a right and privacy as its guardian")}
 ${link("Glossary", "/glossary", "eSIM, eUICC, SM-DP+, LPA, passkey, smart wallet and no-KYC defined")}
+${link("Destinations", "/esim", "every destination with its starting price")}
+${getAllHubs()
+  .map((hub) => link(hub.title, hub.path, hub.description))
+  .join("\n")}
 
 ## Guides
 ${posts.map((post) => link(post.title, `/blogs/${post.slug}`, post.description)).join("\n")}

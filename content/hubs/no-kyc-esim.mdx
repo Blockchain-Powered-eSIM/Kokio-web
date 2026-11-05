@@ -1,0 +1,47 @@
+---
+title: "No-KYC eSIM"
+seoTitle: "No-KYC eSIM: travel data without ID, name or email"
+description: "Kokio sells travel eSIMs in over 200 destinations without asking for a passport, name or email. Here is what that covers, and what it does not."
+updated: "2026-11-04"
+faqs:
+  - id: passport
+    question: "Do I need a passport to buy a Kokio eSIM?"
+    answer: "No. Kokio never asks for a passport or any other ID, and no plan in the catalogue requires one."
+  - id: email
+    question: "Does Kokio ask for my email?"
+    answer: "No. There is no signup form. You create a passkey with Face ID or your fingerprint, and that is your account."
+  - id: anonymous
+    question: "Is a no-KYC eSIM anonymous?"
+    answer: "No. The mobile network still sees your device identifier and logs an IP address once you connect. No-KYC removes your identity from the purchase, nothing more. Use a VPN if you also want your traffic encrypted."
+  - id: delete-account
+    question: "Can I delete my Kokio account?"
+    answer: "Yes, from Settings in the app. Deletion is immediate and cannot be undone. Any eSIM you already paid for keeps working until it expires, but funds left in your Kokio Wallet and any store credit are lost, so move or spend them first."
+---
+
+Kokio never asks who you are. There's no signup form, no email field and no passport upload. You open the app, create a passkey with Face ID or your fingerprint, and buy a plan.
+
+## What Kokio leaves out
+
+- **No ID check.** Every plan in the catalogue is marked as needing none.
+- **No account record with your name or email.** Your account is a smart contract wallet tied to a passkey, and the passkey never leaves your phone's secure hardware.
+- **No password**, so there's nothing to phish or reuse.
+
+What we never collect, we can't leak. Kokio has no name, email or passport on file for a breach to expose.
+
+## What no-KYC does not cover
+
+No-KYC is not anonymity. Once you're connected, the network still sees your device identifier and still logs an IP address. An eSIM adds no encryption either, so if you need that, run a VPN on top.
+
+How you pay leaves its own trail. Card, Apple Pay and Google Pay go through Stripe. When you pay by card, Kokio sees the card's brand, last four digits, expiry and country, and Apple Pay or Stripe Link may pass your name, email or phone number to Stripe under its own terms. If you'd rather keep a card out of it, you can [pay in crypto](/buy-esim-with-crypto). The [privacy policy](/privacy-policy) lists exactly what each payment method shares.
+
+Our post on [all types of no-KYC eSIMs](/blogs/all-kinds-of-no-kyc-esims) goes through each layer and what every kind of provider does and doesn't protect.
+
+## Why skip the local SIM
+
+Many countries tie a local SIM to your passport. In Thailand, operators have had to check a passport for every SIM sold to a foreign visitor since 16 May 2026 ([Yozzo](https://www.yozzo.com/mvno-news/thailand-nbtc-sim-card-registration-kyc-measures/), [Tilleke & Gibbins](https://www.tilleke.com/insights/thailand-tightens-telecom-registration-data-and-ip-address-rules-to-combat-tech-crime/)). A Kokio plan connects by roaming, so there is no local SIM to register.
+
+## Check it yourself
+
+Don't take our word for it. The account is built on an [open source eSIM wallet smart contract suite](https://github.com/Blockchain-Powered-eSIM/smart-contract-suite), enabled by an eSIM Wallet grant from [Ethereum Foundation PSE](https://pse.dev/) and audited by PSE and by [CD Security](https://cdsecurity.io/).
+
+Plans cover over 200 destinations. [See every destination and its starting price](/esim).
