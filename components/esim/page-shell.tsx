@@ -1,6 +1,8 @@
 import Link from "next/link";
 
+import { LATEST_PLANS_NOTE } from "@/lib/esim/copy";
 import type { Crumb } from "@/lib/esim/schema";
+import { StoreBadges } from "@/components/store-badges";
 
 /** The card layout the glossary uses, with a visible breadcrumb trail that matches the BreadcrumbList schema. */
 export function PageShell({
@@ -32,6 +34,19 @@ export function PageShell({
         {children}
       </article>
     </main>
+  );
+}
+
+/** The end of every /esim and hub page: a nudge to check the app for current plans, then the store badges. */
+export function PageFooter({ children }: { children?: React.ReactNode }) {
+  return (
+    <footer className="flex flex-col items-center gap-4 border-t border-esim-black-100 pt-8">
+      <p className="text-center text-base text-esim-black-700">
+        {LATEST_PLANS_NOTE}
+      </p>
+      <StoreBadges />
+      {children}
+    </footer>
   );
 }
 

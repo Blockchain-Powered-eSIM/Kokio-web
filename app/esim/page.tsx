@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { esimIndex, INDEX_PRICE_NOTE } from "@/lib/esim/copy";
+import { esimIndex } from "@/lib/esim/copy";
 import { formatUsd } from "@/lib/esim/catalogue";
 import { pageMetadata, shareMetadata } from "@/lib/esim/pages";
 import { indexPageGraph, type Crumb } from "@/lib/esim/schema";
 import { JsonLd } from "@/components/json-ld";
-import { StoreBadges } from "@/components/store-badges";
-import { PageSection, PageShell } from "@/components/esim/page-shell";
+import {
+  PageFooter,
+  PageSection,
+  PageShell,
+} from "@/components/esim/page-shell";
 
 const PATH = "/esim";
 
@@ -69,12 +72,7 @@ export default function EsimIndexPage() {
         </ul>
       </PageSection>
 
-      <footer className="flex flex-col items-center gap-4 border-t border-esim-black-100 pt-8">
-        <p className="text-center text-base text-esim-black-700">
-          {INDEX_PRICE_NOTE}
-        </p>
-        <StoreBadges />
-      </footer>
+      <PageFooter />
     </PageShell>
   );
 }

@@ -6,8 +6,6 @@ import {
   formatData,
   formatDays,
   formatUsd,
-  formatDay,
-  SNAPSHOT_DATE,
   snapshotCountries,
   snapshotCountry,
   type RouteComparison,
@@ -30,10 +28,12 @@ export const NO_ID_LINE =
 export const ROAMING_LINE =
   "Kokio plans connect by roaming, so there is no local SIM to register.";
 
-export const PRICES_AS_OF = `Prices as of ${formatDay(SNAPSHOT_DATE)}. The app always shows the current price.`;
+/** Sits above every price table. No date, since the snapshot refresh has no fixed schedule. */
+export const PRICE_TABLE_NOTE =
+  "Prices and plans may have been updated since. Install the app to see the latest.";
 
-/** Shown under the /esim list, which carries one starting price per country. */
-export const INDEX_PRICE_NOTE =
+/** Shown above the store badges at the end of every /esim and hub page. */
+export const LATEST_PLANS_NOTE =
   "Prices can change. Install the app to see today's price and every plan for your trip.";
 
 export const GUIDE_PATH = "/blogs/esim-guide-for-travellers-2026";

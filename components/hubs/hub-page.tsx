@@ -7,11 +7,14 @@ import { getHub } from "@/lib/hubs";
 import { pageMetadata, shareMetadata } from "@/lib/esim/pages";
 import { topicPageGraph, type Crumb } from "@/lib/esim/schema";
 import { JsonLd } from "@/components/json-ld";
-import { StoreBadges } from "@/components/store-badges";
 import { baseMdxComponents } from "@/components/blog/mdx-components";
 import { Highlight, HeadsUp, Tip } from "@/components/blog/callouts";
 import { FaqList } from "@/components/esim/faq-list";
-import { PageSection, PageShell } from "@/components/esim/page-shell";
+import {
+  PageFooter,
+  PageSection,
+  PageShell,
+} from "@/components/esim/page-shell";
 
 /** Metadata for a hub page. Hubs are always indexed. */
 export function hubMetadata(slug: string): Metadata {
@@ -67,9 +70,7 @@ export async function HubPage({ slug }: { slug: string }) {
         </PageSection>
       ) : null}
 
-      <footer className="flex flex-col items-center gap-4 border-t border-esim-black-100 pt-8">
-        <StoreBadges />
-      </footer>
+      <PageFooter />
     </PageShell>
   );
 }

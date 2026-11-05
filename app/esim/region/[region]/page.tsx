@@ -13,7 +13,7 @@ import {
 import {
   memberNames,
   NO_ID_LINE,
-  PRICES_AS_OF,
+  PRICE_TABLE_NOTE,
   regionAnswer,
 } from "@/lib/esim/copy";
 import {
@@ -28,9 +28,12 @@ import {
 import type { RouteComparison } from "@/lib/esim/catalogue";
 import { plansPageGraph, type Crumb } from "@/lib/esim/schema";
 import { JsonLd } from "@/components/json-ld";
-import { StoreBadges } from "@/components/store-badges";
 import { FaqList } from "@/components/esim/faq-list";
-import { PageSection, PageShell } from "@/components/esim/page-shell";
+import {
+  PageFooter,
+  PageSection,
+  PageShell,
+} from "@/components/esim/page-shell";
 import { PlanTable } from "@/components/esim/plan-table";
 import { RegulatoryNote } from "@/components/esim/regulatory-note";
 
@@ -132,11 +135,11 @@ export default async function RegionEsimPage({ params }: { params: Params }) {
       </PageSection>
 
       <PageSection id="plans" title="Regional plans">
+        <p className="text-base text-esim-black-700">({PRICE_TABLE_NOTE})</p>
         <PlanTable
           plans={offering.plans}
           caption={`${PRODUCT_NAME} ${content.name} eSIM plans`}
         />
-        <p className="text-base text-esim-black-700">{PRICES_AS_OF}</p>
       </PageSection>
 
       {comparisons.length ? (
@@ -206,14 +209,13 @@ export default async function RegionEsimPage({ params }: { params: Params }) {
         </PageSection>
       ) : null}
 
-      <footer className="flex flex-col items-center gap-4 border-t border-esim-black-100 pt-8">
-        <StoreBadges />
+      <PageFooter>
         <p className="text-base text-esim-black-700">
           <Link href="/esim" className="underline">
             All destinations
           </Link>
         </p>
-      </footer>
+      </PageFooter>
     </PageShell>
   );
 }

@@ -37,8 +37,8 @@ import {
   NO_KYC_LINK_LABEL,
   NO_KYC_PATH,
   PAYMENTS_LINE,
-  INDEX_PRICE_NOTE,
-  PRICES_AS_OF,
+  LATEST_PLANS_NOTE,
+  PRICE_TABLE_NOTE,
   regionAlternative,
   regionAnswer,
   ROAMING_LINE,
@@ -314,7 +314,7 @@ function esimIndexSection(): string {
         return `- ${name} from ${formatUsd(country.fromUsd)}`;
       })
       .join("\n"),
-    INDEX_PRICE_NOTE,
+    LATEST_PLANS_NOTE,
   ].join("\n\n");
 }
 
@@ -327,8 +327,8 @@ function countrySection(page: CountryPage): string {
     countryAnswer(page),
     ...(content.intro ? [content.intro] : []),
     `## ${content.name} plans`,
+    `(${PRICE_TABLE_NOTE})`,
     planLines(catalogue.plans),
-    PRICES_AS_OF,
     ...(network || content.coverageNote
       ? [
           "## Network and coverage",
@@ -361,6 +361,7 @@ function countrySection(page: CountryPage): string {
         ]
       : []),
     ...faqText(content.faqs),
+    LATEST_PLANS_NOTE,
   ].join("\n\n");
 }
 
@@ -370,6 +371,7 @@ function hubSection(hub: Hub): string {
     hub.description,
     mdxToText(hub.content),
     ...faqText(hub.faqs),
+    LATEST_PLANS_NOTE,
   ].join("\n\n");
 }
 
@@ -384,8 +386,8 @@ function regionSection(page: RegionPage): string {
     "## Countries covered",
     memberNames(page).join(", "),
     "## Regional plans",
+    `(${PRICE_TABLE_NOTE})`,
     planLines(page.offering.plans),
-    PRICES_AS_OF,
     ...(comparisons.length
       ? [
           "## Regional or separate local plans?",
@@ -395,6 +397,7 @@ function regionSection(page: RegionPage): string {
         ]
       : []),
     ...faqText(page.content.faqs),
+    LATEST_PLANS_NOTE,
   ].join("\n\n");
 }
 
