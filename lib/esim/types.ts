@@ -36,7 +36,7 @@ export interface SnapshotOffering {
 }
 
 export interface Snapshot {
-  /** Day the export was taken, YYYY-MM-DD. Shown as "Prices as of". */
+  /** Day the export was taken, YYYY-MM-DD. Used as the sitemap's lastModified, never shown on a page. */
   snapshotDate: string;
   countries: Record<string, SnapshotCountry>;
   offerings: SnapshotOffering[];
@@ -78,7 +78,7 @@ export interface CountryContent {
   faqs: Faq[];
   /** Slugs of nearby countries. Only those with a built page are linked. */
   neighbours: string[];
-  /** Day a person last checked this page's facts, YYYY-MM-DD. Null until someone has. */
+  /** Day a person last checked this page's facts, YYYY-MM-DD. Null until someone has. Read by the quality gate only, never shown. */
   lastVerified: string | null;
   /** Draft pages are never built. */
   publishStatus: PublishStatus;

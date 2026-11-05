@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PRODUCT_NAME } from "@/lib/site-copy";
-import { cheapestPlan, formatDay, formatUsd } from "@/lib/esim/catalogue";
+import { cheapestPlan, formatUsd } from "@/lib/esim/catalogue";
 import {
   allRoaming,
   countryAnswer,
@@ -203,9 +203,6 @@ export default async function CountryEsimPage({ params }: { params: Params }) {
 
       <PageFooter>
         <p className="text-base text-esim-black-700">
-          {content.lastVerified
-            ? `Last checked ${formatDay(new Date(content.lastVerified))}. `
-            : null}
           <Link href="/esim" className="underline">
             All destinations
           </Link>

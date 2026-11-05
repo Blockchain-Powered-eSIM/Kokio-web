@@ -12,7 +12,7 @@ import type {
 
 const snapshot = raw as unknown as Snapshot;
 
-/** Day the snapshot was taken. Pages say prices are "as of" this date. */
+/** Day the snapshot was taken. Only the sitemap reads it; pages never show it. */
 export const SNAPSHOT_DATE = new Date(snapshot.snapshotDate);
 
 export function snapshotCountry(iso2: string): SnapshotCountry | null {
@@ -129,14 +129,4 @@ export function formatData(plan: SnapshotPlan): string {
 
 export function formatDays(days: number): string {
   return days === 1 ? "1 day" : `${days} days`;
-}
-
-/** "1 January 2026", the date style used across the site. */
-export function formatDay(date: Date): string {
-  return date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  });
 }
