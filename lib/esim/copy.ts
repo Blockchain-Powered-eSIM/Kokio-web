@@ -11,6 +11,7 @@ import {
   type RouteComparison,
 } from "@/lib/esim/catalogue";
 import {
+  builtCountryPages,
   builtRegionPages,
   countryPagesByIso,
   regionPage,
@@ -143,7 +144,22 @@ export function memberNames(page: RegionPage): string[] {
     .sort((a, b) => a.localeCompare(b));
 }
 
+const NAMED_MEMBERS = 6;
+
+/**
+ * Member countries for a sentence. A long list reads badly, so big regions name
+ * the first members in the destination list; the full list has its own section.
+ */
+export function memberSummary(page: RegionPage): string {
+  const names = memberNames(page);
+  if (names.length <= NAMED_MEMBERS) return names.join(", ");
+  const known = builtCountryPages()
+    .filter((country) => page.offering.countries.includes(country.content.iso2))
+    .map((country) => country.content.name);
+  return `${names.length} countries, including ${known.slice(0, 4).join(", ")}`;
+}
+
 export function regionAnswer(page: RegionPage): string {
   const plan = cheapestPlan(page.offering.plans);
-  return `One Kokio plan covers ${memberNames(page).join(", ")} from ${formatUsd(plan.priceUsd)}, so you don't need a new SIM, and a new ID check, at every border.`;
+  return `One Kokio plan covers ${memberSummary(page)} from ${formatUsd(plan.priceUsd)}, so you don't need a new SIM, and a new ID check, at every border.`;
 }

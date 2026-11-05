@@ -11,7 +11,7 @@ import {
   snapshotCountry,
 } from "@/lib/esim/catalogue";
 import {
-  memberNames,
+  memberSummary,
   NO_ID_LINE,
   PRICE_TABLE_NOTE,
   regionAnswer,
@@ -64,7 +64,7 @@ export async function generateMetadata({
   const count = page.offering.countries.length;
   const from = formatUsd(cheapestPlan(page.offering.plans).priceUsd);
   const title = `${page.content.name} eSIM: ${count} countries, one plan from ${from}`;
-  const description = `One ${PRODUCT_NAME} eSIM for ${memberNames(page).join(", ")}. Plans from ${from}. No passport, name or email.`;
+  const description = `One ${PRODUCT_NAME} eSIM for ${memberSummary(page)}. Plans from ${from}. No passport, name or email.`;
 
   return {
     ...shareMetadata({ path: page.path, title, description }),
