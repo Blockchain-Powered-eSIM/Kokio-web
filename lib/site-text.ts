@@ -341,6 +341,12 @@ function countrySection(page: CountryPage): string {
     ...(allRoaming(page) ? [ROAMING_LINE] : []),
     PAYMENTS_LINE,
     `[${NO_KYC_LINK_LABEL}](https://kokio.app${NO_KYC_PATH})`,
+    ...(content.tips.length
+      ? [
+          `## Tips for ${content.name}`,
+          content.tips.map((tip) => `- ${tip}`).join("\n"),
+        ]
+      : []),
     "## Setup",
     setupSteps(content.airports)
       .map((step, index) => `${index + 1}. ${step}`)

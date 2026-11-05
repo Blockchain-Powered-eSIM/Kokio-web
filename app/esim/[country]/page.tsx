@@ -148,6 +148,16 @@ export default async function CountryEsimPage({ params }: { params: Params }) {
         </p>
       </PageSection>
 
+      {content.tips.length ? (
+        <PageSection id="tips" title={`Tips for ${content.name}`}>
+          <ul className="list-disc space-y-2 pl-6">
+            {content.tips.map((tip) => (
+              <li key={tip}>{tip}</li>
+            ))}
+          </ul>
+        </PageSection>
+      ) : null}
+
       <PageSection id="setup" title="Setup">
         <ol className="list-decimal space-y-2 pl-6">
           {setupSteps(content.airports).map((step) => (
