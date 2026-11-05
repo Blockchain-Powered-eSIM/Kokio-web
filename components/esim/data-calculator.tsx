@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import { useId, useState } from "react";
 
 import {
@@ -29,6 +30,9 @@ const MAX_HOURS = 16;
 
 const fieldClass =
   "min-h-11 rounded-xl border border-esim-black-200 bg-background px-3 text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+
+// The native arrow ignores padding and sits on the border, so it is hidden and a chevron drawn in its place.
+const selectClass = `${fieldClass} w-full appearance-none pr-11`;
 
 // Out-of-range or empty input counts as the nearest allowed value.
 function clamp(value: number, min: number, max: number): number {
@@ -61,18 +65,24 @@ export function DataCalculator({
           htmlFor={`${id}-country`}
         >
           Destination
-          <select
-            id={`${id}-country`}
-            value={slug}
-            onChange={(event) => setSlug(event.target.value)}
-            className={fieldClass}
-          >
-            {countries.map((c) => (
-              <option key={c.slug} value={c.slug}>
-                {c.name}
-              </option>
-            ))}
-          </select>
+          <span className="relative flex">
+            <select
+              id={`${id}-country`}
+              value={slug}
+              onChange={(event) => setSlug(event.target.value)}
+              className={selectClass}
+            >
+              {countries.map((c) => (
+                <option key={c.slug} value={c.slug}>
+                  {c.name}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              aria-hidden="true"
+              className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-esim-black-700"
+            />
+          </span>
         </label>
         <label className="flex flex-col gap-2 text-base" htmlFor={`${id}-days`}>
           Trip length in days
