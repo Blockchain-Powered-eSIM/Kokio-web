@@ -50,7 +50,6 @@ export const siteConfig = {
     },
   ],
   navLinks: [
-    { title: "Destinations", href: "/esim" },
     { title: "Usage guide", href: "/live" },
     { title: "Manifesto", href: "/manifesto" },
     { title: "Blogs", href: "/blogs" },
