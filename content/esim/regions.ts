@@ -35,8 +35,39 @@ export const regions: RegionContent[] = [
         dataGb: 5,
       },
     ],
-    // TODO: 4-6 Southeast Asia questions, checked by a person.
-    faqs: [],
+    // From the catalogue snapshot. Recheck the country list when the snapshot changes.
+    faqs: [
+      {
+        id: "countries",
+        question: "Which countries does the Southeast Asia eSIM cover?",
+        answer:
+          "China, the Philippines, Singapore, Thailand and Vietnam. It does not cover Malaysia, Indonesia or Cambodia, so pick a local plan for those.",
+      },
+      {
+        id: "cheaper",
+        question: "Is one regional plan cheaper than separate local plans?",
+        answer:
+          "Not always. It depends on how long you stay in each country and how much data you use. The comparison table prices three sample trips both ways.",
+      },
+      {
+        id: "borders",
+        question: "Do I need a new SIM or a passport at each border?",
+        answer:
+          "No. The same eSIM works in every covered country, and Kokio asks for no passport, name or email.",
+      },
+      {
+        id: "activation",
+        question: "When does the Southeast Asia plan start?",
+        answer:
+          "On first data use. Install it at home on Wi-Fi, and the days start counting once you use data in a covered country.",
+      },
+      {
+        id: "top-up",
+        question: "Can I top up the Southeast Asia plan?",
+        answer:
+          "Yes. In checkout, switch to Top-up and pick the eSIM you already have.",
+      },
+    ],
     lastVerified: null,
     publishStatus: "published",
   },
