@@ -115,6 +115,38 @@ export const countries: CountryContent[] = [
     region: "southeast-asia",
     airports: ["Noi Bai, Hanoi (HAN)", "Tan Son Nhat, Ho Chi Minh City (SGN)"],
     neighbours: ["thailand", "cambodia"],
+    // From the catalogue snapshot. Recheck networks and the Southeast Asia plan when the snapshot changes.
+    tips: [
+      "Vietnam is on the Southeast Asia plan with Thailand, Singapore, the Philippines and China, so one eSIM can cover a Bangkok to Hanoi trip.",
+      "5G on these plans comes through Viettel and VNPT. The other networks on the list are 4G, so pick Viettel or VNPT by hand if you want 5G.",
+      "Unlimited plans run for 3, 5, 7, 10, 15 or 30 days, so a two-week trip from Hanoi to Ho Chi Minh City fits the 15-day plan.",
+    ],
+    faqs: [
+      {
+        id: "passport",
+        question: "Do I need my passport to buy a Vietnam eSIM?",
+        answer:
+          "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
+      },
+      {
+        id: "phone-number",
+        question: "Does the Vietnam eSIM include a Vietnamese phone number?",
+        answer:
+          "No. Kokio's Vietnam plans are data-only, so calls and messages go through internet apps.",
+      },
+      {
+        id: "thailand",
+        question: "Does the Vietnam eSIM work in Thailand or Cambodia too?",
+        answer:
+          "A Vietnam plan works in Vietnam. The Southeast Asia plan adds Thailand, Singapore, the Philippines and China, but not Cambodia.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in Vietnam?",
+        answer:
+          "Yes, on Viettel and VNPT where they offer it. Every Kokio Vietnam plan can use 5G on those networks.",
+      },
+    ],
   }),
   starter({
     slug: "indonesia",
@@ -122,6 +154,53 @@ export const countries: CountryContent[] = [
     name: "Indonesia",
     airports: ["Soekarno-Hatta, Jakarta (CGK)", "Ngurah Rai, Bali (DPS)"],
     neighbours: ["malaysia", "singapore"],
+    rules: [
+      {
+        text: "A local Indonesian SIM in a phone bought abroad only works while the phone's IMEI is registered, which lasts 90 days for visitors. A foreign SIM on roaming needs no IMEI registration.",
+        sources: [
+          {
+            label: "Bali Easy eSIM",
+            url: "https://esim.balieasy.com/?p=18381",
+          },
+          {
+            label: "Backpack Moments",
+            url: "https://backpackmoments.com/imei-registration-in-indonesia/",
+          },
+        ],
+      },
+    ],
+    // From the catalogue snapshot, the sourced IMEI rule, and the Telkomsel coverage tip, which a person still has to check.
+    tips: [
+      "Kokio plans connect by roaming, so you skip the IMEI registration a local SIM would need, and there's no 90-day limit to watch.",
+      "Your eSIM can use Telkomsel, Indosat or Tri. Telkomsel reaches furthest across the islands, so try it first off the main tourist routes.",
+      "Island-hopping on to Malaysia or Singapore? The Asia plans in the app cover Indonesia and its neighbours on one eSIM. The Southeast Asia plan does not include Indonesia.",
+    ],
+    faqs: [
+      {
+        id: "passport",
+        question: "Do I need my passport to buy an Indonesia eSIM?",
+        answer:
+          "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
+      },
+      {
+        id: "imei",
+        question: "Do I need to register my phone's IMEI in Indonesia?",
+        answer:
+          "Not for a Kokio eSIM. The IMEI rule covers local Indonesian SIMs in foreign phones, and Kokio plans connect by roaming.",
+      },
+      {
+        id: "phone-number",
+        question: "Does the Indonesia eSIM include an Indonesian phone number?",
+        answer:
+          "No. Kokio's Indonesia plans are data-only, so calls and messages go through internet apps.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for Indonesia?",
+        answer:
+          "Yes. Unlimited Indonesia plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+    ],
   }),
   starter({
     slug: "south-korea",
@@ -168,6 +247,37 @@ export const countries: CountryContent[] = [
     region: "southeast-asia",
     airports: ["Changi (SIN)"],
     neighbours: ["malaysia", "indonesia"],
+    // From the catalogue snapshot, plus the Changi Wi-Fi tip, which a person still has to check.
+    tips: [
+      "Your eSIM can use any of Singapore's four networks: Singtel, StarHub, M1 and SIMBA.",
+      "Crossing into Malaysia by road? A Singapore plan stops at the border. The Asia plans in the app cover both countries on one eSIM.",
+      "Forgot to install before you flew? Changi has free Wi-Fi, enough to download the eSIM before you leave the terminal.",
+    ],
+    faqs: [
+      {
+        id: "passport",
+        question: "Do I need my passport to buy a Singapore eSIM?",
+        answer:
+          "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
+      },
+      {
+        id: "phone-number",
+        question: "Does the Singapore eSIM include a Singapore phone number?",
+        answer:
+          "No. Kokio's Singapore plans are data-only, so calls and messages go through internet apps.",
+      },
+      {
+        id: "malaysia",
+        question: "Does the Singapore eSIM work in Malaysia?",
+        answer:
+          "No. For both countries, pick one of the Asia plans in the app. The Southeast Asia plan covers Singapore but not Malaysia.",
+      },
+      {
+        id: "southeast-asia",
+        question: "Is Singapore on the Southeast Asia plan?",
+        answer: "Yes, along with Thailand, Vietnam, the Philippines and China.",
+      },
+    ],
   }),
   starter({
     slug: "malaysia",
@@ -175,6 +285,38 @@ export const countries: CountryContent[] = [
     name: "Malaysia",
     airports: ["Kuala Lumpur International (KUL)"],
     neighbours: ["singapore", "thailand", "indonesia"],
+    // From the catalogue snapshot, plus the CelcomDigi merger, which a person still has to check.
+    tips: [
+      "Celcom and DiGi merged into CelcomDigi, so your phone may show either name. Maxis and U Mobile are the other networks your eSIM can use.",
+      "Crossing to Singapore by road? A Malaysia plan stops at the border. The Asia plans in the app cover both countries on one eSIM.",
+      "Malaysia isn't on Kokio's Southeast Asia plan. For a trip through several countries, pick an Asia plan instead.",
+    ],
+    faqs: [
+      {
+        id: "passport",
+        question: "Do I need my passport to buy a Malaysia eSIM?",
+        answer:
+          "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
+      },
+      {
+        id: "phone-number",
+        question: "Does the Malaysia eSIM include a Malaysian phone number?",
+        answer:
+          "No. Kokio's Malaysia plans are data-only, so calls and messages go through internet apps.",
+      },
+      {
+        id: "regional",
+        question: "Which regional plan covers Malaysia?",
+        answer:
+          "The Asia plans in the app. The Southeast Asia plan does not include Malaysia.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for Malaysia?",
+        answer:
+          "Yes. Unlimited Malaysia plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+    ],
   }),
   starter({
     slug: "philippines",
@@ -183,6 +325,53 @@ export const countries: CountryContent[] = [
     region: "southeast-asia",
     airports: ["Ninoy Aquino, Manila (MNL)", "Mactan-Cebu (CEB)"],
     neighbours: ["taiwan", "vietnam"],
+    rules: [
+      {
+        text: "Under the SIM Registration Act, a tourist registering a local SIM shows a passport, a Philippine address and a return ticket, and the SIM stops working after 30 days unless the visa is extended.",
+        sources: [
+          {
+            label: "Manila Shimbun",
+            url: "https://www.manila-shimbun.com/category/english/news268449.html",
+          },
+          {
+            label: "YugaTech",
+            url: "https://yugatech.com/internet-telecoms/sim-registration-act-implementing-rules-and-regulations",
+          },
+        ],
+      },
+    ],
+    // From the catalogue snapshot and the sourced registration rule. A person still has to check both.
+    tips: [
+      "Staying longer than 30 days? A registered tourist SIM switches off after 30 days unless your visa is extended. A Kokio plan doesn't depend on your visa.",
+      "Your eSIM can use Globe or Smart, the two biggest networks. If one is weak on an island, choose the other by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
+      "The Philippines is on the Southeast Asia plan with Thailand, Vietnam, Singapore and China, so one eSIM can cover Manila and Ho Chi Minh City.",
+    ],
+    faqs: [
+      {
+        id: "passport",
+        question: "Do I need my passport to buy a Philippines eSIM?",
+        answer:
+          "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
+      },
+      {
+        id: "phone-number",
+        question:
+          "Does the Philippines eSIM include a Philippine phone number?",
+        answer:
+          "No. Kokio's Philippines plans are data-only, so calls and messages go through internet apps.",
+      },
+      {
+        id: "southeast-asia",
+        question: "Is the Philippines on the Southeast Asia plan?",
+        answer: "Yes, along with Thailand, Vietnam, Singapore and China.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for the Philippines?",
+        answer:
+          "Yes. Unlimited Philippines plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+    ],
   }),
   starter({
     slug: "taiwan",
@@ -233,8 +422,8 @@ export const countries: CountryContent[] = [
     // From the catalogue snapshot. Recheck plan shapes when the snapshot changes.
     tips: [
       "Your eSIM can use AT&T, T-Mobile or Verizon, the three national networks. Coverage differs a lot outside cities, so if one network is weak, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
-      "Need to call a hotel or get a text code? Many US plans include calls and SMS as well as data. The app shows the minutes and messages on each plan card.",
-      "Staying a long time or coming back often? There is a 10 GB plan that lasts 365 days, so one eSIM can cover several trips.",
+      "Want 5G? Pick a fixed-data plan. Every US plan with a set number of GB can use 5G, while most unlimited US plans are 4G only.",
+      "Driving on into Canada or Mexico? A US plan stops at the border. The North America plans in the app cover all three countries on one eSIM.",
     ],
     faqs: [
       {
@@ -244,10 +433,10 @@ export const countries: CountryContent[] = [
           "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
       },
       {
-        id: "calls",
-        question: "Can I make calls with a Kokio US eSIM?",
+        id: "phone-number",
+        question: "Does the US eSIM include a US phone number?",
         answer:
-          "Yes, on plans that include calls and SMS. Data-only plans need an internet app for calls. Each plan in the app says which kind it is.",
+          "No. Kokio's US plans are data-only, so calls and messages go through internet apps.",
       },
       {
         id: "unlimited",
@@ -258,7 +447,8 @@ export const countries: CountryContent[] = [
       {
         id: "5g",
         question: "Do US plans include 5G?",
-        answer: "Some do. The plan table marks which plans can use 5G.",
+        answer:
+          "Every fixed-data US plan can use 5G. Most unlimited US plans are 4G only. The plan table marks each one.",
       },
     ],
   }),
@@ -284,8 +474,8 @@ export const countries: CountryContent[] = [
     // From the catalogue snapshot. Recheck plan shapes when the snapshot changes.
     tips: [
       "Your eSIM can use EE, O2, Three or Vodafone, all four UK networks. If the signal drops in the countryside, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
-      "Many UK plans also come with calls and SMS, handy for ringing a B&B or getting a text code. The app shows the minutes and messages on each plan card.",
-      "Plans start at 1 GB for 3 days, enough for a quick London stopover. Unlimited plans run for 3, 5, 7, 10, 15 or 30 days.",
+      "Taking the train to Paris or Amsterdam? A UK plan stops at the UK. The Europe + UK plans in the app cover the UK and the continent on one eSIM.",
+      "Plans start at 1 GB for 7 days, enough for a short London stopover. Unlimited plans run for 3, 5, 7, 10, 15 or 30 days.",
     ],
     faqs: [
       {
@@ -295,10 +485,10 @@ export const countries: CountryContent[] = [
           "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
       },
       {
-        id: "calls",
-        question: "Can I make calls with a Kokio UK eSIM?",
+        id: "phone-number",
+        question: "Does the UK eSIM include a UK phone number?",
         answer:
-          "Yes, on plans that include calls and SMS. Data-only plans need an internet app for calls. Each plan in the app says which kind it is.",
+          "No. Kokio's UK plans are data-only, so calls and messages go through internet apps.",
       },
       {
         id: "unlimited",
