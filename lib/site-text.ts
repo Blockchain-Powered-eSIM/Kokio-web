@@ -273,7 +273,7 @@ function planLines(plans: SnapshotPlan[]): string {
   return plans
     .map(
       (plan) =>
-        `- ${formatData(plan)}${plan.callsAndSms ? " + calls and SMS" : ""}, ${formatDays(plan.validityDays)}: ${formatUsd(plan.priceUsd)}${plan.has5g ? " (5G)" : ""}`
+        `- ${formatData(plan)}, ${formatDays(plan.validityDays)}: ${formatUsd(plan.priceUsd)}${plan.has5g ? " (5G)" : ""}`
     )
     .join("\n");
 }

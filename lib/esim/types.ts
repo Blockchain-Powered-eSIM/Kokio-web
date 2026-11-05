@@ -7,7 +7,6 @@ export interface SnapshotPlan {
   validityDays: number;
   priceUsd: number;
   has5g: boolean;
-  callsAndSms: boolean;
   /** A local profile is a local SIM, so "no local SIM to register" copy is hidden for it. */
   profileType: "roaming" | "local";
 }

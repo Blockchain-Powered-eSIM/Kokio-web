@@ -88,7 +88,6 @@ function toPlan(plan) {
     validityDays: plan.validity,
     priceUsd: plan.actualSellingPrice,
     has5g: networks.some((n) => n.types.includes("5G")),
-    callsAndSms: plan.planType === "DATA_CALLS_SMS",
     // The export does not say. Every plan is taken to roam until a supplier marks one local.
     profileType: "roaming",
   };
@@ -104,8 +103,10 @@ function byValue(a, b) {
 }
 
 // Unknown validity or price would print as a blank or a lie in the plan table.
+// The app sells data plans only, so calls and SMS plans from the supplier are left out.
 const usable = raw.plans.filter(
   (plan) =>
+    plan.planType === "DATA" &&
     plan.planStatus === "ACTIVE" &&
     plan.purchaseType !== "TOPUP" &&
     Number.isInteger(plan.validity) &&

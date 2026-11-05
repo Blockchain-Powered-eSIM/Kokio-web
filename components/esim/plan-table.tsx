@@ -45,14 +45,7 @@ export function PlanTable({
                 key={index}
                 className="border-b border-esim-black-100 text-esim-black-900"
               >
-                <td className="py-3 pr-4">
-                  {formatData(plan)}
-                  {plan.callsAndSms ? (
-                    <span className="ml-2 text-sm text-esim-black-700">
-                      + calls and SMS
-                    </span>
-                  ) : null}
-                </td>
+                <td className="py-3 pr-4">{formatData(plan)}</td>
                 <td className="py-3 pr-4">{formatDays(plan.validityDays)}</td>
                 <td className="py-3 pr-4 font-medium">
                   {formatUsd(plan.priceUsd)}
