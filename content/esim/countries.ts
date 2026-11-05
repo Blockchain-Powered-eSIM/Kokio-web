@@ -30,7 +30,7 @@ export const countries: CountryContent[] = [
       },
     ],
     airports: ["Suvarnabhumi (BKK)", "Don Mueang (DMK)"],
-    // Draft from the 2026-11-04 snapshot and the sourced rule above. Recheck the day lengths when the snapshot changes.
+    // From the catalogue snapshot and the sourced rule above. Recheck the day lengths when the snapshot changes.
     tips: [
       "A local SIM now means a passport check at the counter, so installing the eSIM at home lets you walk past the SIM desks at arrivals.",
       "Unlimited plans come in 3, 5, 7, 10, 15 and 30-day lengths. Pick the one that matches your trip rather than guessing how many GB you'll use.",
@@ -64,7 +64,7 @@ export const countries: CountryContent[] = [
       },
     ],
     neighbours: ["vietnam", "malaysia", "cambodia", "laos"],
-    lastVerified: null,
+    lastVerified: "2026-11-05",
     publishStatus: "published",
   },
   // TODO: tips, FAQs and sourced rules for each country below, checked by a person.
