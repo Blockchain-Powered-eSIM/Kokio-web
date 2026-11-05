@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { countries } from "@/content/esim/countries";
 import { regions } from "@/content/esim/regions";
 import { DEFAULT_LOCALE, LOCALES } from "@/content/esim/locales";
-import { siteConfig } from "@/config/site";
+import { siteConfig, TWITTER_HANDLE } from "@/config/site";
 import { findOffering, snapshotCountry } from "@/lib/esim/catalogue";
 import { gateCountry, gateRegion, type Verdict } from "@/lib/esim/quality-gate";
 import type {
@@ -83,6 +83,40 @@ function localeUrl(locale: string, path: string): string {
  * listed, and the markdown copy is only offered for indexed pages, since that
  * is all /llms-full.txt and the .md routes carry.
  */
+/**
+ * Title, description and the Open Graph and X cards for one page. The root
+ * layout's X card would otherwise show the site default on every page.
+ */
+export function shareMetadata({
+  path,
+  title,
+  description,
+  type = "website",
+}: {
+  path: string;
+  title: string;
+  description: string;
+  type?: "website" | "article";
+}): Metadata {
+  return {
+    title,
+    description,
+    openGraph: {
+      type,
+      url: new URL(path, siteConfig.url).href,
+      siteName: siteConfig.name,
+      title,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: TWITTER_HANDLE,
+      title,
+      description,
+    },
+  };
+}
+
 export function pageMetadata(path: string, indexed: boolean): Metadata {
   return {
     alternates: {

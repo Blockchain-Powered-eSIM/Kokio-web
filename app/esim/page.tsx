@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { siteConfig } from "@/config/site";
-import { PRODUCT_NAME } from "@/lib/site-copy";
 import { esimIndex, INDEX_PRICE_NOTE } from "@/lib/esim/copy";
 import { formatUsd } from "@/lib/esim/catalogue";
-import { pageMetadata } from "@/lib/esim/pages";
+import { pageMetadata, shareMetadata } from "@/lib/esim/pages";
 import { indexPageGraph, type Crumb } from "@/lib/esim/schema";
 import { JsonLd } from "@/components/json-ld";
 import { StoreBadges } from "@/components/store-badges";
@@ -21,16 +19,8 @@ const CRUMBS: Crumb[] = [
 const { countries, regions, title, description } = esimIndex();
 
 export const metadata: Metadata = {
-  title,
-  description,
+  ...shareMetadata({ path: PATH, title, description }),
   ...pageMetadata(PATH, true),
-  openGraph: {
-    type: "website",
-    url: `${siteConfig.url}${PATH}`,
-    siteName: PRODUCT_NAME,
-    title,
-    description,
-  },
 };
 
 export default function EsimIndexPage() {

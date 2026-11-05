@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { siteConfig } from "@/config/site";
 import { PRODUCT_NAME } from "@/lib/site-copy";
 import { cheapestPlan, formatDay, formatUsd } from "@/lib/esim/catalogue";
 import {
@@ -27,6 +26,7 @@ import {
   countryPage,
   isIndexed,
   pageMetadata,
+  shareMetadata,
   type CountryPage,
 } from "@/lib/esim/pages";
 import { plansPageGraph, type Crumb } from "@/lib/esim/schema";
@@ -69,16 +69,8 @@ export async function generateMetadata({
   const description = `${name} eSIM plans from ${from} on local ${networkGenerations(page)} networks. Pay by card, Apple Pay, Google Pay or crypto. No passport, name or email.`;
 
   return {
-    title,
-    description,
+    ...shareMetadata({ path: page.path, title, description }),
     ...pageMetadata(page.path, isIndexed(page)),
-    openGraph: {
-      type: "website",
-      url: `${siteConfig.url}${page.path}`,
-      siteName: PRODUCT_NAME,
-      title,
-      description,
-    },
   };
 }
 

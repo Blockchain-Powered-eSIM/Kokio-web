@@ -3,10 +3,8 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import remarkSmartypants from "remark-smartypants";
 import rehypeSlug from "rehype-slug";
 
-import { siteConfig } from "@/config/site";
-import { PRODUCT_NAME } from "@/lib/site-copy";
 import { getHub } from "@/lib/hubs";
-import { pageMetadata } from "@/lib/esim/pages";
+import { pageMetadata, shareMetadata } from "@/lib/esim/pages";
 import { topicPageGraph, type Crumb } from "@/lib/esim/schema";
 import { JsonLd } from "@/components/json-ld";
 import { StoreBadges } from "@/components/store-badges";
@@ -19,17 +17,13 @@ import { PageSection, PageShell } from "@/components/esim/page-shell";
 export function hubMetadata(slug: string): Metadata {
   const hub = getHub(slug);
   return {
-    title: hub.seoTitle,
-    description: hub.description,
-    ...pageMetadata(hub.path, true),
-    openGraph: {
-      type: "article",
-      url: `${siteConfig.url}${hub.path}`,
-      siteName: PRODUCT_NAME,
+    ...shareMetadata({
+      path: hub.path,
       title: hub.seoTitle,
       description: hub.description,
-      modifiedTime: hub.updated.toISOString(),
-    },
+      type: "article",
+    }),
+    ...pageMetadata(hub.path, true),
   };
 }
 

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { siteConfig } from "@/config/site";
 import { PRODUCT_NAME } from "@/lib/site-copy";
 import {
   cheapestPlan,
@@ -22,6 +21,7 @@ import {
   countryPagesByIso,
   isIndexed,
   pageMetadata,
+  shareMetadata,
   regionPage,
   type RegionPage,
 } from "@/lib/esim/pages";
@@ -64,16 +64,8 @@ export async function generateMetadata({
   const description = `One ${PRODUCT_NAME} eSIM for ${memberNames(page).join(", ")}. Plans from ${from}. No passport, name or email.`;
 
   return {
-    title,
-    description,
+    ...shareMetadata({ path: page.path, title, description }),
     ...pageMetadata(page.path, isIndexed(page)),
-    openGraph: {
-      type: "website",
-      url: `${siteConfig.url}${page.path}`,
-      siteName: PRODUCT_NAME,
-      title,
-      description,
-    },
   };
 }
 
