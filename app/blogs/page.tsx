@@ -3,14 +3,18 @@ import Image from "next/image";
 
 import { getAllPosts } from "@/lib/blog";
 import { getManifesto } from "@/lib/manifesto";
+import { shareMetadata } from "@/lib/esim/pages";
 import { PostCard } from "@/components/blog/post-card";
 import { ManifestoCard } from "@/components/blog/manifesto-card";
 import BeachFun from "@/assets/seb/Beach Fun.svg";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Everything about eSIMs, travel connectivity, and what we're building behind the scenes.",
+  ...shareMetadata({
+    path: "/blogs",
+    title: "Blog",
+    description:
+      "Everything about eSIMs, travel connectivity, and what we're building behind the scenes.",
+  }),
   alternates: {
     canonical: "/blogs",
     types: {

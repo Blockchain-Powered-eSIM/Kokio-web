@@ -1,26 +1,24 @@
 import type { Metadata } from "next";
 
 import { glossaryData } from "@/content/glossary";
-import { siteConfig } from "@/config/site";
 import { glossaryGraph } from "@/lib/schema";
+import { shareMetadata } from "@/lib/esim/pages";
 import { PRODUCT_NAME } from "@/lib/site-copy";
 import { JsonLd } from "@/components/json-ld";
 
 const DESCRIPTION = `Plain definitions of the terms ${PRODUCT_NAME} uses: eSIM, eUICC, SM-DP+, LPA, passkey, smart wallet, no-KYC and more.`;
 
 export const metadata: Metadata = {
+  ...shareMetadata({
+    path: "/glossary",
+    title: `${PRODUCT_NAME} glossary`,
+    description: DESCRIPTION,
+    type: "article",
+  }),
   title: "Glossary",
-  description: DESCRIPTION,
   alternates: {
     canonical: "/glossary",
     types: { "text/markdown": "/glossary.md" },
-  },
-  openGraph: {
-    type: "article",
-    url: `${siteConfig.url}/glossary`,
-    siteName: PRODUCT_NAME,
-    title: `${PRODUCT_NAME} glossary`,
-    description: DESCRIPTION,
   },
 };
 

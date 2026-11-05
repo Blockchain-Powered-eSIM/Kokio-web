@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Anybody, Lexend, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 
+import { shareMetadata } from "@/lib/esim/pages";
+
 import "./live.css";
 
 const anybody = Anybody({
@@ -24,9 +26,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Get Kokio & Usage Guide",
-  description:
-    "Download Kokio for iOS and Android, and see exactly how it works: sign in with a passkey, buy an eSIM, install it, and manage everything from a wallet only you control.",
+  ...shareMetadata({
+    path: "/live",
+    title: "Get Kokio & Usage Guide",
+    description:
+      "Download Kokio for iOS and Android, and see exactly how it works: sign in with a passkey, buy an eSIM, install it, and manage everything from a wallet only you control.",
+  }),
   alternates: {
     canonical: "/live",
     types: { "text/markdown": "/live.md" },

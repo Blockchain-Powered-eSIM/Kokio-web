@@ -6,7 +6,7 @@ import rehypeSlug from "rehype-slug";
 import { getManifesto } from "@/lib/manifesto";
 import { rehypeManifestoSections } from "@/lib/manifesto-mdx";
 import { rehypeCollectH2Toc, type TocHeading } from "@/lib/mdx-toc";
-import { siteConfig } from "@/config/site";
+import { shareMetadata } from "@/lib/esim/pages";
 import { getManifestoMdxComponents } from "@/components/manifesto/mdx-components";
 import { SectionIndex } from "@/components/manifesto/section-index";
 
@@ -14,18 +14,15 @@ export function generateMetadata(): Metadata {
   const manifesto = getManifesto();
 
   return {
-    title: manifesto.title,
-    description: manifesto.description,
+    ...shareMetadata({
+      path: "/manifesto",
+      title: manifesto.title,
+      description: manifesto.description,
+      type: "article",
+    }),
     alternates: {
       canonical: "/manifesto",
       types: { "text/markdown": "/manifesto.md" },
-    },
-    openGraph: {
-      type: "article",
-      url: `${siteConfig.url}/manifesto`,
-      siteName: siteConfig.name,
-      title: manifesto.title,
-      description: manifesto.description,
     },
   };
 }
