@@ -2,6 +2,7 @@ import { siteConfig, TWITTER_URL } from "@/config/site";
 import { legalConfig } from "@/config/legal";
 import { getAllPosts } from "@/lib/blog";
 import { getAllHubs } from "@/lib/hubs";
+import { DATA_PAGE } from "@/lib/esim/data-usage";
 import {
   CANONICAL_DESCRIPTION,
   PRODUCT_NAME,
@@ -37,6 +38,7 @@ ${link("Home", "/", "what Kokio is, how setup works, features, and the FAQ")}
 ${link("Manifesto", "/manifesto", "why Kokio treats connectivity as a right and privacy as its guardian")}
 ${link("Glossary", "/glossary", "eSIM, eUICC, SM-DP+, LPA, passkey, smart wallet and no-KYC defined")}
 ${link("Destinations", "/esim", "every destination with its starting price")}
+${link("How much data do I need?", DATA_PAGE.path, DATA_PAGE.description)}
 ${getAllHubs()
   .map((hub) => link(hub.title, hub.path, hub.description))
   .join("\n")}

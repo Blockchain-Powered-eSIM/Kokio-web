@@ -8,6 +8,7 @@ import { getAllHubs } from "@/lib/hubs";
 import { getManifesto } from "@/lib/manifesto";
 import { HOME_UPDATED, LIVE_UPDATED } from "@/lib/site-copy";
 import { SNAPSHOT_DATE } from "@/lib/esim/catalogue";
+import { DATA_PAGE } from "@/lib/esim/data-usage";
 import {
   builtCountryPages,
   builtRegionPages,
@@ -59,6 +60,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: SNAPSHOT_DATE,
       changeFrequency: "monthly",
       priority: 0.9,
+    },
+    {
+      url: new URL(DATA_PAGE.path, siteConfig.url).href,
+      lastModified: SNAPSHOT_DATE,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     // Pages held back by the quality gate stay out until they pass.
     ...[...builtRegionPages(), ...builtCountryPages()]

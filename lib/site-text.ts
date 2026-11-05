@@ -53,6 +53,12 @@ import {
   type CountryPage,
   type RegionPage,
 } from "@/lib/esim/pages";
+import {
+  ACTIVITIES,
+  DATA_FAQS,
+  DATA_PAGE,
+  sampleAnswer,
+} from "@/lib/esim/data-usage";
 import type { Faq, RegulatoryNote, SnapshotPlan } from "@/lib/esim/types";
 import { getAllHubs, type Hub } from "@/lib/hubs";
 
@@ -375,6 +381,23 @@ function hubSection(hub: Hub): string {
   ].join("\n\n");
 }
 
+function dataSection(): string {
+  return [
+    `## ${DATA_PAGE.title}`,
+    sampleAnswer(),
+    "The page has a calculator: pick a destination, the trip length and daily hours on mobile data, and it shows the estimate and the cheapest plan that covers it.",
+    "## Where the numbers come from",
+    ACTIVITIES.map((activity) => {
+      const source = activity.source
+        ? ` [${activity.source.label}](${activity.source.url})`
+        : "";
+      return `- ${activity.label}: about ${activity.gbPerHour} GB an hour. ${activity.basis}${source}`;
+    }).join("\n"),
+    ...faqText(DATA_FAQS),
+    LATEST_PLANS_NOTE,
+  ].join("\n\n");
+}
+
 function regionSection(page: RegionPage): string {
   const comparisons = page.content.routes
     .map((route) => compareRoute(route, page.offering))
@@ -419,6 +442,7 @@ export function pageSections(): Record<string, () => string> {
     "/manifesto": manifestoSection,
     "/glossary": glossarySection,
     "/esim": esimIndexSection,
+    [DATA_PAGE.path]: dataSection,
     ...Object.fromEntries(
       getAllHubs().map((hub) => [hub.path, () => hubSection(hub)])
     ),
