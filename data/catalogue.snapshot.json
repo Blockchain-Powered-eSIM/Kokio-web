@@ -1104,12 +1104,6 @@
         {
           "name": "Movistar",
           "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Movistar Argentina",
-          "types": [
             "2G",
             "3G",
             "4G"
@@ -1260,12 +1254,6 @@
         },
         {
           "name": "Drei",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Drei Austria",
           "types": [
             "2G",
             "3G",
@@ -2570,12 +2558,6 @@
         {
           "name": "Yettel",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Yettel Bulgaria",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -3277,15 +3259,10 @@
         {
           "name": "tigo",
           "types": [
-            "LTE"
-          ]
-        },
-        {
-          "name": "Tigo Bolivia",
-          "types": [
             "2G",
             "3G",
-            "4G"
+            "4G",
+            "LTE"
           ]
         }
       ]
@@ -4547,12 +4524,6 @@
         {
           "name": "Airtel",
           "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Airtel Congo",
-          "types": [
             "2G",
             "3G",
             "4G"
@@ -4921,12 +4892,6 @@
         {
           "name": "Movistar",
           "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Movistar Chile",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -5014,12 +4979,6 @@
         },
         {
           "name": "Orange",
-          "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Orange Cameroon",
           "types": [
             "2G",
             "3G",
@@ -6212,12 +6171,6 @@
         {
           "name": "O2",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "O2 Czech Republic",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -6235,16 +6188,11 @@
         {
           "name": "Vodafone",
           "types": [
-            "LTE"
-          ]
-        },
-        {
-          "name": "Vodafone Czech Republic",
-          "types": [
             "2G",
             "3G",
             "4G",
-            "5G"
+            "5G",
+            "LTE"
           ]
         }
       ]
@@ -6564,12 +6512,6 @@
         },
         {
           "name": "Telia",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Telia Denmark",
           "types": [
             "2G",
             "3G",
@@ -8396,12 +8338,6 @@
           "types": [
             "4G"
           ]
-        },
-        {
-          "name": "Airtel Gabon",
-          "types": [
-            "4G"
-          ]
         }
       ]
     },
@@ -9091,12 +9027,6 @@
         {
           "name": "Digicel",
           "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Digicel French Guiana",
-          "types": [
             "2G",
             "3G",
             "4G"
@@ -9343,12 +9273,6 @@
       "networks": [
         {
           "name": "AT",
-          "types": [
-            "3G"
-          ]
-        },
-        {
-          "name": "AT Ghana",
           "types": [
             "2G",
             "3G"
@@ -10338,12 +10262,6 @@
         },
         {
           "name": "Tigo",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Tigo Guatemala",
           "types": [
             "2G",
             "3G",
@@ -11400,12 +11318,6 @@
         {
           "name": "Vodafone",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Vodafone Hungary",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -11414,12 +11326,6 @@
         },
         {
           "name": "Yettel",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Yettel Hungary",
           "types": [
             "2G",
             "3G",
@@ -12482,15 +12388,10 @@
         {
           "name": "Zain",
           "types": [
-            "LTE"
-          ]
-        },
-        {
-          "name": "Zain Iraq",
-          "types": [
             "2G",
             "3G",
-            "4G"
+            "4G",
+            "LTE"
           ]
         }
       ]
@@ -13030,12 +12931,7 @@
             "2G",
             "3G",
             "4G",
-            "5G"
-          ]
-        },
-        {
-          "name": "JT Jersey",
-          "types": [
+            "5G",
             "LTE"
           ]
         }
@@ -13628,15 +13524,10 @@
         {
           "name": "Beeline",
           "types": [
-            "LTE"
-          ]
-        },
-        {
-          "name": "Beeline Kyrgyzstan",
-          "types": [
             "2G",
             "3G",
-            "4G"
+            "4G",
+            "LTE"
           ]
         },
         {
@@ -14149,12 +14040,6 @@
         {
           "name": "Zain",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Zain Kuwait",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -14373,12 +14258,6 @@
       "networks": [
         {
           "name": "Beeline",
-          "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Beeline Kazakhstan",
           "types": [
             "2G",
             "3G",
@@ -15230,12 +15109,6 @@
         {
           "name": "Tele2",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Tele2 Lithuania",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -15387,12 +15260,6 @@
       "networks": [
         {
           "name": "Orange",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Orange Luxembourg",
           "types": [
             "2G",
             "3G",
@@ -15571,12 +15438,6 @@
         },
         {
           "name": "Tele2",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Tele2 Latvia",
           "types": [
             "2G",
             "3G",
@@ -15973,12 +15834,6 @@
         },
         {
           "name": "Orange",
-          "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Orange Moldova",
           "types": [
             "2G",
             "3G",
@@ -18193,12 +18048,6 @@
         {
           "name": "Airtel",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Airtel Nigeria",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -18221,12 +18070,6 @@
         },
         {
           "name": "MTN",
-          "types": [
-            "3G"
-          ]
-        },
-        {
-          "name": "MTN Nigeria",
           "types": [
             "2G",
             "3G",
@@ -18369,17 +18212,11 @@
         {
           "name": "Tigo",
           "types": [
-            "4G",
-            "LTE"
-          ]
-        },
-        {
-          "name": "Tigo Nicaragua",
-          "types": [
             "2G",
             "3G",
             "4G",
-            "5G"
+            "5G",
+            "LTE"
           ]
         }
       ]
@@ -19447,12 +19284,6 @@
         },
         {
           "name": "Movistar",
-          "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Movistar Peru",
           "types": [
             "2G",
             "3G",
@@ -20760,16 +20591,10 @@
         {
           "name": "Tigo",
           "types": [
-            "4G",
-            "LTE"
-          ]
-        },
-        {
-          "name": "Tigo Paraguay",
-          "types": [
             "2G",
             "3G",
-            "4G"
+            "4G",
+            "LTE"
           ]
         }
       ]
@@ -20920,14 +20745,6 @@
           "types": [
             "2G",
             "3G",
-            "4G",
-            "5G"
-          ]
-        },
-        {
-          "name": "Vodafone Qatar",
-          "types": [
-            "2G",
             "4G",
             "5G"
           ]
@@ -21227,12 +21044,6 @@
         {
           "name": "Orange",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Orange Romania",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -21248,14 +21059,9 @@
         {
           "name": "Vodafone",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Vodafone Romania",
-          "types": [
             "2G",
-            "4G"
+            "4G",
+            "5G"
           ]
         }
       ]
@@ -21778,12 +21584,6 @@
         {
           "name": "Zain",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Zain Saudi Arabia",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -21908,12 +21708,6 @@
       "networks": [
         {
           "name": "Airtel",
-          "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Airtel Seychelles",
           "types": [
             "2G",
             "3G",
@@ -22169,12 +21963,6 @@
         {
           "name": "3",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "3 Sweden",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -22184,12 +21972,6 @@
         {
           "name": "Tele2",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Tele2 Sweden",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -22198,12 +21980,6 @@
         },
         {
           "name": "Telia",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Telia Sweden",
           "types": [
             "2G",
             "3G",
@@ -22681,12 +22457,6 @@
         {
           "name": "O2",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "O2 Slovakia",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -22970,12 +22740,6 @@
         {
           "name": "Digicel",
           "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Digicel Suriname",
-          "types": [
             "2G",
             "3G",
             "4G"
@@ -23141,12 +22905,6 @@
         },
         {
           "name": "Movistar",
-          "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Movistar El Salvador",
           "types": [
             "2G",
             "3G",
@@ -23433,12 +23191,6 @@
       "networks": [
         {
           "name": "Airtel",
-          "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Airtel Chad",
           "types": [
             "2G",
             "3G",
@@ -23919,12 +23671,6 @@
         {
           "name": "Ooredoo",
           "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Ooredoo Tunisia",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -24279,12 +24025,6 @@
         {
           "name": "Digicel",
           "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Digicel Trinidad and Tobago",
-          "types": [
             "2G",
             "3G",
             "4G"
@@ -24578,12 +24318,6 @@
         {
           "name": "Airtel",
           "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Airtel Tanzania",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -24832,12 +24566,6 @@
       "networks": [
         {
           "name": "Airtel",
-          "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Airtel Uganda",
           "types": [
             "2G",
             "3G",
@@ -25472,13 +25200,6 @@
         },
         {
           "name": "Movistar",
-          "types": [
-            "4G",
-            "5G"
-          ]
-        },
-        {
-          "name": "Movistar Uruguay",
           "types": [
             "2G",
             "3G",
@@ -26899,12 +26620,6 @@
           ]
         },
         {
-          "name": "Telkom South Africa",
-          "types": [
-            "3G"
-          ]
-        },
-        {
           "name": "Vodacom",
           "types": [
             "2G",
@@ -26977,12 +26692,6 @@
       "networks": [
         {
           "name": "Airtel",
-          "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Airtel Zambia",
           "types": [
             "2G",
             "3G",

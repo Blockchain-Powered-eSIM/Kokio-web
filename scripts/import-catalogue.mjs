@@ -166,9 +166,25 @@ for (const [code, country] of Object.entries(countries)) {
     continue;
   }
   country.plans.sort(byValue);
-  country.networks = Object.values(country.networks).sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
+  country.networks = mergeCountrySuffix(
+    Object.values(country.networks),
+    country.name
+  ).sort((a, b) => a.name.localeCompare(b.name));
+}
+
+// "Tele2 Sweden" next to "Tele2" is one network. Folds the suffixed label into the plain one.
+function mergeCountrySuffix(networks, countryName) {
+  const byName = new Map(networks.map((n) => [n.name.toLowerCase(), n]));
+  const suffix = ` ${countryName}`.toLowerCase();
+  for (const network of networks) {
+    const lower = network.name.toLowerCase();
+    if (!lower.endsWith(suffix)) continue;
+    const base = byName.get(lower.slice(0, -suffix.length));
+    if (!base) continue;
+    base.types = [...new Set([...base.types, ...network.types])].sort();
+    byName.delete(lower);
+  }
+  return [...byName.values()];
 }
 
 const snapshot = {
