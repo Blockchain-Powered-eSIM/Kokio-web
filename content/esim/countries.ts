@@ -106,6 +106,7 @@ export const countries: CountryContent[] = [
           "Yes, where the network offers it. Every Kokio Japan plan can use 5G.",
       },
     ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "vietnam",

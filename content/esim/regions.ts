@@ -68,7 +68,7 @@ export const regions: RegionContent[] = [
           "Yes. In checkout, switch to Top-up and pick the eSIM you already have.",
       },
     ],
-    lastVerified: null,
+    lastVerified: "2026-11-05",
     publishStatus: "published",
   },
 ];
