@@ -60,10 +60,14 @@ const NavBar = () => {
   if (pathname?.startsWith("/manifesto") || pathname?.startsWith("/live"))
     return null;
 
+  // On desktop, equal side columns keep the links centred whatever the logo and icon widths.
   return (
     <div className="container flex w-full max-w-[1017px] justify-center px-4 pt-10 md:px-8 lg:px-0 lg:pt-[4.5rem]">
-      <nav className="flex w-full items-center justify-between gap-6 rounded-full bg-ship-cove-50 p-6 md:px-14">
-        <Link href="/" className="inline-flex min-h-11 items-center">
+      <nav className="flex w-full items-center justify-between gap-6 rounded-full bg-ship-cove-50 p-6 md:grid md:grid-cols-[1fr_auto_1fr] md:px-14">
+        <Link
+          href="/"
+          className="inline-flex min-h-11 items-center md:justify-self-start"
+        >
           <Image
             src={Logo}
             alt="Logo"
@@ -76,9 +80,10 @@ const NavBar = () => {
 
         <div className="hidden items-center gap-5 md:flex lg:gap-8">
           <NavLinks />
-          <div className="flex items-center gap-1">
-            <SocialIcons />
-          </div>
+        </div>
+
+        <div className="hidden items-center gap-1 md:flex md:justify-self-end">
+          <SocialIcons />
         </div>
 
         <Dialog>
