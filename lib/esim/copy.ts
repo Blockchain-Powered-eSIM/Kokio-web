@@ -99,7 +99,8 @@ export function regionAlternative(page: CountryPage): {
   comparison: RouteComparison | null;
 } | null {
   const region = page.content.region ? regionPage(page.content.region) : null;
-  if (!region) return null;
+  // A region page only helps if its plan works in this country.
+  if (!region?.offering.countries.includes(page.content.iso2)) return null;
   const route = region.content.routes.find((candidate) =>
     candidate.legs.some((leg) => leg.iso2 === page.content.iso2)
   );
