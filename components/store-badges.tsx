@@ -1,14 +1,28 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 import { ANDROID_URL, IOS_URL } from "@/components/live/hero";
 
 type Platform = "ios" | "android";
 
-function trackDownload(platform: Platform) {
+function trackDownload(platform: Platform, page: string) {
   const w = window as unknown as {
     umami?: { track: (event: string, data?: object) => void };
   };
-  w.umami?.track("Download Click", { page: "Home Page", platform });
+  w.umami?.track("Download Click", { page, platform });
+}
+
+// Play Console reads utm_* from `referrer`, so installs show per page.
+// The App Store equivalent (`ct`) also needs the provider token `pt`.
+function playUrl(pathname: string) {
+  const slug = pathname.split("/").filter(Boolean).join("-") || "home";
+  const referrer = new URLSearchParams({
+    utm_source: "kokio.app",
+    utm_medium: "web",
+    utm_campaign: `web-${slug}`,
+  });
+  return `${ANDROID_URL}&referrer=${encodeURIComponent(referrer.toString())}`;
 }
 
 const badgeClass =
@@ -58,6 +72,9 @@ function PlayMark() {
 }
 
 export function StoreBadges() {
+  const pathname = usePathname() ?? "/";
+  const page = pathname === "/" ? "Home Page" : pathname;
+
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
       <a
@@ -66,7 +83,7 @@ export function StoreBadges() {
         rel="noopener noreferrer"
         aria-label="Download Kokio on the App Store"
         className={badgeClass}
-        onClick={() => trackDownload("ios")}
+        onClick={() => trackDownload("ios", page)}
       >
         <AppStoreMark />
         <span className="flex flex-col leading-tight">
@@ -75,12 +92,12 @@ export function StoreBadges() {
         </span>
       </a>
       <a
-        href={ANDROID_URL}
+        href={playUrl(pathname)}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Get Kokio on the Play Store"
         className={badgeClass}
-        onClick={() => trackDownload("android")}
+        onClick={() => trackDownload("android", page)}
       >
         <PlayMark />
         <span className="flex flex-col leading-tight">
