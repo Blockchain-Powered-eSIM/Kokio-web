@@ -74,6 +74,38 @@ export const countries: CountryContent[] = [
     name: "Japan",
     airports: ["Narita (NRT)", "Haneda (HND)", "Kansai (KIX)"],
     neighbours: ["south-korea", "taiwan"],
+    // From the catalogue snapshot, plus the airport Wi-Fi tip, which a person still has to check.
+    tips: [
+      "Your eSIM can use any of Japan's four mobile networks: NTT Docomo, KDDI, SoftBank and Rakuten. If the signal is weak, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
+      "Plans start small, at 0.5 GB for 7 days, which covers maps and messages on a short stopover. Unlimited plans run for 3, 5, 7, 10, 15 or 30 days.",
+      "Forgot to install before you flew? Narita, Haneda and Kansai have free airport Wi-Fi, enough to download the eSIM before you leave the terminal.",
+    ],
+    faqs: [
+      {
+        id: "passport",
+        question: "Do I need my passport to buy a Japan eSIM?",
+        answer:
+          "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
+      },
+      {
+        id: "phone-number",
+        question: "Does the Japan eSIM include a Japanese phone number?",
+        answer:
+          "No. Kokio's Japan plans are data-only, so calls and messages go through internet apps.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for Japan?",
+        answer:
+          "Yes. Unlimited Japan plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in Japan?",
+        answer:
+          "Yes, where the network offers it. Every Kokio Japan plan can use 5G.",
+      },
+    ],
   }),
   starter({
     slug: "vietnam",
