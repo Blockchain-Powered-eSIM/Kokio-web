@@ -30,10 +30,26 @@ export const countries: CountryContent[] = [
       },
     ],
     airports: ["Suvarnabhumi (BKK)", "Don Mueang (DMK)"],
-    // TODO: 3-5 Thailand tips, checked by a person.
-    tips: [],
+    // Draft from the 2026-11-04 snapshot and the sourced rule above. Recheck the day lengths when the snapshot changes.
+    tips: [
+      "A local SIM now means a passport check at the counter, so installing the eSIM at home lets you walk past the SIM desks at arrivals.",
+      "Unlimited plans come in 3, 5, 7, 10, 15 and 30-day lengths. Pick the one that matches your trip rather than guessing how many GB you'll use.",
+      "If the signal is weak where you are, choose another network by hand: on iPhone, Settings → Mobile Service → your Kokio line → Network Selection.",
+    ],
     // TODO: island coverage and hotspot answers, once the supplier confirms them.
     faqs: [
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for Thailand?",
+        answer:
+          "Yes. Unlimited Thailand plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in Thailand?",
+        answer:
+          "Yes, where the network offers it. Every Kokio Thailand plan can use 5G.",
+      },
       {
         id: "passport",
         question: "Do I need my passport to buy a Thailand eSIM?",
