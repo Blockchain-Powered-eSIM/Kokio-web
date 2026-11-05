@@ -6,7 +6,7 @@
  * the quality gate keeps the page out of the index until it is filled.
  */
 
-import type { CountryContent } from "@/lib/esim/types";
+import type { CountryContent, Faq } from "@/lib/esim/types";
 
 export const countries: CountryContent[] = [
   {
@@ -67,14 +67,13 @@ export const countries: CountryContent[] = [
     lastVerified: "2026-11-05",
     publishStatus: "published",
   },
-  // TODO: tips, FAQs and sourced rules for each country below, checked by a person.
   starter({
     slug: "japan",
     iso2: "JP",
     name: "Japan",
     airports: ["Narita (NRT)", "Haneda (HND)", "Kansai (KIX)"],
     neighbours: ["south-korea", "taiwan"],
-    // From the catalogue snapshot, plus the airport Wi-Fi tip, which a person still has to check.
+    // From the catalogue snapshot, plus the airport Wi-Fi tip. Recheck when the snapshot changes.
     tips: [
       "Your eSIM can use any of Japan's four mobile networks: NTT Docomo, KDDI, SoftBank and Rakuten. If the signal is weak, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
       "Plans start small, at 0.5 GB for 7 days, which covers maps and messages on a short stopover. Unlimited plans run for 3, 5, 7, 10, 15 or 30 days.",
@@ -115,6 +114,7 @@ export const countries: CountryContent[] = [
     region: "southeast-asia",
     airports: ["Noi Bai, Hanoi (HAN)", "Tan Son Nhat, Ho Chi Minh City (SGN)"],
     neighbours: ["thailand", "cambodia"],
+    lastVerified: "2026-11-05",
     // From the catalogue snapshot. Recheck networks and the Southeast Asia plan when the snapshot changes.
     tips: [
       "Vietnam is on the Southeast Asia plan with Thailand, Singapore, the Philippines and China, so one eSIM can cover a Bangkok to Hanoi trip.",
@@ -154,6 +154,7 @@ export const countries: CountryContent[] = [
     name: "Indonesia",
     airports: ["Soekarno-Hatta, Jakarta (CGK)", "Ngurah Rai, Bali (DPS)"],
     neighbours: ["malaysia", "singapore"],
+    lastVerified: "2026-11-05",
     rules: [
       {
         text: "A local Indonesian SIM in a phone bought abroad only works while the phone's IMEI is registered, which lasts 90 days for visitors. A foreign SIM on roaming needs no IMEI registration.",
@@ -169,7 +170,7 @@ export const countries: CountryContent[] = [
         ],
       },
     ],
-    // From the catalogue snapshot, the sourced IMEI rule, and the Telkomsel coverage tip, which a person still has to check.
+    // From the catalogue snapshot, the sourced IMEI rule and the Telkomsel coverage tip.
     tips: [
       "Kokio plans connect by roaming, so you skip the IMEI registration a local SIM would need, and there's no 90-day limit to watch.",
       "Your eSIM can use Telkomsel, Indosat or Tri. Telkomsel reaches furthest across the islands, so try it first off the main tourist routes.",
@@ -208,6 +209,7 @@ export const countries: CountryContent[] = [
     name: "South Korea",
     airports: ["Incheon (ICN)", "Gimpo (GMP)"],
     neighbours: ["japan", "taiwan"],
+    lastVerified: "2026-11-05",
     // From the catalogue snapshot. Recheck the network when the snapshot changes.
     tips: [
       "Kokio's South Korea plans run on SK Telecom, the country's largest network, so there is no network to pick by hand.",
@@ -247,7 +249,8 @@ export const countries: CountryContent[] = [
     region: "southeast-asia",
     airports: ["Changi (SIN)"],
     neighbours: ["malaysia", "indonesia"],
-    // From the catalogue snapshot, plus the Changi Wi-Fi tip, which a person still has to check.
+    lastVerified: "2026-11-05",
+    // From the catalogue snapshot, plus the Changi Wi-Fi tip.
     tips: [
       "Your eSIM can use any of Singapore's four networks: Singtel, StarHub, M1 and SIMBA.",
       "Crossing into Malaysia by road? A Singapore plan stops at the border. The Asia plans in the app cover both countries on one eSIM.",
@@ -285,7 +288,8 @@ export const countries: CountryContent[] = [
     name: "Malaysia",
     airports: ["Kuala Lumpur International (KUL)"],
     neighbours: ["singapore", "thailand", "indonesia"],
-    // From the catalogue snapshot, plus the CelcomDigi merger, which a person still has to check.
+    lastVerified: "2026-11-05",
+    // From the catalogue snapshot, plus the CelcomDigi merger.
     tips: [
       "Celcom and DiGi merged into CelcomDigi, so your phone may show either name. Maxis and U Mobile are the other networks your eSIM can use.",
       "Crossing to Singapore by road? A Malaysia plan stops at the border. The Asia plans in the app cover both countries on one eSIM.",
@@ -325,6 +329,7 @@ export const countries: CountryContent[] = [
     region: "southeast-asia",
     airports: ["Ninoy Aquino, Manila (MNL)", "Mactan-Cebu (CEB)"],
     neighbours: ["taiwan", "vietnam"],
+    lastVerified: "2026-11-05",
     rules: [
       {
         text: "Under the SIM Registration Act, a tourist registering a local SIM shows a passport, a Philippine address and a return ticket, and the SIM stops working after 30 days unless the visa is extended.",
@@ -340,7 +345,7 @@ export const countries: CountryContent[] = [
         ],
       },
     ],
-    // From the catalogue snapshot and the sourced registration rule. A person still has to check both.
+    // From the catalogue snapshot and the sourced registration rule. Recheck the rule against DICT or NTC.
     tips: [
       "Staying longer than 30 days? A registered tourist SIM switches off after 30 days unless your visa is extended. A Kokio plan doesn't depend on your visa.",
       "Your eSIM can use Globe or Smart, the two biggest networks. If one is weak on an island, choose the other by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
@@ -379,6 +384,27 @@ export const countries: CountryContent[] = [
     name: "Taiwan",
     airports: ["Taoyuan (TPE)"],
     neighbours: ["japan", "hong-kong", "philippines"],
+    tips: [
+      "Your eSIM can use Chunghwa Telecom or Taiwan Mobile. If the signal is weak in the mountains, choose the other by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
+      "Taipei, then Tokyo or Seoul? The Asia plans in the app cover Taiwan, Japan and South Korea on one eSIM.",
+      "Unlimited plans run for 3, 5, 7, 10, 15 or 30 days, and every Taiwan plan can use 5G.",
+    ],
+    faqs: [
+      ...commonFaqs("Taiwan", "Taiwanese"),
+      {
+        id: "asia",
+        question: "Does the Taiwan eSIM work in Japan or Hong Kong?",
+        answer:
+          "A Taiwan plan works in Taiwan. For several countries, pick one of the Asia plans in the app.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in Taiwan?",
+        answer:
+          "Yes, where the network offers it. Every Kokio Taiwan plan can use 5G.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "hong-kong",
@@ -386,12 +412,53 @@ export const countries: CountryContent[] = [
     name: "Hong Kong",
     airports: ["Hong Kong International (HKG)"],
     neighbours: ["taiwan"],
+    tips: [
+      "Day trip to Macau or Shenzhen? A Hong Kong plan stops at the border. The Asia plans in the app cover Hong Kong, Macau and mainland China on one eSIM.",
+      "Your eSIM can use 3 Hong Kong, China Mobile Hong Kong, HKT or SmarTone. SmarTone is 4G on these plans, so pick one of the others by hand if you want 5G.",
+      "Plans start at 1 GB for 7 days, which covers a short stopover. Unlimited plans run for 3, 5, 7, 10, 15 or 30 days.",
+    ],
+    faqs: [
+      ...commonFaqs("Hong Kong", "Hong Kong"),
+      {
+        id: "macau-china",
+        question: "Does the Hong Kong eSIM work in Macau or mainland China?",
+        answer:
+          "No. A Hong Kong plan works in Hong Kong. The Asia plans in the app cover all three.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for Hong Kong?",
+        answer:
+          "Yes. Unlimited Hong Kong plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "cambodia",
     iso2: "KH",
     name: "Cambodia",
     neighbours: ["thailand", "vietnam"],
+    tips: [
+      "Every Cambodia plan runs on Smart over 4G. There is no 5G on these plans, and no other network to switch to.",
+      "Going on to Thailand or Vietnam? Cambodia isn't on the Southeast Asia plan, but the Asia plans in the app cover all three countries.",
+      "The largest fixed plan is 20 GB for 30 days. Streaming a lot? Unlimited plans run for 3, 5, 7, 10, 15 or 30 days.",
+    ],
+    faqs: [
+      ...commonFaqs("Cambodia", "Cambodian"),
+      {
+        id: "network",
+        question: "Which network does the Cambodia eSIM use?",
+        answer: "Smart, over 4G.",
+      },
+      {
+        id: "regional",
+        question: "Which regional plan covers Cambodia?",
+        answer:
+          "The Asia plans in the app. The Southeast Asia plan does not include Cambodia.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "india",
@@ -399,6 +466,27 @@ export const countries: CountryContent[] = [
     name: "India",
     airports: ["Delhi (DEL)", "Mumbai (BOM)"],
     neighbours: ["united-arab-emirates"],
+    tips: [
+      "Want 5G? Only the 50 GB and 100 GB India plans can use it, through Airtel. The other plans run on 4G.",
+      "Your eSIM can use Airtel, Jio or Vi. If the signal is weak, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
+      "Unlimited plans run for 3, 5, 7, 10, 15 or 30 days, so a month-long trip fits one 30-day plan.",
+    ],
+    faqs: [
+      ...commonFaqs("India", "Indian"),
+      {
+        id: "5g",
+        question: "Can I use 5G in India?",
+        answer:
+          "On the 50 GB and 100 GB plans, through Airtel. The other India plans are 4G.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for India?",
+        answer:
+          "Yes. Unlimited India plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "united-arab-emirates",
@@ -406,6 +494,27 @@ export const countries: CountryContent[] = [
     name: "United Arab Emirates",
     airports: ["Dubai (DXB)", "Zayed International, Abu Dhabi (AUH)"],
     neighbours: ["india"],
+    tips: [
+      "Unlimited UAE plans top out at 15 days. Staying a month? Pick a 30-day fixed-data plan instead.",
+      "Your eSIM can use du or Etisalat, and every UAE plan can use 5G.",
+      "Going on to Oman or Jordan? The Middle East plans in the app cover the UAE and its neighbours on one eSIM.",
+    ],
+    faqs: [
+      ...commonFaqs("UAE", "Emirati"),
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for the UAE?",
+        answer:
+          "Yes, for 3, 5, 7, 10 or 15 days. For longer stays, pick a 30-day fixed-data plan.",
+      },
+      {
+        id: "middle-east",
+        question: "Does the UAE eSIM work in Oman or other Gulf countries?",
+        answer:
+          "A UAE plan works in the UAE. For several countries, pick one of the Middle East plans in the app.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "turkey",
@@ -413,12 +522,34 @@ export const countries: CountryContent[] = [
     name: "Turkey",
     airports: ["Istanbul (IST)", "Sabiha Gökçen (SAW)"],
     neighbours: ["greece"],
+    tips: [
+      "Turkey is in both the Europe plans and the Middle East plans in the app, so it fits either kind of trip on one eSIM.",
+      "Your eSIM can use Türk Telekom or Turkcell, and every Turkey plan can use 5G.",
+      "Besides the usual 30-day plans, Turkey has 10 GB and 20 GB plans that last 15 days, a good fit for a two-week trip.",
+    ],
+    faqs: [
+      ...commonFaqs("Turkey", "Turkish"),
+      {
+        id: "europe",
+        question: "Is Turkey in Kokio's Europe plans?",
+        answer:
+          "Yes, in several of them, and in the Middle East plans too. A Turkey plan on its own works only in Turkey.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in Turkey?",
+        answer:
+          "Yes, where the network offers it. Every Kokio Turkey plan can use 5G.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "united-states",
     iso2: "US",
     name: "United States",
     neighbours: ["canada", "mexico"],
+    lastVerified: "2026-11-05",
     // From the catalogue snapshot. Recheck plan shapes when the snapshot changes.
     tips: [
       "Your eSIM can use AT&T, T-Mobile or Verizon, the three national networks. Coverage differs a lot outside cities, so if one network is weak, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
@@ -457,6 +588,27 @@ export const countries: CountryContent[] = [
     iso2: "CA",
     name: "Canada",
     neighbours: ["united-states"],
+    tips: [
+      "Short stay? Canada has 3-day plans with 1 GB or 3 GB, smaller than most countries offer.",
+      "Your eSIM can use Bell, Rogers, Telus or Videotron. Only some Canada plans can use 5G, and the plan table marks which.",
+      "Crossing into the US? A Canada plan stops at the border. The North America plans in the app cover Canada, the US and Mexico.",
+    ],
+    faqs: [
+      ...commonFaqs("Canada", "Canadian"),
+      {
+        id: "us",
+        question: "Does the Canada eSIM work in the US?",
+        answer:
+          "No. For both countries, pick one of the North America plans in the app.",
+      },
+      {
+        id: "5g",
+        question: "Do Canada plans include 5G?",
+        answer:
+          "Some do, mostly the longer fixed-data plans. Unlimited Canada plans are 4G. The plan table marks each one.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "mexico",
@@ -464,6 +616,27 @@ export const countries: CountryContent[] = [
     name: "Mexico",
     airports: ["Mexico City (MEX)", "Cancún (CUN)"],
     neighbours: ["united-states"],
+    tips: [
+      "Your eSIM can use Telcel, Movistar or AT&T. 5G comes only through AT&T, so pick it by hand if you want 5G.",
+      "Heading on to Guatemala or Costa Rica? The Central America plans in the app cover Mexico and its southern neighbours.",
+      "Flying on to the US or Canada? The North America plans cover all three countries on one eSIM.",
+    ],
+    faqs: [
+      ...commonFaqs("Mexico", "Mexican"),
+      {
+        id: "regional",
+        question: "Which regional plans cover Mexico?",
+        answer:
+          "The North America, Central America, South America and Americas plans in the app all include Mexico.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for Mexico?",
+        answer:
+          "Yes. Unlimited Mexico plans run for 3, 5, 7, 10, 15 or 30 days, on 4G. The plan table shows the current prices.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "united-kingdom",
@@ -471,6 +644,7 @@ export const countries: CountryContent[] = [
     name: "United Kingdom",
     airports: ["Heathrow (LHR)", "Gatwick (LGW)"],
     neighbours: ["france", "netherlands"],
+    lastVerified: "2026-11-05",
     // From the catalogue snapshot. Recheck plan shapes when the snapshot changes.
     tips: [
       "Your eSIM can use EE, O2, Three or Vodafone, all four UK networks. If the signal drops in the countryside, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
@@ -510,6 +684,7 @@ export const countries: CountryContent[] = [
     name: "France",
     airports: ["Paris Charles de Gaulle (CDG)", "Paris Orly (ORY)"],
     neighbours: ["spain", "italy", "germany", "switzerland"],
+    lastVerified: "2026-11-05",
     // From the catalogue snapshot. Recheck when the snapshot changes.
     tips: [
       "Your eSIM can use Orange, SFR, Bouygues Telecom or Free Mobile, all four French networks. If the signal is weak, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
@@ -549,6 +724,7 @@ export const countries: CountryContent[] = [
     name: "Italy",
     airports: ["Rome Fiumicino (FCO)", "Milan Malpensa (MXP)"],
     neighbours: ["france", "switzerland"],
+    lastVerified: "2026-11-05",
     // From the catalogue snapshot. Recheck when the snapshot changes.
     tips: [
       "Your eSIM can use Vodafone, WindTre or Iliad. If the signal is weak in a hill town or on the coast, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
@@ -588,6 +764,27 @@ export const countries: CountryContent[] = [
     name: "Spain",
     airports: ["Madrid-Barajas (MAD)", "Barcelona-El Prat (BCN)"],
     neighbours: ["portugal", "france", "morocco"],
+    tips: [
+      "Your eSIM can use Movistar, Orange, Vodafone or Yoigo. Yoigo is 4G on these plans, so pick one of the others by hand if you want 5G.",
+      "Carrying on to Portugal or France? The Europe plans in the app cover Spain and its neighbours on one eSIM.",
+      "Unlimited plans run for 3, 5, 7, 10, 15 or 30 days, so a week in Barcelona fits the 7-day plan.",
+    ],
+    faqs: [
+      ...commonFaqs("Spain", "Spanish"),
+      {
+        id: "europe",
+        question: "Does the Spain eSIM work in Portugal or France?",
+        answer:
+          "A Spain plan works in Spain. For several countries, pick one of the Europe plans in the app.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in Spain?",
+        answer:
+          "Yes, on Movistar, Orange and Vodafone where they offer it. Every Kokio Spain plan can use 5G.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "germany",
@@ -595,6 +792,27 @@ export const countries: CountryContent[] = [
     name: "Germany",
     airports: ["Frankfurt (FRA)", "Munich (MUC)"],
     neighbours: ["netherlands", "switzerland", "france"],
+    tips: [
+      "Your eSIM can use O2 or Vodafone. E-Plus is now part of O2, so your phone may show either name.",
+      "Crossing borders by train? The Europe plans in the app cover Germany and its neighbours on one eSIM. Note that Switzerland is left out of the Europe + UK plans.",
+      "Unlimited plans run for 3, 5, 7, 10, 15 or 30 days, and every Germany plan can use 5G.",
+    ],
+    faqs: [
+      ...commonFaqs("Germany", "German"),
+      {
+        id: "europe",
+        question: "Does the Germany eSIM work in other European countries?",
+        answer:
+          "A Germany plan works in Germany. For several countries, pick one of the Europe plans in the app.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for Germany?",
+        answer:
+          "Yes. Unlimited Germany plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "portugal",
@@ -602,6 +820,27 @@ export const countries: CountryContent[] = [
     name: "Portugal",
     airports: ["Lisbon (LIS)", "Porto (OPO)"],
     neighbours: ["spain"],
+    tips: [
+      "Your eSIM can use MEO, NOS or Vodafone, and every Portugal plan can use 5G.",
+      "Driving on into Spain? A Portugal plan stops at the border. The Europe plans in the app cover both countries on one eSIM.",
+      "Plans start at 1 GB for 7 days, enough for a Lisbon weekend of maps and messages. Unlimited plans run for 3, 5, 7, 10, 15 or 30 days.",
+    ],
+    faqs: [
+      ...commonFaqs("Portugal", "Portuguese"),
+      {
+        id: "spain",
+        question: "Does the Portugal eSIM work in Spain?",
+        answer:
+          "No. For both countries, pick one of the Europe plans in the app.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in Portugal?",
+        answer:
+          "Yes, where the network offers it. Every Kokio Portugal plan can use 5G.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "greece",
@@ -609,6 +848,27 @@ export const countries: CountryContent[] = [
     name: "Greece",
     airports: ["Athens (ATH)"],
     neighbours: ["turkey", "italy"],
+    tips: [
+      "Your eSIM can use Cosmote, Vodafone or Nova. Wind Greece became Nova, so your phone may show either name.",
+      "Going on to Albania, North Macedonia or Croatia? The Balkans plans in the app cover Greece and its northern neighbours on one eSIM.",
+      "Island-hopping for two weeks? Unlimited plans run for 3, 5, 7, 10, 15 or 30 days, so the 15-day plan fits.",
+    ],
+    faqs: [
+      ...commonFaqs("Greece", "Greek"),
+      {
+        id: "regional",
+        question: "Which regional plans cover Greece?",
+        answer:
+          "The Europe plans and the Balkans plans in the app. A Greece plan on its own works only in Greece.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in Greece?",
+        answer:
+          "Yes, where the network offers it. Every Kokio Greece plan can use 5G.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "netherlands",
@@ -616,6 +876,27 @@ export const countries: CountryContent[] = [
     name: "Netherlands",
     airports: ["Amsterdam Schiphol (AMS)"],
     neighbours: ["germany"],
+    tips: [
+      "Your eSIM can use KPN or Vodafone. If the signal is weak, choose the other by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
+      "Want 5G on an unlimited plan? The 5, 10 and 15-day unlimited plans have it. The 3, 7 and 30-day ones are 4G, while every fixed-data plan can use 5G.",
+      "Taking the train to Brussels or Berlin? The Europe plans in the app cover the Netherlands and its neighbours on one eSIM.",
+    ],
+    faqs: [
+      ...commonFaqs("Netherlands", "Dutch"),
+      {
+        id: "europe",
+        question: "Does the Netherlands eSIM work in Belgium or Germany?",
+        answer:
+          "A Netherlands plan works in the Netherlands. For several countries, pick one of the Europe plans in the app.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for the Netherlands?",
+        answer:
+          "Yes. Unlimited Netherlands plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "switzerland",
@@ -623,6 +904,27 @@ export const countries: CountryContent[] = [
     name: "Switzerland",
     airports: ["Zurich (ZRH)", "Geneva (GVA)"],
     neighbours: ["germany", "france", "italy"],
+    tips: [
+      "Switzerland isn't in the EU, and some Europe plans leave it out. The Europe and Europe Lite plans in the app include it; the Europe + UK plans do not.",
+      "Your eSIM can use Swisscom, Sunrise or Salt, and every Switzerland plan can use 5G.",
+      "Unlimited plans run for 3, 5, 7, 10, 15 or 30 days, so a week of Alpine rail passes fits the 7-day plan.",
+    ],
+    faqs: [
+      ...commonFaqs("Switzerland", "Swiss"),
+      {
+        id: "europe",
+        question: "Do Kokio's Europe plans cover Switzerland?",
+        answer:
+          "Some do. The Europe and Europe Lite plans include Switzerland. The Europe + UK plans do not, so check the country list before you buy.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in Switzerland?",
+        answer:
+          "Yes, where the network offers it. Every Kokio Switzerland plan can use 5G.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "australia",
@@ -630,6 +932,27 @@ export const countries: CountryContent[] = [
     name: "Australia",
     airports: ["Sydney (SYD)", "Melbourne (MEL)"],
     neighbours: ["indonesia"],
+    tips: [
+      "Your eSIM can use Optus or Telstra. 5G comes through Optus; Telstra is 3G and 4G on these plans.",
+      "Going on to New Zealand? The Oceania plans in the app cover Australia and New Zealand on one eSIM.",
+      "Long drives between cities? Unlimited plans run for 3, 5, 7, 10, 15 or 30 days, so maps and music won't eat a fixed allowance.",
+    ],
+    faqs: [
+      ...commonFaqs("Australia", "Australian"),
+      {
+        id: "new-zealand",
+        question: "Does the Australia eSIM work in New Zealand?",
+        answer:
+          "No. For both countries, pick one of the Oceania plans in the app.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in Australia?",
+        answer:
+          "Yes, on Optus where it offers 5G. Every Kokio Australia plan can use it.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "brazil",
@@ -637,6 +960,28 @@ export const countries: CountryContent[] = [
     name: "Brazil",
     airports: ["São Paulo Guarulhos (GRU)", "Rio de Janeiro Galeão (GIG)"],
     neighbours: [],
+    tips: [
+      "Your eSIM can use Claro, TIM or Vivo, and every Brazil plan can use 5G.",
+      "Going on to Argentina, Chile or Peru? The South America plans in the app cover Brazil and its neighbours on one eSIM.",
+      "Plans start at 1 GB for 7 days. For a month across the country, unlimited plans run up to 30 days.",
+    ],
+    faqs: [
+      ...commonFaqs("Brazil", "Brazilian"),
+      {
+        id: "south-america",
+        question:
+          "Does the Brazil eSIM work in other South American countries?",
+        answer:
+          "A Brazil plan works in Brazil. For several countries, pick one of the South America or Americas plans in the app.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in Brazil?",
+        answer:
+          "Yes, where the network offers it. Every Kokio Brazil plan can use 5G.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "egypt",
@@ -644,6 +989,27 @@ export const countries: CountryContent[] = [
     name: "Egypt",
     airports: ["Cairo (CAI)"],
     neighbours: [],
+    tips: [
+      "Unlimited Egypt plans come in 3, 5 and 10-day lengths, on 4G. For longer trips or 5G, pick a fixed-data plan.",
+      "Your eSIM can use Orange or Vodafone. 5G comes through Orange; Vodafone is 4G on these plans.",
+      "Combining Egypt with Jordan or the UAE? The Middle East plans in the app cover all three on one eSIM.",
+    ],
+    faqs: [
+      ...commonFaqs("Egypt", "Egyptian"),
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for Egypt?",
+        answer:
+          "Yes, for 3, 5 or 10 days, on 4G. For longer stays, pick a 15 or 30-day fixed-data plan.",
+      },
+      {
+        id: "regional",
+        question: "Which regional plans cover Egypt?",
+        answer:
+          "The Middle East plans and the Africa plans in the app. An Egypt plan on its own works only in Egypt.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
   starter({
     slug: "morocco",
@@ -651,6 +1017,26 @@ export const countries: CountryContent[] = [
     name: "Morocco",
     airports: ["Casablanca Mohammed V (CMN)", "Marrakesh Menara (RAK)"],
     neighbours: ["spain"],
+    tips: [
+      "Kokio's Morocco plans run on 4G through Maroc Telecom or Orange. There is no 5G on these plans.",
+      "Unlimited Morocco plans come in 3, 5 and 7-day lengths. Staying longer? Pick a 15 or 30-day fixed-data plan.",
+      "Crossing from Spain by ferry? A Spain plan stops at Spain. The Middle East & North Africa plans in the app include Morocco.",
+    ],
+    faqs: [
+      ...commonFaqs("Morocco", "Moroccan"),
+      {
+        id: "5g",
+        question: "Can I use 5G in Morocco?",
+        answer: "No. Kokio's Morocco plans are 4G.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for Morocco?",
+        answer:
+          "Yes, for 3, 5 or 7 days. For longer stays, pick a 15 or 30-day fixed-data plan.",
+      },
+    ],
+    lastVerified: "2026-11-05",
   }),
 ];
 
@@ -668,4 +1054,25 @@ function starter(
     publishStatus: "published",
     ...entry,
   };
+}
+
+// The two questions every destination gets. `local` is the adjective in "a Spanish phone number".
+function commonFaqs(name: string, local: string): Faq[] {
+  return [
+    {
+      id: "passport",
+      question: `Do I need my passport to buy Kokio's ${name} eSIM?`,
+      answer:
+        "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
+    },
+    {
+      id: "phone-number",
+      question: `Does the ${name} eSIM include ${articleFor(local)} ${local} phone number?`,
+      answer: `No. Kokio's ${name} plans are data-only, so calls and messages go through internet apps.`,
+    },
+  ];
+}
+
+function articleFor(word: string): string {
+  return /^[AEIOU]/.test(word) ? "an" : "a";
 }
