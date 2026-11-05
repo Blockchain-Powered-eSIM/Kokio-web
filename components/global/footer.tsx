@@ -45,6 +45,7 @@ export const socialLinks = [
 
 const siteLinks = [
   { title: "Pricing", href: "/#pricing" },
+  { title: "Destinations", href: "/esim" },
   { title: "Manifesto", href: "/manifesto" },
   { title: "Glossary", href: "/glossary" },
   { title: "Privacy Policy", href: "/privacy-policy" },

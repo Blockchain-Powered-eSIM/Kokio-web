@@ -21,6 +21,40 @@ import {
   PRODUCT_NAME,
   PRODUCT_NAME_SPELLINGS,
 } from "@/lib/site-copy";
+import {
+  compareRoute,
+  formatData,
+  formatDays,
+  formatUsd,
+} from "@/lib/esim/catalogue";
+import {
+  allRoaming,
+  countryAnswer,
+  countryNetworkLine,
+  esimIndex,
+  memberNames,
+  NO_ID_LINE,
+  NO_KYC_LINK_LABEL,
+  NO_KYC_PATH,
+  PAYMENTS_LINE,
+  LATEST_PLANS_NOTE,
+  PRICE_TABLE_NOTE,
+  regionAlternative,
+  regionAnswer,
+  ROAMING_LINE,
+  routeLine,
+  setupSteps,
+  whyKokioTitle,
+} from "@/lib/esim/copy";
+import {
+  builtCountryPages,
+  builtRegionPages,
+  isIndexed,
+  type CountryPage,
+  type RegionPage,
+} from "@/lib/esim/pages";
+import type { Faq, RegulatoryNote, SnapshotPlan } from "@/lib/esim/types";
+import { getAllHubs, type Hub } from "@/lib/hubs";
 
 /**
  * Every page of the site as markdown, keyed by the path it renders.
@@ -235,8 +269,148 @@ function manifestoSection(): string {
   ].join("\n\n");
 }
 
+function planLines(plans: SnapshotPlan[]): string {
+  return plans
+    .map(
+      (plan) =>
+        `- ${formatData(plan)}, ${formatDays(plan.validityDays)}: ${formatUsd(plan.priceUsd)}${plan.has5g ? " (5G)" : ""}`
+    )
+    .join("\n");
+}
+
+function ruleLine(rule: RegulatoryNote): string {
+  return `${rule.text} Sources: ${rule.sources.map((source) => `[${source.label}](${source.url})`).join(", ")}.`;
+}
+
+function faqText(faqs: Faq[]): string[] {
+  if (faqs.length === 0) return [];
+  return [
+    "## FAQ",
+    faqs.map((faq) => `### ${faq.question}\n\n${faq.answer}`).join("\n\n"),
+  ];
+}
+
+function esimIndexSection(): string {
+  const { countries, regions, description } = esimIndex();
+  return [
+    description,
+    ...(regions.length
+      ? [
+          "## Regional plans",
+          regions
+            .map(
+              (region) =>
+                `- [${region.name} eSIM](https://kokio.app${region.path}) from ${formatUsd(region.fromUsd)}`
+            )
+            .join("\n"),
+        ]
+      : []),
+    "## All destinations",
+    countries
+      .map((country) => {
+        const name = country.path
+          ? `[${country.name}](https://kokio.app${country.path})`
+          : country.name;
+        return `- ${name} from ${formatUsd(country.fromUsd)}`;
+      })
+      .join("\n"),
+    LATEST_PLANS_NOTE,
+  ].join("\n\n");
+}
+
+function countrySection(page: CountryPage): string {
+  const { content, catalogue } = page;
+  const network = countryNetworkLine(page);
+  const alternative = regionAlternative(page);
+  return [
+    `## eSIM for ${content.name}`,
+    countryAnswer(page),
+    ...(content.intro ? [content.intro] : []),
+    `## ${content.name} plans`,
+    `(${PRICE_TABLE_NOTE})`,
+    planLines(catalogue.plans),
+    ...(network || content.coverageNote
+      ? [
+          "## Network and coverage",
+          ...[network, content.coverageNote].filter(Boolean),
+        ]
+      : []),
+    `## ${whyKokioTitle(page)}`,
+    ...content.rules.map(ruleLine),
+    NO_ID_LINE,
+    ...(allRoaming(page) ? [ROAMING_LINE] : []),
+    PAYMENTS_LINE,
+    `[${NO_KYC_LINK_LABEL}](https://kokio.app${NO_KYC_PATH})`,
+    ...(content.tips.length
+      ? [
+          `## Tips for ${content.name}`,
+          content.tips.map((tip) => `- ${tip}`).join("\n"),
+        ]
+      : []),
+    "## Setup",
+    setupSteps(content.airports)
+      .map((step, index) => `${index + 1}. ${step}`)
+      .join("\n"),
+    ...(alternative
+      ? [
+          "## Going further?",
+          ...(alternative.comparison
+            ? [routeLine(alternative.comparison)]
+            : []),
+          `[${alternative.region.content.name} eSIM](https://kokio.app${alternative.region.path})`,
+        ]
+      : []),
+    ...faqText(content.faqs),
+    LATEST_PLANS_NOTE,
+  ].join("\n\n");
+}
+
+function hubSection(hub: Hub): string {
+  return [
+    `## ${hub.title}`,
+    hub.description,
+    mdxToText(hub.content),
+    ...faqText(hub.faqs),
+    LATEST_PLANS_NOTE,
+  ].join("\n\n");
+}
+
+function regionSection(page: RegionPage): string {
+  const comparisons = page.content.routes
+    .map((route) => compareRoute(route, page.offering))
+    .filter((comparison) => comparison !== null);
+  return [
+    `## ${page.content.name} eSIM`,
+    regionAnswer(page),
+    ...(page.content.intro ? [page.content.intro] : []),
+    "## Countries covered",
+    memberNames(page).join(", "),
+    "## Regional plans",
+    `(${PRICE_TABLE_NOTE})`,
+    planLines(page.offering.plans),
+    ...(comparisons.length
+      ? [
+          "## Regional or separate local plans?",
+          comparisons
+            .map((comparison) => `- ${routeLine(comparison)}`)
+            .join("\n"),
+        ]
+      : []),
+    ...faqText(page.content.faqs),
+    LATEST_PLANS_NOTE,
+  ].join("\n\n");
+}
+
 export function pageSections(): Record<string, () => string> {
   const posts = getAllPosts();
+  const esimPages = [
+    ...builtCountryPages()
+      .filter(isIndexed)
+      .map((page) => [page.path, () => countrySection(page)] as const),
+    ...builtRegionPages()
+      .filter(isIndexed)
+      .map((page) => [page.path, () => regionSection(page)] as const),
+  ];
 
   return {
     "/": homeSection,
@@ -244,6 +418,11 @@ export function pageSections(): Record<string, () => string> {
     "/blogs": () => blogIndexSection(posts),
     "/manifesto": manifestoSection,
     "/glossary": glossarySection,
+    "/esim": esimIndexSection,
+    ...Object.fromEntries(
+      getAllHubs().map((hub) => [hub.path, () => hubSection(hub)])
+    ),
+    ...Object.fromEntries(esimPages),
     "/terms-of-service": () => legalDocumentToText(termsOfService),
     "/privacy-policy": () => legalDocumentToText(privacyPolicy),
     ...Object.fromEntries(

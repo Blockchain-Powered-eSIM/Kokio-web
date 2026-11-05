@@ -4,8 +4,15 @@ import { siteConfig } from "@/config/site";
 import { legalConfig } from "@/config/legal";
 import { GLOSSARY_UPDATED } from "@/content/glossary";
 import { getAllPosts } from "@/lib/blog";
+import { getAllHubs } from "@/lib/hubs";
 import { getManifesto } from "@/lib/manifesto";
 import { HOME_UPDATED, LIVE_UPDATED } from "@/lib/site-copy";
+import { SNAPSHOT_DATE } from "@/lib/esim/catalogue";
+import {
+  builtCountryPages,
+  builtRegionPages,
+  isIndexed,
+} from "@/lib/esim/pages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -47,6 +54,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.7,
     },
+    {
+      url: new URL("/esim", siteConfig.url).href,
+      lastModified: SNAPSHOT_DATE,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    // Pages held back by the quality gate stay out until they pass.
+    ...[...builtRegionPages(), ...builtCountryPages()]
+      .filter(isIndexed)
+      .map((page) => ({
+        url: new URL(page.path, siteConfig.url).href,
+        lastModified: SNAPSHOT_DATE,
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
+      })),
+    ...getAllHubs().map((hub) => ({
+      url: new URL(hub.path, siteConfig.url).href,
+      lastModified: hub.updated,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     ...posts.map((post) => ({
       url: new URL(`/blogs/${post.slug}`, siteConfig.url).href,
       lastModified: post.updated,
