@@ -2172,16 +2172,10 @@
           ]
         },
         {
-          "name": "Grameenphone",
+          "name": "GrameenPhone",
           "types": [
             "2G",
             "3G",
-            "4G"
-          ]
-        },
-        {
-          "name": "GrameenPhone",
-          "types": [
             "4G"
           ]
         }
@@ -3927,16 +3921,10 @@
       ],
       "networks": [
         {
-          "name": "Mascom",
+          "name": "MASCOM",
           "types": [
             "2G",
             "3G",
-            "4G"
-          ]
-        },
-        {
-          "name": "MASCOM",
-          "types": [
             "4G"
           ]
         },
@@ -5888,12 +5876,6 @@
       "networks": [
         {
           "name": "Cyta",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "CYTA",
           "types": [
             "2G",
             "3G",
@@ -10250,12 +10232,6 @@
         },
         {
           "name": "Nova",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "NOVA",
           "types": [
             "2G",
             "3G",
@@ -16256,18 +16232,12 @@
       ],
       "networks": [
         {
-          "name": "Mtel",
+          "name": "MTEL",
           "types": [
             "2G",
             "3G",
             "4G",
-            "5G"
-          ]
-        },
-        {
-          "name": "MTEL",
-          "types": [
-            "4G",
+            "5G",
             "LTE"
           ]
         },
@@ -17425,17 +17395,11 @@
           ]
         },
         {
-          "name": "Go",
+          "name": "GO",
           "types": [
             "2G",
             "3G",
             "4G",
-            "5G"
-          ]
-        },
-        {
-          "name": "GO",
-          "types": [
             "5G"
           ]
         },
@@ -19835,12 +19799,6 @@
         },
         {
           "name": "Smart",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "SMART",
           "types": [
             "2G",
             "3G",
@@ -22540,12 +22498,6 @@
         {
           "name": "Singtel",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "SingTel",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -23168,14 +23120,9 @@
         {
           "name": "Telesur",
           "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "TeleSUR",
-          "types": [
             "2G",
-            "3G"
+            "3G",
+            "4G"
           ]
         }
       ]

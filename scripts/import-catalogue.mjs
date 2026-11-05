@@ -71,9 +71,14 @@ for (const plan of usable) {
     country.plans.push(toPlan(plan));
     for (const coverage of plan.countryWiseNetworkCoverages) {
       for (const network of coverage.networks) {
-        const types = new Set(country.networks[network.name] ?? []);
-        network.types.forEach((type) => types.add(type));
-        country.networks[network.name] = [...types].sort();
+        // Suppliers spell the same network differently ("Singtel", "SingTel"), so merge by lowercase name.
+        const key = network.name.toLowerCase();
+        const seen = country.networks[key] ?? {
+          name: network.name,
+          types: [],
+        };
+        const types = new Set([...seen.types, ...network.types]);
+        country.networks[key] = { name: seen.name, types: [...types].sort() };
       }
     }
     continue;
@@ -102,9 +107,9 @@ for (const [code, country] of Object.entries(countries)) {
     continue;
   }
   country.plans.sort(byValue);
-  country.networks = Object.entries(country.networks)
-    .map(([name, types]) => ({ name, types }))
-    .sort((a, b) => a.name.localeCompare(b.name));
+  country.networks = Object.values(country.networks).sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
 }
 
 const snapshot = {
