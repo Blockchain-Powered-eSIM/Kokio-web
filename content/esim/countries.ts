@@ -71,6 +71,7 @@ export const countries: CountryContent[] = [
     slug: "japan",
     iso2: "JP",
     name: "Japan",
+    region: "asia",
     airports: ["Narita (NRT)", "Haneda (HND)", "Kansai (KIX)"],
     neighbours: ["south-korea", "taiwan"],
     // From the catalogue snapshot, plus the airport Wi-Fi tip. Recheck when the snapshot changes.
@@ -152,6 +153,7 @@ export const countries: CountryContent[] = [
     slug: "indonesia",
     iso2: "ID",
     name: "Indonesia",
+    region: "asia",
     airports: ["Soekarno-Hatta, Jakarta (CGK)", "Ngurah Rai, Bali (DPS)"],
     neighbours: ["malaysia", "singapore"],
     lastVerified: "2026-11-05",
@@ -207,6 +209,7 @@ export const countries: CountryContent[] = [
     slug: "south-korea",
     iso2: "KR",
     name: "South Korea",
+    region: "asia",
     airports: ["Incheon (ICN)", "Gimpo (GMP)"],
     neighbours: ["japan", "taiwan"],
     lastVerified: "2026-11-05",
@@ -286,6 +289,7 @@ export const countries: CountryContent[] = [
     slug: "malaysia",
     iso2: "MY",
     name: "Malaysia",
+    region: "asia",
     airports: ["Kuala Lumpur International (KUL)"],
     neighbours: ["singapore", "thailand", "indonesia"],
     lastVerified: "2026-11-05",
@@ -382,6 +386,7 @@ export const countries: CountryContent[] = [
     slug: "taiwan",
     iso2: "TW",
     name: "Taiwan",
+    region: "asia",
     airports: ["Taoyuan (TPE)"],
     neighbours: ["japan", "hong-kong", "philippines"],
     tips: [
@@ -410,6 +415,7 @@ export const countries: CountryContent[] = [
     slug: "hong-kong",
     iso2: "HK",
     name: "Hong Kong",
+    region: "asia",
     airports: ["Hong Kong International (HKG)"],
     neighbours: ["taiwan"],
     tips: [
@@ -438,6 +444,7 @@ export const countries: CountryContent[] = [
     slug: "cambodia",
     iso2: "KH",
     name: "Cambodia",
+    region: "asia",
     neighbours: ["thailand", "vietnam"],
     tips: [
       "Every Cambodia plan runs on Smart over 4G. There is no 5G on these plans, and no other network to switch to.",
@@ -464,6 +471,7 @@ export const countries: CountryContent[] = [
     slug: "india",
     iso2: "IN",
     name: "India",
+    region: "asia",
     airports: ["Delhi (DEL)", "Mumbai (BOM)"],
     neighbours: ["united-arab-emirates"],
     tips: [
@@ -520,6 +528,7 @@ export const countries: CountryContent[] = [
     slug: "turkey",
     iso2: "TR",
     name: "Turkey",
+    region: "europe",
     airports: ["Istanbul (IST)", "Sabiha Gökçen (SAW)"],
     neighbours: ["greece"],
     tips: [
@@ -642,6 +651,7 @@ export const countries: CountryContent[] = [
     slug: "united-kingdom",
     iso2: "GB",
     name: "United Kingdom",
+    region: "europe",
     airports: ["Heathrow (LHR)", "Gatwick (LGW)"],
     neighbours: ["france", "netherlands"],
     lastVerified: "2026-11-05",
@@ -682,6 +692,7 @@ export const countries: CountryContent[] = [
     slug: "france",
     iso2: "FR",
     name: "France",
+    region: "europe",
     airports: ["Paris Charles de Gaulle (CDG)", "Paris Orly (ORY)"],
     neighbours: ["spain", "italy", "germany", "switzerland"],
     lastVerified: "2026-11-05",
@@ -722,6 +733,7 @@ export const countries: CountryContent[] = [
     slug: "italy",
     iso2: "IT",
     name: "Italy",
+    region: "europe",
     airports: ["Rome Fiumicino (FCO)", "Milan Malpensa (MXP)"],
     neighbours: ["france", "switzerland"],
     lastVerified: "2026-11-05",
@@ -762,6 +774,7 @@ export const countries: CountryContent[] = [
     slug: "spain",
     iso2: "ES",
     name: "Spain",
+    region: "europe",
     airports: ["Madrid-Barajas (MAD)", "Barcelona-El Prat (BCN)"],
     neighbours: ["portugal", "france", "morocco"],
     tips: [
@@ -790,6 +803,7 @@ export const countries: CountryContent[] = [
     slug: "germany",
     iso2: "DE",
     name: "Germany",
+    region: "europe",
     airports: ["Frankfurt (FRA)", "Munich (MUC)"],
     neighbours: ["netherlands", "switzerland", "france"],
     tips: [
@@ -818,6 +832,7 @@ export const countries: CountryContent[] = [
     slug: "portugal",
     iso2: "PT",
     name: "Portugal",
+    region: "europe",
     airports: ["Lisbon (LIS)", "Porto (OPO)"],
     neighbours: ["spain"],
     tips: [
@@ -846,6 +861,7 @@ export const countries: CountryContent[] = [
     slug: "greece",
     iso2: "GR",
     name: "Greece",
+    region: "europe",
     airports: ["Athens (ATH)"],
     neighbours: ["turkey", "italy"],
     tips: [
@@ -874,6 +890,7 @@ export const countries: CountryContent[] = [
     slug: "netherlands",
     iso2: "NL",
     name: "Netherlands",
+    region: "europe",
     airports: ["Amsterdam Schiphol (AMS)"],
     neighbours: ["germany"],
     tips: [
@@ -902,6 +919,7 @@ export const countries: CountryContent[] = [
     slug: "switzerland",
     iso2: "CH",
     name: "Switzerland",
+    region: "europe",
     airports: ["Zurich (ZRH)", "Geneva (GVA)"],
     neighbours: ["germany", "france", "italy"],
     tips: [
