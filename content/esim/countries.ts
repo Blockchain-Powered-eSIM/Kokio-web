@@ -129,6 +129,37 @@ export const countries: CountryContent[] = [
     name: "South Korea",
     airports: ["Incheon (ICN)", "Gimpo (GMP)"],
     neighbours: ["japan", "taiwan"],
+    // From the catalogue snapshot. Recheck the network when the snapshot changes.
+    tips: [
+      "Kokio's South Korea plans run on SK Telecom, the country's largest network, so there is no network to pick by hand.",
+      "Unlimited plans run for 3, 5, 7, 10, 15 or 30 days. A week in Seoul fits the 7-day plan.",
+      "Going on to Japan or Taiwan? Each has its own Kokio plans, and your phone can hold more than one eSIM, so you can install the next one before you fly.",
+    ],
+    faqs: [
+      {
+        id: "passport",
+        question: "Do I need my passport to buy a South Korea eSIM?",
+        answer:
+          "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
+      },
+      {
+        id: "phone-number",
+        question: "Does the South Korea eSIM include a Korean phone number?",
+        answer:
+          "No. Kokio's South Korea plans are data-only, so calls and messages go through internet apps.",
+      },
+      {
+        id: "network",
+        question: "Which network does the South Korea eSIM use?",
+        answer: "SK Telecom, with 5G where the network offers it.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for South Korea?",
+        answer:
+          "Yes. Unlimited South Korea plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+    ],
   }),
   starter({
     slug: "singapore",
@@ -199,6 +230,37 @@ export const countries: CountryContent[] = [
     iso2: "US",
     name: "United States",
     neighbours: ["canada", "mexico"],
+    // From the catalogue snapshot. Recheck plan shapes when the snapshot changes.
+    tips: [
+      "Your eSIM can use AT&T, T-Mobile or Verizon, the three national networks. Coverage differs a lot outside cities, so if one network is weak, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
+      "Need to call a hotel or get a text code? Many US plans include calls and SMS as well as data. The app shows the minutes and messages on each plan card.",
+      "Staying a long time or coming back often? There is a 10 GB plan that lasts 365 days, so one eSIM can cover several trips.",
+    ],
+    faqs: [
+      {
+        id: "passport",
+        question: "Do I need my passport to buy a US eSIM?",
+        answer:
+          "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
+      },
+      {
+        id: "calls",
+        question: "Can I make calls with a Kokio US eSIM?",
+        answer:
+          "Yes, on plans that include calls and SMS. Data-only plans need an internet app for calls. Each plan in the app says which kind it is.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for the US?",
+        answer:
+          "Yes. Unlimited US plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+      {
+        id: "5g",
+        question: "Do US plans include 5G?",
+        answer: "Some do. The plan table marks which plans can use 5G.",
+      },
+    ],
   }),
   starter({
     slug: "canada",
@@ -219,6 +281,38 @@ export const countries: CountryContent[] = [
     name: "United Kingdom",
     airports: ["Heathrow (LHR)", "Gatwick (LGW)"],
     neighbours: ["france", "netherlands"],
+    // From the catalogue snapshot. Recheck plan shapes when the snapshot changes.
+    tips: [
+      "Your eSIM can use EE, O2, Three or Vodafone, all four UK networks. If the signal drops in the countryside, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
+      "Many UK plans also come with calls and SMS, handy for ringing a B&B or getting a text code. The app shows the minutes and messages on each plan card.",
+      "Plans start at 1 GB for 3 days, enough for a quick London stopover. Unlimited plans run for 3, 5, 7, 10, 15 or 30 days.",
+    ],
+    faqs: [
+      {
+        id: "passport",
+        question: "Do I need my passport to buy a UK eSIM?",
+        answer:
+          "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
+      },
+      {
+        id: "calls",
+        question: "Can I make calls with a Kokio UK eSIM?",
+        answer:
+          "Yes, on plans that include calls and SMS. Data-only plans need an internet app for calls. Each plan in the app says which kind it is.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for the UK?",
+        answer:
+          "Yes. Unlimited UK plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in the UK?",
+        answer:
+          "Yes, where the network offers it. Every Kokio UK plan can use 5G.",
+      },
+    ],
   }),
   starter({
     slug: "france",
@@ -226,6 +320,38 @@ export const countries: CountryContent[] = [
     name: "France",
     airports: ["Paris Charles de Gaulle (CDG)", "Paris Orly (ORY)"],
     neighbours: ["spain", "italy", "germany", "switzerland"],
+    // From the catalogue snapshot. Recheck when the snapshot changes.
+    tips: [
+      "Your eSIM can use Orange, SFR, Bouygues Telecom or Free Mobile, all four French networks. If the signal is weak, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
+      "Carrying on to Spain, Italy or beyond? The app also sells Europe-wide plans, which can beat buying a local plan in each country.",
+      "Unlimited plans run for 3, 5, 7, 10, 15 or 30 days, so a long weekend in Paris doesn't need a 30-day plan.",
+    ],
+    faqs: [
+      {
+        id: "passport",
+        question: "Do I need my passport to buy a France eSIM?",
+        answer:
+          "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
+      },
+      {
+        id: "phone-number",
+        question: "Does the France eSIM include a French phone number?",
+        answer:
+          "No. Kokio's France plans are data-only, so calls and messages go through internet apps.",
+      },
+      {
+        id: "europe",
+        question: "Does the France eSIM work in other European countries?",
+        answer:
+          "A France plan works in France. For a trip across several countries, pick one of the Europe plans in the app instead.",
+      },
+      {
+        id: "5g",
+        question: "Can I use 5G in France?",
+        answer:
+          "Yes, where the network offers it. Every Kokio France plan can use 5G.",
+      },
+    ],
   }),
   starter({
     slug: "italy",
@@ -233,6 +359,38 @@ export const countries: CountryContent[] = [
     name: "Italy",
     airports: ["Rome Fiumicino (FCO)", "Milan Malpensa (MXP)"],
     neighbours: ["france", "switzerland"],
+    // From the catalogue snapshot. Recheck when the snapshot changes.
+    tips: [
+      "Your eSIM can use Vodafone, WindTre or Iliad. If the signal is weak in a hill town or on the coast, choose another by hand in Settings → Mobile Service → your Kokio line → Network Selection.",
+      "Visiting Italy as part of a longer trip? The app also sells Europe-wide plans that cover Italy and its neighbours on one eSIM.",
+      "Plans start at 1 GB for 7 days, and unlimited plans run for 3, 5, 7, 10, 15 or 30 days.",
+    ],
+    faqs: [
+      {
+        id: "passport",
+        question: "Do I need my passport to buy an Italy eSIM?",
+        answer:
+          "No. Kokio asks for no passport, name or email. You sign in with a passkey on your phone.",
+      },
+      {
+        id: "phone-number",
+        question: "Does the Italy eSIM include an Italian phone number?",
+        answer:
+          "No. Kokio's Italy plans are data-only, so calls and messages go through internet apps.",
+      },
+      {
+        id: "europe",
+        question: "Does the Italy eSIM work in other European countries?",
+        answer:
+          "An Italy plan works in Italy. For a trip across several countries, pick one of the Europe plans in the app instead.",
+      },
+      {
+        id: "unlimited",
+        question: "Is there an unlimited data plan for Italy?",
+        answer:
+          "Yes. Unlimited Italy plans run for 3, 5, 7, 10, 15 or 30 days. The plan table shows the current prices.",
+      },
+    ],
   }),
   starter({
     slug: "spain",
