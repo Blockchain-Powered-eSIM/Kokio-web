@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { PRODUCT_NAME } from "@/lib/site-copy";
 import { cheapestPlan, formatUsd } from "@/lib/esim/catalogue";
+import { DATA_PAGE } from "@/lib/esim/data-usage";
 import {
   allRoaming,
   countryAnswer,
@@ -202,9 +203,12 @@ export default async function CountryEsimPage({ params }: { params: Params }) {
       ) : null}
 
       <PageFooter>
-        <p className="text-base text-esim-black-700">
+        <p className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-base text-esim-black-700">
           <Link href="/esim" className="underline">
             All destinations
+          </Link>
+          <Link href={DATA_PAGE.path} className="underline">
+            How much data do I need?
           </Link>
         </p>
       </PageFooter>

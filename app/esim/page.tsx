@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { esimIndex } from "@/lib/esim/copy";
 import { formatUsd } from "@/lib/esim/catalogue";
+import { DATA_PAGE } from "@/lib/esim/data-usage";
 import { pageMetadata, shareMetadata } from "@/lib/esim/pages";
 import { indexPageGraph, type Crumb } from "@/lib/esim/schema";
 import { JsonLd } from "@/components/json-ld";
@@ -36,6 +37,13 @@ export default function EsimIndexPage() {
           Travel eSIMs by destination
         </h1>
         <p className="text-lg text-esim-black-700">{description}</p>
+        <p className="text-lg text-esim-black-700">
+          Not sure how big a plan to get?{" "}
+          <Link href={DATA_PAGE.path} className="underline">
+            Work out how much data you need
+          </Link>
+          .
+        </p>
       </header>
 
       {regions.length ? (
