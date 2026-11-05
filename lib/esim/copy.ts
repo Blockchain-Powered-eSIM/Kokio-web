@@ -38,6 +38,10 @@ export const INDEX_PRICE_NOTE =
 
 export const GUIDE_PATH = "/blogs/esim-guide-for-travellers-2026";
 
+export const NO_KYC_PATH = "/no-kyc-esim";
+
+export const NO_KYC_LINK_LABEL = "What no-KYC covers, and what it doesn't";
+
 export function networkGenerations(page: CountryPage): string {
   return page.catalogue.plans.some((plan) => plan.has5g) ? "4G/5G" : "4G";
 }

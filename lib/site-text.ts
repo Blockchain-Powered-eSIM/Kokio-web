@@ -34,6 +34,8 @@ import {
   esimIndex,
   memberNames,
   NO_ID_LINE,
+  NO_KYC_LINK_LABEL,
+  NO_KYC_PATH,
   PAYMENTS_LINE,
   INDEX_PRICE_NOTE,
   PRICES_AS_OF,
@@ -338,6 +340,7 @@ function countrySection(page: CountryPage): string {
     NO_ID_LINE,
     ...(allRoaming(page) ? [ROAMING_LINE] : []),
     PAYMENTS_LINE,
+    `[${NO_KYC_LINK_LABEL}](https://kokio.app${NO_KYC_PATH})`,
     "## Setup",
     setupSteps(content.airports)
       .map((step, index) => `${index + 1}. ${step}`)

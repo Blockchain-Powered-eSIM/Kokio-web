@@ -12,6 +12,8 @@ import {
   GUIDE_PATH,
   networkGenerations,
   NO_ID_LINE,
+  NO_KYC_LINK_LABEL,
+  NO_KYC_PATH,
   PAYMENTS_LINE,
   PRICES_AS_OF,
   regionAlternative,
@@ -139,6 +141,11 @@ export default async function CountryEsimPage({ params }: { params: Params }) {
         <p>{NO_ID_LINE}</p>
         {allRoaming(page) ? <p>{ROAMING_LINE}</p> : null}
         <p>{PAYMENTS_LINE}</p>
+        <p>
+          <Link href={NO_KYC_PATH} className="underline">
+            {NO_KYC_LINK_LABEL}
+          </Link>
+        </p>
       </PageSection>
 
       <PageSection id="setup" title="Setup">
