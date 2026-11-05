@@ -9,6 +9,15 @@ import type {
   SnapshotOffering,
   SnapshotPlan,
 } from "@/lib/esim/types";
+import { cheapestCovering } from "@/lib/esim/plans";
+
+export {
+  cheapestCovering,
+  cheapestPlan,
+  formatData,
+  formatDays,
+  formatUsd,
+} from "@/lib/esim/plans";
 
 const snapshot = raw as unknown as Snapshot;
 
@@ -49,26 +58,8 @@ export function priceRange(plans: SnapshotPlan[]): {
   return { low: Math.min(...prices), high: Math.max(...prices) };
 }
 
-export function cheapestPlan(plans: SnapshotPlan[]): SnapshotPlan {
-  return plans.reduce((a, b) => (b.priceUsd < a.priceUsd ? b : a));
-}
-
 export function pricePerGb(plan: SnapshotPlan): number | null {
   return plan.dataGb ? plan.priceUsd / plan.dataGb : null;
-}
-
-/** Cheapest plan that lasts `days` and holds `dataGb`, or null if none does. */
-export function cheapestCovering(
-  plans: SnapshotPlan[],
-  days: number,
-  dataGb: number
-): SnapshotPlan | null {
-  const fits = plans.filter(
-    (plan) =>
-      plan.validityDays >= days &&
-      (plan.unlimited || (plan.dataGb ?? 0) >= dataGb)
-  );
-  return fits.length ? cheapestPlan(fits) : null;
 }
 
 export interface RouteComparison {
@@ -112,21 +103,4 @@ export function compareRoute(
     regional: cheapestCovering(offering.plans, days, route.dataGb),
     localTotal,
   };
-}
-
-const usd = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
-
-export function formatUsd(amount: number): string {
-  return usd.format(amount);
-}
-
-export function formatData(plan: SnapshotPlan): string {
-  return plan.unlimited ? "Unlimited" : `${plan.dataGb} GB`;
-}
-
-export function formatDays(days: number): string {
-  return days === 1 ? "1 day" : `${days} days`;
 }
