@@ -269,7 +269,7 @@
       ],
       "networks": [
         {
-          "name": "Du",
+          "name": "du",
           "types": [
             "2G",
             "3G",
@@ -279,12 +279,6 @@
         },
         {
           "name": "Etisalat",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Etisalat UAE",
           "types": [
             "2G",
             "3G",
@@ -3665,16 +3659,7 @@
           ]
         },
         {
-          "name": "Telecom Italia Mobile",
-          "types": [
-            "2G",
-            "3G",
-            "4G",
-            "5G"
-          ]
-        },
-        {
-          "name": "TIM Brasil",
+          "name": "TIM",
           "types": [
             "2G",
             "3G",
@@ -3684,12 +3669,6 @@
         },
         {
           "name": "Vivo",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "VIVO Brazil",
           "types": [
             "2G",
             "3G",
@@ -4347,16 +4326,11 @@
         {
           "name": "Bell",
           "types": [
-            "LTE"
-          ]
-        },
-        {
-          "name": "Bell Mobility",
-          "types": [
             "2G",
             "3G",
             "4G",
-            "5G"
+            "5G",
+            "LTE"
           ]
         },
         {
@@ -6423,16 +6397,7 @@
           ]
         },
         {
-          "name": "O2 Germany",
-          "types": [
-            "2G",
-            "3G",
-            "4G",
-            "5G"
-          ]
-        },
-        {
-          "name": "Vodafone Germany",
+          "name": "Vodafone",
           "types": [
             "2G",
             "3G",
@@ -7382,7 +7347,7 @@
       ],
       "networks": [
         {
-          "name": "Orange Egypt",
+          "name": "Orange",
           "types": [
             "2G",
             "3G",
@@ -7531,7 +7496,7 @@
       ],
       "networks": [
         {
-          "name": "Movistar España",
+          "name": "Movistar",
           "types": [
             "2G",
             "3G",
@@ -7542,12 +7507,6 @@
         {
           "name": "Orange",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Orange España",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -7555,7 +7514,7 @@
           ]
         },
         {
-          "name": "Vodafone España",
+          "name": "Vodafone",
           "types": [
             "2G",
             "3G",
@@ -8335,13 +8294,7 @@
       ],
       "networks": [
         {
-          "name": "Bougyues",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Bouygues",
+          "name": "Bouygues Telecom",
           "types": [
             "2G",
             "3G",
@@ -8360,12 +8313,6 @@
         },
         {
           "name": "Orange",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Orange France",
           "types": [
             "2G",
             "3G",
@@ -8717,19 +8664,13 @@
       ],
       "networks": [
         {
-          "name": "3",
-          "types": [
-            "4G"
-          ]
-        },
-        {
           "name": "EE",
           "types": [
             "5G"
           ]
         },
         {
-          "name": "O2 UK",
+          "name": "O2",
           "types": [
             "2G",
             "3G",
@@ -8740,12 +8681,6 @@
         {
           "name": "Three",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Three UK",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -8753,13 +8688,7 @@
           ]
         },
         {
-          "name": "Virgin Media O2",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Vodafone UK",
+          "name": "Vodafone",
           "types": [
             "2G",
             "3G",
@@ -10223,7 +10152,7 @@
       ],
       "networks": [
         {
-          "name": "COSMOTE",
+          "name": "Cosmote",
           "types": [
             "2G",
             "4G",
@@ -10241,12 +10170,6 @@
         },
         {
           "name": "Vodafone",
-          "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Vodafone Greece",
           "types": [
             "2G",
             "3G",
@@ -10890,7 +10813,7 @@
           ]
         },
         {
-          "name": "China Mobile Hong Kong Company Ltd.",
+          "name": "China Mobile Hong Kong",
           "types": [
             "2G",
             "4G",
@@ -10898,17 +10821,11 @@
           ]
         },
         {
-          "name": "Hong Kong Telecom",
+          "name": "HKT",
           "types": [
             "2G",
             "3G",
             "4G",
-            "5G"
-          ]
-        },
-        {
-          "name": "Hong Kong Telecommunications (HKT)",
-          "types": [
             "5G"
           ]
         },
@@ -11761,19 +11678,7 @@
       ],
       "networks": [
         {
-          "name": "H3G CP",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "INDOSAT",
-          "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "Ooredoo",
+          "name": "Indosat",
           "types": [
             "2G",
             "3G",
@@ -11791,7 +11696,7 @@
           ]
         },
         {
-          "name": "Tri Indonesia",
+          "name": "Tri",
           "types": [
             "2G",
             "3G",
@@ -12465,15 +12370,6 @@
           ]
         },
         {
-          "name": "Bharti Airtel",
-          "types": [
-            "2G",
-            "3G",
-            "4G",
-            "5G"
-          ]
-        },
-        {
           "name": "Jio",
           "types": [
             "2G",
@@ -12482,13 +12378,7 @@
           ]
         },
         {
-          "name": "VI India",
-          "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Vodafone Idea",
+          "name": "Vi",
           "types": [
             "2G",
             "3G",
@@ -12976,11 +12866,14 @@
         {
           "name": "Iliad",
           "types": [
+            "2G",
+            "3G",
+            "4G",
             "5G"
           ]
         },
         {
-          "name": "ILIAD Italia",
+          "name": "Vodafone",
           "types": [
             "2G",
             "3G",
@@ -12989,16 +12882,7 @@
           ]
         },
         {
-          "name": "Vodafone Italy",
-          "types": [
-            "2G",
-            "3G",
-            "4G",
-            "5G"
-          ]
-        },
-        {
-          "name": "Wind Tre",
+          "name": "WindTre",
           "types": [
             "2G",
             "3G",
@@ -13488,14 +13372,6 @@
           ]
         },
         {
-          "name": "KDDI Au",
-          "types": [
-            "2G",
-            "4G",
-            "5G"
-          ]
-        },
-        {
           "name": "NTT Docomo",
           "types": [
             "2G",
@@ -13513,7 +13389,7 @@
           ]
         },
         {
-          "name": "Softbank",
+          "name": "SoftBank",
           "types": [
             "5G"
           ]
@@ -14103,12 +13979,6 @@
         }
       ],
       "networks": [
-        {
-          "name": "SK",
-          "types": [
-            "5G"
-          ]
-        },
         {
           "name": "SK Telecom",
           "types": [
@@ -17790,7 +17660,7 @@
       ],
       "networks": [
         {
-          "name": "AT&T Mexico",
+          "name": "AT&T",
           "types": [
             "2G",
             "3G",
@@ -17800,12 +17670,6 @@
         },
         {
           "name": "Movistar",
-          "types": [
-            "4G"
-          ]
-        },
-        {
-          "name": "Movistar Mexico",
           "types": [
             "2G",
             "3G",
@@ -18716,7 +18580,7 @@
           ]
         },
         {
-          "name": "Vodafone Netherlands",
+          "name": "Vodafone",
           "types": [
             "2G",
             "3G",
@@ -20480,7 +20344,7 @@
           ]
         },
         {
-          "name": "Vodafone Portugal",
+          "name": "Vodafone",
           "types": [
             "2G",
             "3G",
@@ -22505,7 +22369,7 @@
           ]
         },
         {
-          "name": "Star Hub",
+          "name": "StarHub",
           "types": [
             "2G",
             "3G",
@@ -23794,12 +23658,6 @@
         {
           "name": "dtac",
           "types": [
-            "5G"
-          ]
-        },
-        {
-          "name": "DTAC TriNet",
-          "types": [
             "2G",
             "3G",
             "4G",
@@ -24339,17 +24197,11 @@
       ],
       "networks": [
         {
-          "name": "Turk Telekom",
+          "name": "Türk Telekom",
           "types": [
             "2G",
             "3G",
             "4G",
-            "5G"
-          ]
-        },
-        {
-          "name": "Turk Telekom (Avea)",
-          "types": [
             "5G"
           ]
         },
@@ -24573,7 +24425,7 @@
       ],
       "networks": [
         {
-          "name": "ChungHwa Telecom",
+          "name": "Chunghwa Telecom",
           "types": [
             "2G",
             "3G",
@@ -25271,13 +25123,6 @@
       "networks": [
         {
           "name": "AT&T",
-          "types": [
-            "4G",
-            "5G"
-          ]
-        },
-        {
-          "name": "AT&T Mobility",
           "types": [
             "4G",
             "5G"
