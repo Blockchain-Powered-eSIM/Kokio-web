@@ -11,6 +11,7 @@ import { NavBar } from "@/components/global/nav-bar";
 import { Footer } from "@/components/global/footer";
 import { Toaster } from "@/components/ui/toaster";
 import { AnnouncementBanner } from "@/components/global/announcement-banner";
+import { AttributionCapture } from "@/components/global/attribution-capture";
 import Script from "next/script";
 
 const anybody = Anybody({
@@ -74,6 +75,7 @@ export default function RootLayout({
         <div className="m-0 flex-1 p-0">{children}</div>
         <Footer />
         <Toaster />
+        <AttributionCapture />
         <Script
           src="https://cloud.umami.is/script.js"
           data-website-id="3c17b647-ca55-4e77-8341-074deb1b95bf"

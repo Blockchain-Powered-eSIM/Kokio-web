@@ -14,6 +14,15 @@ const nextConfig: NextConfig = {
     return [
       { source: "/blog", destination: "/blogs", permanent: true },
       { source: "/blog/:slug*", destination: "/blogs/:slug*", permanent: true },
+
+      // Community QR codes (docs/community-qr-tracking.md). Temporary so the
+      // destination can change without reprinting the code.
+      {
+        source: "/r/ethchiangmai",
+        destination:
+          "/?utm_source=ethchiangmai&utm_medium=qr&utm_campaign=ethchiangmai-2026",
+        permanent: false,
+      },
     ];
   },
 };

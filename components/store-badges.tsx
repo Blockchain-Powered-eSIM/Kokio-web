@@ -1,15 +1,6 @@
 "use client";
 
-import { ANDROID_URL, IOS_URL } from "@/components/live/hero";
-
-type Platform = "ios" | "android";
-
-function trackDownload(platform: Platform) {
-  const w = window as unknown as {
-    umami?: { track: (event: string, data?: object) => void };
-  };
-  w.umami?.track("Download Click", { page: "Home Page", platform });
-}
+import { useStoreLinks } from "@/hooks/use-store-links";
 
 const badgeClass =
   "inline-flex min-h-12 min-w-[170px] items-center justify-center gap-3 rounded-full bg-outer-space-950 px-6 py-2 text-left text-white ring-offset-background transition-colors hover:bg-outer-space-950/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
@@ -58,15 +49,16 @@ function PlayMark() {
 }
 
 export function StoreBadges() {
+  const links = useStoreLinks("Home Page");
   return (
     <div className="flex flex-wrap items-center justify-center gap-3">
       <a
-        href={IOS_URL}
+        href={links.ios}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Download Kokio on the App Store"
         className={badgeClass}
-        onClick={() => trackDownload("ios")}
+        onClick={() => links.track("ios")}
       >
         <AppStoreMark />
         <span className="flex flex-col leading-tight">
@@ -75,12 +67,12 @@ export function StoreBadges() {
         </span>
       </a>
       <a
-        href={ANDROID_URL}
+        href={links.android}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Get Kokio on the Play Store"
         className={badgeClass}
-        onClick={() => trackDownload("android")}
+        onClick={() => links.track("android")}
       >
         <PlayMark />
         <span className="flex flex-col leading-tight">
