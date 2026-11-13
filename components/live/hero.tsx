@@ -6,28 +6,21 @@ import Link from "next/link";
 import Logomark from "@/assets/logomark.svg";
 import { Icon } from "@/components/live/icon-sprite";
 import { HERO } from "@/components/live/content";
+import { useStoreLinks } from "@/hooks/use-store-links";
 
-export const IOS_URL = "https://apps.apple.com/us/app/kokio/id6799362847";
-export const ANDROID_URL =
-  "https://play.google.com/store/apps/details?id=app.kokio.mobile";
-
-function trackDownload(platform: "ios" | "android") {
-  const w = window as unknown as {
-    umami?: { track: (event: string, data?: object) => void };
-  };
-  w.umami?.track("Download Click", { page: "Live Page", platform });
-}
+export { IOS_URL, ANDROID_URL } from "@/lib/attribution";
 
 function HeroIconRow() {
+  const links = useStoreLinks("Live Page");
   return (
     <div className="hero-icon-row">
       <a
-        href={IOS_URL}
+        href={links.ios}
         target="_blank"
         rel="noopener noreferrer"
         className="hero-icon-tile"
         aria-label="Download on the App Store"
-        onClick={() => trackDownload("ios")}
+        onClick={() => links.track("ios")}
       >
         <span className="hero-icon-box hero-icon-box--appstore">
           <Icon name="appstore" className="hero-icon-glyph" />
@@ -36,12 +29,12 @@ function HeroIconRow() {
       </a>
 
       <a
-        href={ANDROID_URL}
+        href={links.android}
         target="_blank"
         rel="noopener noreferrer"
         className="hero-icon-tile"
         aria-label="Get it on the Play Store"
-        onClick={() => trackDownload("android")}
+        onClick={() => links.track("android")}
       >
         <span className="hero-icon-box hero-icon-box--playstore">
           <Icon name="play" className="hero-icon-glyph" />
@@ -53,14 +46,15 @@ function HeroIconRow() {
 }
 
 function StoreBadgeLinks() {
+  const links = useStoreLinks("Live Page");
   return (
     <>
       <a
-        href={IOS_URL}
+        href={links.ios}
         target="_blank"
         rel="noopener noreferrer"
         className="store-badge"
-        onClick={() => trackDownload("ios")}
+        onClick={() => links.track("ios")}
       >
         <Icon name="appstore" />
         <span className="lines">
@@ -69,11 +63,11 @@ function StoreBadgeLinks() {
         </span>
       </a>
       <a
-        href={ANDROID_URL}
+        href={links.android}
         target="_blank"
         rel="noopener noreferrer"
         className="store-badge"
-        onClick={() => trackDownload("android")}
+        onClick={() => links.track("android")}
       >
         <Icon name="play" />
         <span className="lines">
@@ -142,7 +136,7 @@ export function LiveHero() {
         </div>
       </header>
       <div
-        className={`sticky-download-bar${showSticky ? "visible" : ""}`}
+        className={`sticky-download-bar${showSticky ? " visible" : ""}`}
         aria-hidden={!showSticky}
       >
         <StoreBadgeLinks />
