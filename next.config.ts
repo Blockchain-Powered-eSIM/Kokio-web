@@ -23,6 +23,12 @@ const nextConfig: NextConfig = {
           "/?utm_source=ethchiangmai&utm_medium=qr&utm_campaign=ethchiangmai-2026",
         permanent: false,
       },
+      {
+        source: "/r/ecm-guide",
+        destination:
+          "/?utm_source=ethchiangmai&utm_medium=qr&utm_campaign=ethchiangmai-2026&utm_content=guide",
+        permanent: false,
+      },
     ];
   },
 };
